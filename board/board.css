@@ -1,0 +1,202 @@
+
+/*=====================================================
+ Reset
+========================================================*/
+html{-webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; /*-ms-touch-action:none;*/ }
+html,body{height:100%; color:#333; font-size:14px; font-weight:400; /*line-height:1.4; */font-family:'Pretendard', sans-serif; word-break: break-all;}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {margin:0; padding:0; border:0; vertical-align:baseline; -webkit-font-smoothing:antialiased; box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box;}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section{display:block;}
+ol, ul{list-style:none;}
+a{background:transparent; text-decoration:none; color:inherit;}
+a:hover, a:active{text-decoration:none; outline:0;}
+label, select, input, textarea {vertical-align:middle; }
+table{border-collapse:collapse; border-spacing:0;}
+legend,caption{position:absolute; left:-99999px; display:block; width:1px; height:1px; overflow:hidden; text-indent:-99999px; clip:rect(0,0,0,0); *display:none;}
+table td,table th{word-break: keep-all; word-wrap: break-word;}
+address, caption, cite, code, dfn, em, strong, th, var{font-style:normal;}
+address, caption, strong[lang=en], em, cite, b {font-weight:normal; font-style:normal; }
+
+/****** Content ******/
+.container{position:relative; min-height:700px;  padding-bottom:100px;}
+.content-wrap{min-height:700px;}
+
+/*========================================================
+ Common
+========================================================*/
+.blind{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);border:0}
+
+
+
+/**** Frame ****/
+.frame-left{float:left}
+.frame-right{float:right}
+.frame-sm{position:relative; max-width:1100px; margin:0 auto;}
+.frame-wrap,
+.clear:after,
+[class*="frame-"]:after{display:block; clear:both; content:'';}
+
+
+/**** Text Align,Style ****/
+.text-left{text-align:left !important;}
+.text-center{text-align:center !important;}
+.text-num-md{font-weight:400;}
+/* ellipsis */
+table td .title-elps{display:inline-block; vertical-align: middle; max-width:94%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; word-break: keep-all;}
+
+/**** Text Color ****/
+.text-grey3{color:#999 !important;}
+
+/* 폼요소 Size */
+.input-group{height:40px;}
+.input-group .btn-form{height:40px;}
+
+.input-group .input-text{height:100%; /*height:40px;*/ padding:3px 15px;}
+
+/* 간격 */
+.content-wrap.frame-sm .page-title-area:first-child{padding-top:70px;}
+.page-title-area ~ .frame-wrap{margin-top:20px}
+.menu-title-area ~ .grid-list-wrap{margin-top:10px;}
+
+
+
+/* -px */
+.w225{width:225px !important;}
+/* 간격 */
+.mt20{margin-top:20px}
+
+/*========================================================
+ Button
+========================================================*/
+button{background:none;font-family:'Pretendard', sans-serif; cursor:pointer; outline:none; border:0; margin:0; padding:0;}
+button .blind {position:relative;font-size:0;color:transparent}
+button span {position:relative}
+
+/* Title */
+.page-title-area{position:relative;}
+.title-page{font-size:25px; font-weight:700;}
+
+.menu-title-area{position:relative; min-height:30px;}
+.menu-title-area .title-menu{display:inline-block; font-size:24px; font-weight:500;}
+.menu-title-area .right{position:absolute; right:0; top:50%; transform: translateY(-50%); -webkit-transform: translateY(-50%); z-index:1;}
+
+.menu-title-area .input-group-wrap.box-type{margin-top:-4px; border-radius:3px;}
+.menu-title-area .input-group-wrap.box-type .input-group{height:36px}
+.menu-title-area .input-group-wrap.box-type .input-group .select-box {min-width: 80px}
+
+/* aside-menu  */
+.aside-menu-wrap{width:220px}
+.aside-menu{padding:10px 24px; border:1px solid #E6E6E6;}
+.aside-menu .menu-list > li{padding:15px 0; border-top:1px solid #eee}
+.aside-menu .menu-list > li:first-child{border-top:0;}
+.aside-menu .menu-list > li .menu{font-size:15px; color:#000; font-weight: 500;}
+.aside-guide-box{padding:30px 24px; border:1px solid #E6E6E6; margin-top:15px;}
+.aside-guide-box dl + dl{border-top:1px solid #eee; padding-top:30px; margin-top:30px}
+.aside-guide-box dl dt{color:#333; font-size:15px; font-weight:500; margin-bottom:8px}
+.aside-guide-box dd{color:#666; line-height:19px}
+.aside-guide-box .phone-num{color:#333; font-size:22px; font-weight:700;  margin-bottom:5px}
+
+/*========================================================
+ Form
+========================================================*/
+button, input, optgroup, select, textarea{font:inherit; color:inherit; margin:0; padding:0; box-sizing:border-box; -webkit-appearance:none; appearance:none; }
+button, input{overflow:visible;}
+button, select{text-transform:none;}
+button,[type="button"],[type="reset"],[type="submit"]{-webkit-appearance:none; appearance:none; cursor:pointer;/* border:0;*/ padding:0; background-image:none;}
+
+
+/**** Input ****/
+.input-text{height:40px; padding:5px 15px; background:#fff; color:#333; border:1px solid #ccc; box-sizing:border-box; font-size:13px; border-radius:0;}
+
+
+/* input-group */
+.input-group{position:relative; display:table; border-collapse:collapse; /*width:100%;*/}
+.input-group > .input-text{position:relative; display:table-cell; float:left; width:100%; z-index:2;}
+.input-group-wrap .input-group > .input-group-btn:last-child{padding:0}
+.input-group > .input-group-btn{display:table-cell; position:relative; white-space:nowrap; width:1%; vertical-align:middle; border:0; padding:0 5px;}
+.input-group > .input-group-form,
+.input-group > .input-group-btn{display:table-cell; position:relative; white-space:nowrap; width:1%; vertical-align:middle; border:0; padding:0 5px;}
+
+
+/* input-group-wrap box-type */
+.input-group-wrap.box-type .select-box{margin:0 0 0 -1px; height:calc(100% + 2px)}
+input-group-wrap.box-type .select-box{margin:0 0 0 -1px; height:calc(100% + 2px)}
+
+/* 간격 */
+.input-group > .input-group-form:first-child{padding-left:0 !important}
+.input-group > .input-text + .input-group-btn:last-child{padding:0 0 0 5px}
+.input-group > .input-group-btn:last-child{padding:0}
+
+/* 예외 */
+.input-group-wrap .input-group > .input-text + .input-group-btn:last-child{padding:0; height:100%}
+
+/**** Input group ****/
+/* input-group-wrap */
+.input-group-wrap{border:1px solid transparent;}
+.input-group-wrap .input-group .input-text{border:0;}
+
+/* input-group-wrap box-type */
+.input-group-wrap.box-type{border:1px solid #ccc;}
+.input-group-wrap.box-type .input-group-btn > .btn-icon-search{padding:0 10px; margin-top:2px}
+
+/**** Selectbox ****/
+.select-box{display:inline-block; min-width:120px; position:relative; height:40px; vertical-align:top; z-index:2; text-align:left; max-width:100%}
+.select-box .select-value{display:block; position:relative; height:100%; padding:0 36px 0 15px;  border: 1px solid #ccc; font-size:14px; color:#333;  box-sizing:border-box; background:#fff;}
+.select-box .select-value:after{content:''; display:block; position:absolute; right:20px; top:50%; width:7px; height:7px; border-top:1px solid #555; border-left:1px solid #555; transform:rotate(225deg) translateY(100%);-webkit-transform:rotate(225deg) translateY(100%); -ms-transform:rotate(225deg) translateY(100%)}
+.select-box .select-value > span{position:relative; top:50%; left:0; transform: translateY(-50%); -webkit-transform: translateY(-50%); display:block; max-width:100%; text-overflow:ellipsis; white-space:nowrap; overflow:hidden; word-break: break-all;color:#999;}
+.select-box .select-list{display:none;overflow-y:auto;position:absolute; top:calc(100% - 1px); width:100%;max-height:300px;padding:0;border:1px solid #ddd;background:#fff;z-index:1}
+.select-box .select-list li + li{border-top:1px solid #ddd}
+.select-box .select-list li:first-child{margin-top:0}
+.select-box .select-list a{display:block;width:100%;height:100%;padding:10px 17px 10px;background:#fff;box-sizing:border-box;font-size:14px}
+
+
+/* 아이콘 버튼 */
+[class*="btn-icon-"]{display:inline-block;}
+
+/**** 이미지 ****/
+/* 버튼 */
+[class^="ico-btn-"]{display:inline-block; background-image:url("https://www.rankingdak.com/resources/pc/images/icon/ico_btns.png");}
+.ico-btn-search{background-position:0 0; width:18px; height:18px;}
+
+/* 블릿 */
+[class^="ico-bl-"]{display:inline-block; background-image:url("https://www.rankingdak.com/resources/pc/images/icon/ico_bullet.png");}
+.ico-bl-notice{background-position:0 0; width:18px; height:14px; }
+
+/*========================================================
+ 테이블
+========================================================*/
+
+/**** board-list ****/
+.board-list{width:100%; border-top:1px solid #666;}
+.board-list table{width:100%; table-layout:fixed; border-collapse:collapse;}
+.board-list table td{border-bottom:1px solid #ddd; vertical-align:middle; word-break: break-all; line-height:20px}
+.board-list table td{padding:16px 10px;}
+
+/*========================================================
+ Pagination
+========================================================*/
+.pagination{position:relative; text-align:center;font-size:0;}
+.pagination > a{display:inline-block; vertical-align:top; height:25px; padding:0 1px; margin:0 8px 0; color:#999; font-size:14px;}
+.pagination > a.current,
+.pagination > a.on{border-bottom:2px solid #FB5001; color:#FB5001; font-weight:700;}
+.pagination > a > span{display:block; height:100%; line-height:25px}
+.pagination .btn-page{width:25px; background:url("https://www.rankingdak.com/resources/pc/images/icon/ico_pagination.png");}
+.pagination .btn-page.first{margin:0;background-position:-8px 0;}
+.pagination .btn-page.prev{background-position:0 0; margin:0 0 0 6px;}
+.pagination .btn-page.next{background-position:0 -30px; margin:0 6px 0 0;}
+.pagination .btn-page.last{margin:0;background-position:0 -30px;}
+
+.frame-cnt-inner{width:820px;}
+
+.board-list ~ .page-bottom {
+    margin-top: 30px;
+}
+
+.page-bottom {
+    position: relative
+}
+.page-bottom .pagination {
+    padding: 9px 0
+}
+
+
