@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="ko" xml:lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="_csrf" content="6671c50e-2136-4b8f-840e-11b85abe3866"/>
+    <meta name="_csrf_header" content="X-CSRF-TOKEN"/>
+
+    <meta property="og:title" content="랭킹닭1컴">
+    <meta property="og:description" content="No.1 닭가슴살 순위스토어,닭가슴살 식단,헬스,훈제,소세지,추천 요리법">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.rankingdak.com/">
+    <meta property="og:image" content="https://file.rankingdak.com/rankingdak_og.jpg">
+    <meta name="referrer" content="unsafe-url">
+    <meta name="facebook-domain-verification" content="n9wxauvvyf2hn7mnw0h7h78b8s6ade">
+    <meta name="naver-site-verification" content="f49456f63ff3a881b3c179737e504259c28307f8"/>
+    <!-- ======================== 공통 CSS / JS ======================== -->
+    <
+    <link rel="stylesheet"  href="../header-footer/foodmain.css">
+    <link rel="stylesheet"  href="board.css">
+    <link rel="icon" href="https://www.rankingdak.com/resources/pc/images/icon/favicon.ico">
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+    <!-- 서머노트를 위해 추가해야할 부분 -->
+    <script src="../summernote/summernote-lite.js"></script>
+    <script src="../summernote/lang/summernote-ko-KR.js"></script>
+    <link rel="stylesheet" href="../summernote/summernote-lite.css">
+    <script>
+        $(document).ready(function(){
+            $('.summernote').summernote({
+                minHeight: 250,
+                maxHeight: null,
+                lang: "ko-KR"
+            });
+        });
+
+
+    </script>
+
+    <script src="board.js"></script>
+    <title>랭킹닭컴 </title></head>
+<body>
+<header id="header" class="header">
+    <div class="header-inner">
+        <h1 class="logo">
+            <span class="blind"></span>
+        </h1>
+        <div class="util">
+            <ul>
+                <li>
+                    <a href="" style="font-size: 11px;">로그인</a>
+                </li>
+                <li>
+                    <a href="" style="font-size: 11px;">회원가입</a>
+                </li>
+                <li>
+                    <a href="" style="font-size: 11px;">주문조회</a>
+                </li>
+                <li>
+                    <a href="" style="font-size: 11px;">고객센터</a>
+                </li>
+            </ul>
+        </div>
+        <div class="header-search">
+            <div class="top-search">
+                <input type="search" class="input-search" id="rankKeyword" name="rankKeyword" value="" onkeydown="fnSearchKeyDown(this);" onkeyup="setAutoKeywordList();"
+                       autocomplete="off" placeholder="랭킹 포차 OPEN 🍻" data-link-code="200"
+                       data-advert-url="https://www.rankingdak.com/promotion/exhibit/hiddenList?exhibitionCd=EX202306150000000238" maxlength="100">
+                <button type="button" class="btn-top-search" id="btnTopSearch" name="btnTopSearch" data-search-type="real" onclick="fnBtnTopSearch(this);">
+                    <span class="blind">검색</span>
+                </button>
+            </div>
+            <div class="search-layer">
+                <div class="autoResultBox" style="display: block;"><a href="javascript:autoKeywordSearch('%EC%95%84%EC%9E%84%EB%8B%AD');">아임닭</a>
+                    <a href="javascript:autoKeywordSearch('%EC%95%84%EC%9E%84%EB%8B%AD%20%ED%81%AC%EB%A6%AC%EC%8A%A4%ED%94%BC%20%EB%8B%AD%EA%B0%80%EC%8A%B4%EC%82%B4');">아임닭 크리스피 닭가슴살</a>
+                    <a href="javascript:autoKeywordSearch('%EC%97%90%EC%96%B4%EC%B9%98%ED%82%A8');">에어치킨</a><a href="javascript:autoKeywordSearch('%EC%97%B0%EC%96%B4');">연어</a><a href="javascript:autoKeywordSearch('%EC%95%84%EC%9E%84%EC%9B%B0');">아임웰</a>
+                    <a href="javascript:autoKeywordSearch('%EC%9A%B0%EC%9C%A0');">우유</a><a href="javascript:autoKeywordSearch('%EC%95%84%EC%9D%B4%EC%8A%A4%ED%81%AC%EB%A6%BC');">아이스크림</a>
+                    <a href="javascript:autoKeywordSearch('%EC%9B%90%EC%97%90%EC%9D%B4%EC%97%A0%20%EC%8A%A4%ED%8C%8C%ED%81%B4%EB%A7%81');">원에이엠 스파클링</a>
+                    <a href="javascript:autoKeywordSearch('%EC%97%90%EC%96%B4%EC%B9%98%ED%82%A8%20%EB%8B%AD%EB%8B%A4%EB%A6%AC%EC%82%B4');">에어치킨 닭다리살</a>
+                    <a href="javascript:autoKeywordSearch('%EC%95%84%EC%9E%84%EB%8B%AD%20%EC%86%8C%EC%8B%9C%EC%A7%80');">아임닭 소시지</a>
+                </div>
+                <div class="tit-area" style="display: none;"><h2>인기 검색어</h2></div>
+                <div class="search-rank" style="display: none;">
+                    <ol class="list">
+                        <li>
+                            <a href="javascript:;" data-search-type="popular" onclick="fnBtnTopSearch(this);">
+                                <em class="num">1</em><span class="word">잇메이트 닭가슴살</span>
+                                <span class="state text-primary"><i class="ico-arrfill-up"><span class="blind">UP</span></i>2</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" data-search-type="popular" onclick="fnBtnTopSearch(this);">
+                                <em class="num">2</em><span class="word">저염 닭가슴살</span>
+                                <span class="state">-</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" data-search-type="popular" onclick="fnBtnTopSearch(this);">
+                                <em class="num">3</em><span class="word">생닭가슴살</span>
+                                <span class="state text-primary"><i class="ico-arrfill-up"><span class="blind">UP</span></i>1</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" data-search-type="popular" onclick="fnBtnTopSearch(this);">
+                                <em class="num">4</em><span class="word">도시락</span>
+                                <span class="state text-blue"><i class="ico-arrfill-down"><span class="blind">DOWN</span></i>1</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" data-search-type="popular" onclick="fnBtnTopSearch(this);">
+                                <em class="num">5</em><span class="word">볶음밥</span>
+                                <span class="state text-primary"><i class="ico-arrfill-up"><span class="blind">UP</span></i>2</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" data-search-type="popular" onclick="fnBtnTopSearch(this);">
+                                <em class="num">6</em><span class="word">교촌</span>
+                                <span class="state text-green">NEW</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" data-search-type="popular" onclick="fnBtnTopSearch(this);">
+                                <em class="num">7</em><span class="word">고구마</span>
+                                <span class="state text-green">NEW</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" data-search-type="popular" onclick="fnBtnTopSearch(this);">
+                                <em class="num">8</em><span class="word">샐러드</span>
+                                <span class="state">-</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" data-search-type="popular" onclick="fnBtnTopSearch(this);">
+                                <em class="num">9</em><span class="word">맛있닭 오븐구이</span>
+                                <span class="state text-primary"><i class="ico-arrfill-up"><span class="blind">UP</span></i>1</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" data-search-type="popular" onclick="fnBtnTopSearch(this);">
+                                <em class="num">10</em><span class="word">소고기볼</span>
+                                <span class="state text-green">NEW</span>
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+                <div class="search-bottom" style="display: none;">
+                    <div class="tit">
+                        <h3>최근검색어</h3>
+                        <button type="button" class="text-guide-sm search-del-btn" onclick="fnAllDelKeyword(this)" style="display: none;"><span>전체삭제</span></button>
+                    </div>
+                    <div class="latest-search">
+                        <!-- 검색어 있을 경우 -->
+                        <ul class="srch-list" id="rankSearchArea">
+
+                            <li id="srhItem" style="display:none;">
+                                <div class="srch-keyword">
+                                    <a href="javascript:;" class="txt" data-search-type="recent" onclick="fnBtnTopSearch(this)"></a>
+                                    <button type="button" class="btn-x-xs del-body" title="" onclick="fnDelKeyword(this)"><i class="ico-x-grey2 del-body"></i><span class="blind del-body">삭제</span></button>
+                                </div>
+                            </li>
+
+
+                        </ul>
+                        <!--// 검색어 있을 경우 -->
+                        <!-- 검색어 없을 경우 -->
+                        <div class="no-data" style="">최근 검색어가 없습니다.</div>
+                        <!--// 검색어 없을 경우 -->
+                    </div><!--// latest-search -->
+                </div>
+            </div>
+        </div>
+        <div class="my-memu" style="position: absolute; top: 23px; left: 844px;">
+            <ul>
+                <li style="display: inline-block; vertical-align: top;"><a href="/display/coupon/list" class="btn-util-coupon" title=""><span class="blind">쿠폰</span></a></li>
+                <li style="display: inline-block; vertical-align: top;"><a href="/mypage/main" class="btn-util-mypage" title=""><span class="blind">마이페이지</span></a></li>
+                <li style="display: inline-block; vertical-align: top;">
+                    <a href="/order/cart" class="btn-util-cart" title="">
+                        <span class="blind">장바구니</span>
+                        <em class="count">0</em>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="gnb-wrap">
+        <div class="inner">
+            <div class="category-wrap">
+                <a href="#all-category" class="btn-menu-all"><span>카테고리</span></a>
+            </div><!--// category-wrap -->
+            <nav id="gnb" class="gnb">
+                <ul>
+                    <li class=""><a href="/display/rank/sale"><span style="font-size: 14.5px;">랭킹</span></a></li>
+                    <li class=""><a href="/promotion/exhibit/list"><span style="font-size: 14.5px;">이달의 특가</span></a></li>
+                    <li class=""><a href="/display/benefits/view"><span style="font-size: 14.5px;">혜택정리</span></a></li>
+                    <li class=""><a href="/display/onePack/list"><span style="font-size: 14.5px;">1팩 담기</span></a></li>
+                    <li class=""><a href="/display/brand/list"><span style="font-size: 14.5px;">브랜드관</span></a></li>
+                    <li class=""><a href="/promotion/event/list"><span style="font-size: 14.5px;">이벤트</span></a></li>
+                    <li class=""><a href="/display/expressDeliveryList"><em class="ico-txt-gnb"><span class="blind">특급배송</span></em></a></li>
+                    <li class="test1"></li>
+                </ul>
+            </nav><!--// gnb -->
+        </div>
+    </div>
+</header>
+<!--// ========== 공통 헤더 :: header ========== -->
+
+    <!-- ========== 컨텐츠 영역 :: container ========== -->
+    <section id="contents" class="container">
+
+        <div class="content-wrap">
+            <div class="frame-full head-mypage">
+                <h2 class="blind">마이페이지</h2>
+                <div class="user-info-box">
+                    <div class="inner">
+                        <div class="column user-info">
+            <span class="img">
+                <i class="ico-cou-level04"></i>
+                <a href="/member/userTag/intro" class="user-tag-location-btn">
+                            <span class="user-tag-location-inn">나의 식단 유형은? <strong>테스트 하러가기</strong></span>
+                        </a>
+                    </span>
+                            <div class="txt">
+                                <p class="greeting">
+                                    <strong class="name">inho93</strong>님 반갑습니다
+                                </p>
+                                <ul class="sep-list user-info-list type3">
+                                    <li><a href="/mypage/memberBenefitsInfo"><i class="ico-bl-crown"></i> 오렌지 닭부장<i class="ico-arr-right"></i></a></li>
+                                    <li id="groupPointRateText"><a href="/mypage/memberBenefitsInfo">2% 적립</a></li>
+                                </ul>
+                                <p class="level-tip"><a href="/mypage/orangeMember">멤버십기간 <span id="orangeEndDtText">2023.09.28</span>까지<i class="ico-arr-right"></i></a></p>
+                            </div>
+                        </div><!--// user-info -->
+                        <dl class="column order">
+                            <dt>주문/배송</dt>
+                            <dd><a href="/mypage/orderlist"><strong class="num" id="orderCountText">1</strong>건</a></dd>
+                        </dl><!--// order -->
+                        <dl class="column coupon">
+                            <dt>쿠폰</dt>
+                            <dd><a href="/mypage/myCoupon"><strong class="num" id="couponCountText">0</strong>개</a></dd>
+                        </dl><!--// coupon -->
+                        <dl class="column point">
+                            <dt>포인트</dt>
+                            <dd class="text-primary"><a href="/mypage/myPoint"><strong class="num" id="totalUnusedPointText">3,142</strong>P</a></dd>
+                        </dl><!--// point -->
+                    </div><!--// inner -->
+                </div><!--// user-info-box -->
+
+                <div class="layer-wrap layer-usertag" id="usertag-popup">
+                    <div class="layer-pop">
+                        <div class="layer-inner">
+                            <div class="layer-head">
+                                <h4 class="layer-pop-title">나의 식단 유형</h4>
+                            </div>
+                            <div class="layer-body">
+                                <div class="layer-usertag-inn">
+                                    <div class="layer-usertag-img">
+                                        <img id="researchImg" src="img/usertag-simpler.jpg" alt="간편식 러버">
+                                    </div>
+                                    <div class="layer-usertag-desc-group">
+                                        <dl class="layer-usertag-defi">
+                                            <dt>유형별 한마디</dt>
+                                            <dd><strong id="researchTxt1">"밥보다 시간!"</strong></dd>
+                                        </dl>
+                                        <dl class="layer-usertag-defi">
+                                            <dt>유형 소개</dt>
+                                            <dd id="researchTxt2">혹시 도시락 찾으러 오셨어요? 편하고 빠른 식사를 선호해요.</dd>
+                                        </dl>
+                                        <dl class="layer-usertag-defi">
+                                            <dt>랭닭 이용 꿀팁</dt>
+                                            <dd id="researchTxt3">홈화면 [랭킹]메뉴의 [별별랭킹] 카테고리에서 상황에 맞는 다양한 꿀조합을 소개 받아요!</dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                                <div class="layer-usertag-btn-group">
+                                    <a href="/member/userTag/intro" class="btn-basic-lg2 btn-default">
+                                        <span>테스트 다시하기</span>
+                                    </a>
+                                    <a href="/promotion/exhibit/userTagList" class="btn-basic-lg2 btn-black">
+                                        <span>추천 식단 보러가기</span>
+                                    </a>
+                                </div>
+                            </div><!--// layer-body -->
+                            <button type="button" class="btn-x-sm ui-close-pop" title="닫기"><i class="ico-x-black"></i><span class="blind">닫기</span></button>
+                        </div>
+                    </div><!--// layer-pop  -->
+                </div><!--// layer-pop-wrap #popupSample-02 -->
+
+                <script>
+
+                    $(document).ready(function () {
+                        let tagResult = '';
+                        let resultObj = {
+                            '01':{
+                                img:'/resources/pc/images/img/usertag-newbie.jpg',
+                                text1:'"여기는 뭐가 맛있어?"',
+                                text2:'환영해요! 닭가슴살의 세계에 이제 막 입문했네요!',
+                                text3:'내 입맛에 딱 맞는 닭가슴살 찾고 있다면, 홈화면의 [1팩 담기]에서 여러 상품을 한 팩 씩 골라보세요! '
+                            },
+                            '02':{
+                                img:'/resources/pc/images/img/usertag-smart.jpg',
+                                text1:'"어? 이거 맛있을까?"',
+                                text2:'이 구역의 맛잘알! 하지만 그냥 사진 않죠. 할인 혜택과 후기까지 꼼꼼히 살피고 신중하게 구매해요. ',
+                                text3:'홈화면에서 [이달의 특가]를 확인하세요! 매달 새로운 맛과 혜택으로 찾아갑니다!'
+                            },
+                            '03':{
+                                img:'/resources/pc/images/img/usertag-maint.jpg',
+                                text1:'"다이어트는 꾸준히 해야죠~"',
+                                text2:'타이트하기 보단 꾸준히 실천할 수 있는 식단을 선호해요. 맛있으면서도 단백질, 당류 등 성분은 꼭 체크하는 진짜 다이어터! ',
+                                text3:'맛도 성분도 한 번에 비교하려면 최근 본 상품에서 [비교담기] 서비스를 이용해보세요!'
+                            },
+                            '04':{
+                                img:'/resources/pc/images/img/usertag-mania.jpg',
+                                text1:'"먹다보면 다~ 맛있어"',
+                                text2:'다이어트에서 효율을 아주 중시해요. 때로 지겹더라도 끈기있는 실천이 다이어트의 지름길이라고 생각해요.',
+                                text3:'[오렌지멤버스]에 가입하고, 살 때마다 추가할인&적립 받아요!'
+                            },
+                            '05':{
+                                img:'/resources/pc/images/img/usertag-frenz.jpg',
+                                text1:'"저는 그냥 랭닭에서 사요"',
+                                text2:'식단은 이미 일상이에요. 오랜 경험으로 믿고 먹는, 믿고 추천하는 제품들이 있어요.',
+                                text3:'꾸준히 먹는 제품은 [정기구매] 서비스를 통해서 추가할인 받아보세요!'
+                            },
+                            '06':{
+                                img:'/resources/pc/images/img/usertag-standard.jpg',
+                                text1:'"저는 그냥 정석대로 먹는 편?"',
+                                text2:'대회, 바디프로필 등 명확한 목표를 갖고 식단을 하고 있어요. 건강기능식품부터 다이어트 간식까지 다이어트 제품에 대해서는 빠삭해요!',
+                                text3:'식단은 하루라도 놓칠 수 없어! [특급배송]으로 빠르게 받아 완벽한 식단 텐션을 유지하세요!'
+                            },
+                            '07':{
+                                img:'/resources/pc/images/img/usertag-simpler.jpg',
+                                text1:'"밥보다 시간!"',
+                                text2:'혹시 도시락 찾으러 오셨어요? 편하고 빠른 식사를 선호해요.',
+                                text3:'홈화면 [랭킹]메뉴의 [별별랭킹] 카테고리에서 상황에 맞는 다양한 꿀조합을 소개 받아요!'
+                            },
+                        };
+                        let userTag = '';
+                        if(isEmpty(userTag) == false){
+                            let userTagType = '';
+                            for (const key in resultObj) {
+                                if (key === userTagType) {
+                                    tagResult = resultObj[key];
+                                    break;
+                                };
+                            };
+                            $('#researchImg').attr('src',tagResult.img);
+                            $('#researchTxt1').text(tagResult.text1);
+                            $('#researchTxt2').text(tagResult.text2);
+                            $('#researchTxt3').text(tagResult.text3);
+                        }
+
+                        const benefitsAlertMsg = '';
+                        //혜택 쿠폰 alert 메시지
+                        if(isEmpty(benefitsAlertMsg) == false){
+                            alert(benefitsAlertMsg);
+                        }
+                    });
+
+                </script></div>
+            <div class="frame-sm">
+                <div class="frame-left">
+                    <div class="aside-menu-wrap">
+                        <nav class="aside-menu">
+                            <ul class="menu-list">
+                                <li>
+                                    <a href="/mypage/orderlist" class="menu">주문관리</a>
+                                    <ul class="depth2">
+                                        <li><a href="/mypage/orderlist">주문내역</a></li>
+                                        <li class=""><a href="/mypage/oldOrderlist">이전 주문내역<span class="sub">(22.04.24 이전)</span></a></li>
+                                        <li><a href="/mypage/cancellist">취소/반품 내역</a></li>
+                                        <li class=""><a href="/mypage/routineDelivery">정기배송 관리</a></li>
+                                        <li class=""><a href="/mypage/restock/list">재입고 알림 상품</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#" class="menu">혜택관리</a>
+                                    <ul class="depth2">
+                                        <li class=""><a href="/mypage/myCoupon">쿠폰</a></li>
+                                        <li class=""><a href="/mypage/myPoint">포인트</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#" class="menu">활동관리</a>
+                                    <ul class="depth2">
+                                        <li class=""><a href="/mypage/recentProduct/list">최근 본 상품</a></li>
+                                        <li class=><a href="/mypage/wish/list">찜한상품</a></li>
+                                        <li class=><a href="/mypage/wishBrand/list">관심브랜드</a></li>
+                                        <li class="current"><a href="/mypage/userCounsel/list">1:1문의</a></li><!-- 활성화될 경우 li에 addClass current  -->
+                                        <li><a href="/mypage/prodReview/list">상품후기</a></li><!-- 활성화될 경우 li에 addClass current  -->
+                                        <li><a href="/mypage/prodCounsel/list">상품문의내역</a></li><!-- 활성화될 경우 li에 addClass current  -->
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#" class="menu">식단상담</a>
+                                    <ul class="depth2">
+                                        <li><a href="/mypage/dietManage/list">식단상담 목록</a></li><!-- 활성화될 경우 li에 addClass current  -->
+                                        <li><a href="/mypage/dietManage/app">식단상담 등록</a></li><!-- 활성화될 경우 li에 addClass current  -->
+                                    </ul>
+                                </li>
+                                <li >
+                                    <a href="" class="menu goVipView">VIP전용관</a>
+                                </li>
+                                <li class="">
+                                    <a href="/mypage/orangeMember" class="menu">오렌지멤버스</a>
+                                </li>
+                                <li>
+                                    <a href="/mypage/delivery" class="menu">회원정보관리</a>
+                                    <ul class="depth2">
+                                        <li class=""><a href="/mypage/delivery">배송지 관리</a></li>
+                                        <li><a href="/mypage/info/mypage">정보수정</a></li><!-- 활성화될 경우 li에 addClass current  -->
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav><!--// menu-mypage -->
+                        <div class="aside-link-box">
+                            <a href="/service/voc"><i class="ico-bl-speaker"></i><span>고객의 소리</span><i class="ico-arr-right"></i></a>
+                        </div>
+                    </div><!--// aside-menu-wrap -->
+                </div>
+
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        /*setCurrnetMenuCss();*/
+
+                        $(".goVipView").click(function (e) {
+                            e.preventDefault();
+                            cmAjax({
+                                url : "/mypage/vip/checkTargetAjax"
+                                , type : "POST"
+                                , dataType : "json"
+                                , success : function (data) {
+
+                                    if (data.status == "succ") {
+                                        if(data.message == "Y") {
+                                            document.location.href = "/mypage/vip/list";
+                                            return;
+                                        } else {
+                                            alert(data.message);
+                                            return false;
+                                        }
+                                    } else {
+                                        return false;
+                                    }
+                                }
+                            });
+                        });
+                    });
+
+                    function setCurrnetMenuCss(){
+                        const pathUrl = window.location.pathname;
+                        $('.menu-list').find('li').removeClass('current');
+                        $('.menu-list').find('a').each(function (){
+                            if(pathUrl.indexOf($(this).attr('href')) > -1){
+                                $(this).parent('li').addClass('current')
+                            }
+                        });
+                    }
+                </script>
+                <script src="/resources/common/js/cm_jfupload.js?ver=20220921"></script>
+                <script src="/resources/common/js/lib/jquery.fileupload.js"></script>
+                <script src="/resources/common/js/lib/jquery.fileupload-ui.js"></script>
+                <script src="/resources/common/js/lib/jquery.fileupload-process.js"></script>
+                <script src="/resources/common/js/lib/jquery.fileupload-validate.js"></script>
+                <script type="text/javascript">
+                    var cnt = 0;
+
+                    $(document).ready(function () {
+                        addBtnEvent();
+                        init();
+
+                        $("#vQuestionCont").on("change", function (event) {
+                            var content = $(this).val();
+                            $('#counter').html(content.length);
+                            if(content.length>1000){
+                                $("#vQuestionCont").val(content.substr(0,1000));
+                            }
+                        })
+                        $('#vQuestionCont').keyup(function(e){
+                            var content = $(this).val();
+                            if(content.length>1000){
+                                content = content.substr(0,1000);
+                                $("#vQuestionCont").val(content);
+                            }
+                            $('#counter').html(content.length);
+                        })
+                    });
+                    function addBtnEvent() {
+                        // 팝업
+                        $(".btn_orderProduct").unbind("click").click(function (event) {
+                            event.preventDefault();
+
+                            $('#orderProductPopUp').load('/mypage/userCounsel/selectCounselOrderProductPop?siteCd=' + $('select[name="siteCd"]').val(),function(){
+                                if(cnt == 0){
+                                    toggleCnt();
+                                    customScroll();
+                                    cnt++;
+                                }
+                                var scrollValue = $('body').scrollTop();
+                                $('body').css({'overflow':'hidden'}).scrollTop(scrollValue);
+
+                            });
+                        });
+
+
+                        // 커스텀 셀렉트 선택시 이벤트 처리
+                        const counselType = $('#counselRegFrm').find('.select-list').find('li').children('a');
+                        counselType.on('click', function (e) {
+                            console.log($(this).parents('li').data('name'));
+                            if($(this).parents('li').data('name') == "500" || $(this).parents('li').data('name') == "999"){
+                                $('#mainPrd').html('');
+                                $("#btn_orderProduct").attr("disabled", true);
+
+                            }else{
+                                $("#btn_orderProduct").attr("disabled", false);
+                            }
+                        });
+                        // 저장
+                        $('.btn_save').on('click', goSave);
+                    }
+
+                    function goSave() {
+                        const reqData = {};
+                        $('#counselRegFrm').serializeArray().forEach(function (form) {
+
+                            if(form.name!="vQuestionCont" && form.name != "vQuestionTitle"){
+
+                                reqData[form.name] = encodeURIComponent(form.value);
+                            }
+                        });
+
+                        /*필수 값 체크*/
+                        if(!fnChkByte()){
+                            return;
+                        };
+                        if($("#vCounselType").data("value") == '' || $("#vCounselType").data("value") == null || $("#vCounselType").data("value") == undefined || $("#vCounselType").data("value") == NaN){
+                            alert("문의 유형을 선택해주세요.")
+                            return;
+                        }else if($("#vQuestionTitle").val() == '' || $("#vQuestionTitle").val() == null || $("#vQuestionTitle").val() == undefined || $("#vQuestionTitle").val() == NaN){
+                            alert("제목을 입력해주세요.");
+                            return
+                        }else if($("#vQuestionCont").val() == '' || $("#vQuestionCont").val() == null || $("#vQuestionCont").val() == undefined || $("#vQuestionCont").val() == NaN){
+                            alert("문의내용을 입력해주세요.");
+                            return
+                        }
+
+                        function getDataNameList($target) {
+
+                            const result = [];
+                            $target.each(function (i, row) {
+                                const rowData = {};
+                                $('[data-name]', $(row)).each(function (j, data) {
+                                    rowData[data.dataset.name] = encodeURIComponent(data.value);
+                                });
+                                result.push(rowData);
+                            });
+
+                            return result;
+                        }
+                        reqData["vCounselType"] = encodeURIComponent($("#vCounselType").data("value"));
+
+
+                        reqData.userList = getDataNameList($('.targetUserBox input[type="checkbox"]:checked').parent());
+
+                        const param = [];
+                        param.push($('#counselRegFrm').serialize());
+                        param.push('flagAction=' + reqData.flagAction);
+                        param.push('vCounselType='+$("#vCounselType").data("value"));
+                        param.push('json=' + JSON.stringify(reqData));
+
+                        if (confirm("등록 하시겠습니까?")) {
+                            cmAjax({
+                                url: "/mypage/userCounsel/save"
+                                , type: "post"
+                                , data: param.join('&')
+                                , dataType: "json"
+                                , success: function (data) {
+
+                                    if (data.status == "succ") {
+                                        alert("등록 되었습니다.");
+                                        document.location.href = "/mypage/userCounsel/list";
+                                    } else {
+                                        console.log(data.message);
+                                        alert("등록 실패");
+                                    }
+                                }
+                                , error: function (e) {
+                                    alert("ajax error!");
+                                }
+                            });
+                        }
+                    }
+
+                    //1000byte check
+                    function fnChkByte()
+                    {
+                        var str =$("#vQuestionCont").val();
+                        var str_len = str.length;
+                        var maxByte = 1000;
+                        var rbyte = 0;
+                        var rlen = 0;
+                        var one_char = "";
+                        var str2 = "";
+
+                        for(var i=0; i<str_len; i++)
+                        {
+                            one_char = str.charAt(i);
+                            if(escape(one_char).length > 4) {
+                                rbyte += 2;                                         //한글2Byte
+                            }else{
+                                rbyte++;                                            //영문 등 나머지 1Byte
+                            }
+                            if(rbyte <= maxByte){
+                                rlen = i+1;                                          //return할 문자열 갯수
+                            }
+                        }
+                        if(rbyte > maxByte)
+                        {
+                            alert("문의내용은 최대 " + maxByte + "byte를 초과할 수 없습니다.")
+                            str2 = str.substr(0,rlen);                                  //문자열 자르기
+                            $("#vQuestionCont").val(str2);
+                            fnChkByte();
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }
+
+                    function init(){
+                        if($("#vCounselType").data("value") == "500" || $("#vCounselType").data("value") == "999"){
+                            $("#btn_orderProduct").attr("disabled", true);
+                        }else{
+                            $("#btn_orderProduct").attr("disabled", false);
+                        }
+                    }
+
+                    function delProduct(){
+                        $('#mainPrd').html('');
+                    }
+
+
+                    function fnSetProduct(prdList) {
+
+                        let addHtml = [];
+
+                        $(prdList).each(function (i, e) {
+
+
+                            var imgPath = e.thumbnailpath + e.thumbnailnm + e.thumbnailext;
+
+
+                            addHtml.push('<div class="my-order-box" id = "recommPrd" >');
+
+                            addHtml.push('<div class="prd-info-area type-sm">');
+                            addHtml.push('<div class="inner">');
+                            addHtml.push('<div class="column img">');
+
+                            addHtml.push('<img src="'+"https://file.rankingdak.com"+imgPath+'"  onerror="fnNoImage(this);"/>');
+
+                            addHtml.push('      <input type="hidden" name="VOrderType" value="' + e.ordertype + '" />');
+                            addHtml.push('      <input type="hidden" name="vOrdercd" value="' + e.ordercd + '" />');
+                            addHtml.push('      <input type="hidden" name="vOrderProdid" value="' + e.orderprodid + '" />');
+                            addHtml.push('      <input type="hidden" name="vProductcd" value="' + e.productcd + '" />');
+                            addHtml.push('      <input type="hidden" name="vProductnm" value="' + e.productnm + '" />');
+                            addHtml.push('      <input type="hidden" name="vOptionNm1" value="' + e.optionnm1 + '" />');
+                            addHtml.push('      <input type="hidden" name="vOptionNm2" value="' + e.optionnm2 + '" />');
+                            addHtml.push('      <input type="hidden" name="vOptionNm3" value="' + e.optionnm3 + '" />');
+                            if(e.prodcnt != null){
+                                addHtml.push('      <input type="hidden" name="nProdCnt" value="' + e.prodcnt + '" />');
+                            }
+                            if(e.textoption1 != null){
+                                addHtml.push('      <input type="hidden" name="vTextOption1" value="' + e.textoption1 + '" />');
+                            }
+                            if(e.textoption2 != null){
+                                addHtml.push('      <input type="hidden" name="vTextOption2" value="' + e.textoption2 + '" />');
+                            }
+                            if(e.textoption3 != null){
+                                addHtml.push('      <input type="hidden" name="vTextOption3" value="' + e.textoption3 + '" />');
+                            }
+                            if(e.thumbnailpath != null){
+                                addHtml.push('      <input type="hidden" name="vThumbnailPath" value="' + e.thumbnailpath + '" />');
+                            }if(e.thumbnailnm != null){
+                                addHtml.push('      <input type="hidden" name="vhumbnailNm" value="' + e.thumbnailnm + '" />');
+                            }if(e.thumbnailext != null){
+                                addHtml.push('      <input type="hidden" name="vThumbnailExt" value="' + e.thumbnailext + '" />');
+                            }
+
+                            addHtml.push('		</div>');
+                            addHtml.push('		<div class="column tit">');
+                            addHtml.push('		<p class="tit">');
+                            addHtml.push('		</p><p class="order-num">'+e.ordercd+'</p>');
+                            addHtml.push('		<a href="../../product/view?productCd='+e.productcd+'" class="text-elps2">' + e.productnm + '</a>');
+                            addHtml.push('		<p></p>');
+                            addHtml.push('		</div>');
+                            addHtml.push('		</div>');
+                            addHtml.push('		</div>');
+                            addHtml.push('		<button type="button" class="btn-x-sm btn_del_product" title="" onclick="delProduct();"><i class="ico-x-grey"></i><span class="blind">삭제</span></button>');
+                            addHtml.push('		</div>');
+                        });
+
+                        $('#mainPrd').html('');
+                        $('#mainPrd').append(addHtml.join('\n'));
+
+                    }
+                </script>
+
+
+                <form id="exhibitionImage" name="exhibitionImage">
+                    <input type="hidden" name="siteCd" value="RANK"/>
+                    <input type="hidden" name="fileCd" value="REVIEW"/>
+                </form>
+
+                <form id="popUpFrm" name="popUpFrm" action="/mypage/userCounsel/regCouncel" method="post"><div id="orderProductPopUp"></div>
+                    <div>
+                        <input type="hidden" name="_csrf" value="b10b2301-79a2-4558-a078-7144759aa8ed" />
+                    </div></form><form id="counselRegFrm" name="counselRegFrm" action="/mypage/userCounsel/regCouncel" method="post"><input type="hidden" name="vCounselid" value=""/>
+                <input type="hidden" id= "flagAction" name="flagAction" value="R"/>
+                <input type="hidden" name="vUsercd" value=""/>
+                <input type="hidden" name="vRegUserid" value=""/>
+                <input type="hidden" name="vSitecd" value=""/>
+                <input type="hidden" name="fileCd" value="REVIEW"/>
+                <input type="hidden" name="siteCd" value="RANK"/>
+
+                <div class="frame-right">
+                    <div class="frame-cnt-inner">
+                        <div class="menu-title-area">
+                            <h3 class="title-menu">1:1 문의하기</h3>
+                        </div><!--// menu-title-area -->
+
+                        <div class="board-form type2">
+                            <table>
+                                <caption>내용 작성</caption>
+                                <colgroup>
+                                    <col style="width:180px"><col style="width:auto">
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <th class="text-left" scope="row"><div class="in-tb">문의 유형<em class="es"><span class="blind">필수입력</span></em></div></th>
+                                    <td class="text-left">
+
+                                        <div class="input-group w-full">
+                                            <div class="input-group-form">
+                                                <div class="ui-select select-box w150" id ="vCounselType" data-value="">
+                                                    <a href="#none" title="" class="select-value placeholder"><span>유형선택</span></a>
+                                                    <div class="select-list">
+                                                        <ul>
+                                                            <li data-name="100" data-value="100" ><a href="#none" class = "counselType" ><span>주문/결제</span></a></li>
+                                                            <li data-name="200" data-value="200" ><a href="#none" class = "counselType" ><span>취소/반품</span></a></li>
+                                                            <li data-name="300" data-value="300" ><a href="#none" class = "counselType" ><span>상품관련</span></a></li>
+                                                            <li data-name="400" data-value="400" ><a href="#none" class = "counselType" ><span>배송관련</span></a></li>
+                                                            <li data-name="500" data-value="500" ><a href="#none" class = "counselType" ><span>포인트</span></a></li>
+                                                            <li data-name="951" data-value="951" ><a href="#none" class = "counselType" ><span>설선물세트 문의</span></a></li>
+                                                            <li data-name="999" data-value="999" ><a href="#none" class = "counselType" ><span>기타</span></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <input type="text" name = "vQuestionTitle" id = "vQuestionTitle" title="" class="input-text" placeholder="제목을 입력해주세요" value = "">
+                                        </div>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="text-left" scope="row"><div class="in-tb">주문상품</div></th>
+                                    <td class="text-left">
+                                        <div class="input-group w-full">
+                                            <input type="text" id="item-1" class="input-text" disabled placeholder="문의상품을  선택해주세요.">
+                                            <span class="input-group-btn">
+                                    <button type="button" id= "btn_orderProduct" class="btn-form btn-ex-white w150 btn_orderProduct"><span>주문상품 검색</span></button>
+                                    </span><!--// input-group-btn -->
+                                        </div>
+                                        <!-- 주문상품 선택시 -->
+                                        <div id = "mainPrd">
+                                        </div>
+                                        <!--// 주문상품 선택시 -->
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="text-left" scope="row"><div class="in-tb">문의내용 <em class="es"><span class="blind">필수입력</span></em></div></th>
+                                    <td class="text-left">
+                                        <div class="textarea-box-count h230">
+                                            <textarea id="vQuestionCont" placeholder="문의내용을 입력하세요" name = "vQuestionCont"></textarea>
+                                            <div class="txt-count"><span id = "counter">0</span> / <span class="total">1,000</span></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- 첨부파일 영역 -->
+                                <tr class="attach-file-line">
+                                    <th class="text-left" scope="row"></th>
+                                    <td class="text-left">
+                                        <div class="file-add-boxes">
+
+                                            <div class="div-attach-thumb" id="US_RV_IMG1_attachThumb">
+                                                <button type="button" class="btn-attach-thumb" onclick="javascript:jfupload.uploadImage('US_RV_IMG1')">
+                                                    <i class="ico-plus-xlg"></i><span class="blind">파일첨부</span>
+                                                </button>
+                                                <input class="input_file" id="US_RV_IMG1_imageFile" name="US_RV_IMG1_imageFile" type="file" accept="image/*" style="display:none;"/>
+                                            </div>
+                                            <script type="text/javascript">
+                                                jfupload.initImageUpload({
+                                                    target : $('#US_RV_IMG1_imageFile')
+                                                    , formName : 'counselRegFrm'
+                                                    , uploadCd : 'US_RV_IMG1'
+                                                    , recordId : ''
+                                                    , fileCd : $('input[name=fileCd]',$('form[name="counselRegFrm"]')).val()
+                                                    , siteCd : $('input[name=siteCd]',$('form[name="counselRegFrm"]')).val()
+                                                    , resizeWidth : ''
+                                                    , resizeHeight : ''
+                                                    , rvFlag : 'Y'
+                                                    , tempYn : 'Y'
+                                                    , limitFileMBSize : 20
+                                                    , success : function(imgData, uploadCd) {
+                                                        jfupload.deleteImage('US_RV_IMG1','counselRegFrm');
+                                                        const previewTag = $('#US_RV_IMG1_attachThumb');
+                                                        const src = imgData.image_url + imgData.image_path + imgData.image_id + imgData.image_ext;
+                                                        let imgStr = '<div class="attach-img">';
+                                                        imgStr += '<button type="button" class="btn-x-xs2 btn_del" onClick="javascript:jfupload.deleteImage(\'US_RV_IMG1\', \'counselRegFrm\')";><i class="ico-x-white"></i><span class="blind">삭제</span></button>';
+                                                        imgStr += '</div>';
+                                                        previewTag.append(imgStr);
+                                                        const previewImgTag = $('#US_RV_IMG1_attachThumb').find('.attach-img');
+                                                        previewImgTag.prepend('<img src="'+src+'" style="width:68px;height:68px;">');
+                                                    }
+                                                });
+                                            </script>
+                                            <div class="div-attach-thumb" id="US_RV_IMG2_attachThumb">
+                                                <button type="button" class="btn-attach-thumb" onclick="javascript:jfupload.uploadImage('US_RV_IMG2')">
+                                                    <i class="ico-plus-xlg"></i><span class="blind">파일첨부</span>
+                                                </button>
+                                                <input class="input_file" id="US_RV_IMG2_imageFile" name="US_RV_IMG2_imageFile" type="file" accept="image/*" style="display:none;"/>
+                                            </div>
+                                            <script type="text/javascript">
+                                                jfupload.initImageUpload({
+                                                    target : $('#US_RV_IMG2_imageFile')
+                                                    , formName : 'counselRegFrm'
+                                                    , uploadCd : 'US_RV_IMG2'
+                                                    , recordId : ''
+                                                    , fileCd : $('input[name=fileCd]',$('form[name="counselRegFrm"]')).val()
+                                                    , siteCd : $('input[name=siteCd]',$('form[name="counselRegFrm"]')).val()
+                                                    , resizeWidth : ''
+                                                    , resizeHeight : ''
+                                                    , rvFlag : 'Y'
+                                                    , tempYn : 'Y'
+                                                    , limitFileMBSize : 20
+                                                    , success : function(imgData, uploadCd) {
+                                                        jfupload.deleteImage('US_RV_IMG2','counselRegFrm');
+                                                        const previewTag = $('#US_RV_IMG2_attachThumb');
+                                                        const src = imgData.image_url + imgData.image_path + imgData.image_id + imgData.image_ext;
+                                                        let imgStr = '<div class="attach-img">';
+                                                        imgStr += '<button type="button" class="btn-x-xs2 btn_del" onClick="javascript:jfupload.deleteImage(\'US_RV_IMG2\', \'counselRegFrm\')";><i class="ico-x-white"></i><span class="blind">삭제</span></button>';
+                                                        imgStr += '</div>';
+                                                        previewTag.append(imgStr);
+                                                        const previewImgTag = $('#US_RV_IMG2_attachThumb').find('.attach-img');
+                                                        previewImgTag.prepend('<img src="'+src+'" style="width:68px;height:68px;">');
+                                                    }
+                                                });
+                                            </script>
+                                            <div class="div-attach-thumb" id="US_RV_IMG3_attachThumb">
+                                                <button type="button" class="btn-attach-thumb" onclick="javascript:jfupload.uploadImage('US_RV_IMG3')">
+                                                    <i class="ico-plus-xlg"></i><span class="blind">파일첨부</span>
+                                                </button>
+                                                <input class="input_file" id="US_RV_IMG3_imageFile" name="US_RV_IMG3_imageFile" type="file" accept="image/*" style="display:none;"/>
+                                            </div>
+                                            <script type="text/javascript">
+                                                jfupload.initImageUpload({
+                                                    target : $('#US_RV_IMG3_imageFile')
+                                                    , formName : 'counselRegFrm'
+                                                    , uploadCd : 'US_RV_IMG3'
+                                                    , recordId : ''
+                                                    , fileCd : $('input[name=fileCd]',$('form[name="counselRegFrm"]')).val()
+                                                    , siteCd : $('input[name=siteCd]',$('form[name="counselRegFrm"]')).val()
+                                                    , resizeWidth : ''
+                                                    , resizeHeight : ''
+                                                    , rvFlag : 'Y'
+                                                    , tempYn : 'Y'
+                                                    , limitFileMBSize : 20
+                                                    , success : function(imgData, uploadCd) {
+                                                        jfupload.deleteImage('US_RV_IMG3','counselRegFrm');
+                                                        const previewTag = $('#US_RV_IMG3_attachThumb');
+                                                        const src = imgData.image_url + imgData.image_path + imgData.image_id + imgData.image_ext;
+                                                        let imgStr = '<div class="attach-img">';
+                                                        imgStr += '<button type="button" class="btn-x-xs2 btn_del" onClick="javascript:jfupload.deleteImage(\'US_RV_IMG3\', \'counselRegFrm\')";><i class="ico-x-white"></i><span class="blind">삭제</span></button>';
+                                                        imgStr += '</div>';
+                                                        previewTag.append(imgStr);
+                                                        const previewImgTag = $('#US_RV_IMG3_attachThumb').find('.attach-img');
+                                                        previewImgTag.prepend('<img src="'+src+'" style="width:68px;height:68px;">');
+                                                    }
+                                                });
+                                            </script><p class="text-guide-md ">- 최대 15MB 이하의 JPG, PNG, GIF, BMP 파일 3장까지 첨부 가능합니다.</p>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!--// 첨부파일 영역 -->
+                                </tbody>
+                            </table>
+                        </div><!--// board-form -->
+
+                        <div class="btn-bottom-area">
+                            <button type="button" class="btn-basic-lg2 btn-grey3" onclick="javascript:history.back();"><span>취소하기</span></button>
+                            <button type="button" class="btn-basic-lg2 btn-primary" onclick="goSave();"><span>문의하기</span></button>
+                        </div>
+
+                    </div><!--// frame-cnt-inner -->
+                </div><!--// frame-right -->
+                <div>
+                    <input type="hidden" name="_csrf" value="b10b2301-79a2-4558-a078-7144759aa8ed" />
+                </div></form></div><!--// frame-sm -->
+        </div><!--// content-wrap -->
+
+    </section>
+    <!--// ========== 컨텐츠 영역 :: container ========== -->
+
+<!-- ========== 공통 푸터 :: footer :: include.footer() 영역  ========== -->
+<footer id="footer" class="footer">
+    <div class="footer-menu">
+        <div class="frame-sm">
+            <ul class="footer-menu-list">
+                <li><a href="/etc/footer/company">회사소개</a></li>
+                <li><a href="/service/notice">공지사항</a></li>
+                <li><a href="/product/storeInquiry">입점 · 제휴 · 광고문의</a></li>
+                <li><a href="/etc/footer/uselaw">이용약관</a></li>
+                <li><a href="/etc/footer/privacy" class="text-black2 text-md">개인정보처리방침</a></li>
+            </ul><!--// footer-menu-list -->
+            <div class="family-select">
+                <button type="button" class="select-btn ui-togglelayer-btn" style="background-color: #f8f8f8;"><span>패밀리사이트</span><i class="ico-arr-toggle"></i></button>
+                <div class="family-list-box ui-togglelayer-box">
+                    <ul>
+                        <li><a href="https://rankingdak.com/" target="_blank"><span>랭킹닭컴</span></a></li>
+                        <li><a href="https://www.ggjmart.com/" target="_blank"><span>개근질마트</span></a></li>
+                        <li><a href="https://www.ggjil.com/" target="_blank"><span>개근질닷컴</span></a></li>
+                        <li><a href="https://pickydiet.co.kr/" target="_blank"><span>피키다이어트</span></a></li>
+                        <li><a href="http://dacook.co.kr/" target="_blank"><span>다이어트전문 레시피 다쿡</span></a></li>
+                        <li><a href="http://www.studiou.co.kr/" target="_blank"><span>바디프로필 전문 스튜디오U</span></a></li>
+                    </ul>
+                </div>
+            </div><!--// family-select -->
+        </div><!--// footer-info-list -->
+    </div><!--// frame-sm -->
+    <div class="footer-info">
+        <strong class="footer-logo"><span class="blind">랭킹닭컴</span></strong>
+        <div class="colum-info">
+            <h5 class="blind">회사 정보</h5>
+            <ul class="footer-biz-info">
+                <li><span class="company-name">(주)푸드나무</span></li>
+                <li>대표 : 김영문</li>
+                <li>주소 : 서울특별시 마포구 월드컵북로 396, 15층(상암동, 누리꿈스퀘어 비지니스타워)</li>
+                <li>사업자등록번호 : 105-87-81968
+                    <span class="biz-information">
+                        <a href="javascript:bizPop();">사업자정보 확인</a>
+                    </span>
+                </li>
+                <li>통신판매업신고번호 : 제2015-서울마포-1058호</li>
+                <li>개인정보보호책임자 : 박상필</li>
+            </ul>
+            <p class="copyright">Copyright©랭킹닭컴 All rights reserved.</p>
+        </div><!--// colum -->
+        <div class="colum-info">
+            <ul class="customer-info">
+                <li class="cscenter">고객센터 <em class="footer-tel">02-6405-8088</em></li>
+                <li>FAX. 02-6351-8088</li>
+                <li>E-mail. admin@foodnamoo.com</li>
+            </ul>
+            <div class="customer-btns">
+                <a href="#" onclick="footerCheckLogin('/service/voc')"><span>고객의 제안</span></a>
+                <a href="#" onclick="footerCheckLogin('/mypage/userCounsel/regCouncel')"><span>1:1 문의</span></a>
+            </div>
+            <ul class="footer-sns-list">
+                <li><a href="https://www.facebook.com/rankingdakcom" title="" target="_blank"><i class="ico-sns-facebook"></i><span class="blind">페이스북</span></a></li>
+                <li><a href="https://www.instagram.com/rankingdak_official" title="" target="_blank"><i class="ico-sns-instagram"></i><span class="blind">인스타그램</span></a></li>
+                <li><a href="https://blog.naver.com/rankingdak" title="" target="_blank"><i class="ico-sns-blog"></i><span class="blind">네이버블로그</span></a></li>
+                <li><a href="https://post.naver.com/my.nhn?memberNo=9267177" title="" target="_blank"><i class="ico-sns-post"></i><span class="blind">네이버포스트</span></a></li>
+                <li><a href="https://pf.kakao.com/_ltFRl" title="" target="_blank"><i class="ico-sns-kakaotalk"></i><span class="blind">카카오톡</span></a></li>
+                <li><a href="https://www.youtube.com/c/rankingdakcom" title="" target="_blank"><i class="ico-sns-youtube"></i><span class="blind">유튜브</span></a></li>
+            </ul>
+        </div><!--// colum -->
+    </div><!--// footer-info -->
+    <div class="footer-bottom">
+        <ul class="service-txt">
+            <li><a href="javascript:ismsPop();"><i class="ico-footer-service01"></i>정보보호 관리체계 ISMS 인증 획득</a></li>
+            <li><a href="javascript:bankPop();"><i class="ico-footer-service02"></i>우리은행 구매 안전 서비스 가입사실 확인</a></li>
+        </ul>
+    </div>
+</footer>
+
+
+
+
+<!--// ========== 공통 푸터 :: footer ========== -->
+    <!-- ========== image lazyload 처리 ========== -->
+    <script src="/resources/common/js/lib/polyfill.min.js?flags=gated&features=Object.assign%2CIntersectionObserver"></script>
+    <script src="/resources/common/js/lib/lozad.min.js"></script>
+    <script src="/resources/common/js/lib/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <script>
+
+
+
+        let observer = lozad(); // lazy loads elements with default selector as '.lozad'
+        observer.observe();
+
+        $('.footer-logo').on('click', function(){
+            document.location.href = "/";
+        });
+
+        // 우리은행 구매 안전 서비스 팝업호출
+        function bankPop(){
+            win=window.open("/etc/footer/bankPop","pop","width=800,height=850,scrollbars=yes");
+            win.focus();
+        }
+        // 정보보호 관리쳬계 팝업호출
+        function ismsPop(){
+            win=window.open("/etc/footer/ismsPop","","width=740,height=1030,scrollbars=yes");
+            win.focus();
+        }
+
+        // 사업자정보확인팝업호출
+        function bizPop() {
+            win=window.open("https://www.ftc.go.kr/bizCommPop.do?wrkr_no=1058781968","","width=700,height=700,scrollbars=no,resizable=no,status=no;");
+            win.focus();
+        }
+
+
+        function footerCheckLogin (url) {
+
+            const loginId = 'hih8904';
+
+            if (!loginId) {
+
+                if ( confirm('로그인 후 이용이 가능합니다. 로그인 하시겠습니까?') ) {
+                    window.location.href="/auth/login?loginRedirectUrl=" + gfnUrlEncoding(url);
+                }
+
+                return;
+            }
+
+            if (url) {
+                window.location.href = url;
+            }
+        }
+
+        function commonCheckLogin() {
+
+            if(!'hih8904'){
+                if(confirm("로그인 후 이용이 가능합니다.\n로그인 하시겠습니까?")) {
+                    location.href="/auth/login";
+                }
+                return false;
+            }
+            return true;
+        }
+
+
+    </script>
+
+    <script id="happytalkSDK" src="https://design.happytalkio.com/sdk/happytalk.chat.v2.min.js"></script>
+    <script type="text/javascript">
+
+        var ht = new Happytalk({
+            siteId: '1000220657',
+            siteName: '랭킹닭컴',
+            categoryId:'107062',
+            divisionId: '107063'
+        });
+
+
+        ht.event.on('happytalk:ready', function () {
+            // do something
+            ht.setParams('site_uid=hih8904');
+        });
+
+    </script>
+
+
+    <!--// ========== 공통 푸터 :: footer :: include.footer() 영역  ========== -->
+</div><!--// wrap -->
+<form id="logoutForm" name="logoutForm" action="/logout" method="post"><div>
+    <input type="hidden" name="_csrf" value="b10b2301-79a2-4558-a078-7144759aa8ed" />
+</div></form><script type="text/javascript" src="https://wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+    if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "s_1d3a44462ba7";
+    if (!_nasa) var _nasa={};
+    wcs.inflow("rankingdak.com");
+    wcs_do(_nasa);
+</script><!-- Enliple Tracker Start -->
+<script type="text/javascript">
+    (function(a,g,e,n,t){a.enp=a.enp||function(){(a.enp.q=a.enp.q||[]).push(arguments)};n=g.createElement(e);n.async=!0;n.defer=!0;n.src="https://cdn.megadata.co.kr/dist/prod/enp_tracker_self_hosted.min.js";t=g.getElementsByTagName(e)[0];t.parentNode.insertBefore(n,t)})(window,document,"script");
+    enp('create', 'common', 'foodnamoo', { device: 'B' });
+    enp('send', 'common', 'foodnamoo');
+</script>
+<!-- Enliple Tracker End --><!-- 카카오픽셀 -->
+<script type="text/javascript" charset="UTF-8" src="//t1.daumcdn.net/adfit/static/kp.js"></script>
+<script type="text/javascript">
+    kakaoPixel('6767047130576800104').pageView();
+</script>
+<!-- 카카오픽셀 --><script type="text/javascript" src="//static.criteo.net/js/ld/ld.js" async="true"></script>
+<script type="text/javascript">
+    window.criteo_q = window.criteo_q || [];
+    window.criteo_q.push(
+        { event: "setAccount", account: 27327 },
+        { event: "setEmail", email: "" },
+        { event: "setSiteType", type: "d" },
+        { event: "viewHome" }
+    );
+</script><script>
+
+    $(document).ready(function () {
+
+    });
+
+    function logout() {
+        $("#logoutForm").submit();
+    }
+
+</script>
+</body>
+</html>
