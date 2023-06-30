@@ -1,0 +1,402 @@
+.login-container {
+    min-height: 700px;
+    background: #f7f7f7;
+    margin-bottom: -100px;
+}
+.login-area {
+    width: 420px;
+    margin: 0 auto;
+    padding-bottom: 140px;
+}
+.login-greeting {
+    padding-top: 100px;
+    font-size: 32px;
+    color: #000;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+legend, caption {
+    position: absolute;
+    left: -99999px;
+    display: block;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    text-indent: -99999px;
+    clip: rect(0,0,0,0);
+    display: none;
+}
+.input-group {
+    height: 40px;
+    position: relative;
+    display: table;
+    border-collapse: collapse;
+    width: 100%;
+}
+label, select, input, textarea {
+    vertical-align: middle;
+}
+.blind {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+.login-area .input-text.type-lg {
+    font-size: 15px;
+}
+.input-group.type-lg .input-text, .input-text.type-lg {
+    height: 50px;
+    padding: 3px 15px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    font-size: 13px;
+    border-radius: 6px;
+}
+.input-group .input-text {
+    height: 100%;
+    height: 40px;
+    padding: 3px 15px;
+    position: relative;
+    display: table-cell;
+    float: left;
+    width: 100%;
+    z-index: 2;
+}
+    
+.input-text {
+    height: 40px;
+    padding: 5px 15px;
+    background: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 13px;
+    border-radius: 0;
+}
+.login-area .input-group + .input-group {
+    margin-top: 8px;
+}
+.input-group-wrap ~ .textarea-box, .input-group ~ .input-group {
+    margin-top: 8px;
+}
+.wp100, .w-full {
+    width: 100% !important;
+}
+.login-area .input-text.type-lg {
+    font-size: 15px;
+}
+.input-group.type-lg .input-text, .input-text.type-lg {
+    height: 50px;
+    padding: 3px 15px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    font-size: 13px;
+    border-radius: 6px;
+}
+
+.login-area .chk-area {
+    position: relative;
+    margin-top: 15px;
+}
+.login-area .remember-me-con .remember-me1-con {
+    margin-right: 12px;
+}
+input[type="checkbox"], input[type="radio"] {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+}
+.login-area .custom-checkbox .checkbox + label {
+    min-height: 22px;
+    line-height: 22px;
+    padding-left: 28px;
+}
+.custom-checkbox input[type="checkbox"] + label {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    vertical-align: top;
+}
+.custom-checkbox {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+}
+.custom-checkbox input[type="checkbox"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+    vertical-align: top;
+}
+.login-area .input-group ~ .btn-basic-lg2 {
+    margin-top: 15px;
+}
+.login-area .btn-basic-lg2 {
+    height: 50px;
+}
+.btn-primary {
+    background: #ff6001;
+    color: #fff;
+    border: 1px solid #ff6001;
+}
+.btn-basic-lg2 {
+    min-width: 180px;
+    height: 48px;
+    padding: 10px 25px 11px;
+}
+button, input, optgroup, select, textarea {
+    font: inherit;
+    color: inherit;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    appearance: none;
+}
+.login-area .btn-basic-lg2.btn-primary.w-full > span {
+    font-size: 18px;
+    line-height: 1.7;
+}
+.login-area .find-con {
+    margin-top: 30px;
+}
+.page-guide-center {
+    width: 100%;
+    text-align: center;
+}
+ol, ul {
+    list-style: none;
+}
+.login-area .txt-link-list li {
+    display: inline-block;
+    color: #999;
+    font-size: 14px;
+}
+.text-black2 {
+    color: #333 !important;
+}
+a {
+    background: transparent;
+    text-decoration: none;
+    color: inherit;
+}
+button, input {
+    overflow: visible;
+}
+.sns-login {
+    margin: 40px 0;
+}
+.sns-login-list {
+    text-align: center;
+}
+.sns-login-list > li {
+    display: inline-block;
+    margin: 0 9px;
+}
+.sns-login-list .ico-sns-loin.naver {
+    background-position: left top;
+}
+.sns-login-list .ico-sns-loin {
+    display: inline-block;
+    width: 46px;
+    height: 46px;
+    overflow: hidden;
+    background: url(/ico_sns_login_m.png) no-repeat;
+    background-size: auto 46px;
+}
+.sns-login-list .ico-sns-loin.apple {
+    background-position: right top;
+}
+.sns-login-list .ico-sns-loin {
+    display: inline-block;
+    width: 46px;
+    height: 46px;
+    overflow: hidden;
+    background: url(/ico_sns_login_m.png) no-repeat;
+    background-size: auto 46px;
+}
+.sns-login-list .ico-sns-loin {
+    display: inline-block;
+    width: 46px;
+    height: 46px;
+    overflow: hidden;
+    background: url(/ico_sns_login_m.png) no-repeat 0 0;
+    background-size: auto 46px;
+}
+.sns-login-list .ico-sns-loin.kakao {
+    background: url(/ico_sns_kakao_m.png) no-repeat 0 0;
+}
+.login-area .btn-bottom-area {
+    padding: 0;
+}
+.btn-bottom-area {
+    position: relative;
+    text-align: center;
+}
+.login-area .btn-bottom-area .btn-basic-lg2, .join-area .btn-bottom-area .btn-basic-lg2 {
+    width: calc(50% - 5px);
+    height: 50px;
+    border-radius: 6px;
+    font-weight: 400;
+}
+.login-area .btn-bottom-area .btn-basic-lg2.btn-default span {
+    font-size: 15px;
+    color: #666;
+    line-height: 2;
+}
+.login-area .btn-bottom-area ~ .page-guide-center {
+    margin-top: 25px;
+}
+.page-guide-center {
+    width: 100%;
+    text-align: center;
+}
+.text-grey {
+    color: #666 !important;
+}
+.login-area .page-guide-center ~ .log-benefit-bnr {
+    margin-top: 45px;
+}
+img {
+    max-width: 100%;
+    vertical-align: top;
+}
+fieldset, img {
+    border: 0;
+}
+.login-area .btn-bottom-area .btn-basic-lg2:only-child, .join-area.type2 .btn-bottom-area .btn-basic-lg2:only-child {
+    width: 100%;
+}
+a:hover, a:active {
+    text-decoration: none;
+    outline: 0;
+}
+.btn-default {
+    background: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+}
+.btn-basic-lg2 {
+    min-width: 180px;
+    height: 48px;
+    padding: 10px 25px 11px;
+}
+[class*="btn-basic-"], [class*="btn-option"], [class*="btn-rud-"] {
+    display: inline-block;
+    text-align: center;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    vertical-align: top;
+}
+.login-greeting .message .ico-logo-login {
+    vertical-align: top;
+    margin-right: 5px;
+}
+
+.ico-logo-login {
+    width: 105px;
+    height: 40px;
+}
+.login-greeting .message {
+    line-height: 1.6;
+}
+.login-greeting .txt {
+    font-weight: normal;
+}
+
+.txt, .txt span {
+    word-break: break-all;
+}
+address, caption, cite, code, dfn, em, strong, th, var {
+    font-style: normal;
+}
+[class^="ico-logo-"] {
+    display: inline-block;
+    background: url(/logo.png) 0 0;
+    background-size: cover;
+}
+.input-group {
+    height: 40px;
+}
+.input-group {
+    position: relative;
+    display: table;
+    border-collapse: collapse;
+    width: 100%;
+}
+.container {
+    position: relative;
+    min-height: 700px;
+    padding-bottom: 100px;
+}
+.login-area .custom-checkbox .checkbox + label:before {
+    width: 22px;
+    height: 22px;
+    border-radius: 3px
+}
+.custom-checkbox .checkbox + label:before {
+    display: block;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+.login-area .custom-checkbox .checkbox:checked + label:before {
+    width: 22px;
+    height: 22px;
+    border-radius: 3px;
+    background-position: -47px -224px;
+}
+.login-area .custom-checkbox .checkbox + label:before {
+    width: 22px;
+    height: 22px;
+    border-radius: 3px;
+}
+.custom-checkbox .checkbox:checked + label:before {
+    background: #FF6001 url(/ico_form.png?ver=20230417) -50px -30px;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #FF6001;
+}
+
+
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section {
+    display: block;
+}
+html, body {
+    height: 100%;
+    color: #333;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4;
+    font-family: 'Pretendard', sans-serif;
+    word-break: break-all;
+}
