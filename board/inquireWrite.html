@@ -16,8 +16,8 @@
     <meta name="facebook-domain-verification" content="n9wxauvvyf2hn7mnw0h7h78b8s6ade">
     <meta name="naver-site-verification" content="f49456f63ff3a881b3c179737e504259c28307f8"/>
     <!-- ======================== 공통 CSS / JS ======================== -->
-    <
-    <link rel="stylesheet"  href="../header-footer/foodmain.css">
+
+    <link rel="stylesheet"  href="../mainPage/foodmain.css">
     <link rel="stylesheet"  href="board.css">
     <link rel="icon" href="https://www.rankingdak.com/resources/pc/images/icon/favicon.ico">
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -458,11 +458,11 @@
                         });
                     }
                 </script>
-                <script src="/resources/common/js/cm_jfupload.js?ver=20220921"></script>
-                <script src="/resources/common/js/lib/jquery.fileupload.js"></script>
-                <script src="/resources/common/js/lib/jquery.fileupload-ui.js"></script>
-                <script src="/resources/common/js/lib/jquery.fileupload-process.js"></script>
-                <script src="/resources/common/js/lib/jquery.fileupload-validate.js"></script>
+<!--                <script src="/resources/common/js/cm_jfupload.js?ver=20220921"></script>-->
+<!--                <script src="/resources/common/js/lib/jquery.fileupload.js"></script>-->
+<!--                <script src="/resources/common/js/lib/jquery.fileupload-ui.js"></script>-->
+<!--                <script src="/resources/common/js/lib/jquery.fileupload-process.js"></script>-->
+<!--                <script src="/resources/common/js/lib/jquery.fileupload-validate.js"></script>-->
                 <script type="text/javascript">
                     var cnt = 0;
 
@@ -990,131 +990,132 @@
 
 <!--// ========== 공통 푸터 :: footer ========== -->
     <!-- ========== image lazyload 처리 ========== -->
-    <script src="/resources/common/js/lib/polyfill.min.js?flags=gated&features=Object.assign%2CIntersectionObserver"></script>
-    <script src="/resources/common/js/lib/lozad.min.js"></script>
-    <script src="/resources/common/js/lib/jquery.mCustomScrollbar.concat.min.js"></script>
+<!--    <script src="/resources/common/js/lib/polyfill.min.js?flags=gated&features=Object.assign%2CIntersectionObserver"></script>-->
+<!--    <script src="/resources/common/js/lib/lozad.min.js"></script>-->
+<!--    <script src="/resources/common/js/lib/jquery.mCustomScrollbar.concat.min.js"></script>-->
 
-    <script>
-
-
-
-        let observer = lozad(); // lazy loads elements with default selector as '.lozad'
-        observer.observe();
-
-        $('.footer-logo').on('click', function(){
-            document.location.href = "/";
-        });
-
-        // 우리은행 구매 안전 서비스 팝업호출
-        function bankPop(){
-            win=window.open("/etc/footer/bankPop","pop","width=800,height=850,scrollbars=yes");
-            win.focus();
-        }
-        // 정보보호 관리쳬계 팝업호출
-        function ismsPop(){
-            win=window.open("/etc/footer/ismsPop","","width=740,height=1030,scrollbars=yes");
-            win.focus();
-        }
-
-        // 사업자정보확인팝업호출
-        function bizPop() {
-            win=window.open("https://www.ftc.go.kr/bizCommPop.do?wrkr_no=1058781968","","width=700,height=700,scrollbars=no,resizable=no,status=no;");
-            win.focus();
-        }
+<!--    <script>-->
 
 
-        function footerCheckLogin (url) {
 
-            const loginId = 'hih8904';
+<!--        let observer = lozad(); // lazy loads elements with default selector as '.lozad'-->
+<!--        observer.observe();-->
 
-            if (!loginId) {
+<!--        $('.footer-logo').on('click', function(){-->
+<!--            document.location.href = "/";-->
+<!--        });-->
 
-                if ( confirm('로그인 후 이용이 가능합니다. 로그인 하시겠습니까?') ) {
-                    window.location.href="/auth/login?loginRedirectUrl=" + gfnUrlEncoding(url);
-                }
+<!--        // 우리은행 구매 안전 서비스 팝업호출-->
+<!--        function bankPop(){-->
+<!--            win=window.open("/etc/footer/bankPop","pop","width=800,height=850,scrollbars=yes");-->
+<!--            win.focus();-->
+<!--        }-->
+<!--        // 정보보호 관리쳬계 팝업호출-->
+<!--        function ismsPop(){-->
+<!--            win=window.open("/etc/footer/ismsPop","","width=740,height=1030,scrollbars=yes");-->
+<!--            win.focus();-->
+<!--        }-->
 
-                return;
-            }
-
-            if (url) {
-                window.location.href = url;
-            }
-        }
-
-        function commonCheckLogin() {
-
-            if(!'hih8904'){
-                if(confirm("로그인 후 이용이 가능합니다.\n로그인 하시겠습니까?")) {
-                    location.href="/auth/login";
-                }
-                return false;
-            }
-            return true;
-        }
+<!--        // 사업자정보확인팝업호출-->
+<!--        function bizPop() {-->
+<!--            win=window.open("https://www.ftc.go.kr/bizCommPop.do?wrkr_no=1058781968","","width=700,height=700,scrollbars=no,resizable=no,status=no;");-->
+<!--            win.focus();-->
+<!--        }-->
 
 
-    </script>
+<!--        function footerCheckLogin (url) {-->
 
-    <script id="happytalkSDK" src="https://design.happytalkio.com/sdk/happytalk.chat.v2.min.js"></script>
-    <script type="text/javascript">
+<!--            const loginId = 'hih8904';-->
 
-        var ht = new Happytalk({
-            siteId: '1000220657',
-            siteName: '랭킹닭컴',
-            categoryId:'107062',
-            divisionId: '107063'
-        });
+<!--            if (!loginId) {-->
+
+<!--                if ( confirm('로그인 후 이용이 가능합니다. 로그인 하시겠습니까?') ) {-->
+<!--                    window.location.href="/auth/login?loginRedirectUrl=" + gfnUrlEncoding(url);-->
+<!--                }-->
+
+<!--                return;-->
+<!--            }-->
+
+<!--            if (url) {-->
+<!--                window.location.href = url;-->
+<!--            }-->
+<!--        }-->
+
+<!--        function commonCheckLogin() {-->
+
+<!--            if(!'hih8904'){-->
+<!--                if(confirm("로그인 후 이용이 가능합니다.\n로그인 하시겠습니까?")) {-->
+<!--                    location.href="/auth/login";-->
+<!--                }-->
+<!--                return false;-->
+<!--            }-->
+<!--            return true;-->
+<!--        }-->
 
 
-        ht.event.on('happytalk:ready', function () {
-            // do something
-            ht.setParams('site_uid=hih8904');
-        });
+<!--    </script>-->
 
-    </script>
+<!--    <script id="happytalkSDK" src="https://design.happytalkio.com/sdk/happytalk.chat.v2.min.js"></script>-->
+<!--    <script type="text/javascript">-->
+
+<!--        var ht = new Happytalk({-->
+<!--            siteId: '1000220657',-->
+<!--            siteName: '랭킹닭컴',-->
+<!--            categoryId:'107062',-->
+<!--            divisionId: '107063'-->
+<!--        });-->
+
+
+<!--        ht.event.on('happytalk:ready', function () {-->
+<!--            // do something-->
+<!--            ht.setParams('site_uid=hih8904');-->
+<!--        });-->
+
+<!--    </script>-->
 
 
     <!--// ========== 공통 푸터 :: footer :: include.footer() 영역  ========== -->
 </div><!--// wrap -->
 <form id="logoutForm" name="logoutForm" action="/logout" method="post"><div>
     <input type="hidden" name="_csrf" value="b10b2301-79a2-4558-a078-7144759aa8ed" />
-</div></form><script type="text/javascript" src="https://wcs.naver.net/wcslog.js"></script>
-<script type="text/javascript">
-    if(!wcs_add) var wcs_add = {};
-    wcs_add["wa"] = "s_1d3a44462ba7";
-    if (!_nasa) var _nasa={};
-    wcs.inflow("rankingdak.com");
-    wcs_do(_nasa);
-</script><!-- Enliple Tracker Start -->
-<script type="text/javascript">
-    (function(a,g,e,n,t){a.enp=a.enp||function(){(a.enp.q=a.enp.q||[]).push(arguments)};n=g.createElement(e);n.async=!0;n.defer=!0;n.src="https://cdn.megadata.co.kr/dist/prod/enp_tracker_self_hosted.min.js";t=g.getElementsByTagName(e)[0];t.parentNode.insertBefore(n,t)})(window,document,"script");
-    enp('create', 'common', 'foodnamoo', { device: 'B' });
-    enp('send', 'common', 'foodnamoo');
-</script>
-<!-- Enliple Tracker End --><!-- 카카오픽셀 -->
-<script type="text/javascript" charset="UTF-8" src="//t1.daumcdn.net/adfit/static/kp.js"></script>
-<script type="text/javascript">
-    kakaoPixel('6767047130576800104').pageView();
-</script>
-<!-- 카카오픽셀 --><script type="text/javascript" src="//static.criteo.net/js/ld/ld.js" async="true"></script>
-<script type="text/javascript">
-    window.criteo_q = window.criteo_q || [];
-    window.criteo_q.push(
-        { event: "setAccount", account: 27327 },
-        { event: "setEmail", email: "" },
-        { event: "setSiteType", type: "d" },
-        { event: "viewHome" }
-    );
-</script><script>
+</div></form>
+<!--<script type="text/javascript" src="https://wcs.naver.net/wcslog.js"></script>-->
+<!--<script type="text/javascript">-->
+<!--    if(!wcs_add) var wcs_add = {};-->
+<!--    wcs_add["wa"] = "s_1d3a44462ba7";-->
+<!--    if (!_nasa) var _nasa={};-->
+<!--    wcs.inflow("rankingdak.com");-->
+<!--    wcs_do(_nasa);-->
+<!--</script>&lt;!&ndash; Enliple Tracker Start &ndash;&gt;-->
+<!--<script type="text/javascript">-->
+<!--    (function(a,g,e,n,t){a.enp=a.enp||function(){(a.enp.q=a.enp.q||[]).push(arguments)};n=g.createElement(e);n.async=!0;n.defer=!0;n.src="https://cdn.megadata.co.kr/dist/prod/enp_tracker_self_hosted.min.js";t=g.getElementsByTagName(e)[0];t.parentNode.insertBefore(n,t)})(window,document,"script");-->
+<!--    enp('create', 'common', 'foodnamoo', { device: 'B' });-->
+<!--    enp('send', 'common', 'foodnamoo');-->
+<!--</script>-->
+<!--&lt;!&ndash; Enliple Tracker End &ndash;&gt;&lt;!&ndash; 카카오픽셀 &ndash;&gt;-->
+<!--<script type="text/javascript" charset="UTF-8" src="//t1.daumcdn.net/adfit/static/kp.js"></script>-->
+<!--<script type="text/javascript">-->
+<!--    kakaoPixel('6767047130576800104').pageView();-->
+<!--</script>-->
+<!--&lt;!&ndash; 카카오픽셀 &ndash;&gt;<script type="text/javascript" src="//static.criteo.net/js/ld/ld.js" async="true"></script>-->
+<!--<script type="text/javascript">-->
+<!--    window.criteo_q = window.criteo_q || [];-->
+<!--    window.criteo_q.push(-->
+<!--        { event: "setAccount", account: 27327 },-->
+<!--        { event: "setEmail", email: "" },-->
+<!--        { event: "setSiteType", type: "d" },-->
+<!--        { event: "viewHome" }-->
+<!--    );-->
+<!--</script><script>-->
 
-    $(document).ready(function () {
+<!--    $(document).ready(function () {-->
 
-    });
+<!--    });-->
 
-    function logout() {
-        $("#logoutForm").submit();
-    }
+<!--    function logout() {-->
+<!--        $("#logoutForm").submit();-->
+<!--    }-->
 
-</script>
+<!--</script>-->
 </body>
 </html>

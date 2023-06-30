@@ -17,8 +17,8 @@
     <meta name="facebook-domain-verification" content="n9wxauvvyf2hn7mnw0h7h78b8s6ade">
     <meta name="naver-site-verification" content="f49456f63ff3a881b3c179737e504259c28307f8"/>
     <!-- ======================== 공통 CSS / JS ======================== -->
-    <
-    <link rel="stylesheet"  href="../header-footer/foodmain.css">
+
+    <link rel="stylesheet"  href="../mainPage/foodmain.css">
     <link rel="stylesheet"  href="board.css">
     <link rel="icon" href="https://www.rankingdak.com/resources/pc/images/icon/favicon.ico">
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -30,7 +30,7 @@
     <script>
         $(document).ready(function(){
             $('.summernote').summernote({
-                minHeight: 250,
+                minHeight: 500,
                 maxHeight: null,
                 lang: "ko-KR"
             });
@@ -249,25 +249,34 @@
                     <div class="menu-title-area">
                         <h3 class="title-menu">공지사항</h3>
                     </div>
+                    <div class="board-form type2">
+                        <table>
+                            <caption>내용 작성</caption>
+                            <colgroup>
+                                <col style="width:180px"><col style="width:auto">
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <th class="text-left" scope="row"><div class="in-tb">제목<em class="es"><span class="blind">필수입력</span></em></div></th>
+                                    <td class="text-left">
 
-                    <div class="view-content-area">
-                        <div class="view-cont0ent-head type2">
-                            <div class="inner">
-                                <div class="tit-cell">
-                                    <h4 class="tit">KB국민카드 금융상품 판매대리&amp;중개업자 증서</h4>
-                                </div>
-                                <div class="date-cell">
-                                    <ul class="sep-list type2">
-                                        <li>2023.06.05</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div><!--// view-content-head -->
+                                        <div class="input-group w-full">
 
-                        <div class="container">
-                            <textarea class="summernote" name="editordata"></textarea>
-                        </div>
+                                            <input type="text" name = "vQuestionTitle" id = "vQuestionTitle" title="" class="input-text" placeholder="제목을 입력해주세요" value = "">
+                                        </div>
 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="text-left" scope="row"><div class="in-tb">내용 <em class="es"><span class="blind">필수입력</span></em></div></th>
+                                    <td class="text-left">
+                                        <div class="container-input">
+                                            <textarea class="summernote" name="editordata"></textarea>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div><!--// view-content-area -->
 
                     <div class="page-bottom">

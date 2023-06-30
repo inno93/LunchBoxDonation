@@ -21,6 +21,7 @@ img{max-width: 100%; vertical-align: top;}
 
 /****** Content ******/
 .container{position:relative; min-height:700px;  padding-bottom:100px;}
+.container-input{position:relative; min-height:600px;  padding-bottom:10px;}
 .content-wrap{min-height:700px;}
 
 
@@ -63,6 +64,11 @@ table td .title-elps{display:inline-block; vertical-align: middle; max-width:94%
 /**** Text Color ****/
 .text-primary{color:#FF6001 !important;}
 .text-grey3{color:#999 !important;}
+
+
+/* state */
+[class^="state-"]{display:inline-block; vertical-align:top; padding:0 7px; height:22px; font-size:12px; text-align:center; line-height:1.8; border-radius:2px;}
+.state-done{background:#556180; color:#fff;}
 
 
 /* 필수체크 */
@@ -181,6 +187,8 @@ input-group-wrap.box-type .select-box{margin:0 0 0 -1px; height:calc(100% + 2px)
 /* btn-basic- */
 [class*="btn-basic-"],[class*="btn-option"]{border-radius:6px;}
 .btn-basic-md2{min-width:67px; height:40px; padding:5px 18px;}
+.btn-basic-md2 > span{font-size:14px; line-height:2}
+
 
 /**** Color *****/
 .btn-primary{background:#ff6001; color:#fff; border:1px solid #ff6001;}
@@ -221,7 +229,7 @@ input-group-wrap.box-type .select-box{margin:0 0 0 -1px; height:calc(100% + 2px)
 .select-box .select-list a{display:block;width:100%;height:100%;padding:10px 17px 10px;background:#fff;box-sizing:border-box;font-size:14px}
 
 /**** Area ****/
-.btn-bottom-area{position:relative; text-align:center}
+.btn-bottom-area{position:relative; text-align:center; margin-top: 10px;}
 .btn-bottom-area:after{display:block; content:''; clear:both}
 
 /* 간격 */
@@ -238,6 +246,7 @@ input-group-wrap.box-type .select-box{margin:0 0 0 -1px; height:calc(100% + 2px)
 ========================================================*/
 /**** Arrow ****/
 [class*="ico-arr-"]{position:relative; display:inline-block; width:12px; height:12px; transition:.2s; -webkit-transition: .2s; transform:translateX(0); -webkit-transform:translateX(0);}
+[class*="ico-arr-"]:after,
 [class*="ico-arr-"]:before{position:absolute; display:block; content:''; background-color:#000; box-shadow:inset 0 0 0 32px;}
 /* right */
 .ico-arr-right:before{top:0; left:50%; width:1px; height:59.45%; -webkit-transform:rotate(135deg); transform:rotate(135deg);}
@@ -259,6 +268,10 @@ input-group-wrap.box-type .select-box{margin:0 0 0 -1px; height:calc(100% + 2px)
 /* Arrow(Fill) */
 [class*="ico-arrfill-"]:after{display:inline-block; content:''; border-width:6px 0 6px 7px; border-style:solid; border-top-color:transparent; border-bottom-color:transparent; }
 .ico-arrfill-up:after{transform:rotate(-90deg); -webkit-transform:rotate(-90deg);}
+/* Arrow Toggle */
+.ico-arr-toggle:before{top:50%; right:0; width:60%; height:1px; -webkit-transform:rotate(-45deg); transform:rotate(-45deg);}
+/* 토글활성화시 */
+.toggle-on .ico-arr-toggle:before{top:50%; right:0; width:60%; height:1px; -webkit-transform:rotate(45deg); transform:rotate(45deg);}
 
 /**** Plus, Minus ****/
 .ico-plus-xlg{position:relative; width:24px; height:24px; display:inline-block;}
@@ -325,6 +338,11 @@ board-form + .btn-bottom-area [class*="btn-basic-"],
 
 .page-bottom {
     position: relative
+}
+.page-bottom .right-area {
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 .page-bottom .pagination {
     padding: 9px 0
@@ -881,4 +899,126 @@ board-form + .btn-bottom-area [class*="btn-basic-"],
     width: 68px;
     height: 68px;
     padding: 22px;
+}
+
+.accordion-list {
+    border-bottom: 1px solid #bbb
+}
+
+.accordion-list > li > .title-div {
+    position: relative;
+    display: block;
+    padding: 24px 150px 20px 0;
+    cursor: pointer;
+}
+
+.accordion-list > li > .title-div .right {
+    position: absolute;
+    top: 24px;
+    right: 15px;
+    color: #999
+}
+
+.accordion-list .title-div .subject [class^="state-"] {
+    vertical-align: top;
+}
+
+.accordion-list .title-div .classify {
+    display: inline-block;
+    color: #FB5001;
+    vertical-align: top;
+    margin: 0 3px
+}
+.accordion-list .title-div .txt {
+    display: inline-block;
+    vertical-align: top;
+    max-width: 75%;
+    font-size: 15px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    word-break: break-all;
+}
+
+
+.accordion-list .active .title-div .txt {
+    white-space: normal;
+    overflow: visible;
+}
+
+.accordion-list .title-div .right .date {
+    color: #666;
+    margin-right: 30px;
+}
+.accordion-list .title-div .right [class*="ico-arr-"] {
+    width: 15px;
+    height: 15px;
+}
+.accordion-list .question .detail-div {
+    padding: 30px 25px;
+    background: #F8F8F8;
+    border-top: 1px solid #E9E9E9;
+}
+.accordion-list .question .detail-div .txt {
+    line-height: 24px;
+}
+
+.question .detail-div .bottom {
+    overflow: hidden;
+    margin-top: 20px;
+    position: relative;
+    min-height: 18px
+}
+
+.question .detail-div .bottom .added-file {
+    float: left;
+    color: #666
+}
+
+
+.question .detail-div .bottom .added-file .thum-list {
+    font-size: 0
+}
+
+.answer .bottom {
+    margin-top: 15px
+}
+.answer .bottom .added-file .thum-list {
+    font-size: 0
+}
+
+.accordion-list .answer {
+    position: relative;
+    padding: 30px 25px 30px 50px;
+    background: #F8F8F8;
+}
+.accordion-list .answer:before {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 34px;
+    left: 30px;
+    width: 10px;
+    height: 16px;
+    background: url("img/ico_bullet.png") -150px 0
+}
+
+.accordion-list .answer .info .name {
+    color: #000;
+    font-weight: 500;
+    margin-right: 10px;
+}
+.accordion-list .answer .info .date {
+    color: #999;
+}
+.accordion-list .answer .txt {
+    color: #666;
+    line-height: 24px;
+    margin-top: 5px;
+}
+.ui-accordion-view {
+    position: relative;
+}
+.ui-accordion-view .question ~ .answer {
+    margin-top: 2px;
 }
