@@ -212,7 +212,7 @@ button, input {
     width: 46px;
     height: 46px;
     overflow: hidden;
-    background: url(/ico_sns_login_m.png) no-repeat;
+    background: url(ico_sns_login_m.png) no-repeat;
     background-size: auto 46px;
 }
 .sns-login-list .ico-sns-loin.apple {
@@ -223,7 +223,7 @@ button, input {
     width: 46px;
     height: 46px;
     overflow: hidden;
-    background: url(/ico_sns_login_m.png) no-repeat;
+    background: url(ico_sns_login_m.png) no-repeat;
     background-size: auto 46px;
 }
 .sns-login-list .ico-sns-loin {
@@ -231,11 +231,11 @@ button, input {
     width: 46px;
     height: 46px;
     overflow: hidden;
-    background: url(/ico_sns_login_m.png) no-repeat 0 0;
+    background: url(ico_sns_login_m.png) no-repeat 0 0;
     background-size: auto 46px;
 }
 .sns-login-list .ico-sns-loin.kakao {
-    background: url(/ico_sns_kakao_m.png) no-repeat 0 0;
+    background: url(ico_sns_kakao_m.png) no-repeat 0 0;
 }
 .login-area .btn-bottom-area {
     padding: 0;
@@ -323,7 +323,7 @@ address, caption, cite, code, dfn, em, strong, th, var {
 }
 [class^="ico-logo-"] {
     display: inline-block;
-    background: url(/logo.png) 0 0;
+    background: url(logo.png) 0 0;
     background-size: cover;
 }
 .input-group {
@@ -370,7 +370,7 @@ address, caption, cite, code, dfn, em, strong, th, var {
     border-radius: 3px;
 }
 .custom-checkbox .checkbox:checked + label:before {
-    background: #FF6001 url(/ico_form.png?ver=20230417) -50px -30px;
+    background: #FF6001 url(ico_form.png?ver=20230417) -50px -30px;
     width: 18px;
     height: 18px;
     border: 1px solid #FF6001;

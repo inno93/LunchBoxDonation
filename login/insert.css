@@ -114,7 +114,7 @@ a {
     width: 46px;
     height: 46px;
     overflow: hidden;
-    background: url(/ico_sns_login_m.png) no-repeat;
+    background: url(ico_sns_login_m.png) no-repeat;
     background-size: auto 46px;
 }
 .sns-login-list .ico-sns-loin.apple {
@@ -125,7 +125,7 @@ a {
     width: 46px;
     height: 46px;
     overflow: hidden;
-    background: url(/ico_sns_login_m.png) no-repeat;
+    background: url(ico_sns_login_m.png) no-repeat;
     background-size: auto 46px;
 }
 .sns-login-list .ico-sns-loin {
@@ -133,11 +133,11 @@ a {
     width: 46px;
     height: 46px;
     overflow: hidden;
-    background: url(/ico_sns_login_m.png) no-repeat 0 0;
+    background: url(ico_sns_login_m.png) no-repeat 0 0;
     background-size: auto 46px;
 }
 .sns-login-list .ico-sns-loin.kakao {
-    background: url(/ico_sns_kakao_m.png) no-repeat 0 0;
+    background: url(ico_sns_kakao_m.png) no-repeat 0 0;
 }
 .blind {
     position: absolute;

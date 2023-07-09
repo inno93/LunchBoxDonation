@@ -1,3 +1,4 @@
+/* header */
 /* d */
 #stickyDiv {
     display: flex;
@@ -140,34 +141,7 @@ div.img img {
     display: block;
 }
 
- div.arrow {
-    position: absolute;
-    font-size: 2rem;
-    z-index: 1;
-    width: 25px;
-    height: 7%;
-    top: 328px;
-    margin-left: 754px;
-    margin-right: 755px;
-    border-radius: 29px;
-    text-align: center;
-    cursor: pointer;
-    line-height: 40vh;
-    color: #00000070;
-    background-color: #00000021;
-} 
 
-#arrow-prev{
-    background-image: url("https://www.rankingdak.com/resources/pc/images/icon/ico_slide_ctrl.png");
-    background-size: 118px;
-    background-position: -4% center;
-}
-
-#arrow-next{
-    background-image: url("https://www.rankingdak.com/resources/pc/images/icon/ico_slide_ctrl.png");
-    background-size: 118px;
-    background-position: 17% center;
-}
 
 div.next {
     right: 0;
@@ -408,174 +382,6 @@ div.btns {
 
 /* category */
 
-.md-pick{
-    font-size: 29px;
-    font-weight: bolder;
-    text-align: center;
-    margin-top: 140px;
-    word-spacing: -4px;
-}
-
-/* img x 4 category */
-.image-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 300px;
-  margin-bottom: 20px; /* 이미지 사이의 간격을 조절할 수 있는 부분 */
-  margin-top: 83px;
-  }
-
-  .image {
-  max-width: 254px;
-  max-height: 100%;
-  margin-right: 48px; /* 이미지 간의 간격을 조절할 수 있는 부분 */
-  border-radius: 15px;
-  }
-
-  .image-wrapper {
-    text-align: center;
-    margin-right: 0px; /* 이미지 간격 조정 */
-  }
-
-  .image:last-child .image-wrapper {
-    margin-right: 0; /* 마지막 이미지의 간격은 0으로 설정 */
-  }
-
-  .navigation-buttons {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    margin-left: -29px;
-  }
-
-  .navigation-button-prev {
-    margin: 163px 608px;
-    padding: 7px 11px;
-    background-color: white;
-    border-radius: 13px;
-    border: #e0e0e0;
-    box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
-    cursor: pointer;
-    margin-top: -247px;
-  }
-  .navigation-button-next {
-    margin: 163px 608px;
-    padding: 7px 11px;
-    background-color: white;
-    border-radius: 13px;
-    border: #e0e0e0;
-    box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
-    cursor: pointer;
-    margin-top: -247px;
-  }
-
-
-
-  .description {
-    text-align: center;
-    font-weight: bold;
-    margin-left: -52px;
-    font-size: 17px;
-    word-spacing: 1px;
-  }
-  .description3 {
-    text-align: left;
-    font-weight: bold;
-    margin-left: -5px;
-    font-size: 15px;
-    word-spacing: 1px;
-    width: 200px;
-  }
-/* img x 4 category */
-
-.time-sale{
-    position: absolute;
-    left: 355px;
-    top: 1360px;
-    width: 300px;
-}
-.time-sale-img{
-    background: url("https://www.rankingdak.com/resources/pc/images/icon/ico_timesale_title.png") no-repeat 0 center / 34px;
-    background-position: 4px;
-}
-.time-sale > h2 > span{
-    font-weight: bolder;
-    font-size: 27px;
-    letter-spacing: -1px;
-}
-
-/* img x 2 category */
-.image-container2 {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  height: 300px;
-  margin-bottom: 20px; /* 이미지 사이의 간격을 조절할 수 있는 부분 */
-  margin-top: 70px;
-  margin-right: 339px;
-  }
-
-  .image2 {
-  max-width: 340px;
-  max-height: 100%;
-  margin-right: 48px; /* 이미지 간의 간격을 조절할 수 있는 부분 */
-  border-radius: 15px;
-  height: 209px;
-  }
-
-  .image-wrapper2 {
-    text-align: center;
-    margin-right: 0px; /* 이미지 간격 조정 */
-  }
-
-  .image:last-child .image-wrapper2 {
-    margin-right: 0; /* 마지막 이미지의 간격은 0으로 설정 */
-  }
-
-  .navigation-buttons2 {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    margin-left: -29px;
-  }
-
-  .navigation-button-prev2 {
-    margin: 163px 608px;
-    padding: 7px 11px;
-    background-color: white;
-    border-radius: 13px;
-    border: #e0e0e0;
-    box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
-    cursor: pointer;
-    margin-top: -247px;
-  }
-  .navigation-button-next2 {
-    margin: 163px 167px;
-    padding: 7px 11px;
-    background-color: white;
-    border-radius: 13px;
-    border: #e0e0e0;
-    box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
-    cursor: pointer;
-    margin-top: -247px;
-  }
-
-
-  .description2 {
-    /* text-align: center; */
-    font-weight: bold;
-    margin-left: 12px;
-    font-size: 14px;
-    word-spacing: -1px;
-    text-align: left;
-    /* word-break: break-all; */
-  }
-
-  .innerDivElement2{
-      color: rebeccapurple;
-  }
-/* img x 2 category */
 
 
 
@@ -988,181 +794,6 @@ ol, ul {
     font-weight: bolder;
 }
 
-/* 슬라이드  */
-.main-visual-area {
-    position: relative;
-    overflow: hidden;
-    height: 400px;
-    width: 100%;
-    text-align: center;
-}
-.blind {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    padding: 0;
-    overflow: hidden;
-    clip: rect(0,0,0,0);
-    border: 0;
-}
-.main-visual-area .main-slide {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 1920px;
-    height: 400px;
-    margin-left: -960px;
-    max-width: none;
-    min-width: 0;
-}
-
-.swiper-container {
-    margin: 0 auto;
-    position: relative;
-    overflow: hidden;
-    list-style: none;
-    padding: 0;
-    z-index: 1;
-}
-.swiper-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-transition-property: -webkit-transform;
-    transition-property: -webkit-transform;
-    -o-transition-property: transform;
-    transition-property: transform;
-    transition-property: transform,-webkit-transform;
-    -webkit-box-sizing: content-box;
-    box-sizing: content-box;
-}
-
-.swiper-slide {
-    -webkit-flex-shrink: 0;
-    -ms-flex-negative: 0;
-    flex-shrink: 0;
-    width: 100%;
-    height: 100%;
-    position: relative;
-    -webkit-transition-property: -webkit-transform;
-    transition-property: -webkit-transform;
-    -o-transition-property: transform;
-    transition-property: transform;
-    transition-property: transform,-webkit-transform;
-}
-img {
-    max-width: 100%;
-    vertical-align: top;
-    border: 0;
-}
-
-.main-slide-bottom {
-    position: absolute;
-    width: 100%;
-    bottom: 20px;
-    z-index: 2;
-}
-.main-slide-bottom .inner {
-    position: relative;
-    width: 1100px;
-    margin: 0 auto;
-    text-align: right;
-}
-.main-slide-bottom .main-slide-btns {
-    position: relative;
-    display: inline-block;
-    padding: 0 22px;
-    height: 26px;
-    background: rgba(0,0,0,.3);
-    border-radius: 60px;
-}
-.main-slide-btns .swiper-pagination-fraction {
-    position: relative;
-    width: auto;
-    color: #ccc;
-    font-weight: 700;
-    bottom: auto;
-    left: auto;
-    line-height: 26px;
-    font-size: 13px;
-}
-.main-slide-btns .swiper-pagination-current {
-    font-weight: 700;
-    display: inline-block;
-    min-width: 0;
-    color: #fff;
-    min-width: 1em;
-}
-.main-slide-btns .swiper-pagination-total {
-    display: inline-block;
-    min-width: 0;
-    min-width: 1em;
-}
-.main-slide-btns .swiper-button-next {
-    top: 0;
-    right: 3px;
-    margin: 0;
-    background-position: 20% center;
-}
-.main-slide-btns .swiper-button-prev {
-    top: 0;
-    left: 3px;
-    margin: 0;
-    background-position: -3% center;
-}
-.main-slide-bottom .btn-slide-all {
-    display: inline-block;
-    vertical-align: top;
-    width: 26px;
-    height: 26px;
-    background: rgba(0,0,0,.3) url(https://www.rankingdak.com/resources/pc/images/icon/ico_slide_ctrl.png) 98% 0;
-    background-size: auto 26px;
-    border-radius: 50%;
-}
-.main-slide-btns .swiper-button-next {
-    top: 0;
-    right: 3px;
-    margin: 0;
-    background-position: 20% center;
-}
-.main-slide-btns .swiper-button-prev {
-    top: 0;
-    left: 3px;
-    margin: 0;
-    background-position: -3% center;
-}
-.main-slide-btns [class^="swiper-button-"] {
-    width: 19px;
-    height: 26px;
-    background: transparent url(https://www.rankingdak.com/resources/pc/images/icon/ico_slide_ctrl.png);
-    background-size: auto 26px;
-}
-.blind {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    padding: 0;
-    overflow: hidden;
-    clip: rect(0,0,0,0);
-    border: 0;
-}
-
-.swiper-container .swiper-notification {
-    position: absolute;
-    left: 0;
-    top: 0;
-    pointer-events: none;
-    opacity: 0;
-    z-index: -1000;
-}
-
 .test1{
     background-image: url("https://file.rankingdak.com/image/RANK/BANNER/GNB_ICON/20220330/IMG1648CEL614146730.png");
     display: inline-block;
@@ -1174,167 +805,113 @@ img {
     top: 17px;
     left: -11px;
 }
-/* 슬라이드 */
+/* header */
 
 
-/* 테마별 추천 상품 */
-.theme-recommend{
-    font-size: 27px;
-    text-align: center;
-    word-spacing: -2px;
-    font-weight: bold;
-    margin-top: 45px;
-}
-.theme-recommend-div{
+
+
+
+.container {
     display: flex;
-    gap: 15px;
-    text-align: center;
-    justify-content: center;
-    margin-top: 35px;
-}
-.theme-recommend-div > button{
-    width: 190px;
-    /* background-color: #f8f8f8; */
-    height: 42px;
-    border-radius: 40px;
-    line-height: -40px;
-    line-height: 3;
-    border: none;
-    cursor: pointer;
-    font-weight: bolder;
-}
-
-/* 테마별 추천 상품 */
-
-/* 인기 카테고리 상품 */
-.theme-recommend2{
-    font-size: 27px;
-    text-align: center;
-    word-spacing: -6px;
-    font-weight: bold;
-    margin-top: 45px;
-}
-.theme-recommend-div2{
-    display: flex;
-    gap: 15px;
-    text-align: center;
-    justify-content: center;
-    margin-top: 35px;
-}
-.theme-recommend-div2 > button{
-    width: 190px;
-    /* background-color: #f8f8f8; */
-    height: 42px;
-    border-radius: 40px;
-    line-height: -40px;
-    line-height: 3;
-    border: none;
-    cursor: pointer;
-    font-weight: bolder;
-}
-
-/* 인기 카테고리 상품 */
-
-/* video */
-.my-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 300px;
-  }
-
-  .my-left-div {
-    width: 685px;
-    margin-left: -332px;
-    margin-top: 221px;
-    padding: 3px;
-    
+    flex-direction: column;
   }
   
-  .my-left-div > img{
-    border-radius: 20px;
-    max-width: none;
-    height: 481px;
-    margin-left: -60px;
-    margin-top: 7px;
-  }
-  .selected-button {
-    background-color: #333;
-    color: white;
-}
-.my-left-div > div{
-    background-color: red !important;
-}
-
- .context {
-    padding: 22px 22px 20px;
-    background: rgba(255,255,255,.8);
-    background-color: rgba(255,255,255,.8);
-    border-radius: 5px;
-    width: 368px;
-    margin-top: -120px;
-    /* margin-top:-20px; */
-    margin-left: 230px;
-}
-.context .title {
-    font-size: 19px;
-    font-weight: bold;
-    display: block;
-    letter-spacing: -0.2px;
-    line-height: 22px;
-}
-.context .text {
-    margin-top: 6px;
-    color: #666;
-    line-height: 20px;
-    letter-spacing: -0.2px;
-    font-size: 13px;
-}
-
-  .my-right-divs {
+  .row {
     display: flex;
-    flex-direction: column;
-    margin-top: 263px;
-    margin-left: 15px;
-    align-items: flex-start;
+    margin-top: 101px;
+    margin-left: 400px;
+  }
+  
+  .column {
+    flex-basis: 34%; /* 가로로 2개의 열을 갖도록 설정합니다 */
+    height: 187px; /* 원하는 높이를 설정합니다 */
+    background-color: #f0f0f0; /* 배경색을 설정합니다 */
+    margin-right: 10px; /* 열 사이의 간격을 설정합니다 */
+    padding: 10px; /* 내부 여백을 설정합니다 */
   }
 
-  .my-right-div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100px;
-    height: 76px;
-    margin-bottom: 47px;
-  }
-
- .my-right-div > span{
-    width: 432px;
-    margin-left: 570px;
-    word-spacing: -2px;
-    font-weight: bolder;
- }
- .my-right-div > img{
-   border-radius: 10px; 
- }
-.my-top-div{
-    margin-top: -102px;
-    width: 500px;
-    font-size: 13px;
- }
-
-.my-bottom-div {
-    margin-top: 66px;
+#c1{
+    background-image: url(/mainPage/assets/img/event1.jpg);
+}
+.c-intro{
+    margin-top: 217px;
+    margin-left: -1045px;
     font-size: 16px;
+    font-weight: bolder;
 }
 
-/* video */
-
-.orange-members > img{
-    margin-left: 380px;
-    margin-top: 290px;
-    border-radius: 10px;
+.c-intro2{
+    margin-top: 217px;
+    margin-left: 490px;
+    font-size: 16px;
+    font-weight: bolder;
 }
+
+#c2{
+    background-image: url(/mainPage/assets/img/event2.jpg);
+}
+#c3{
+    background-image: url(/mainPage/assets/img/event3.jpg);
+}
+#c4{
+    background-image: url(/mainPage/assets/img/event4.jpg);
+}
+#c5{
+    background-image: url(/mainPage/assets/img/event5.jpg);
+}
+#c6{
+    background-image: url(/mainPage/assets/img/event6.jpg);
+}
+#c7{
+    background-image: url(/mainPage/assets/img/event7.jpg);
+}
+#c8{
+    background-image: url(/mainPage/assets/img/event8.jpg);
+}
+#c9{
+    background-image: url(/mainPage/assets/img/event9.jpg);
+}
+#c10{
+    background-image: url(/mainPage/assets/img/event10.jpg);
+}
+#c11{
+    background-image: url(/mainPage/assets/img/event11.jpg);
+}
+#c12{
+    background-image: url(/mainPage/assets/img/event12.jpg);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1684,4 +1261,4 @@ button span {
 .ico-sns-youtube {
     background-position: -200px 0;
 }
-
+/* footer */
