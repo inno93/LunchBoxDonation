@@ -1,0 +1,305 @@
+<link rel="stylesheet" type="text/css" href="rangking.css">
+<link rel="stylesheet" type="text/css" href="rangking2.css">
+
+<section id="contents" class="container">
+
+    <form id="listForm" name="listForm" action="/display/rank/sale" method="get"><input type="hidden" name="categoryCd" value="R000">
+<input type="hidden" name="vRankType" value="REALTIME">
+</form><div class="content-wrap ranking-content">
+
+<script>
+$(document).on('click', '.tit_rank', function() {
+    $('.tit_rank').closest('li').removeClass('current');
+    $(this).closest('li').addClass('current');
+});
+</script>
+
+<div class="page-head">
+<div class="title-area">
+    <h2 class="tit">기부 랭킹</h2>
+</div><!--// title-area -->
+<!-- <ul class="side-tab-menu">
+    <li class="current"><a href="/display/rank/sale" class="tit_rank">실시간랭킹</a></li>
+    <li class=""><a href="/display/rank/special" class="tit_rank">별별랭킹</a></li>
+    <li class=""><a href="/display/rank/lowest" class="tit_rank">알뜰킹</a></li>
+    <li class=""><a href="/display/rank/ingre" class="tit_rank">성분별랭킹</a></li>
+</ul> -->
+</div><!--// page-head --><div class="frame-sm">
+    <div class="sorting-tab-menu">
+        <h2 class="text-left">이달의 기부 랭킹 순위!</h2>
+        <!-- <ul>
+            <li class="current">
+                <a href="javascript:void(0);" class="tit_type" data-type="REALTIME">실시간</a>
+            </li>
+            <li class="">
+                <a href="javascript:void(0);" class="tit_type" data-type="SALE">판매량</a>
+            </li>
+        </ul> -->
+    </div>
+
+    <div class="rank-list-wrap" id="div_rankList">
+        <ol class="ranking-list"><li class="ext-li rank-item" data-v-wishid="" data-v-view-cd="PRD093" data-v-productcd="923" data-v-productnm="[맛있닭] 명실상부 No.1 닭가슴살 스테이크 &amp; 추가증정" data-v-thumbnail="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg" data-v-option-use-yn="Y" data-v-option-show-yn="Y" data-v-add-option-use-yn="Y" data-v-add-option-show-yn="Y" data-v-addprod-cd="A000000148" data-v-compare-cd="0" data-v-adult-yn="N" data-list="1">
+
+        <span class="number-rd-empty">1</span>
+        <div class="prd-info-area">
+            <div class="inner">
+                <div class="column img w110">
+                    <a href="/product/view?productCd=923"><img class="lozad" data-src="https://file.rankingdak.com/image/RANK/PRODUCT/RANKING/20230704/IMG1688qLU451752960.jpg" alt="[맛있닭] 명실상부 No.1 닭가슴살 스테이크 &amp; 추가증정" onerror="fnPrdNoImage('/resources/pc/images', this);" src="https://file.rankingdak.com/image/RANK/PRODUCT/RANKING/20230704/IMG1688qLU451752960.jpg" data-loaded="true">
+                            </a>
+                    </div>
+                <div class="column tit">
+                    <span class="prd-brand">이름</span>
+                            <p class="tit"><a href="/product/view?productCd=923" class="text-elps2">홍길동</a></p>
+
+                    <!-- [Dev] 20220419 추가 : 1팩당가격 -->
+                    <p class="text-guide-sm">
+                        </p>
+                    <div class="rating-simply">
+                        <span class="score">4.9</span>
+                        <span class="total-num">(78,017)</span>
+                        </div>
+                </div>
+                <div class="column price text-left">
+                    <span class="num">17,900</span>원
+                </div>
+                <div class="column price text-left">
+                    <span class="num">120</span>개 도시락
+                </div>
+                <!-- <div class="column dlv2">
+                        <em class="imgbadge-dlv-exp">
+                                        <span class="blind">특급배송</span>
+                                    </em>
+                                </div>
+                <div class="column btn2">
+                    <ul class="btns-list">
+                        <li>
+                                <button type="button" class="btn-icon-cart2 btn-ext-cart" title="">
+                                    <span class="blind">장바구니</span>
+                                </button>
+                            </li>
+                        <li>
+                                <div class="custom-checkbox">
+                                    <input type="checkbox" id="check-0" name="check-wish-item" class="checkbox-wish btn-ext-wish">
+                                    <label for="check-0" title="">
+                                        <span class="blind">찜하기</span>
+                                    </label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div> -->
+            </div>
+        </div>
+
+        </li><li class="ext-li rank-item" data-v-wishid="" data-v-view-cd="PRD093" data-v-productcd="923" data-v-productnm="[맛있닭] 명실상부 No.1 닭가슴살 스테이크 &amp; 추가증정" data-v-thumbnail="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg" data-v-option-use-yn="Y" data-v-option-show-yn="Y" data-v-add-option-use-yn="Y" data-v-add-option-show-yn="Y" data-v-addprod-cd="A000000148" data-v-compare-cd="0" data-v-adult-yn="N" data-list="1">
+
+        <span class="number-rd-empty">2</span>
+        <div class="prd-info-area">
+            <div class="inner">
+                <div class="column img w110">
+                    <a href="/product/view?productCd=923"><img class="lozad" data-src="https://file.rankingdak.com/image/RANK/PRODUCT/RANKING/20230704/IMG1688qLU451752960.jpg" alt="[맛있닭] 명실상부 No.1 닭가슴살 스테이크 &amp; 추가증정" onerror="fnPrdNoImage('/resources/pc/images', this);" src="https://file.rankingdak.com/image/RANK/PRODUCT/RANKING/20230704/IMG1688qLU451752960.jpg" data-loaded="true">
+                            </a>
+                    </div>
+                <div class="column tit">
+                    <span class="prd-brand">이름</span>
+                            <p class="tit"><a href="/product/view?productCd=923" class="text-elps2">홍길동</a></p>
+
+                    <!-- [Dev] 20220419 추가 : 1팩당가격 -->
+                    <p class="text-guide-sm">
+                        </p>
+                    <div class="rating-simply">
+                        <span class="score">4.9</span>
+                        <span class="total-num">(78,017)</span>
+                        </div>
+                </div>
+                <div class="column price text-left">
+                    <span class="num">17,900</span>원
+                </div>
+                <div class="column price text-left">
+                    <span class="num">120</span>개 도시락
+                </div>
+                <!-- <div class="column dlv2">
+                        <em class="imgbadge-dlv-exp">
+                                        <span class="blind">특급배송</span>
+                                    </em>
+                                </div>
+                <div class="column btn2">
+                    <ul class="btns-list">
+                        <li>
+                                <button type="button" class="btn-icon-cart2 btn-ext-cart" title="">
+                                    <span class="blind">장바구니</span>
+                                </button>
+                            </li>
+                        <li>
+                                <div class="custom-checkbox">
+                                    <input type="checkbox" id="check-0" name="check-wish-item" class="checkbox-wish btn-ext-wish">
+                                    <label for="check-0" title="">
+                                        <span class="blind">찜하기</span>
+                                    </label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div> -->
+            </div>
+        </div>
+
+    </li><li class="ext-li rank-item" data-v-wishid="" data-v-view-cd="PRD093" data-v-productcd="923" data-v-productnm="[맛있닭] 명실상부 No.1 닭가슴살 스테이크 &amp; 추가증정" data-v-thumbnail="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg" data-v-option-use-yn="Y" data-v-option-show-yn="Y" data-v-add-option-use-yn="Y" data-v-add-option-show-yn="Y" data-v-addprod-cd="A000000148" data-v-compare-cd="0" data-v-adult-yn="N" data-list="1">
+
+        <span class="number-rd-empty">3</span>
+        <div class="prd-info-area">
+            <div class="inner">
+                <div class="column img w110">
+                    <a href="/product/view?productCd=923"><img class="lozad" data-src="https://file.rankingdak.com/image/RANK/PRODUCT/RANKING/20230704/IMG1688qLU451752960.jpg" alt="[맛있닭] 명실상부 No.1 닭가슴살 스테이크 &amp; 추가증정" onerror="fnPrdNoImage('/resources/pc/images', this);" src="https://file.rankingdak.com/image/RANK/PRODUCT/RANKING/20230704/IMG1688qLU451752960.jpg" data-loaded="true">
+                            </a>
+                    </div>
+                <div class="column tit">
+                    <span class="prd-brand">이름</span>
+                            <p class="tit"><a href="/product/view?productCd=923" class="text-elps2">홍길동</a></p>
+
+                    <!-- [Dev] 20220419 추가 : 1팩당가격 -->
+                    <p class="text-guide-sm">
+                        </p>
+                    <div class="rating-simply">
+                        <span class="score">4.9</span>
+                        <span class="total-num">(78,017)</span>
+                        </div>
+                </div>
+                <div class="column price text-left">
+                    <span class="num">17,900</span>원
+                </div>
+                <div class="column price text-left">
+                    <span class="num">120</span>개 도시락
+                </div>
+                <!-- <div class="column dlv2">
+                        <em class="imgbadge-dlv-exp">
+                                        <span class="blind">특급배송</span>
+                                    </em>
+                                </div>
+                <div class="column btn2">
+                    <ul class="btns-list">
+                        <li>
+                                <button type="button" class="btn-icon-cart2 btn-ext-cart" title="">
+                                    <span class="blind">장바구니</span>
+                                </button>
+                            </li>
+                        <li>
+                                <div class="custom-checkbox">
+                                    <input type="checkbox" id="check-0" name="check-wish-item" class="checkbox-wish btn-ext-wish">
+                                    <label for="check-0" title="">
+                                        <span class="blind">찜하기</span>
+                                    </label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div> -->
+            </div>
+        </div>
+
+    </li><li class="ext-li rank-item" data-v-wishid="" data-v-view-cd="PRD093" data-v-productcd="923" data-v-productnm="[맛있닭] 명실상부 No.1 닭가슴살 스테이크 &amp; 추가증정" data-v-thumbnail="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg" data-v-option-use-yn="Y" data-v-option-show-yn="Y" data-v-add-option-use-yn="Y" data-v-add-option-show-yn="Y" data-v-addprod-cd="A000000148" data-v-compare-cd="0" data-v-adult-yn="N" data-list="1">
+
+        <span class="number-rd-empty">4</span>
+        <div class="prd-info-area">
+            <div class="inner">
+                <div class="column img w110">
+                    <a href="/product/view?productCd=923"><img class="lozad" data-src="https://file.rankingdak.com/image/RANK/PRODUCT/RANKING/20230704/IMG1688qLU451752960.jpg" alt="[맛있닭] 명실상부 No.1 닭가슴살 스테이크 &amp; 추가증정" onerror="fnPrdNoImage('/resources/pc/images', this);" src="https://file.rankingdak.com/image/RANK/PRODUCT/RANKING/20230704/IMG1688qLU451752960.jpg" data-loaded="true">
+                            </a>
+                    </div>
+                <div class="column tit">
+                    <span class="prd-brand">이름</span>
+                            <p class="tit"><a href="/product/view?productCd=923" class="text-elps2">홍길동</a></p>
+
+                    <!-- [Dev] 20220419 추가 : 1팩당가격 -->
+                    <p class="text-guide-sm">
+                        </p>
+                    <div class="rating-simply">
+                        <span class="score">4.9</span>
+                        <span class="total-num">(78,017)</span>
+                        </div>
+                </div>
+                <div class="column price text-left">
+                    <span class="num">17,900</span>원
+                </div>
+                <div class="column price text-left">
+                    <span class="num">120</span>개 도시락
+                </div>
+                <!-- <div class="column dlv2">
+                        <em class="imgbadge-dlv-exp">
+                                        <span class="blind">특급배송</span>
+                                    </em>
+                                </div>
+                <div class="column btn2">
+                    <ul class="btns-list">
+                        <li>
+                                <button type="button" class="btn-icon-cart2 btn-ext-cart" title="">
+                                    <span class="blind">장바구니</span>
+                                </button>
+                            </li>
+                        <li>
+                                <div class="custom-checkbox">
+                                    <input type="checkbox" id="check-0" name="check-wish-item" class="checkbox-wish btn-ext-wish">
+                                    <label for="check-0" title="">
+                                        <span class="blind">찜하기</span>
+                                    </label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div> -->
+            </div>
+        </div>
+
+    </li><li class="ext-li rank-item" data-v-wishid="" data-v-view-cd="PRD093" data-v-productcd="923" data-v-productnm="[맛있닭] 명실상부 No.1 닭가슴살 스테이크 &amp; 추가증정" data-v-thumbnail="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg" data-v-option-use-yn="Y" data-v-option-show-yn="Y" data-v-add-option-use-yn="Y" data-v-add-option-show-yn="Y" data-v-addprod-cd="A000000148" data-v-compare-cd="0" data-v-adult-yn="N" data-list="1">
+
+        <span class="number-rd-empty">5</span>
+        <div class="prd-info-area">
+            <div class="inner">
+                <div class="column img w110">
+                    <a href="/product/view?productCd=923"><img class="lozad" data-src="https://file.rankingdak.com/image/RANK/PRODUCT/RANKING/20230704/IMG1688qLU451752960.jpg" alt="[맛있닭] 명실상부 No.1 닭가슴살 스테이크 &amp; 추가증정" onerror="fnPrdNoImage('/resources/pc/images', this);" src="https://file.rankingdak.com/image/RANK/PRODUCT/RANKING/20230704/IMG1688qLU451752960.jpg" data-loaded="true">
+                            </a>
+                    </div>
+                <div class="column tit">
+                    <span class="prd-brand">이름</span>
+                            <p class="tit"><a href="/product/view?productCd=923" class="text-elps2">홍길동</a></p>
+
+                    <!-- [Dev] 20220419 추가 : 1팩당가격 -->
+                    <p class="text-guide-sm">
+                        </p>
+                    <div class="rating-simply">
+                        <span class="score">4.9</span>
+                        <span class="total-num">(78,017)</span>
+                        </div>
+                </div>
+                <div class="column price text-left">
+                    <span class="num">17,900</span>원
+                </div>
+                <div class="column price text-left">
+                    <span class="num">120</span>개 도시락
+                </div>
+                <!-- <div class="column dlv2">
+                        <em class="imgbadge-dlv-exp">
+                                        <span class="blind">특급배송</span>
+                                    </em>
+                                </div>
+                <div class="column btn2">
+                    <ul class="btns-list">
+                        <li>
+                                <button type="button" class="btn-icon-cart2 btn-ext-cart" title="">
+                                    <span class="blind">장바구니</span>
+                                </button>
+                            </li>
+                        <li>
+                                <div class="custom-checkbox">
+                                    <input type="checkbox" id="check-0" name="check-wish-item" class="checkbox-wish btn-ext-wish">
+                                    <label for="check-0" title="">
+                                        <span class="blind">찜하기</span>
+                                    </label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div> -->
+            </div>
+        </div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+   
+</script>
+</section>

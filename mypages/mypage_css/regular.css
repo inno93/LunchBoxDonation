@@ -1,0 +1,459 @@
+@charset "utf-8";
+
+/*
+    ※ 랭킹 이관시 유의사항
+    - 키컬러 '#10A0A0' > '#FF7425' 일괄 변경
+    - 키컬러 '#10A0A0' > '#FF7425' 일괄 변경
+    - 보더 라운드 '6px' 일괄 해제
+    - 달력 css는 분리 되어 있어, 추후 적용
+    - 이미지는 단독 분리형으로 사용
+
+    ※ 적용화면
+    [추가] 정기배송관리 > (탭) 주문내역,
+    [추가] 정기배송관리 > (탭) 주문내역 > 정기배송 상세내역
+    [추가] (팝업) 정기배송일자변경
+    [추가] 정기배송관리 > (탭) 결제카드 관리,
+    [추가] 정기배송 주문 > 결제화면
+    [추가] 상품상세(정기배송 신청)
+
+    ※ 필요사항(etc)
+      : 배송일변경 캘린더 아이콘( ico-btn-calendar : 'reg_ico_btns_calendar.png')
+*/
+
+
+
+/* content_pk.css ============================== */
+
+/*========================================================
+ 목록 공통
+========================================================*/
+/**** prd-info-area (장바구니, 주문결제, 마이페이지 상품리스트 공통) ****/
+/* column */
+.prd-info-area .column.tit .price-item > li.dlv-count{padding-left:12px;}
+.prd-info-area .column.tit .price-item > li.dlv-count::before{top:40%;width:1px;height:10px;margin:2px 10px 0 0;background:#e6e6e6;vertical-align:middle;}
+.prd-info-area .column.tit .price-item > li.dlv-count span:first-child{padding-left:4px;}
+.prd-info-area .column.tit .price-item > li.dlv-count a{position:relative;}
+.prd-info-area .column.tit .price-item > li.dlv-count a::before{content:'';display:block;position:absolute;left:0;bottom:0;width:100%;height:1px;background:#333;}
+
+/* 전시 */
+/* @import url("content_display.css"); */
+/*========================================================
+ 전시
+========================================================*/
+/* top-tab-menu */
+.page-mid{margin-top:10px;border-top:1px solid #666;}
+.top-tab-menu{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}
+.top-tab-menu li{flex:1;padding:0;text-align:center;}
+.top-tab-menu li a{display:block;padding:10px 0;color:#999;font-size:15px}
+.top-tab-menu li.current a{color:#333; font-weight:500}
+.top-tab-menu li a::before{content:'';display:inline-block;float:left;height:12px;border-right:1px solid #ccc;}
+.top-tab-menu li:first-child a::before{content:none;}
+.menu-title-area ~ .page-mid + .search-box{margin-top:0;}
+.menu-title-area ~ .page-mid + .search-box ~ .order-list-area,
+.menu-title-area ~ .page-mid + .search-box + .order-list-area{margin-top:0;}
+
+/* 상품상세 */
+/* @import url("content_prd_detail.css"); */
+/*========================================================
+ 상품상세
+========================================================*/
+/* 정보 */
+/* [Pub] 20220830 랭킹용 개별수정 */.dl-table-group .dl-row > dd .dash{color:#ccc; display:inline-block; vertical-align:top; margin:1px 10px 0;}/* margin:-2px 10px 0; */
+.dl-table-group .dl-row > dd .sep-list + .sep-list,
+.dl-table-group .dl-row > dd .sep-list + .dlv-way-box{margin-top:7px;}
+
+/* select */
+.total-area .regular-check-area{margin-top:15px;padding-top:18px;border-top:1px solid #eee;text-align:left;}
+.total-area .regular-check-area .custom-checkbox input[type="checkbox"] + label{color:#333;font-size:14px;line-height:18px; font-weight: 500;}
+.total-area .regular-check-area .custom-checkbox .checkbox + label:before{top:1px;}
+.total-area .regular-check-area .tipbox-right{margin-left:2px;}
+.total-area .regular-check-area .label-success{display:inline-block;padding:2px 6px; border-radius:4px; background-color:#25afa7; color:#fff; font-size:12px; line-height:18px; font-weight:700; height:auto; min-width:0; vertical-align: baseline; margin-right:6px;}
+/* [추가] 정기배송 신청 팝업 */
+.layer-wrap .layer-pop.regular-pop,
+.layer-wrap .layer-pop.regular-pop .layer-inner{}/* height:630px;min-height:630px; */
+.layer-wrap .layer-pop.regular-pop .layer-inner .layer-content{margin-top:20px;padding:0 30px 122px;}
+.regular-pop .form-group .form-tit,
+.regular-pop .form-label{font-size:15px;line-height:20px;}
+.regular-pop .form-group + .form-group{margin-top:30px;}
+.regular-pop .form-group .form-horiz-list > li{margin:0 4px;padding:0;}
+.regular-pop .form-group .form-horiz-list > li:first-child{margin-left:0;}
+.regular-pop .form-group .form-head + .form-horiz-list{margin-top:6px;}
+.regular-pop .form-group .select-box .select-list{max-height:150px;}
+.regular-pop .form-group .select-box .ico-btn-calendar{top:8px;width:16px;height:16px;background-size:16px auto;}
+.layer-wrap .layer-pop.regular-pop .layer-bottom,
+.layer-wrap .layer-pop.new-type-pop.regular-pop .layer-bottom{position:absolute;bottom:0;padding:20px 30px 30px;}
+.regular-pop .layer-bottom:after{content:'';display:block;clear:both;}
+.regular-pop .layer-bottom .regular-total-area{margin-bottom:10px;}
+.regular-total-area{text-align:right;}
+.regular-total-area .tipbox-left{position:relative;top:-3px;margin-right:4px;}
+.regular-total-area .txt{display:block;font-size:15px;line-height:24px;}
+.regular-total-area .price{display:inline-block;font-size:14px;}
+.regular-total-area .price strong{font-size:20px;}
+.regular-total-area .tipbox-left + .txt{margin-left:4px;}
+.regular-total-area .txt + .price{margin-left:3px;}
+.regular-pop .regular-total-area + .btn-area > [class*="btn-"]{max-width:300px;}
+
+
+/* 마이랭닭 */
+/* @import url("content_mypage.css"); */
+/*========================================================
+ 마이랭닭
+========================================================*/
+/* [추가] 뉴타입 팝업 */
+.layer-wrap .layer-pop.new-type-pop{width:460px;background:#fff;border-radius:10px;}
+.layer-wrap .layer-pop.new-type-pop .layer-head{height:60px;padding:20px;border-bottom:1px solid #E6E6E6;}
+.layer-wrap .layer-pop.new-type-pop .layer-head .layer-pop-title{font-size:18px;line-height:19px;}
+.layer-wrap .layer-pop.new-type-pop .layer-content{margin:0 auto;padding:0 20px;}
+.layer-wrap .layer-pop.new-type-pop .layer-bottom{padding:20px 20px 20px;border-radius:0 0 10px 10px;}
+.layer-wrap .layer-pop.new-type-pop .layer-bottom button{height:46px;font-weight:500;}/* 데이트 피커시 700, 일괄 500으로 맞춤처리 font-weight:700; */
+.layer-wrap .layer-pop.new-type-pop .layer-bottom .point-tip{position:absolute;bottom:88px;}
+.layer-wrap .layer-pop.new-type-pop .layer-bottom .point-tip .members-tipbox{margin-left:2px;}
+.layer-wrap .layer-pop.new-type-pop .layer-inner .ui-close-pop{top:14px;right:15px;}
+
+/* [추가] 뉴타입 팝업 >> 정기 : 배송 */
+.layer-wrap .layer-pop.new-type-pop .layer-content .datepicker{margin:10px auto 0;}
+
+/* [추가] 뉴타입 팝업 >> 정기 : 결제 */
+.layer-wrap .layer-pop.new-type-pop .payment-detail.type-view{padding:20px 0;}
+/* .layer-wrap .layer-pop.regular-pop.no-swiper .layer-inner .layer-content{margin-top:20px;padding:0 30px 15px;}
+.layer-wrap .layer-pop.new-type-pop .layer-content .payment-box,
+.layer-wrap .layer-pop.new-type-pop .layer-content .payment-box .card-box-list{width:100%;} */
+
+/* [추가] 통이지미형 팝업 */
+.layer-wrap .img-type-pop{width:640px;overflow:hidden;}
+.layer-wrap .img-type-pop .layer-head{padding:0;}
+.layer-wrap .img-type-pop .layer-inner .layer-body.type-free{margin-bottom:0;}
+.layer-wrap .img-type-pop .layer-inner .layer-content{padding:0;}
+.layer-wrap .img-type-pop .layer-inner .ui-close-pop{top:15px;right:15px;}
+.layer-wrap .img-type-pop .layer-inner .layer-bottom{position:relative;padding:0;}
+
+/* 장바구니, 주문결제 */
+/* @import url("content_cart_order.css"); */
+/*========================================================
+ 장바구니, 주문결제
+========================================================*/
+/**** 장바구니 ****/
+/* [Pub] 20220829 랭킹 피키 구조 상이하여 해당 소스 주석처리
+.order-item-box .dlv-reg + .bl-list-type2{margin:-10px 0 0;}
+.order-item-box .dlv-reg + .bl-list-type2 > li{padding-left:12px;} */
+
+/**** 주문결제 ****/
+/* 간격 */
+.order-info .lineless-table.type1 .bl-list-box td .bl-list-type4{padding-top:15px; border-top:1px solid #E6E6E6;}
+.order-info .lineless-table.type1 .bl-list-box td .bl-list-type4 li{padding-left:12px;}
+/* 주문결제 정보 영역 */
+.order-info .title-list + .btn-icon-mark.type-top{height:16px;margin-top:1px;float:right;color:#999;font-size:14px;}
+.order-info .title-list + .btn-icon-mark.type-top span{margin-right:4px;line-height:17px;}
+/* [Pub] 20220829 랭킹용 개별추가 */.order-info .title-list + .btn-icon-mark.type-top .ico-quest{border-width:1px;width:14px;height:14px;vertical-align:middle;}
+/* [Pub] 20220829 랭킹용 개별추가 */.order-info .title-list + .btn-icon-mark.type-top .ico-quest::before{font-size:10px;line-height:14px;}
+.order-info .title-list + .btn-icon-mark{vertical-align: middle;margin-top:-9px;}/* margin-top:-5px; */
+.order-info .title-list + .btn-box{position:absolute;top:50%;transform:translateY(-50%);right:27px;display:inline-block;vertical-align:top;color:#666;font-size:15px;}
+.order-info .title-list + .btn-box [class*="btn"]{height:auto;padding:0;line-height:22px;}
+.order-info .title-list + .btn-box [class*="ico-arr-"]::before,
+.order-info .title-list + .btn-box [class*="ico-arr-"]::after{background-color:#666;}
+
+/* [추가] 가이드박스(회색) */
+.guide-box{padding:0;}
+.guide-box + [class*="bl-list-"]{margin-top:10px;}
+.guide-box .inner{max-height:100%;background:#f8f8f8;border-radius:6px;text-align:center;}
+/* ㄴ 블릿형(정기배송_설정팝업) */
+.guide-box .inner > .bullet-list{display:block;margin:0;padding:15px;color:#333;font-size:14px;line-height:20px;text-align:left;}
+.guide-box .inner > .bullet-list li{position:relative;margin-top:6px;padding-left:8px;}
+.guide-box .inner > .bullet-list li::before{content:'';display:inline-block;position:absolute;left:0;top:calc(50% - 1px);width:2px;height:2px;background:#333;border-radius:100%;}
+.guide-box .inner > .bullet-list li:nth-child(1){margin-top:0;}
+.guide-box .inner > .bullet-list li > strong{font-weight:700;}
+/* ㄴ 콜박스형(정기배송_결제화면) */
+.guide-box .inner > .col-list{padding:25px;}
+.guide-box .inner > .col-list li{display:flex;flex-direction:row;text-align:left;}
+.guide-box .inner > .col-list li + li{padding-top:20px;}
+.guide-box .inner > .col-list .col-tit{flex:1;color:#333;font-size:14px;font-weight:500;}
+.guide-box .inner > .col-list .col-txt{flex:3;color:#333;font-size:14px;}
+.guide-box + .guide-box.type-notice{margin-top:10px;}
+/* ㄴ 블릿형(정기배송_결제팝업_공지) */
+.guide-box.type-notice .inner{background:#FFFAF3;}
+.guide-box.type-notice .inner > .bullet-list{padding:18px 25px;}
+.guide-box.type-notice .inner > .bullet-list li.tit{margin-top:0;margin-bottom:8px;padding:0 0 2px  15px; background:url('/resources/pc/images/icon/ico-reg-qa.png') no-repeat top 1px left;font-size:12px;font-weight:700;line-height:14px;}
+.guide-box.type-notice .inner > .bullet-list li.tit::before{content:none;}
+.guide-box.type-notice .inner > .bullet-list li{margin-top:4px;font-size:12px;line-height:14px;}
+.guide-box.type-notice .inner > .bullet-list li::before{content:'';display:inline-block;position:absolute;left:1px;top:calc(50% - 1px);width:3px;height:1px;background:#333;}
+
+/* tipbox, tooltip */
+/* [추가] tipbox(no-arrow) */
+.members-tipbox{display:inline-block; max-width:223px; background:#E4E4E4; padding:4px 5px; border-radius: 3px;cursor: pointer;}
+.members-tipbox > p{position:relative;color:#333;font-size:11px;line-height:14px;}
+.members-tipbox > p strong{font-weight:normal;}
+.members-tipbox [class*="ico-arr-"]{widtH:10px; height:7px;top:0;vertical-align:middle;}/* height:10px; */
+.members-tipbox [class*="ico-arr-"]::before,
+.members-tipbox [class*="ico-arr-"]::after{box-shadow:none;background-color:#333;}
+.members-tipbox [class*="ico-arr-"]::before{-webkit-transform:rotate(140deg);transform:rotate(140deg);}
+.members-tipbox [class*="ico-arr-"]::after{-webkit-transform:rotate(-140deg);transform:rotate(-140deg);}
+.members-tipbox .ico-bl-crown{vertical-align:middle; margin:-2px 3px 0 0}
+
+/* 정기배송 팁박스 */
+.tipbox-right,
+.tipbox-left{display:inline-block;border-radius:10px;background:#43938E;}/* #8855DC */
+.tipbox-right > p,
+.tipbox-left > p{position:relative;padding:0 10px;color:#fff;font-size:11px;line-height:20px;}
+.tipbox-right > p:after{content: '';position:absolute;top:13.5px;left:-4px;margin-top:-8px;border-color:#43938E;border-width:4px 0 4px 6px;border-style:solid;border-top-color:transparent;border-bottom-color:transparent;-webkit-transform:rotate(180deg);transform:rotate(180deg);}/* #8855DC */
+.tipbox-left > p:after{content: '';position:absolute;top:13.5px;right:-4px;margin-top:-8px;border-color:#43938E;border-width:4px 0 4px 6px;border-style:solid;border-top-color:transparent;border-bottom-color:transparent;-webkit-transform:rotate(360deg);transform:rotate(360deg);}/* #8855DC */
+
+/* 결제방법 선택 - 상세 영역 */
+.payment-detail.active{display:block;margin-bottom:15px;}
+.payment-detail.active .admin-txt{background-color:#f8f8f8;padding:0 0 0px 0; border-radius: 4px;}
+.payment-detail.active .admin-txt h2{color:#666666;font-size:15px;padding:24px 24px 0 24px;border-top-left-radius: 4px;border-top-right-radius: 4px;}
+.payment-detail.active .admin-txt p{color:#666666;padding:0 24px 0 34px;font-size: 14px;position: relative;}
+.payment-detail.active .admin-txt p::before{content:'·';position:absolute;left:24px;}
+.payment-detail.active .admin-txt p:last-child{padding:0 24px 24px 34px;color:#666;font-size:14px;}
+.payment-detail.active .admin-txt a{background:#fff;}
+.payment-detail.active .admin-txt img{border-bottom:8px solid #fff;}
+.payment-box{display:table;width:570px;min-height:200px;background:#f8f8f8;border-radius:6px;text-align:center;}/* min-height:250px;background:#f7f7f7;border:1px solid #ccc;border-radius:4px; */
+.payment-box .inner{display:table-cell; vertical-align:middle;padding:30px 0;}
+.payment-box .card-box-list ul.swiper-wrapper{justify-content:center;}
+.payment-box .card-box-list ul.swiper-wrapper > li + li{margin-left:15px;}
+/* 간격 */
+.payment-box .inner .input-group + .input-group{margin-top:23px;}/* margin-top:6px; */
+.payment-box .inner .input-group + .btn-basic-sm{margin-top:20px;margin-left:calc(360px  - 86px);padding:0;width:auto;height:auto;border:none;border-bottom:1px solid #666;border-radius:0;background:none;text-align:right;}
+.payment-box .inner .input-group + .btn-basic-sm span{line-height:16px;}
+
+.payment-added-guide .cash-re-con + .ui-select-receipt-wrap{margin-top:12px;}
+.payment-added-guide .cash-re-con ~ .text-guide-md{margin-top:12px;}
+.payment-added-guide .cash-re-con{margin: 20px 0 0; padding: 15px 0 0; border-top:1px solid #e6e6e6; position: relative;}
+.payment-added-guide .cash-re-con ul{position: absolute; top: 13px; right: 0;}
+.payment-added-guide .cash-re-con ul li{float:left;}
+.payment-added-guide .cash-re-con ul li label{font-size:13px;}
+.payment-added-guide .cash-re-con ul li #cash-receipt1[type="radio"][name="cash_re"] + label{margin:0 16px 0 0;}
+.payment-added-guide .ui-select-receipt .custom-checkbox{padding: 10px 0 0;}
+.payment-added-guide .ui-select-receipt .custom-checkbox label{font-size:13px; color:#999; line-height: 18px;}
+.payment-added-guide .cash-r-s-con{padding:12px 0 0; position:relative;}
+.payment-added-guide .cash-r-s-con .input-group .title{position: absolute; top: 0; left: 0; font-size: 13px; color: #666; z-index: 3; height: 40px; line-height: 41px; padding: 0 0 0 15px;}
+.payment-added-guide .cash-r-s-con .input-group #cash-num-r-s{padding: 3px 15px 3px 91px;}
+.payment-added-guide .cash-r-s-con .cash-r-s-btn{display: table-cell; width: 80px; height: 40px; line-height: 40px; vertical-align: middle;}
+.payment-added-guide .cash-r-s-con .cash-r-s-btn span{display: block; color: #fff; background: #c9c9c9; margin: 0 0 0 8px; border-radius: 2px;text-align: center; cursor: pointer;}
+
+/* [추가] 카드등록/신규형 */
+.payment-detail.type-view{width:100%; display:block;}
+.payment-detail.type-view .payment-box{width:100%;border:none;border-radius:6px;}
+.payment-detail.type-view .payment-box .card-box-list{width:100%;}
+.payment-detail.type-view .payment-box .empty-box + .text-guide-sm{color:#666;font-size:13px;font-weight:normal;}
+.payment-detail.type-view .empty-box .ico-plus-bold{width:21px; height:21px; display:block; margin:0;}
+
+/* 카드등록/결제 빈박스 */
+.empty-box{width:220px; height:130px; margin:0 auto 10px; border:1px solid #ccc;border-radius:10px;background:#fff;}/* margin:0 auto 15px;border:1px dashed #888;border-radius:5px; */
+.empty-box > a{display:block; width:100%; height:100%; padding:40px 0; }
+.empty-box .ico-plus-bold{width:21px; height:21px; display:block; margin:15px auto 0;}/* width:24px; height:24px;margin:0 auto 15px; */
+.empty-box .ico-plus-bold:before{top:10px;height:1px;}
+.empty-box .ico-plus-bold:after{left:10px;width:1px;}
+.empty-box span{font-size:14px; color:#888}
+.empty-box p{color:#888}
+.empty-box + .text-guide-sm{margin-top:10px}/* margin-top:15px */
+.empty-box + .text-guide-sm > p{color:#333}
+
+/* 카드등록/결제 카드 로고영역 */
+.card-box{position:relative; width:220px; height:130px; overflow:hidden; margin:0 auto;background:transparent}/* background:#fff */
+.card-box img{width:100%;border-radius:10px;}
+.card-box .radio-div{position:absolute;top:10px;right:10px;}
+.card-box .radio-div .custom-label{width:20px;height:20px;padding-left:0;}
+.card-box .radio-div .custom-radio .radio + label:before{background:url('/resources/pc/images/icon/ico-favorit.png') no-repeat 0 -1px;border:none;}/* ico-favorit.png */
+.card-box .radio-div .custom-radio .radio + label:after{content:none;}
+.card-box .radio-div .custom-radio .radio:checked + label:before{background-position:-30px -1px;}
+
+.card-box .txt-div{position:absolute;left:20px;bottom:20px;color:#fff;font-size:14px;line-height:16px;font-weight:normal;text-align:left;z-index:1;}/* bottom:12px; left:18px;font-size:12px; */
+.card-box .txt-div .card-num{margin-top:4px;}
+.card-box .txt-div .btn-option{display:inline-block; vertical-align: top; margin-top:5px; margin-left:10px;}
+.card-box .txt-div .text-guide-md{display:inline-block}
+.payment-box .input-group{width:360px; margin:0 auto}
+.card-box + .btn-area{margin-top:10px;text-align:right;}/* margin-top:30px; */
+.card-box + .btn-area .btn-rud-xs{color:#999}
+.card-box + .btn-area .btn-rud-xs .ico-btn-trash{margin-top:-2px}
+.card-box + .btn-area button{background:none;border:none;border-bottom:1px solid #666;border-radius:0;color:#666;font-size:13px;line-height:16px;}
+
+/* 결제완료 */
+/* [Pub] 20220914 랭킹용 개별추가 */.result-page-top .ico-img-check-regular + .title{margin-top:15px;}
+
+/* common_pk.css ============================== */
+
+/*========================================================
+ Common
+========================================================*/
+.dis-inb{display:inline-block;}
+
+/**** label, badge, tag, state, flag.. ****/
+/* [Pub] 20220830 랭킹용 개별수정 *//* 정기배송 */
+/*.imgbadge-dlv-regular{display:inline-block;width:49px;height:20px;background:url("/resources/pc/images/txt/txt_badge_dlv_regular.png") no-repeat;}*/
+
+/**** 간격 ****/
+.mb40{margin-bottom:40px}
+
+/*========================================================
+ Form
+========================================================*/
+/* type4 */
+.custom-radio .radio-btn-type4 + label{display:inline-block;position:relative;height:40px;padding:10px 14px;background:#fff;border:1px solid #ccc;border-radius:6px;color:#333;font-size:14px;line-height:1.4;vertical-align:top;cursor:pointer;}
+.custom-radio .radio-btn-type4 + label:before{content:none;}
+.custom-radio .radio-btn-type4 + label:after{content:none;}
+.custom-radio .radio-btn-type4:checked + label{background:#3A4C67;border-color:#3A4C67;color:#fff;}/* #478F8F */
+
+/**** form group ****/
+.form-group .form-label .sub-txt{margin-left:8px;color:#999;font-size:12px;line-height:20px;font-weight:400;font-style:normal;}
+
+/**** Selectbox ****/
+.select-box .select-value > [class*="ico-btn"]{position:relative;top:9px;}
+.select-box .select-value > [class*="ico-btn"] + span{display:inline-block;padding-left:10px;}
+.select-box .select-list a i{margin-left:3px;color:#666;font-size:13px;font-style:normal;}
+
+/*========================================================
+ Button
+========================================================*/
+/* btn-basic- */
+.btn-basic-sm1{min-width:67px; height:30px; padding:5px 10px;}
+.btn-basic-sm1 > span{font-size:13px; line-height:18px}/* line-height:1.6 */
+.btn-basic-sm1 > i + span{margin-left:5px; font-weight:400;}
+
+/**** Color ****/
+.btn-grey5{background:#999; color:#fff;}
+
+/*========================================================
+ Icon
+========================================================*/
+/**** 이미지 ****/
+/* 버튼 */
+/* 랭킹 정기배송용 */.ico-btn-calendar{width:12px;height:12px;background:url('/resources/pc/images/icon/reg_ico_btns_calendar.png') no-repeat;background-position:0 0;background-size:12px auto;vertical-align:middle;}/*  추가: vertical-align:middle; */
+/* [Pub] 20220914 랭킹용 개별추가 */.ico-img-check-regular{width:56px;height:60px;background-position:-150px 0;}
+
+/*========================================================
+ 테이블
+========================================================*/
+/**** board-form ****/
+.board-form table thead{background:#F8F8F8;border-top:none;}
+.board-form table thead th{padding-right:10px;border-top:none;border-left:1px solid #E9E9E9;}
+.board-form table thead th:first-child{border-left:none;}
+.board-form table thead + tbody tr:first-child th,
+.board-form table thead + tbody tr:first-child td{border-top:1px solid #E9E9E9;}
+.board-form table thead + tbody tr td,
+.board-form table thead + tbody tr th{padding-right:10px;}
+.board-form table thead + tbody tr td{font-size:14px;}
+/* 정기배송 주소 */.board-form table thead + tbody tr td:first-child[colspan="2"]{font-size:13px;}
+.board-form table [class*="btn-basic-"],
+.board-form table [class*="btn-option"]{border-radius:6px;}/* border-radius:2px; */
+/* 기본 */.board-form table a[name="btnOrderDetail"]{border-bottom:1px solid #333;}
+/* 취소 */.board-form table .order-cancle a[name="btnOrderDetail"]{border-bottom:1px solid #ccc;}
+/* 개별 */.board-form table .in-tb.position-type{position:relative;padding-right:115px;line-height:23px;}
+.board-form table .in-tb.position-type .input-group-btn{position:absolute;top:0;right:0;bottom:0;}
+.board-form table .order-cancle *{color:#999;}
+.board-form + .btn-bottom-area [class*="btn-basic-"],
+.board-form + .btn-bottom-area [class*="btn-option"]{border-radius:6px;}/* border-radius:2px; */
+
+
+/*========================================================
+ 텍스트 목록
+========================================================*/
+.bl-text-type4,
+.bl-list-type4 > li{color:#888; font-size:12px; padding-left:15px; word-break: break-word; text-align: left;}
+.bl-text-type4:before,
+.bl-list-type4 > li:before{display:inline-block; content:'※'; vertical-align:middle; margin:-3px 3px 0 -11px}/* margin:-3px 3px 0 -15px */
+.bl-list-type4 > li + li{margin-top:5px;}
+/****  separate list ****/
+.sep-list{overflow:inherit;}/* overflow:hidden */
+.sep-list:after{content:'';display:block;clear:both;}
+.sep-list li .sub-txt{margin-left:5px;color:#999;font-style:normal;font-size: 12px;}
+/* 엠블럼 아이콘 */ .sep-list li .imgbadge-dlv-regular{margin-top:-2px;}
+/* [Pub] 20220915 랭킹용 개별추가 */.sep-list li .imgbadge-dlv-regular{background:none;}
+/* [Pub] 20220915 랭킹용 개별추가 */.sep-list li .imgbadge-dlv-regular .blind{position:relative;margin:0;}
+
+/* type7 : 정기배송 상세 */
+.sep-list.type7{overflow:visible;margin-top:3px;}
+.sep-list.type7 li{display:inline-block;float:none;margin-left:-3px;padding:0 10px 0 0; font-size:13px; color:#666}
+.sep-list.type7 li:before{height:10px; background:#e6e6e6; margin:2px 10px 0 0;}
+.sep-list.type7 li:last-child{padding-right:0;}
+.sep-list.type7 li a{border-bottom:1px solid #FF7425;} /* #10A0A0 */
+
+
+/*========================================================
+ Layer Popup
+========================================================*/
+/* 버튼 영역 */
+.layer-pop .layer-inner .layer-bottom .btn-area{position:relative; text-align:center;clear:both;}
+
+/* confirm 팝업 */
+.layer-wrap .layer-confirm{position:absolute; top:50%; left:50%; z-index:100; transform: translate(-50%, -50%); -webkit-transform: translate(-50%, -50%);}
+.layer-confirm{width:280px; overflow:hidden; border-radius:8px; background:#fff;}/* width:360px; */
+.layer-confirm.inner-pop{border:1px solid #ccc}
+.layer-confirm .inner{position:relative; width:100%;min-height:125px;padding:25px 0 22px; text-align:center;}/* min-height:160px;padding:35px 0 32px; */
+.layer-confirm .inner .message{vertical-align:middle; line-height:22px;}
+/* [Pub] 20220915 랭킹용 개별추가 */.layer-confirm .inner .message{padding-top:10px;}
+.layer-confirm .inner .message .txt{display: block; font-size:15px; font-weight:400;}
+.layer-confirm .inner .message .txt.bold{font-weight:500;}
+.layer-confirm .inner .message .txt.sub{margin-top:5px;color:#999;font-size:13px;line-height:15px;}
+.layer-confirm .inner .message .txt + .custom-checkbox{margin-top:15px}
+.layer-confirm .inner .message .custom-checkbox input[type="checkbox"] + label{line-height:1.2}
+/* [Pub] 20220915 랭킹용 개별수정 */.layer-confirm .btn-area{width:100%; text-align:center; margin-top:15px}/* margin-top:20px */
+.layer-confirm .btn-area [class*="btn-basic-"]{min-width:96px;}
+.layer-confirm .btn-area .btn-basic-md2{min-width:180px;}
+.layer-confirm .btn-area .btn-basic-md2:not(:only-child){min-width:96px;}
+.layer-confirm .inner .ui-close-pop[class*="btn-x-sm"]{position:absolute;top:5px;right:5px;}
+
+
+/*========================================================
+ Layout
+========================================================*/
+/* Title */
+.list-title-area .title-list .title-sub{margin-left:4px;color:#999;font-size:14px;font-weight:400;}
+
+
+/*========================================================
+ 로그인, 회원가입
+========================================================*/
+/* [추가] 텍스트 박스  */
+.text-box{margin-top:15px;margin-bottom:15px;}
+.text-box li{margin-top:6px;}
+.text-box li:nth-child(1){margin-top:0;}
+
+
+
+/* jquery-ui-1.9.2.custom.css ============================== */
+
+/* [Pub] 데이트피커 수정사항 ---------------------- */
+.piki-datepicker .ui-datepicker{width:340px;margin:0 auto;border:none;box-shadow:none;}
+.piki-datepicker .ui-widget-content{z-index:10002 !important;}
+.piki-datepicker .ui-datepicke *,
+.piki-datepicker .ui-widget,
+.piki-datepicker .ui-widget .ui-widget,
+.piki-datepicker .ui-widget input,
+.piki-datepicker .ui-widget select,
+.piki-datepicker .ui-widget textarea,
+.piki-datepicker .ui-widget button{font-family:'Pretendard', sans-serif;}
+
+.piki-datepicker .ui-datepicker table{margin:0;}
+.piki-datepicker .ui-datepicker td{padding:10px 7.3px;}
+.piki-datepicker .ui-datepicker th span{font-size:18px;font-weight:400;line-height:34px;}
+.piki-datepicker .ui-datepicker td span,
+.piki-datepicker .ui-datepicker td a{width:34px;height:34px;border:1px solid transparent;font-size:18px;font-weight:500;line-height:34px;}
+.piki-datepicker .ui-widget input,
+.piki-datepicker .ui-datepicker th:first-child span,
+.piki-datepicker .ui-datepicker th:last-child span{color:#333;}
+
+.piki-datepicker .ui-datepicker .ui-datepicker-title{width:125px !important;-moze-width:130px;margin:0 auto;color:#333;font-size:20px;line-height:28px;font-weight:700;letter-spacing:5px;}/* width:120px; */
+.piki-datepicker .ui-datepicker select.ui-datepicker-month,
+.piki-datepicker .ui-datepicker select.ui-datepicker-year{width:auto;background:transparent;color:#333;font-size:20px;line-height:28px !important;font-weight:700;letter-spacing:0.38px;}/* line-height:24px; */
+.piki-datepicker .ui-datepicker select.ui-datepicker-month{width:45px;padding:0;text-align:right;}
+.piki-datepicker .ui-datepicker select.ui-datepicker-year{width:53px;padding:0;text-align:right;letter-spacing:0;}
+
+.piki-datepicker .ui-datepicker .ui-datepicker-header{background:transparent;padding:11px 0;}
+/* prev */.piki-datepicker .ui-datepicker .ui-datepicker-prev{left:10px;width:32px;height:32px;background:#f2f2f2 url('/resources/pc/images/icon/ico-arr-datepicker.png') no-repeat 11px 12px;border-radius:100%;}
+/* next */.piki-datepicker .ui-datepicker .ui-datepicker-next{right:10px;width:32px;height:32px;background:#f2f2f2 url('/resources/pc/images/icon/ico-arr-datepicker.png') no-repeat 11px 10px;border-radius:100%;transform:rotate(180deg);}
+
+/* disable day */.piki-datepicker .ui-state-disabled,
+                 .piki-datepicker .ui-widget-content .ui-state-disabled,
+                 .piki-datepicker .ui-widget-header .ui-state-disabled{color:#ccc;}
+
+/* today */.piki-datepicker .ui-state-highlight,
+           .piki-datepicker .ui-widget-content .ui-state-highlight,
+           .piki-datepicker .ui-widget-header .ui-state-highlight{width:34px;height:34px;background:transparent;border:transparent;color:#FF7425 !important;font-weight:500;line-height:36px;}/* #10A0A0 */
+.piki-datepicker .ui-state-highlight,
+.piki-datepicker .ui-widget-content .ui-state-highlight::after,
+.piki-datepicker .ui-widget-header .ui-state-highlight::after{content:'';display:block;background:#48A362 !important;width:4px;height:4px;border-radius:10px;margin:-2px auto 0;}/* #10A0A0 */
+
+/* active day */.piki-datepicker .ui-state-active,
+                .piki-datepicker .ui-widget-content .ui-state-active,
+                .piki-datepicker .ui-widget-header .ui-state-active{background:#FF7425 !important;border-color:#FF7425 !important;color:#fff;font-weight:500;box-sizing:border-box;border-radius: 50%;}/* #10A0A0 */
+

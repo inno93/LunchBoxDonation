@@ -35,7 +35,7 @@
                                         <label for="member-join-general-agree-terms-check"><span
                                                 class="text-guide-sm2">(필수)</span> 회원가입 약관동의</label>
                                     </div>
-                                    <button type="button" class="btn-box-link1 ui-slide-btn"><i
+                                    <button type="button" onclick="buttonAtive($(this))" class="btn-box-link1 ui-slide-btn"><i
                                             class="ico-arr-toggle"></i></button>
                                 </div><!--// inner-flex -->
                                 <div class="terms-inner-box ui-slide-content">
@@ -444,7 +444,7 @@
                                         <label for="member-join-general-agree-user-info-check"><span
                                                 class="text-guide-sm2">(필수)</span> 개인정보 수집 및 이용 동의</label>
                                     </div>
-                                    <button type="button" class="btn-box-link1 ui-slide-btn"><i
+                                    <button type="button" onclick="buttonAtive($(this))" class="btn-box-link1 ui-slide-btn"><i
                                             class="ico-arr-toggle"></i></button>
                                 </div><!--// inner-flex -->
                                 <div class="terms-inner-box table-box ui-slide-content">
@@ -502,7 +502,7 @@
                                         <label for="member-join-general-agree2-user-info-check"><span
                                                 class="text-guide-sm2">(선택)</span> 개인정보 수집 및 이용 동의</label>
                                     </div>
-                                    <button type="button" class="btn-box-link1 ui-slide-btn"><i
+                                    <button type="button" onclick="buttonAtive($(this))" class="btn-box-link1 ui-slide-btn"><i
                                             class="ico-arr-toggle"></i></button>
                                 </div><!--// inner-flex -->
                                 <div class="terms-inner-box table-box ui-slide-content">
@@ -835,6 +835,19 @@
         if(pw === pw2){
             return true;
         }
+    }
+    
+    function buttonAtive(el) {
+        if($(el).hasClass('toggle-on')){
+            $(el).removeClass('toggle-on');
+            $(el).closest('li').removeClass('active');
+            $(el).closest('li').find('.ui-slide-content').slideUp(500);
+        } else {
+            $(el).addClass('toggle-on');
+            $(el).closest('li').addClass('active');
+            $(el).closest('li').find('.ui-slide-content').slideDown(500);
+        }
+        
     }
 
     </script>
