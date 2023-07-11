@@ -3,12 +3,11 @@
  Reset
 ========================================================*/
 html{-webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; /*-ms-touch-action:none;*/ }
-html,body{height:100%; color:#333; font-size:14px; font-weight:400; /*line-height:1.4; */font-family:'Pretendard', sans-serif; word-break: break-all;}
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {margin:0; padding:0; border:0; vertical-align:baseline; -webkit-font-smoothing:antialiased; box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box;}
+/*html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {margin:0; padding:0; border:0; vertical-align:baseline; -webkit-font-smoothing:antialiased; box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box;}*/
+nav, dl, dt, dd, li, a {margin:0; padding:0; border:0; vertical-align:baseline; -webkit-font-smoothing:antialiased; box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box;}
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section{display:block;}
-ol, ul{list-style:none;}
-a{background:transparent; text-decoration:none; color:inherit;}
+
 a:hover, a:active{text-decoration:none; outline:0;}
 label, select, input, textarea {vertical-align:middle; }
 table{border-collapse:collapse; border-spacing:0;}
@@ -141,6 +140,7 @@ button span {position:relative}
 .aside-menu .menu-list > li{padding:15px 0; border-top:1px solid #eee}
 .aside-menu .menu-list > li:first-child{border-top:0;}
 .aside-menu .menu-list > li .menu{font-size:15px; color:#000; font-weight: 500;}
+.aside-menu .menu-list{margin:0; padding:0; border:0; vertical-align:baseline; -webkit-font-smoothing:antialiased; box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box;}
 .aside-guide-box{padding:30px 24px; border:1px solid #E6E6E6; margin-top:15px;}
 .aside-guide-box dl + dl{border-top:1px solid #eee; padding-top:30px; margin-top:30px}
 .aside-guide-box dl dt{color:#333; font-size:15px; font-weight:500; margin-bottom:8px}
@@ -811,22 +811,6 @@ board-form + .btn-bottom-area [class*="btn-basic-"],
     width: 220px
 }
 
-.aside-menu {
-    padding: 10px 24px;
-    border: 1px solid #E6E6E6;
-}
-.aside-menu .menu-list > li {
-    padding: 15px 0;
-    border-top: 1px solid #eee
-}
-.aside-menu .menu-list > li:first-child {
-    border-top: 0;
-}
-.aside-menu .menu-list > li .menu {
-    font-size: 15px;
-    color: #000;
-    font-weight: 500;
-}
 .aside-menu .menu-list > li .depth2 {
     margin-top: 8px;
 }

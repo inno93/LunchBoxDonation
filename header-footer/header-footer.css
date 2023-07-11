@@ -614,10 +614,6 @@ button span {
     padding-bottom: 15px;
 }
 
-ol, ul {
-    list-style: none;
-}
-
 .latest-search .no-data {
     padding: 23px 0 25px;
     font-size: 13px;

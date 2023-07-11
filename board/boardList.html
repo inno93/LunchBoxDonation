@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ko" xml:lang="ko">
 <head>
@@ -18,556 +17,304 @@
     <meta name="naver-site-verification" content="f49456f63ff3a881b3c179737e504259c28307f8"/>
     <!-- ======================== 공통 CSS / JS ======================== -->
 
-    <link rel="stylesheet"  href="../mainPage/foodmain.css">
-    <link rel="stylesheet"  href="board.css">
+    <!--    <link rel="stylesheet"  href="../mainPage/foodmain.css">-->
+    <link rel="stylesheet" href="../header-footer/header-footer.css">
+    <link rel="stylesheet" href="board.css">
     <link rel="icon" href="https://www.rankingdak.com/resources/pc/images/icon/favicon.ico">
-    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
     <script src="board.js"></script>
+    <!--헤더 푸터 로드 -->
+    <script src="../header-footer/header-footer.js"></script>
 
 
     <title>랭킹닭컴 </title></head>
 <body>
-    <header id="header" class="header">
-        <div class="header-inner">
-            <h1 class="logo">
-                <span class="blind"></span>
-            </h1>
-            <div class="util">
-                <ul>
-                    <li>
-                        <a href="" style="font-size: 11px;">로그인</a>
-                    </li>
-                    <li>
-                        <a href="" style="font-size: 11px;">회원가입</a>
-                    </li>
-                    <li>
-                        <a href="" style="font-size: 11px;">주문조회</a>
-                    </li>
-                    <li>
-                        <a href="" style="font-size: 11px;">고객센터</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="header-search">
-                <div class="top-search">
-                    <input type="search" class="input-search" id="rankKeyword" name="rankKeyword" value="" onkeydown="fnSearchKeyDown(this);" onkeyup="setAutoKeywordList();"
-                           autocomplete="off" placeholder="랭킹 포차 OPEN 🍻" data-link-code="200"
-                           data-advert-url="https://www.rankingdak.com/promotion/exhibit/hiddenList?exhibitionCd=EX202306150000000238" maxlength="100">
-                    <button type="button" class="btn-top-search" id="btnTopSearch" name="btnTopSearch" data-search-type="real" onclick="fnBtnTopSearch(this);">
-                        <span class="blind">검색</span>
-                    </button>
-                </div>
-                <div class="search-layer">
-                    <div class="autoResultBox" style="display: block;"><a href="javascript:autoKeywordSearch('%EC%95%84%EC%9E%84%EB%8B%AD');">아임닭</a>
-                        <a href="javascript:autoKeywordSearch('%EC%95%84%EC%9E%84%EB%8B%AD%20%ED%81%AC%EB%A6%AC%EC%8A%A4%ED%94%BC%20%EB%8B%AD%EA%B0%80%EC%8A%B4%EC%82%B4');">아임닭 크리스피 닭가슴살</a>
-                        <a href="javascript:autoKeywordSearch('%EC%97%90%EC%96%B4%EC%B9%98%ED%82%A8');">에어치킨</a><a href="javascript:autoKeywordSearch('%EC%97%B0%EC%96%B4');">연어</a><a href="javascript:autoKeywordSearch('%EC%95%84%EC%9E%84%EC%9B%B0');">아임웰</a>
-                        <a href="javascript:autoKeywordSearch('%EC%9A%B0%EC%9C%A0');">우유</a><a href="javascript:autoKeywordSearch('%EC%95%84%EC%9D%B4%EC%8A%A4%ED%81%AC%EB%A6%BC');">아이스크림</a>
-                        <a href="javascript:autoKeywordSearch('%EC%9B%90%EC%97%90%EC%9D%B4%EC%97%A0%20%EC%8A%A4%ED%8C%8C%ED%81%B4%EB%A7%81');">원에이엠 스파클링</a>
-                        <a href="javascript:autoKeywordSearch('%EC%97%90%EC%96%B4%EC%B9%98%ED%82%A8%20%EB%8B%AD%EB%8B%A4%EB%A6%AC%EC%82%B4');">에어치킨 닭다리살</a>
-                        <a href="javascript:autoKeywordSearch('%EC%95%84%EC%9E%84%EB%8B%AD%20%EC%86%8C%EC%8B%9C%EC%A7%80');">아임닭 소시지</a>
-                    </div>
-                    <div class="tit-area" style="display: none;"><h2>인기 검색어</h2></div>
-                    <div class="search-rank" style="display: none;">
-                        <ol class="list">
-                            <li>
-                                <a href="javascript:;" data-search-type="popular" onclick="fnBtnTopSearch(this);">
-                                    <em class="num">1</em><span class="word">잇메이트 닭가슴살</span>
-                                    <span class="state text-primary"><i class="ico-arrfill-up"><span class="blind">UP</span></i>2</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;" data-search-type="popular" onclick="fnBtnTopSearch(this);">
-                                    <em class="num">2</em><span class="word">저염 닭가슴살</span>
-                                    <span class="state">-</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;" data-search-type="popular" onclick="fnBtnTopSearch(this);">
-                                    <em class="num">3</em><span class="word">생닭가슴살</span>
-                                    <span class="state text-primary"><i class="ico-arrfill-up"><span class="blind">UP</span></i>1</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;" data-search-type="popular" onclick="fnBtnTopSearch(this);">
-                                    <em class="num">4</em><span class="word">도시락</span>
-                                    <span class="state text-blue"><i class="ico-arrfill-down"><span class="blind">DOWN</span></i>1</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;" data-search-type="popular" onclick="fnBtnTopSearch(this);">
-                                    <em class="num">5</em><span class="word">볶음밥</span>
-                                    <span class="state text-primary"><i class="ico-arrfill-up"><span class="blind">UP</span></i>2</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;" data-search-type="popular" onclick="fnBtnTopSearch(this);">
-                                    <em class="num">6</em><span class="word">교촌</span>
-                                    <span class="state text-green">NEW</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;" data-search-type="popular" onclick="fnBtnTopSearch(this);">
-                                    <em class="num">7</em><span class="word">고구마</span>
-                                    <span class="state text-green">NEW</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;" data-search-type="popular" onclick="fnBtnTopSearch(this);">
-                                    <em class="num">8</em><span class="word">샐러드</span>
-                                    <span class="state">-</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;" data-search-type="popular" onclick="fnBtnTopSearch(this);">
-                                    <em class="num">9</em><span class="word">맛있닭 오븐구이</span>
-                                    <span class="state text-primary"><i class="ico-arrfill-up"><span class="blind">UP</span></i>1</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;" data-search-type="popular" onclick="fnBtnTopSearch(this);">
-                                    <em class="num">10</em><span class="word">소고기볼</span>
-                                    <span class="state text-green">NEW</span>
-                                </a>
-                            </li>
-                        </ol>
-                    </div>
-                    <div class="search-bottom" style="display: none;">
-                        <div class="tit">
-                            <h3>최근검색어</h3>
-                            <button type="button" class="text-guide-sm search-del-btn" onclick="fnAllDelKeyword(this)" style="display: none;"><span>전체삭제</span></button>
-                        </div>
-                        <div class="latest-search">
-                            <!-- 검색어 있을 경우 -->
-                            <ul class="srch-list" id="rankSearchArea">
 
-                                <li id="srhItem" style="display:none;">
-                                    <div class="srch-keyword">
-                                        <a href="javascript:;" class="txt" data-search-type="recent" onclick="fnBtnTopSearch(this)"></a>
-                                        <button type="button" class="btn-x-xs del-body" title="" onclick="fnDelKeyword(this)"><i class="ico-x-grey2 del-body"></i><span class="blind del-body">삭제</span></button>
-                                    </div>
-                                </li>
+<!--// ========== 공통 헤더 :: header ========== -->
+<header>
+    <div id="header"></div>
+</header>
 
+<!-- ========== 컨텐츠 영역 :: container ========== -->
+<section id="contents" class="container">
 
-                            </ul>
-                            <!--// 검색어 있을 경우 -->
-                            <!-- 검색어 없을 경우 -->
-                            <div class="no-data" style="">최근 검색어가 없습니다.</div>
-                            <!--// 검색어 없을 경우 -->
-                        </div><!--// latest-search -->
-                    </div>
-                </div>
-            </div>
-            <div class="my-memu" style="position: absolute; top: 23px; left: 844px;">
-                <ul>
-                    <li style="display: inline-block; vertical-align: top;"><a href="/display/coupon/list" class="btn-util-coupon" title=""><span class="blind">쿠폰</span></a></li>
-                    <li style="display: inline-block; vertical-align: top;"><a href="/mypage/main" class="btn-util-mypage" title=""><span class="blind">마이페이지</span></a></li>
-                    <li style="display: inline-block; vertical-align: top;">
-                        <a href="/order/cart" class="btn-util-cart" title="">
-                            <span class="blind">장바구니</span>
-                            <em class="count">0</em>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+    <div class="content-wrap frame-sm">
+        <div class="page-title-area">
+            <h2 class="title-page"><a href="/service/center">고객센터</a></h2>
         </div>
+        <div class="frame-wrap">
+            <div class="frame-left">
+                <div class="aside-menu-wrap">
+                    <nav class="aside-menu">
+                        <ul class="menu-list">
+                            <li><a href="/service/notice" class="menu">공지사항</a></li>
+                            <li><a href="/service/guide" class="menu">이용안내</a></li>
+                            <li><a href="/service/faq" class="menu">자주묻는 FAQ</a></li>
+                            <li><a href="#" onclick="checkLogin('/mypage/userCounsel/regCouncel')" class="menu">1:1
+                                문의하기</a></li>
+                            <li><a href="#" onclick="checkLogin('/service/voc')" class="menu">고객의소리</a></li>
+                        </ul>
+                    </nav><!--// aside-menu -->
 
-        <div class="gnb-wrap">
-            <div class="inner">
-                <div class="category-wrap">
-                    <a href="#all-category" class="btn-menu-all"><span>카테고리</span></a>
-                </div><!--// category-wrap -->
-                <nav id="gnb" class="gnb">
-                    <ul>
-                        <li class=""><a href="/display/rank/sale"><span style="font-size: 14.5px;">랭킹</span></a></li>
-                        <li class=""><a href="/promotion/exhibit/list"><span style="font-size: 14.5px;">이달의 특가</span></a></li>
-                        <li class=""><a href="/display/benefits/view"><span style="font-size: 14.5px;">혜택정리</span></a></li>
-                        <li class=""><a href="/display/onePack/list"><span style="font-size: 14.5px;">1팩 담기</span></a></li>
-                        <li class=""><a href="/display/brand/list"><span style="font-size: 14.5px;">브랜드관</span></a></li>
-                        <li class=""><a href="/promotion/event/list"><span style="font-size: 14.5px;">이벤트</span></a></li>
-                        <li class=""><a href="/display/expressDeliveryList"><em class="ico-txt-gnb"><span class="blind">특급배송</span></em></a></li>
-                        <li class="test1"></li>
-                    </ul>
-                </nav><!--// gnb -->
-            </div>
-        </div>
-    </header>
-    <!--// ========== 공통 헤더 :: header ========== -->
+                    <div class="aside-guide-box">
+                        <dl>
+                            <dt>랭킹닭컴 고객센터</dt>
+                            <dd class="phone-num">02-6405-8088</dd>
+                            <dd>평일 <span class="text-num-md">09:00 ~ 18:00</span></dd>
+                            <dd>주말, 공휴일 휴무</dd>
+                        </dl>
+                        <dl>
+                            <dt>실시간 채팅 상담</dt>
+                            <dd>평일 <span class="text-num-md">09:00 ~ 21:00</span></dd>
+                            <dd>토요일 <span class="text-num-md">09:00 ~ 15:00</span></dd>
+                            <dd>일요일 <span class="text-num-md">13:00 ~ 21:00</span></dd>
+                        </dl>
+                    </div><!--// aside-guide-box -->
+                </div><!--// aside-menu-wrap -->
+            </div><!--// frame-left -->
+            <div class="frame-right">
+                <div class="frame-cnt-inner">
+                    <script>
+                        function addBtnEvent() {
+                            //검색
+                            $('#noticeSrch').on("click", function (e) {
+                                e.preventDefault();
+                                goSearch();
+                            });
 
-    <!-- ========== 컨텐츠 영역 :: container ========== -->
-    <section id="contents" class="container">
+                            //검색타입 클릭시
+                            $('.srchOpt').on("click", function (e) {
+                                e.preventDefault();
+                                $("input[name='srchType']").val($(this).data("name"));
+                            });
+                        }
 
-        <div class="content-wrap frame-sm">
-            <div class="page-title-area">
-                <h2 class="title-page"><a href="/service/center">고객센터</a></h2>
-            </div>
-            <div class="frame-wrap">
-                <div class="frame-left">
-                    <div class="aside-menu-wrap">
-                        <nav class="aside-menu">
-                            <ul class="menu-list">
-                                <li><a href="/service/notice" class="menu">공지사항</a></li>
-                                <li><a href="/service/guide" class="menu">이용안내</a></li>
-                                <li><a href="/service/faq" class="menu">자주묻는 FAQ</a></li>
-                                <li><a href="#" onclick="checkLogin('/mypage/userCounsel/regCouncel')" class="menu">1:1 문의하기</a></li>
-                                <li><a href="#" onclick="checkLogin('/service/voc')" class="menu">고객의소리</a></li>
-                            </ul>
-                        </nav><!--// aside-menu -->
+                        function goSearch() {
+                            if ($("input[name='keyword']").val() === '') {
+                                alert('검색어를 입력해주세요.');
+                                return;
+                            }
 
-                        <div class="aside-guide-box">
-                            <dl>
-                                <dt>랭킹닭컴 고객센터</dt>
-                                <dd class="phone-num">02-6405-8088</dd>
-                                <dd>평일 <span class="text-num-md">09:00 ~ 18:00</span></dd>
-                                <dd>주말, 공휴일 휴무</dd>
-                            </dl>
-                            <dl>
-                                <dt>실시간 채팅 상담</dt>
-                                <dd>평일 <span class="text-num-md">09:00 ~ 21:00</span></dd>
-                                <dd>토요일 <span class="text-num-md">09:00 ~ 15:00</span></dd>
-                                <dd>일요일 <span class="text-num-md">13:00 ~ 21:00</span></dd>
-                            </dl>
-                        </div><!--// aside-guide-box -->
-                    </div><!--// aside-menu-wrap -->
-                </div><!--// frame-left -->
-                <div class="frame-right">
-                    <div class="frame-cnt-inner">
-                        <script>
-                            function addBtnEvent() {
-                                //검색
-                                $('#noticeSrch').on("click", function (e) {
+                            const frm = $("#frm");
+                            const keyword = $("input[name='keyword']").val();
+
+                            frm.attr("action", `/service/notice`);
+                            frm.submit();
+                        }
+
+                        $(document).ready(function () {
+                            addBtnEvent();
+
+                            $('input[name="keyword"]').keypress(function (e) {
+                                if (e.which == 13) {
                                     e.preventDefault();
                                     goSearch();
-                                });
-
-                                //검색타입 클릭시
-                                $('.srchOpt').on("click", function(e){
-                                    e.preventDefault();
-                                    $("input[name='srchType']").val($(this).data("name"));
-                                });
-                            }
-
-                            function goSearch() {
-                                if($("input[name='keyword']").val() === ''){
-                                    alert('검색어를 입력해주세요.');
-                                    return ;
                                 }
-
-                                const frm = $("#frm");
-                                const keyword = $("input[name='keyword']").val();
-
-                                frm.attr("action", `/service/notice`);
-                                frm.submit();
-                            }
-
-                            $(document).ready(function () {
-                                addBtnEvent();
-
-                                $('input[name="keyword"]').keypress(function (e) {
-                                    if(e.which == 13){
-                                        e.preventDefault();
-                                        goSearch();
-                                    }
-                                });
                             });
-                        </script>
+                        });
+                    </script>
 
-                        <form id="frm" name="frm" action="/service/notice" method="get"><input type="hidden" name="pageSize" value="10"/>
-                            <input type="hidden" name="nowPageNo" value="1"/>
+                    <form id="frm" name="frm" action="/service/notice" method="get"><input type="hidden" name="pageSize"
+                                                                                           value="10"/>
+                        <input type="hidden" name="nowPageNo" value="1"/>
 
-                            <div class="menu-title-area">
-                                <h3 class="title-menu">공지사항</h3>
-                                <div class="right">
-                                    <div class="input-group-wrap box-type">
-                                        <div class="input-group w225">
-                                            <div class="input-group-form">
-                                                <div class="ui-select select-box" data-value="">
-                                                    <a href="#none" title="" class="select-value"><span>전체</span></a>
-                                                    <input name="srchType" type="hidden" value="1"/>
-                                                    <div class="select-list">
-                                                        <ul>
-                                                            <li class="srchOpt" data-name="1"><a href="#none"><span>전체</span></a></li>
-                                                            <li class="srchOpt" data-name="2"><a href="#none"><span>제목</span></a></li>
-                                                            <li class="srchOpt" data-name="3"><a href="#none"><span>내용</span></a></li>
-                                                        </ul>
-                                                    </div>
+                        <div class="menu-title-area">
+                            <h3 class="title-menu">공지사항</h3>
+                            <div class="right">
+                                <div class="input-group-wrap box-type">
+                                    <div class="input-group w225">
+                                        <div class="input-group-form">
+                                            <div class="ui-select select-box" data-value="">
+                                                <a href="#none" title="" class="select-value"><span>전체</span></a>
+                                                <input name="srchType" type="hidden" value="1"/>
+                                                <div class="select-list">
+                                                    <ul>
+                                                        <li class="srchOpt" data-name="1"><a
+                                                                href="#none"><span>전체</span></a></li>
+                                                        <li class="srchOpt" data-name="2"><a
+                                                                href="#none"><span>제목</span></a></li>
+                                                        <li class="srchOpt" data-name="3"><a
+                                                                href="#none"><span>내용</span></a></li>
+                                                    </ul>
                                                 </div>
-                                            </div><!--// input-group-form -->
-                                            <input type="text" id="item1-1" class="input-text" name="keyword" value="">
-                                            <span class="input-group-btn">
-                    <button type="button" class="btn-icon-search" id="noticeSrch" title=""><i class="ico-btn-search"></i><span class="blind">검색하기</span></button>
+                                            </div>
+                                        </div><!--// input-group-form -->
+                                        <input type="text" id="item1-1" class="input-text" name="keyword" value="">
+                                        <span class="input-group-btn">
+                    <button type="button" class="btn-icon-search" id="noticeSrch" title=""><i
+                            class="ico-btn-search"></i><span class="blind">검색하기</span></button>
                 </span>
-                                        </div><!--// input-group -->
-                                    </div><!--// input-group-wrap -->
+                                    </div><!--// input-group -->
+                                </div><!--// input-group-wrap -->
+                            </div>
+                        </div>
+
+                        <div class="board-list">
+                            <table>
+                                <caption>목록</caption>
+                                <colgroup>
+                                    <col style="width:80px">
+                                    <col style="width:auto">
+                                    <col style="width:120px">
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <td class="text-center"><i class="ico-bl-notice"><span class="blind">공지</span></i>
+                                    </td>
+                                    <td class="text-left"><a href="notice/view?noticeId=20230426000000000157"
+                                                             class="title-elps">대구지역 새벽배송 임시중단 안내</a></td>
+                                    <td class="text-center">
+                                        <span class="text-grey3">2023.04.26</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center"><span class="text-grey3">158</span></td>
+                                    <td class="text-left"><a href="notice/view?noticeId=20230619000000000163"
+                                                             class="title-elps">랭킹닭컴 서비스 이용약관 변경 안내</a></td>
+                                    <td class="text-center">
+                                        <span class="text-grey3">2023.06.19</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center"><span class="text-grey3">157</span></td>
+                                    <td class="text-left"><a href="notice/view?noticeId=20230605000000000162"
+                                                             class="title-elps">KB국민카드 금융상품 판매대리&중개업자 증서</a></td>
+                                    <td class="text-center">
+                                        <span class="text-grey3">2023.06.05</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center"><span class="text-grey3">156</span></td>
+                                    <td class="text-left"><a href="notice/view?noticeId=20230531000000000161"
+                                                             class="title-elps">2023년 6월 현충일 연휴 배송 안내</a></td>
+                                    <td class="text-center">
+                                        <span class="text-grey3">2023.05.31</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center"><span class="text-grey3">155</span></td>
+                                    <td class="text-left"><a href="notice/view?noticeId=20230523000000000159"
+                                                             class="title-elps">2023년 5월 석가탄신일 연휴 배송 안내</a></td>
+                                    <td class="text-center">
+                                        <span class="text-grey3">2023.05.23</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center"><span class="text-grey3">154</span></td>
+                                    <td class="text-left"><a href="notice/view?noticeId=20230428000000000158"
+                                                             class="title-elps">2023년 5월 휴일 배송 안내</a></td>
+                                    <td class="text-center">
+                                        <span class="text-grey3">2023.04.28</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center"><span class="text-grey3">153</span></td>
+                                    <td class="text-left"><a href="notice/view?noticeId=20230224000000000156"
+                                                             class="title-elps">2023년 3월 휴일 배송 안내</a></td>
+                                    <td class="text-center">
+                                        <span class="text-grey3">2023.02.24</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center"><span class="text-grey3">152</span></td>
+                                    <td class="text-left"><a href="notice/view?noticeId=20230215000000000155"
+                                                             class="title-elps">새로워진 랭킹닭컴 멤버십 혜택을 소개합니다.</a></td>
+                                    <td class="text-center">
+                                        <span class="text-grey3">2023.02.15</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center"><span class="text-grey3">151</span></td>
+                                    <td class="text-left"><a href="notice/view?noticeId=20230203000000000154"
+                                                             class="title-elps">영양성분 전수조사 결과 입장문</a></td>
+                                    <td class="text-center">
+                                        <span class="text-grey3">2023.02.03</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center"><span class="text-grey3">150</span></td>
+                                    <td class="text-left"><a href="notice/view?noticeId=20230117000000000152"
+                                                             class="title-elps">2023년 설 연휴 배송 안내</a></td>
+                                    <td class="text-center">
+                                        <span class="text-grey3">2023.01.17</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center"><span class="text-grey3">149</span></td>
+                                    <td class="text-left"><a href="notice/view?noticeId=20230103000000000150"
+                                                             class="title-elps">베스틱 닭가슴살 소시지 제품 관련하여 사과드립니다.</a></td>
+                                    <td class="text-center">
+                                        <span class="text-grey3">2023.01.03</span>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div><!--// board-list -->
+                        <div class="page-bottom">
+                            <div class="pagination">
+
+
+                                <script type="text/javascript">
+                                    //<![CDATA[
+                                    function CmPageMove(pg, size) {
+                                        var frm = document.frm;
+                                        frm["nowPageNo"].value = pg;
+
+                                        if (size != undefined) {
+                                            frm["pageSize"].value = size;
+                                        }
+
+                                        frm.submit();
+                                    }
+
+                                    //]]>
+                                </script>
+                                <div class="pagging-wrap page-area">
+                                    <div class="page-number">
+                                        <div class="pagination mt20">
+                                            <a href="javascript:CmPageMove('0')" data-page="0"
+                                               class='btn-page prev'><span class="blind">이전</span></a>
+                                            <a href="#" class="current"><span>1</span></a>
+                                            <a href="javascript:CmPageMove('2')" data-page="2"><span>2</span></a>
+                                            <a href="javascript:CmPageMove('3')" data-page="3"><span>3</span></a>
+                                            <a href="javascript:CmPageMove('4')" data-page="4"><span>4</span></a>
+                                            <a href="javascript:CmPageMove('5')" data-page="5"><span>5</span></a>
+                                            <a href="javascript:CmPageMove('6')" data-page="6"><span>6</span></a>
+                                            <a href="javascript:CmPageMove('7')" data-page="7"><span>7</span></a>
+                                            <a href="javascript:CmPageMove('8')" data-page="8"><span>8</span></a>
+                                            <a href="javascript:CmPageMove('9')" data-page="9"><span>9</span></a>
+                                            <a href="javascript:CmPageMove('10')" data-page="10"><span>10</span></a>
+                                            <a href="javascript:CmPageMove('11')" data-page="11"
+                                               class='btn-page next'><span class="blind">다음</span></a>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
-
-                            <div class="board-list">
-                                <table>
-                                    <caption>목록</caption>
-                                    <colgroup>
-                                        <col style="width:80px"><col style="width:auto"><col style="width:120px">
-                                    </colgroup>
-                                    <tbody>
-                                    <tr>
-                                        <td class="text-center"><i class="ico-bl-notice"><span class="blind">공지</span></i></td>
-                                        <td class="text-left"><a href="notice/view?noticeId=20230426000000000157" class="title-elps">대구지역 새벽배송 임시중단 안내</a></td>
-                                        <td class="text-center">
-                                            <span class="text-grey3">2023.04.26</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center"><span class="text-grey3">158</span></td>
-                                        <td class="text-left"><a href="notice/view?noticeId=20230619000000000163" class="title-elps">랭킹닭컴 서비스 이용약관 변경 안내</a></td>
-                                        <td class="text-center">
-                                            <span class="text-grey3">2023.06.19</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center"><span class="text-grey3">157</span></td>
-                                        <td class="text-left"><a href="notice/view?noticeId=20230605000000000162" class="title-elps">KB국민카드 금융상품 판매대리&중개업자 증서</a></td>
-                                        <td class="text-center">
-                                            <span class="text-grey3">2023.06.05</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center"><span class="text-grey3">156</span></td>
-                                        <td class="text-left"><a href="notice/view?noticeId=20230531000000000161" class="title-elps">2023년 6월 현충일 연휴 배송 안내</a></td>
-                                        <td class="text-center">
-                                            <span class="text-grey3">2023.05.31</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center"><span class="text-grey3">155</span></td>
-                                        <td class="text-left"><a href="notice/view?noticeId=20230523000000000159" class="title-elps">2023년 5월 석가탄신일 연휴 배송 안내</a></td>
-                                        <td class="text-center">
-                                            <span class="text-grey3">2023.05.23</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center"><span class="text-grey3">154</span></td>
-                                        <td class="text-left"><a href="notice/view?noticeId=20230428000000000158" class="title-elps">2023년 5월 휴일 배송 안내</a></td>
-                                        <td class="text-center">
-                                            <span class="text-grey3">2023.04.28</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center"><span class="text-grey3">153</span></td>
-                                        <td class="text-left"><a href="notice/view?noticeId=20230224000000000156" class="title-elps">2023년 3월 휴일 배송 안내</a></td>
-                                        <td class="text-center">
-                                            <span class="text-grey3">2023.02.24</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center"><span class="text-grey3">152</span></td>
-                                        <td class="text-left"><a href="notice/view?noticeId=20230215000000000155" class="title-elps">새로워진 랭킹닭컴 멤버십 혜택을 소개합니다.</a></td>
-                                        <td class="text-center">
-                                            <span class="text-grey3">2023.02.15</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center"><span class="text-grey3">151</span></td>
-                                        <td class="text-left"><a href="notice/view?noticeId=20230203000000000154" class="title-elps">영양성분 전수조사 결과 입장문</a></td>
-                                        <td class="text-center">
-                                            <span class="text-grey3">2023.02.03</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center"><span class="text-grey3">150</span></td>
-                                        <td class="text-left"><a href="notice/view?noticeId=20230117000000000152" class="title-elps">2023년 설 연휴 배송 안내</a></td>
-                                        <td class="text-center">
-                                            <span class="text-grey3">2023.01.17</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center"><span class="text-grey3">149</span></td>
-                                        <td class="text-left"><a href="notice/view?noticeId=20230103000000000150" class="title-elps">베스틱 닭가슴살 소시지 제품 관련하여 사과드립니다.</a></td>
-                                        <td class="text-center">
-                                            <span class="text-grey3">2023.01.03</span>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div><!--// board-list -->
-                            <div class="page-bottom">
-                                <div class="pagination">
-
-
-                                    <script type="text/javascript">
-                                        //<![CDATA[
-                                        function CmPageMove( pg , size ) {
-                                            var frm     = document.frm;
-                                            frm["nowPageNo"].value	= pg;
-
-                                            if (size != undefined) {
-                                                frm["pageSize"].value	= size;
-                                            }
-
-                                            frm.submit();
-                                        }
-                                        //]]>
-                                    </script>
-                                    <div class="pagging-wrap page-area">
-                                        <div class="page-number">
-                                            <div class="pagination mt20">
-                                                <a href="javascript:CmPageMove('0')" data-page="0" class='btn-page prev'><span class="blind">이전</span></a>
-                                                <a href="#" class="current"><span>1</span></a>
-                                                <a href="javascript:CmPageMove('2')" data-page="2" ><span>2</span></a>
-                                                <a href="javascript:CmPageMove('3')" data-page="3" ><span>3</span></a>
-                                                <a href="javascript:CmPageMove('4')" data-page="4" ><span>4</span></a>
-                                                <a href="javascript:CmPageMove('5')" data-page="5" ><span>5</span></a>
-                                                <a href="javascript:CmPageMove('6')" data-page="6" ><span>6</span></a>
-                                                <a href="javascript:CmPageMove('7')" data-page="7" ><span>7</span></a>
-                                                <a href="javascript:CmPageMove('8')" data-page="8" ><span>8</span></a>
-                                                <a href="javascript:CmPageMove('9')" data-page="9" ><span>9</span></a>
-                                                <a href="javascript:CmPageMove('10')" data-page="10" ><span>10</span></a>
-                                                <a href="javascript:CmPageMove('11')" data-page="11" class='btn-page next'><span class="blind">다음</span></a>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div><!--// page-bottom -->
-                        </form></div>
+                        </div><!--// page-bottom -->
+                    </form>
                 </div>
-            </div><!--frame-wrap-->
-        </div><!--// content-wrap -->
-
-    </section>
-    <!--// ========== 컨텐츠 영역 :: container ========== -->
-
-    <!-- ========== 공통 푸터 :: footer :: include.footer() 영역  ========== -->
-        <footer id="footer" class="footer">
-            <div class="footer-menu">
-                <div class="frame-sm">
-                    <ul class="footer-menu-list">
-                        <li><a href="/etc/footer/company">회사소개</a></li>
-                        <li><a href="/service/notice">공지사항</a></li>
-                        <li><a href="/product/storeInquiry">입점 · 제휴 · 광고문의</a></li>
-                        <li><a href="/etc/footer/uselaw">이용약관</a></li>
-                        <li><a href="/etc/footer/privacy" class="text-black2 text-md">개인정보처리방침</a></li>
-                    </ul><!--// footer-menu-list -->
-                    <div class="family-select">
-                        <button type="button" class="select-btn ui-togglelayer-btn" style="background-color: #f8f8f8;"><span>패밀리사이트</span><i class="ico-arr-toggle"></i></button>
-                        <div class="family-list-box ui-togglelayer-box">
-                            <ul>
-                                <li><a href="https://rankingdak.com/" target="_blank"><span>랭킹닭컴</span></a></li>
-                                <li><a href="https://www.ggjmart.com/" target="_blank"><span>개근질마트</span></a></li>
-                                <li><a href="https://www.ggjil.com/" target="_blank"><span>개근질닷컴</span></a></li>
-                                <li><a href="https://pickydiet.co.kr/" target="_blank"><span>피키다이어트</span></a></li>
-                                <li><a href="http://dacook.co.kr/" target="_blank"><span>다이어트전문 레시피 다쿡</span></a></li>
-                                <li><a href="http://www.studiou.co.kr/" target="_blank"><span>바디프로필 전문 스튜디오U</span></a></li>
-                            </ul>
-                        </div>
-                    </div><!--// family-select -->
-                </div><!--// footer-info-list -->
-            </div><!--// frame-sm -->
-            <div class="footer-info">
-                <strong class="footer-logo"><span class="blind">랭킹닭컴</span></strong>
-                <div class="colum-info">
-                    <h5 class="blind">회사 정보</h5>
-                    <ul class="footer-biz-info">
-                        <li><span class="company-name">(주)푸드나무</span></li>
-                        <li>대표 : 김영문</li>
-                        <li>주소 : 서울특별시 마포구 월드컵북로 396, 15층(상암동, 누리꿈스퀘어 비지니스타워)</li>
-                        <li>사업자등록번호 : 105-87-81968
-                            <span class="biz-information">
-                        <a href="javascript:bizPop();">사업자정보 확인</a>
-                    </span>
-                        </li>
-                        <li>통신판매업신고번호 : 제2015-서울마포-1058호</li>
-                        <li>개인정보보호책임자 : 박상필</li>
-                    </ul>
-                    <p class="copyright">Copyright©랭킹닭컴 All rights reserved.</p>
-                </div><!--// colum -->
-                <div class="colum-info">
-                    <ul class="customer-info">
-                        <li class="cscenter">고객센터 <em class="footer-tel">02-6405-8088</em></li>
-                        <li>FAX. 02-6351-8088</li>
-                        <li>E-mail. admin@foodnamoo.com</li>
-                    </ul>
-                    <div class="customer-btns">
-                        <a href="#" onclick="footerCheckLogin('/service/voc')"><span>고객의 제안</span></a>
-                        <a href="#" onclick="footerCheckLogin('/mypage/userCounsel/regCouncel')"><span>1:1 문의</span></a>
-                    </div>
-                    <ul class="footer-sns-list">
-                        <li><a href="https://www.facebook.com/rankingdakcom" title="" target="_blank"><i class="ico-sns-facebook"></i><span class="blind">페이스북</span></a></li>
-                        <li><a href="https://www.instagram.com/rankingdak_official" title="" target="_blank"><i class="ico-sns-instagram"></i><span class="blind">인스타그램</span></a></li>
-                        <li><a href="https://blog.naver.com/rankingdak" title="" target="_blank"><i class="ico-sns-blog"></i><span class="blind">네이버블로그</span></a></li>
-                        <li><a href="https://post.naver.com/my.nhn?memberNo=9267177" title="" target="_blank"><i class="ico-sns-post"></i><span class="blind">네이버포스트</span></a></li>
-                        <li><a href="https://pf.kakao.com/_ltFRl" title="" target="_blank"><i class="ico-sns-kakaotalk"></i><span class="blind">카카오톡</span></a></li>
-                        <li><a href="https://www.youtube.com/c/rankingdakcom" title="" target="_blank"><i class="ico-sns-youtube"></i><span class="blind">유튜브</span></a></li>
-                    </ul>
-                </div><!--// colum -->
-            </div><!--// footer-info -->
-            <div class="footer-bottom">
-                <ul class="service-txt">
-                    <li><a href="javascript:ismsPop();"><i class="ico-footer-service01"></i>정보보호 관리체계 ISMS 인증 획득</a></li>
-                    <li><a href="javascript:bankPop();"><i class="ico-footer-service02"></i>우리은행 구매 안전 서비스 가입사실 확인</a></li>
-                </ul>
             </div>
-        </footer>
+        </div><!--frame-wrap-->
+    </div><!--// content-wrap -->
+
+</section>
+<!--// ========== 컨텐츠 영역 :: container ========== -->
+
+<!-- ========== 공통 푸터 :: footer :: include.footer() 영역  ========== -->
 
 
+<!--// ========== 공통 푸터 :: footer ========== -->
+<footer>
+    <div id="footer"></div>
+</footer>
+<!--// ========== 공통 푸터 :: footer :: include.footer() 영역  ========== -->
 
-
-    <!--// ========== 공통 푸터 :: footer ========== -->
-
-    <!--// ========== 공통 푸터 :: footer :: include.footer() 영역  ========== -->
-</div><!--// wrap -->
-<form id="logoutForm" name="logoutForm" action="/logout" method="post"><div>
-    <input type="hidden" name="_csrf" value="6671c50e-2136-4b8f-840e-11b85abe3866" />
-</div></form><script type="text/javascript" src="https://wcs.naver.net/wcslog.js"></script>
-<script type="text/javascript">
-    if(!wcs_add) var wcs_add = {};
-    wcs_add["wa"] = "s_1d3a44462ba7";
-    if (!_nasa) var _nasa={};
-    wcs.inflow("rankingdak.com");
-    wcs_do(_nasa);
-</script><!-- Enliple Tracker Start -->
-<script type="text/javascript">
-    (function(a,g,e,n,t){a.enp=a.enp||function(){(a.enp.q=a.enp.q||[]).push(arguments)};n=g.createElement(e);n.async=!0;n.defer=!0;n.src="https://cdn.megadata.co.kr/dist/prod/enp_tracker_self_hosted.min.js";t=g.getElementsByTagName(e)[0];t.parentNode.insertBefore(n,t)})(window,document,"script");
-    enp('create', 'common', 'foodnamoo', { device: 'B' });
-    enp('send', 'common', 'foodnamoo');
-</script>
-<!-- Enliple Tracker End --><!-- 카카오픽셀 -->
-<script type="text/javascript" charset="UTF-8" src="//t1.daumcdn.net/adfit/static/kp.js"></script>
-<script type="text/javascript">
-    kakaoPixel('6767047130576800104').pageView();
-</script>
-<!-- 카카오픽셀 --><script type="text/javascript" src="//static.criteo.net/js/ld/ld.js" async="true"></script>
-<script type="text/javascript">
-    window.criteo_q = window.criteo_q || [];
-    window.criteo_q.push(
-        { event: "setAccount", account: 27327 },
-        { event: "setEmail", email: "" },
-        { event: "setSiteType", type: "d" },
-        { event: "viewHome" }
-    );
-</script><script>
-
-    $(document).ready(function () {
-
-    });
-
-    function logout() {
-        $("#logoutForm").submit();
-    }
-
-    function checkLogin(nextUrl){
-        const loginId = 'hih8904';
-        if(isEmpty(loginId)){
-            if(confirm('로그인 후 이용이 가능합니다. 로그인 하시겠습니까?')){
-                window.location.href='/auth/login?loginRedirectUrl=' + gfnUrlEncoding(nextUrl);
-            }
-            return;
-        }
-
-        if(nextUrl){
-            window.location.href=nextUrl;
-        }
-    }
-
-</script>
+<form id="logoutForm" name="logoutForm" action="/logout" method="post">
+    <div>
+        <input type="hidden" name="_csrf" value="6671c50e-2136-4b8f-840e-11b85abe3866"/>
+    </div>
+</form>
 </body>
 </html>
