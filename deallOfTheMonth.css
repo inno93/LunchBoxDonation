@@ -810,6 +810,7 @@ ol, ul {
     margin-left: 356px;
     text-align: center;
     line-height: 41px;
+    cursor: pointer;
 }
 
 .deal-month > ul > li{
