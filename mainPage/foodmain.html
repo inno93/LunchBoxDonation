@@ -6,6 +6,8 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="foodmain.css">
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="../header-footer/header-footer.js"></script>
   <title>Document</title>
 </head>
 <style>
@@ -36,230 +38,8 @@
     <!-- scroll-따라오는 애 -->
 
 
-    <header id="header" class="header">
-  <div class="header-inner">
-    <a href="/mainPage/foodmain.html"><h1 class="logo" style="cursor: pointer;"></h1></a>
-      <span class="blind"></span>
-    </h1>
-        <div class="util">
-            <ul>
-                <li>
-                    <a href="" style="font-size: 11px;">로그인</a>
-                </li>
-                <li>
-                    <a href="" style="font-size: 11px;">회원가입</a>
-                </li>
-                <li>
-                    <a href="" style="font-size: 11px;">주문조회</a>
-                </li>
-                <li>
-                    <a href="" style="font-size: 11px;">고객센터</a>
-                </li>
-            </ul>
-        </div>
-        <div class="header-search">
-            <div class="top-search">
-                <input type="search" class="input-search" id="rankKeyword" name="rankKeyword" value="" onkeydown="fnSearchKeyDown(this);" onkeyup="setAutoKeywordList();" 
-                autocomplete="off" placeholder="랭킹 포차 OPEN 🍻">
-                <button type="button" class="btn-top-search" id="btnTopSearch" name="btnTopSearch" data-search-type="real" onclick="fnBtnTopSearch(this);">
-                    <span class="blind">검색</span>
-                </button>
-            </div>
-            <div class="search-layer">
-                <div class="autoResultBox" style="display: block;"><a href="javascript:autoKeywordSearch('%EC%95%84%EC%9E%84%EB%8B%AD');">아임닭</a>
-                    <a href="javascript:autoKeywordSearch('%EC%95%84%EC%9E%84%EB%8B%AD%20%ED%81%AC%EB%A6%AC%EC%8A%A4%ED%94%BC%20%EB%8B%AD%EA%B0%80%EC%8A%B4%EC%82%B4');">아임닭 크리스피 닭가슴살</a>
-                    <a href="javascript:autoKeywordSearch('%EC%97%90%EC%96%B4%EC%B9%98%ED%82%A8');">에어치킨</a><a href="javascript:autoKeywordSearch('%EC%97%B0%EC%96%B4');">연어</a><a href="javascript:autoKeywordSearch('%EC%95%84%EC%9E%84%EC%9B%B0');">아임웰</a>
-                    <a href="javascript:autoKeywordSearch('%EC%9A%B0%EC%9C%A0');">우유</a><a href="javascript:autoKeywordSearch('%EC%95%84%EC%9D%B4%EC%8A%A4%ED%81%AC%EB%A6%BC');">아이스크림</a>
-                    <a href="javascript:autoKeywordSearch('%EC%9B%90%EC%97%90%EC%9D%B4%EC%97%A0%20%EC%8A%A4%ED%8C%8C%ED%81%B4%EB%A7%81');">원에이엠 스파클링</a>
-                    <a href="javascript:autoKeywordSearch('%EC%97%90%EC%96%B4%EC%B9%98%ED%82%A8%20%EB%8B%AD%EB%8B%A4%EB%A6%AC%EC%82%B4');">에어치킨 닭다리살</a>
-                    <a href="javascript:autoKeywordSearch('%EC%95%84%EC%9E%84%EB%8B%AD%20%EC%86%8C%EC%8B%9C%EC%A7%80');">아임닭 소시지</a>
-                </div>
-                <div class="tit-area" style="display: none;"><h2>인기 검색어</h2></div>
-                <div class="search-rank" style="display: none;">
-                    <ol class="list">
-                        <li>
-                                <a href="javascript:;" data-search-type="popular" onclick="fnBtnTopSearch(this);">
-                                    <em class="num">1</em><span class="word">잇메이트 닭가슴살</span>
-                                    <span class="state text-primary"><i class="ico-arrfill-up"><span class="blind">UP</span></i>2</span>
-                                        </a>
-                            </li>
-                        <li>
-                                <a href="javascript:;" data-search-type="popular" onclick="fnBtnTopSearch(this);">
-                                    <em class="num">2</em><span class="word">저염 닭가슴살</span>
-                                    <span class="state">-</span>
-                                        </a>
-                            </li>
-                        <li>
-                                <a href="javascript:;" data-search-type="popular" onclick="fnBtnTopSearch(this);">
-                                    <em class="num">3</em><span class="word">생닭가슴살</span>
-                                    <span class="state text-primary"><i class="ico-arrfill-up"><span class="blind">UP</span></i>1</span>
-                                        </a>
-                            </li>
-                        <li>
-                                <a href="javascript:;" data-search-type="popular" onclick="fnBtnTopSearch(this);">
-                                    <em class="num">4</em><span class="word">도시락</span>
-                                    <span class="state text-blue"><i class="ico-arrfill-down"><span class="blind">DOWN</span></i>1</span>
-                                        </a>
-                            </li>
-                        <li>
-                                <a href="javascript:;" data-search-type="popular" onclick="fnBtnTopSearch(this);">
-                                    <em class="num">5</em><span class="word">볶음밥</span>
-                                    <span class="state text-primary"><i class="ico-arrfill-up"><span class="blind">UP</span></i>2</span>
-                                        </a>
-                            </li>
-                        <li>
-                                <a href="javascript:;" data-search-type="popular" onclick="fnBtnTopSearch(this);">
-                                    <em class="num">6</em><span class="word">교촌</span>
-                                    <span class="state text-green">NEW</span>
-                                        </a>
-                            </li>
-                        <li>
-                                <a href="javascript:;" data-search-type="popular" onclick="fnBtnTopSearch(this);">
-                                    <em class="num">7</em><span class="word">고구마</span>
-                                    <span class="state text-green">NEW</span>
-                                        </a>
-                            </li>
-                        <li>
-                                <a href="javascript:;" data-search-type="popular" onclick="fnBtnTopSearch(this);">
-                                    <em class="num">8</em><span class="word">샐러드</span>
-                                    <span class="state">-</span>
-                                        </a>
-                            </li>
-                        <li>
-                                <a href="javascript:;" data-search-type="popular" onclick="fnBtnTopSearch(this);">
-                                    <em class="num">9</em><span class="word">맛있닭 오븐구이</span>
-                                    <span class="state text-primary"><i class="ico-arrfill-up"><span class="blind">UP</span></i>1</span>
-                                        </a>
-                            </li>
-                        <li>
-                                <a href="javascript:;" data-search-type="popular" onclick="fnBtnTopSearch(this);">
-                                    <em class="num">10</em><span class="word">소고기볼</span>
-                                    <span class="state text-green">NEW</span>
-                                        </a>
-                            </li>
-                        </ol>
-                </div>
-                <div class="search-bottom" style="display: none;">
-                    <div class="tit">
-                        <h3>최근검색어</h3>
-                        <button type="button" class="text-guide-sm search-del-btn" onclick="fnAllDelKeyword(this)" style="display: none;"><span>전체삭제</span></button>
-                    </div>
-                    <div class="latest-search">
-                        <!-- 검색어 있을 경우 -->
-                        <ul class="srch-list" id="rankSearchArea">
-    
-                            <li id="srhItem" style="display:none;">
-                                <div class="srch-keyword">
-                                    <a href="javascript:;" class="txt" data-search-type="recent" onclick="fnBtnTopSearch(this)"></a>
-                                    <button type="button" class="btn-x-xs del-body" title="" onclick="fnDelKeyword(this)"><i class="ico-x-grey2 del-body"></i><span class="blind del-body">삭제</span></button>
-                                </div>
-                            </li>
-    
-    
-                        </ul>
-                        <!--// 검색어 있을 경우 -->
-                        <!-- 검색어 없을 경우 -->
-                        <div class="no-data" style="">최근 검색어가 없습니다.</div>
-                        <!--// 검색어 없을 경우 -->
-                    </div><!--// latest-search -->
-                </div>
-            </div>
-        </div>
-        <div class="my-memu" style="position: absolute; top: 23px; left: 844px;">
-            <ul>
-                <li style="display: inline-block; vertical-align: top;"><a href="/display/coupon/list" class="btn-util-coupon" title=""><span class="blind">쿠폰</span></a></li>
-                <li style="display: inline-block; vertical-align: top;"><a href="/mypage/main" class="btn-util-mypage" title=""><span class="blind">마이페이지</span></a></li>
-                <li style="display: inline-block; vertical-align: top;">
-                    <a href="/order/cart" class="btn-util-cart" title="">
-                        <span class="blind">장바구니</span>
-                        <em class="count">0</em>
-                    </a>
-                </li>
-            </ul>
-        </div>
-  </div>
-  <script>
-    function showItems() {
-      const itemsContainer = document.getElementById("itemsContainer");
-      itemsContainer.style.display = "block"; // 항목들 표시
-    }
-    
-    function hideItems() {
-      const itemsContainer = document.getElementById("itemsContainer");
-      itemsContainer.style.display = "none"; // 항목들 숨김
-    }
-    </script>
-    <div class="gnb-test">
-  <div class="gnb-wrap">
-    <div class="inner">
-        <div class="category-wrap">
-            <!-- <a href="#all-category" class="btn-menu-all"><span>카테고리</span></a> -->
-            
-            
-        </div><!--// category-wrap -->
-        <nav id="gnb" class="gnb">
-            <ul>
-                <div class="category-container">
-                  <div class="hamburger"></div>
-                    <div  class="category" onmouseover="showItems()" >카테고리</div>
-                    <div class="items-container" id="itemsContainer" onmouseover="showItems()" onmouseout="hideItems()">
-                    <div class="ttt">
-                        <a href="">
-                            <div class="item" style="background-image: url(https://file.rankingdak.com/image/RANK/BANNER/CATE_PC1_1/20230419/IMG1681JRj889432369.png); width: 50px; height: 54px;">
-                            <div style="margin-top: 59px; font-size: 12px; text-align: center;">신상품</div>
-                            </div>
-                        </a>
-                        <a href="">
-                            <div class="item" style="background-image: url(https://file.rankingdak.com/image/RANK/BANNER/CATE_PC1_1/20230419/IMG1681McH889452417.png); width: 50px; height: 54px;">
-                            <div style="margin-top: 59px; font-size: 12px; text-align: center;">닭가슴살</div>
-                            </div>
-                        </a>
-                        <a href="">
-                            <div class="item" style="background-image: url(https://file.rankingdak.com/image/RANK/BANNER/CATE_PC1_1/20230419/IMG1681vIq889467416.png); width: 50px; height: 54px;">
-                            <div style="margin-top: 59px; font-size: 12px; margin-left: -10px; text-align: center;">도시락·볶음밥</div>
-                            </div>
-                        </a>
-                        <a href="">
-                            <div class="item" style="background-image: url(https://file.rankingdak.com/image/RANK/BANNER/CATE_PC1_1/20230419/IMG1681qfN889474262.png); width: 50px; height: 54px;">
-                            <div style="margin-top: 59px; font-size: 12px; text-align: center;">소고기</div>
-                            </div>
-                        </a>
-                        <a href="">                                                                                                                                                          
-                            <div class="item" style="background-image: url(https://file.rankingdak.com/image/RANK/BANNER/CATE_PC1_1/20230419/IMG1681aSD889498981.png); width: 50px; height: 54px;">
-                            <div style="margin-top: 59px; font-size: 12px; margin-left: -5px; text-align: center;">샐러드·과일</div>
-                            </div>
-                        </a>
-                        <a href="">
-                            <div class="item" style="background-image: url(https://file.rankingdak.com/image/RANK/BANNER/CATE_PC1_1/20230419/IMG1681HWu889524917.png); width: 50px; height: 54px;">
-                            <div style="margin-top: 59px; font-size: 12px; text-align: center; margin-left: -10px;">음료·차·프로틴</div>
-                            </div>
-                        </a>
-                        <a href="">
-                            <div class="item" style="background-image: url(https://file.rankingdak.com/image/RANK/BANNER/CATE_PC1_1/20230419/IMG1681hmI889532816.png); width: 50px; height: 54px;">
-                            <div style="margin-top: 59px; font-size: 12px; text-align: center;">비건식품</div>
-                            </div>
-                        </a>
-                        <a href="">
-                            <div class="item" style="background-image: url(https://file.rankingdak.com/image/RANK/BANNER/CATE_PC1_1/20230419/IMG1681edU889550509.png); width: 50px; height: 54px;">
-                            <div style="margin-top: 59px; font-size: 12px; text-align: center;">수산·해산</div>
-                            </div>
-                        </a>
-                    </div>
-                    </div>
-                  </div>
-                <li class=""><a href="/display/rank/sale"><span style="font-size: 14.5px;">랭킹</span></a></li>
-                <li class=""><a href="/deallOfTheMonth.html"><span style="font-size: 14.5px;">이달의 특가</span></a></li>
-                <li class=""><a href="/benefits.html"><span style="font-size: 14.5px;">혜택정리</span></a></li>
-                <li class=""><a href="/display/onePack/list"><span style="font-size: 14.5px;">1팩 담기</span></a></li>
-                <li class=""><a href="/display/brand/list"><span style="font-size: 14.5px;">브랜드관</span></a></li>
-                <li class=""><a href="/promotion/event/list"><span style="font-size: 14.5px;">이벤트</span></a></li>
-                <li class=""><a href="/display/expressDeliveryList"><em class="ico-txt-gnb"><span class="blind">특급배송</span></em></a></li>
-                <li class="test1"></li>
-            </ul>
-        </nav><!--// gnb -->
-    </div>
-  </div>
-</div>
+<header id="header"></header>
+
 <!-- header -->
 <section class="container">
     <div class="arrow prev" id="arrow-prev">&lt;</div>
@@ -572,7 +352,8 @@ function showImages() {
   }
 </script>
 <!-- img x 2 category -->
-</header>
+
+
 
 <div class="theme-recommend">테마별 추천 상품</div>
 <div class="theme-recommend-div">
