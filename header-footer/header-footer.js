@@ -1,7 +1,15 @@
 
 $(document).ready(function () {
+    var urltmp = window.location.pathname;
+    var url = urltmp.split("/");
+    if(url[1] == "LunchBoxDonation"){
+        url =  "/LunchBoxDonation/header-footer/header-footer.html"
+    }else{
+        url =  "/header-footer/header-footer.html"
+    }
+
     $.ajax({
-        url: "/LunchBoxDonation/header-footer/header-footer.html",
+        url: url,
         dataType: "html",
         success: function (result) {
             let htmlContent = $(result);
