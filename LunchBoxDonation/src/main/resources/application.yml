@@ -15,12 +15,23 @@ spring:
       url: jdbc:oracle:thin:@localhost:1521:XE
       username: hr
       password: hr
+
     jpa:
       defer-datasource-initialization: true
       open-in-view: false
+
     devtools:
       livereload:
         enabled: false
+
+    mvc:
+      static-path-pattern: /static/**
+
+    thymeleaf:
+      prefix: classpath:templates/
+      suffix: .html
+      cache: false
+      check-template-location: true
 
   #jpa
   #  jpa:
