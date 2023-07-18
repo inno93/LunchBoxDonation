@@ -1,0 +1,35 @@
+#server
+server:
+  port: 10010
+
+#log
+output:
+  ansi:
+    enabled: always
+
+
+#jdbc
+spring:
+    datasource:
+      driver-class-name: oracle.jdbc.OracleDriver
+      url: jdbc:oracle:thin:@localhost:1521:XE
+      username: hr
+      password: hr
+    jpa:
+      defer-datasource-initialization: true
+      open-in-view: false
+    devtools:
+      livereload:
+        enabled: false
+
+  #jpa
+  #  jpa:
+  #    hibernate:
+  #      ddl-auto: create
+  #
+  #    #jpa format
+  #    properties:
+  #      hibernate:
+  #        format_sql: true
+  #    show-sql: true
+
