@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko" xml:lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="_csrf" content="6671c50e-2136-4b8f-840e-11b85abe3866"/>
+    <meta name="_csrf_header" content="X-CSRF-TOKEN"/>
+
+    <meta property="og:title" content="랭킹닭1컴">
+    <meta property="og:description" content="No.1 닭가슴살 순위스토어,닭가슴살 식단,헬스,훈제,소세지,추천 요리법">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.rankingdak.com/">
+    <meta property="og:image" content="https://file.rankingdak.com/rankingdak_og.jpg">
+    <meta name="referrer" content="unsafe-url">
+    <meta name="facebook-domain-verification" content="n9wxauvvyf2hn7mnw0h7h78b8s6ade">
+    <meta name="naver-site-verification" content="f49456f63ff3a881b3c179737e504259c28307f8"/>
+    <!-- ======================== 공통 CSS / JS ======================== -->
+
+
+    <link rel="stylesheet" href="../header-footer/header-footer.css">
+
+
+    <link rel="stylesheet" href="../../static/css/board/board.css">
+    <link rel="icon" href="https://www.rankingdak.com/resources/pc/images/icon/favicon.ico">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+    <!-- 서머노트를 위해 추가해야할 부분 -->
+    <script src="../summernote/summernote-lite.js"></script>
+    <script src="../summernote/lang/summernote-ko-KR.js"></script>
+    <link rel="stylesheet" href="../summernote/summernote-lite.css">
+    <script>
+        $(document).ready(function () {
+            $('.summernote').summernote({
+
+                minHeight: 500,
+
+                minHeight: 250,
+                lang: "ko-KR"
+            });
+        });
+
+
+    </script>
+
+    <script src="../../static/js/board/board.js"></script>
+    <!--헤더 푸터 로드 -->
+    <script src="../header-footer/header-footer.js"></script>
+    <title>랭킹닭컴 </title></head>
+<body>
+<header>
+    <div id="header"></div>
+</header>
+
+<!--// ========== 공통 헤더 :: header ========== -->
+
+<!-- ========== 컨텐츠 영역 :: container ========== -->
+<section id="contents" class="container">
+
+    <div class="content-wrap frame-sm">
+        <div class="page-title-area">
+            <h2 class="title-page"><a href="/service/center">고객센터</a></h2>
+        </div>
+        <div class="frame-wrap">
+            <div class="frame-left">
+                <div class="aside-menu-wrap">
+                    <nav class="aside-menu">
+                        <ul class="menu-list">
+                            <li><a href="/service/notice" class="menu">공지사항</a></li>
+                            <li><a href="/service/guide" class="menu">이용안내</a></li>
+                            <li><a href="/service/faq" class="menu">자주묻는 FAQ</a></li>
+                            <li><a href="#" onclick="checkLogin('/mypage/userCounsel/regCouncel')" class="menu">1:1
+                                문의하기</a></li>
+                            <li><a href="#" onclick="checkLogin('/service/voc')" class="menu">고객의소리</a></li>
+                        </ul>
+                    </nav><!--// aside-menu -->
+
+                    <div class="aside-guide-box">
+                        <dl>
+                            <dt>랭킹닭컴 고객센터</dt>
+                            <dd class="phone-num">02-6405-8088</dd>
+                            <dd>평일 <span class="text-num-md">09:00 ~ 18:00</span></dd>
+                            <dd>주말, 공휴일 휴무</dd>
+                        </dl>
+                        <dl>
+                            <dt>실시간 채팅 상담</dt>
+                            <dd>평일 <span class="text-num-md">09:00 ~ 21:00</span></dd>
+                            <dd>토요일 <span class="text-num-md">09:00 ~ 15:00</span></dd>
+                            <dd>일요일 <span class="text-num-md">13:00 ~ 21:00</span></dd>
+                        </dl>
+                    </div><!--// aside-guide-box -->
+                </div><!--// aside-menu-wrap -->
+            </div><!--// frame-left -->
+            <div class="frame-right">
+                <div class="frame-cnt-inner">
+                    <div class="menu-title-area">
+                        <h3 class="title-menu">공지사항</h3>
+                    </div>
+                    <div class="board-form type2">
+                        <table>
+                            <caption>내용 작성</caption>
+                            <colgroup>
+                                <col style="width:180px">
+                                <col style="width:auto">
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <th class="text-left" scope="row">
+                                    <div class="in-tb">제목<em class="es"><span class="blind">필수입력</span></em></div>
+                                </th>
+                                <td class="text-left">
+
+                                    <div class="input-group w-full">
+
+                                        <input type="text" name="vQuestionTitle" id="vQuestionTitle" title=""
+                                               class="input-text" placeholder="제목을 입력해주세요" value="">
+                                    </div>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-left" scope="row">
+                                    <div class="in-tb">내용 <em class="es"><span class="blind">필수입력</span></em></div>
+                                </th>
+                                <td class="text-left">
+                                    <div class="container-input">
+                                        <textarea class="summernote" name="editordata"></textarea>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div><!--// view-content-area -->
+
+                    <div class="page-bottom">
+                        <div class="btn-bottom-area">
+                            <a href="/service/notice" class="btn-basic-md2 btn-black"><span>목록</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--frame-wrap-->
+    </div><!--// content-wrap -->
+
+</section>
+<!--// ========== 컨텐츠 영역 :: container ========== -->
+
+<!-- ========== 공통 푸터 :: footer :: include.footer() 영역  ========== -->
+<footer>
+    <div id="footer"></div>
+</footer>
+<!--// ========== 공통 푸터 :: footer ========== -->
+
+<!--// ========== 공통 푸터 :: footer :: include.footer() 영역  ========== -->
+
+<form id="logoutForm" name="logoutForm" action="/logout" method="post">
+    <div>
+        <input type="hidden" name="_csrf" value="6671c50e-2136-4b8f-840e-11b85abe3866"/>
+    </div>
+</form>
+
+</body>
+</html>
