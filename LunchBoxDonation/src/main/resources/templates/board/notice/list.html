@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xml:lang="ko">
+<html lang="ko" xml:lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,23 +17,20 @@
     <meta name="naver-site-verification" content="f49456f63ff3a881b3c179737e504259c28307f8"/>
     <!-- ======================== 공통 CSS / JS ======================== -->
 
-    <link rel="stylesheet" href="../header-footer/header-footer.css">
-    <link rel="stylesheet" href="../../static/css/board/board.css">
+    <link rel="stylesheet" href="/css/header-footer/header-footer.css">
+    <link rel="stylesheet" href="/css/board/board.css">
     <link rel="icon" href="https://www.rankingdak.com/resources/pc/images/icon/favicon.ico">
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
-    <script src="../../static/js/board/board.js"></script>
-    <!--헤더 푸터 로드 -->
-    <script src="../header-footer/header-footer.js"></script>
-
-
+    <script src="/js/board/board.js"></script>
     <title>랭킹닭컴 </title></head>
 <body>
 
 <!--// ========== 공통 헤더 :: header ========== -->
 <header>
-    <div id="header"></div>
+    <div th:include="/header-footer/header-footer.html :: header"></div>
 </header>
+
 
 <!-- ========== 컨텐츠 영역 :: container ========== -->
 <section id="contents" class="container">
@@ -306,7 +303,7 @@
 
 <!--// ========== 공통 푸터 :: footer ========== -->
 <footer>
-    <div id="footer"></div>
+    <div th:include="/header-footer/header-footer.html :: footer"></div>
 </footer>
 <!--// ========== 공통 푸터 :: footer :: include.footer() 영역  ========== -->
 

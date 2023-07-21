@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ko" xml:lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="_csrf" content="6671c50e-2136-4b8f-840e-11b85abe3866"/>
+    <meta name="_csrf_header" content="X-CSRF-TOKEN"/>
+
+    <meta property="og:title" content="랭킹닭1컴">
+    <meta property="og:description" content="No.1 닭가슴살 순위스토어,닭가슴살 식단,헬스,훈제,소세지,추천 요리법">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.rankingdak.com/">
+    <meta property="og:image" content="https://file.rankingdak.com/rankingdak_og.jpg">
+    <meta name="referrer" content="unsafe-url">
+    <meta name="facebook-domain-verification" content="n9wxauvvyf2hn7mnw0h7h78b8s6ade">
+    <meta name="naver-site-verification" content="f49456f63ff3a881b3c179737e504259c28307f8"/>
+    <!-- ======================== 공통 CSS / JS ======================== -->
+    <link rel="stylesheet" href="/css/header-footer/header-footer.css">
+    <link rel="stylesheet" href="/css/board/board.css">
+    <link rel="icon" href="https://www.rankingdak.com/resources/pc/images/icon/favicon.ico">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="/js/board/board.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            /****** 아코디언 ******/
+            var listWrap = $('.ui-accordion').children('.ui-accordion-list'),
+                click = listWrap.children('li').find('.ui-accordion-click');
+
+            click.on('click', function () {
+                var view = $(this).next('.ui-accordion-view'),
+                    list = $(this).parent('li');
+
+                if (!list.hasClass('active')) {
+                    list.addClass('active').siblings('li').removeClass('active').find('.ui-accordion-view').addClass('hide');
+                    // view.removeClass('hide')
+                    view.css("display", "block")
+                } else if (list.hasClass('active')) {
+                    list.removeClass('active');
+                    // view.addClass('hide')
+                    view.css("display", "none")
+                }
+            });
+        });
+    </script>
+
+
+    <title>랭킹닭컴 </title></head>
+<body>
+<header>
+    <div th:include="/header-footer/header-footer.html :: header"></div>
+</header>
+<!--// ========== 공통 헤더 :: header ========== -->
+
+<!-- ========== 컨텐츠 영역 :: container ========== -->
+<section id="contents" class="container">
+
+    <div class="content-wrap">
+        <div class="frame-full head-mypage" th:include="/mypage/userInfo/userinfo.html"></div>
+        <div class="frame-sm">
+            <div class="frame-left">
+                <!-- 마이페이지 사이드바 출력-->
+                <div class="aside-menu-wrap" th:include="/mypage/sidebar/sidebar.html">
+                    <div class="aside-link-box">
+                        <a href="/service/voc"><i class="ico-bl-speaker"></i><span>고객의 소리</span><i
+                                class="ico-arr-right"></i></a>
+                    </div>
+                </div><!--// aside-menu-wrap -->
+            </div>
+            <form id="popUpFrm" name="popUpFrm" action="/mypage/userCounsel/regCouncel" method="post">
+                <div id="orderProductPopUp"></div>
+                <div>
+                    <input type="hidden" name="_csrf" value="b10b2301-79a2-4558-a078-7144759aa8ed"/>
+                </div>
+            </form>
+            <form id="frm" name="frm" action="/mypage/userCounsel/list" method="post"><input type="hidden"
+                                                                                             name="nowPageNo" value="1">
+                <div class="frame-right">
+                    <div class="frame-cnt-inner">
+                        <div class="menu-title-area">
+                            <h3 class="title-menu">1:1 문의</h3>
+                        </div><!--// menu-title-area -->
+
+                        <div class="board-list ui-accordion">
+                            <ul class="accordion-list ui-accordion-list">
+
+                                <li class="" id="li_99726"><!-- 활성화시 addClass active -->
+                                    <!-- 질문 영역 -->
+                                    <a href="javascript:;" class="title-div ui-accordion-click"
+                                    >
+                                        <div class="subject">
+                                            <span class="state-done">답변완료</span>
+                                            <span class="classify">[배송관련]</span>
+                                            <p class="txt">
+                                                <span style="white-space:pre-wrap">보틀주문</span></p>
+                                        </div>
+                                        <div class="right">
+                                            <span class="date">2021.06.18</span>
+                                            <i class="ico-arr-toggle"></i>
+                                        </div>
+                                    </a><!-- title-div -->
+                                    <div class="ui-accordion-view" style="display: none">
+                                        <div class="question">
+                                            <div class="detail-div">
+                                                <p class="txt">
+                                                    <span style="white-space:pre-wrap">보틀을 주문했는데 1개만배송됬어요</span>
+                                                </p>
+                                                <div class="bottom">
+                                                    <div class="added-file thumDtlQuestion" data-cd="99726">
+                                                        <ul class="thum-list">
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div><!--// detail-div -->
+                                        </div><!--// question :: 질문 영역 -->
+                                        <!-- 답변 영역 -->
+                                        <div class="answer">
+                                            <!--
+                                                아이콘이 img 태그로 들어가야 하는 경우 :
+                                                <span class="img"><img src="../../images/_samples/@sample_40x40_chracter.png" alt="닭대리" /></span>
+                                            -->
+                                            <div class="info"><span class="name">닭대리
+                                            </span><span class="date">2021.06.18</span></div>
+                                            <p class="txt">
+                                                <span style="white-space:pre-wrap">안녕하세요 회원님 닭가슴살 감동쇼핑 랭킹닭컴 닭대리입니다.
+
+먼저, 이용에 불편드려서 죄송합니다.
+주문처리과정을 확인해보니, 포장과정에서 실수가 있었던 것 같습니다.
+
+누락된 상품은 월요일 출고진행하고, 운송장은 월요일 오후 6시 이후에 문자로 회신드리겠습니다.
+
+추가문의사항이 있으신 경우
+
+고객센터(02-6405-8088)으로 연락주시거나 게시판 또는 사이트하단 오른쪽의 실시간채팅으로
+
+문의주시면 운영시간 내에 빠르게 안내 도와드리겠습니다.
+
+
+
+랭킹닭컴을 이용해 주셔서 감사합니다.</span>
+                                            </p>
+                                            <div class="bottom">
+                                                <div class="added-file thumDtlAnswer" data-cd="99726">
+                                                    <ul class="thum-list">
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div><!--// answer :: 답변 영역 -->
+                                    </div><!--// ui-accordion-view -->
+                                </li>
+                            </ul>
+                        </div><!--// board-accordion -->
+                        <div class="page-bottom">
+                            <div class="pagination">
+
+
+                                <script type="text/javascript">
+                                    //<![CDATA[
+                                    function CmPageMove(pg, size) {
+                                        var frm = document.frm;
+                                        frm["nowPageNo"].value = pg;
+
+                                        if (size != undefined) {
+                                            frm["pageSize"].value = size;
+                                        }
+
+                                        frm.submit();
+                                    }
+
+                                    //]]>
+                                </script>
+                                <div class="pagging-wrap page-area">
+                                    <div class="page-number">
+                                        <div class="pagination mt20">
+                                            <a href="javascript:CmPageMove('0')" data-page="0"
+                                               class="btn-page prev"><span class="blind">이전</span></a>
+                                            <a href="#" class="current"><span>1</span></a>
+                                            <a href="javascript:CmPageMove('2')" data-page="2"
+                                               class="btn-page next"><span class="blind">다음</span></a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div><!--// pagination -->
+                            <div class="right-area">
+                                <a href="#" class="btn-basic-md2 btn-default w150" onclick="goView()"><span>문의하기</span></a>
+                            </div>
+                        </div>
+                    </div><!--// frame-cnt-inner -->
+                </div><!--// frame-right -->
+                <div>
+                    <input type="hidden" name="_csrf" value="7e61c0f1-0523-4bdf-9390-05283af840bc">
+                </div>
+            </form><!--// frame-cnt-inner -->
+        </div><!--// frame-right -->
+        <div>
+            <input type="hidden" name="_csrf" value="b10b2301-79a2-4558-a078-7144759aa8ed"/>
+        </div>
+        </form></div><!--// frame-sm -->
+    </div><!--// content-wrap -->
+
+</section>
+<!--// ========== 컨텐츠 영역 :: container ========== -->
+
+<!-- ========== 공통 푸터 :: footer :: include.footer() 영역  ========== -->
+<footer>
+    <div th:include="/header-footer/header-footer.html :: footer"></div>
+</footer>
+
+
+<!--// ========== 공통 푸터 :: footer :: include.footer() 영역  ========== -->
+
+<form id="logoutForm" name="logoutForm" action="/logout" method="post">
+    <div>
+        <input type="hidden" name="_csrf" value="b10b2301-79a2-4558-a078-7144759aa8ed"/>
+    </div>
+</form>
+
+</body>
+</html>

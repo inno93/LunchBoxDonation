@@ -14,9 +14,7 @@ public class TestController {
         ModelAndView mv = new ModelAndView();
 
         log.info("test");
-
-        mv.setViewName("test"); // html 파일 경로
-
+        mv.setViewName("test"); // html 파일 이름 설정
         return mv;
     }
 }

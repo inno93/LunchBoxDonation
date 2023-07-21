@@ -1,12 +1,13 @@
 
 $(document).ready(function () {
     var urltmp = window.location.pathname;
-    var url = urltmp.split("/");
-    if(url[1] == "LunchBoxDonation"){
-        url =  "/LunchBoxDonation/header-footer/header-footer.html"
-    }else{
-        url =  "/header-footer/header-footer.html"
-    }
+    // var url = urltmp.split("/");
+    // if(url[1] == "LunchBoxDonation"){
+    //     url =  "/LunchBoxDonation/header-footer/header-footer.html"
+    // }else{
+    //     url =  "/header-footer/header-footer.html"
+    // }
+    var url = "/header-footer/header-footer.html";
 
     $.ajax({
         url: url,

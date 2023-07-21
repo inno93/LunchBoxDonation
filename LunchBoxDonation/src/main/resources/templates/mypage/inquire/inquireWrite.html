@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ko" xml:lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="_csrf" content="6671c50e-2136-4b8f-840e-11b85abe3866"/>
+    <meta name="_csrf_header" content="X-CSRF-TOKEN"/>
+
+    <meta property="og:title" content="랭킹닭1컴">
+    <meta property="og:description" content="No.1 닭가슴살 순위스토어,닭가슴살 식단,헬스,훈제,소세지,추천 요리법">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.rankingdak.com/">
+    <meta property="og:image" content="https://file.rankingdak.com/rankingdak_og.jpg">
+    <meta name="referrer" content="unsafe-url">
+    <meta name="facebook-domain-verification" content="n9wxauvvyf2hn7mnw0h7h78b8s6ade">
+    <meta name="naver-site-verification" content="f49456f63ff3a881b3c179737e504259c28307f8"/>
+    <!-- ======================== 공통 CSS / JS ======================== -->
+
+    <link rel="stylesheet" href="/css/header-footer/header-footer.css">
+    <link rel="stylesheet" href="/css/board/board.css">
+    <link rel="icon" href="https://www.rankingdak.com/resources/pc/images/icon/favicon.ico">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+    <!-- 서머노트를 위해 추가해야할 부분 -->
+    <script src="/summernote/summernote-lite.js"></script>
+    <script src="/summernote/lang/summernote-ko-KR.js"></script>
+    <link rel="stylesheet" href="/summernote/summernote-lite.css">
+    <script>
+        $(document).ready(function () {
+            $('.summernote').summernote({
+                minHeight: 250,
+                maxHeight: null,
+                lang: "ko-KR"
+            });
+        });
+
+
+    </script>
+
+    <script src="/js/board/board.js"></script>
+    <title>랭킹닭컴 </title></head>
+<body>
+
+<!--// ========== 공통 헤더 :: header ========== -->
+<header>
+    <div th:include="/header-footer/header-footer.html :: header"></div>
+</header>
+
+<!-- ========== 컨텐츠 영역 :: container ========== -->
+<section id="contents" class="container">
+
+    <div class="content-wrap">
+        <div class="frame-full head-mypage" th:include="/mypage/userInfo/userinfo.html"></div>
+        <div class="frame-sm">
+            <div class="frame-left">
+                <!-- 마이페이지 사이드바 출력-->
+                <div class="aside-menu-wrap" th:include="/mypage/sidebar/sidebar.html">
+                    <div class="aside-link-box">
+                        <a href="/service/voc"><i class="ico-bl-speaker"></i><span>고객의 소리</span><i
+                                class="ico-arr-right"></i></a>
+                    </div>
+                </div><!--// aside-menu-wrap -->
+            </div>
+            <form id="counselRegFrm" name="counselRegFrm" action="/mypage/userCounsel/regCouncel" method="post"><input
+                    type="hidden" name="vCounselid" value=""/>
+                <input type="hidden" id="flagAction" name="flagAction" value="R"/>
+                <input type="hidden" name="vUsercd" value=""/>
+                <input type="hidden" name="vRegUserid" value=""/>
+                <input type="hidden" name="vSitecd" value=""/>
+                <input type="hidden" name="fileCd" value="REVIEW"/>
+                <input type="hidden" name="siteCd" value="RANK"/>
+
+                <div class="frame-right">
+                    <div class="frame-cnt-inner">
+                        <div class="menu-title-area">
+                            <h3 class="title-menu">1:1 문의하기</h3>
+                        </div><!--// menu-title-area -->
+
+                        <div class="board-form type2">
+                            <table>
+                                <caption>내용 작성</caption>
+                                <colgroup>
+                                    <col style="width:180px">
+                                    <col style="width:auto">
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <th class="text-left" scope="row">
+                                        <div class="in-tb">문의 유형<em class="es"><span class="blind">필수입력</span></em>
+                                        </div>
+                                    </th>
+                                    <td class="text-left">
+
+                                        <div class="input-group w-full">
+                                            <div class="input-group-form">
+                                                <div class="ui-select select-box w150" id="vCounselType" data-value="">
+                                                    <a href="#none" title=""
+                                                       class="select-value placeholder"><span>유형선택</span></a>
+                                                    <div class="select-list">
+                                                        <ul>
+                                                            <li data-name="100" data-value="100"><a href="#none"
+                                                                                                    class="counselType"><span>주문/결제</span></a>
+                                                            </li>
+                                                            <li data-name="200" data-value="200"><a href="#none"
+                                                                                                    class="counselType"><span>취소/반품</span></a>
+                                                            </li>
+                                                            <li data-name="300" data-value="300"><a href="#none"
+                                                                                                    class="counselType"><span>상품관련</span></a>
+                                                            </li>
+                                                            <li data-name="400" data-value="400"><a href="#none"
+                                                                                                    class="counselType"><span>배송관련</span></a>
+                                                            </li>
+                                                            <li data-name="500" data-value="500"><a href="#none"
+                                                                                                    class="counselType"><span>포인트</span></a>
+                                                            </li>
+                                                            <li data-name="951" data-value="951"><a href="#none"
+                                                                                                    class="counselType"><span>설선물세트 문의</span></a>
+                                                            </li>
+                                                            <li data-name="999" data-value="999"><a href="#none"
+                                                                                                    class="counselType"><span>기타</span></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <input type="text" name="vQuestionTitle" id="vQuestionTitle" title=""
+                                                   class="input-text" placeholder="제목을 입력해주세요" value="">
+                                        </div>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="text-left" scope="row">
+                                        <div class="in-tb">주문상품</div>
+                                    </th>
+                                    <td class="text-left">
+                                        <div class="input-group w-full">
+                                            <input type="text" id="item-1" class="input-text" disabled
+                                                   placeholder="문의상품을  선택해주세요.">
+                                            <span class="input-group-btn">
+                                    <button type="button" id="btn_orderProduct"
+                                            class="btn-form btn-ex-white w150 btn_orderProduct"><span>주문상품 검색</span></button>
+                                    </span><!--// input-group-btn -->
+                                        </div>
+                                        <!-- 주문상품 선택시 -->
+                                        <div id="mainPrd">
+                                        </div>
+                                        <!--// 주문상품 선택시 -->
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="text-left" scope="row">
+                                        <div class="in-tb">문의내용 <em class="es"><span class="blind">필수입력</span></em>
+                                        </div>
+                                    </th>
+                                    <td class="text-left">
+                                        <div class="textarea-box-count h230">
+                                            <textarea id="vQuestionCont" placeholder="문의내용을 입력하세요"
+                                                      name="vQuestionCont"></textarea>
+                                            <div class="txt-count"><span id="counter">0</span> / <span class="total">1,000</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- 첨부파일 영역 -->
+                                <tr class="attach-file-line">
+                                    <th class="text-left" scope="row"></th>
+                                    <td class="text-left">
+                                        <div class="file-add-boxes">
+
+                                            <div class="div-attach-thumb" id="US_RV_IMG1_attachThumb">
+                                                <button type="button" class="btn-attach-thumb"
+                                                        onclick="javascript:jfupload.uploadImage('US_RV_IMG1')">
+                                                    <i class="ico-plus-xlg"></i><span class="blind">파일첨부</span>
+                                                </button>
+                                                <input class="input_file" id="US_RV_IMG1_imageFile"
+                                                       name="US_RV_IMG1_imageFile" type="file" accept="image/*"
+                                                       style="display:none;"/>
+                                            </div>
+                                            <script type="text/javascript">
+                                                jfupload.initImageUpload({
+                                                    target: $('#US_RV_IMG1_imageFile')
+                                                    ,
+                                                    formName: 'counselRegFrm'
+                                                    ,
+                                                    uploadCd: 'US_RV_IMG1'
+                                                    ,
+                                                    recordId: ''
+                                                    ,
+                                                    fileCd: $('input[name=fileCd]', $('form[name="counselRegFrm"]')).val()
+                                                    ,
+                                                    siteCd: $('input[name=siteCd]', $('form[name="counselRegFrm"]')).val()
+                                                    ,
+                                                    resizeWidth: ''
+                                                    ,
+                                                    resizeHeight: ''
+                                                    ,
+                                                    rvFlag: 'Y'
+                                                    ,
+                                                    tempYn: 'Y'
+                                                    ,
+                                                    limitFileMBSize: 20
+                                                    ,
+                                                    success: function (imgData, uploadCd) {
+                                                        jfupload.deleteImage('US_RV_IMG1', 'counselRegFrm');
+                                                        const previewTag = $('#US_RV_IMG1_attachThumb');
+                                                        const src = imgData.image_url + imgData.image_path + imgData.image_id + imgData.image_ext;
+                                                        let imgStr = '<div class="attach-img">';
+                                                        imgStr += '<button type="button" class="btn-x-xs2 btn_del" onClick="javascript:jfupload.deleteImage(\'US_RV_IMG1\', \'counselRegFrm\')";><i class="ico-x-white"></i><span class="blind">삭제</span></button>';
+                                                        imgStr += '</div>';
+                                                        previewTag.append(imgStr);
+                                                        const previewImgTag = $('#US_RV_IMG1_attachThumb').find('.attach-img');
+                                                        previewImgTag.prepend('<img src="' + src + '" style="width:68px;height:68px;">');
+                                                    }
+                                                });
+                                            </script>
+                                            <div class="div-attach-thumb" id="US_RV_IMG2_attachThumb">
+                                                <button type="button" class="btn-attach-thumb"
+                                                        onclick="javascript:jfupload.uploadImage('US_RV_IMG2')">
+                                                    <i class="ico-plus-xlg"></i><span class="blind">파일첨부</span>
+                                                </button>
+                                                <input class="input_file" id="US_RV_IMG2_imageFile"
+                                                       name="US_RV_IMG2_imageFile" type="file" accept="image/*"
+                                                       style="display:none;"/>
+                                            </div>
+                                            <script type="text/javascript">
+                                                jfupload.initImageUpload({
+                                                    target: $('#US_RV_IMG2_imageFile')
+                                                    ,
+                                                    formName: 'counselRegFrm'
+                                                    ,
+                                                    uploadCd: 'US_RV_IMG2'
+                                                    ,
+                                                    recordId: ''
+                                                    ,
+                                                    fileCd: $('input[name=fileCd]', $('form[name="counselRegFrm"]')).val()
+                                                    ,
+                                                    siteCd: $('input[name=siteCd]', $('form[name="counselRegFrm"]')).val()
+                                                    ,
+                                                    resizeWidth: ''
+                                                    ,
+                                                    resizeHeight: ''
+                                                    ,
+                                                    rvFlag: 'Y'
+                                                    ,
+                                                    tempYn: 'Y'
+                                                    ,
+                                                    limitFileMBSize: 20
+                                                    ,
+                                                    success: function (imgData, uploadCd) {
+                                                        jfupload.deleteImage('US_RV_IMG2', 'counselRegFrm');
+                                                        const previewTag = $('#US_RV_IMG2_attachThumb');
+                                                        const src = imgData.image_url + imgData.image_path + imgData.image_id + imgData.image_ext;
+                                                        let imgStr = '<div class="attach-img">';
+                                                        imgStr += '<button type="button" class="btn-x-xs2 btn_del" onClick="javascript:jfupload.deleteImage(\'US_RV_IMG2\', \'counselRegFrm\')";><i class="ico-x-white"></i><span class="blind">삭제</span></button>';
+                                                        imgStr += '</div>';
+                                                        previewTag.append(imgStr);
+                                                        const previewImgTag = $('#US_RV_IMG2_attachThumb').find('.attach-img');
+                                                        previewImgTag.prepend('<img src="' + src + '" style="width:68px;height:68px;">');
+                                                    }
+                                                });
+                                            </script>
+                                            <div class="div-attach-thumb" id="US_RV_IMG3_attachThumb">
+                                                <button type="button" class="btn-attach-thumb"
+                                                        onclick="javascript:jfupload.uploadImage('US_RV_IMG3')">
+                                                    <i class="ico-plus-xlg"></i><span class="blind">파일첨부</span>
+                                                </button>
+                                                <input class="input_file" id="US_RV_IMG3_imageFile"
+                                                       name="US_RV_IMG3_imageFile" type="file" accept="image/*"
+                                                       style="display:none;"/>
+                                            </div>
+                                            <script type="text/javascript">
+                                                jfupload.initImageUpload({
+                                                    target: $('#US_RV_IMG3_imageFile')
+                                                    ,
+                                                    formName: 'counselRegFrm'
+                                                    ,
+                                                    uploadCd: 'US_RV_IMG3'
+                                                    ,
+                                                    recordId: ''
+                                                    ,
+                                                    fileCd: $('input[name=fileCd]', $('form[name="counselRegFrm"]')).val()
+                                                    ,
+                                                    siteCd: $('input[name=siteCd]', $('form[name="counselRegFrm"]')).val()
+                                                    ,
+                                                    resizeWidth: ''
+                                                    ,
+                                                    resizeHeight: ''
+                                                    ,
+                                                    rvFlag: 'Y'
+                                                    ,
+                                                    tempYn: 'Y'
+                                                    ,
+                                                    limitFileMBSize: 20
+                                                    ,
+                                                    success: function (imgData, uploadCd) {
+                                                        jfupload.deleteImage('US_RV_IMG3', 'counselRegFrm');
+                                                        const previewTag = $('#US_RV_IMG3_attachThumb');
+                                                        const src = imgData.image_url + imgData.image_path + imgData.image_id + imgData.image_ext;
+                                                        let imgStr = '<div class="attach-img">';
+                                                        imgStr += '<button type="button" class="btn-x-xs2 btn_del" onClick="javascript:jfupload.deleteImage(\'US_RV_IMG3\', \'counselRegFrm\')";><i class="ico-x-white"></i><span class="blind">삭제</span></button>';
+                                                        imgStr += '</div>';
+                                                        previewTag.append(imgStr);
+                                                        const previewImgTag = $('#US_RV_IMG3_attachThumb').find('.attach-img');
+                                                        previewImgTag.prepend('<img src="' + src + '" style="width:68px;height:68px;">');
+                                                    }
+                                                });
+                                            </script>
+                                            <p class="text-guide-md ">- 최대 15MB 이하의 JPG, PNG, GIF, BMP 파일 3장까지 첨부
+                                                가능합니다.</p>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!--// 첨부파일 영역 -->
+                                </tbody>
+                            </table>
+                        </div><!--// board-form -->
+
+                        <div class="btn-bottom-area">
+                            <button type="button" class="btn-basic-lg2 btn-grey3" onclick="javascript:history.back();">
+                                <span>취소하기</span></button>
+                            <button type="button" class="btn-basic-lg2 btn-primary" onclick="goSave();">
+                                <span>문의하기</span></button>
+                        </div>
+
+                    </div><!--// frame-cnt-inner -->
+                </div><!--// frame-right -->
+                <div>
+                    <input type="hidden" name="_csrf" value="b10b2301-79a2-4558-a078-7144759aa8ed"/>
+                </div>
+            </form>
+        </div><!--// frame-sm -->
+    </div><!--// content-wrap -->
+
+</section>
+<!--// ========== 컨텐츠 영역 :: container ========== -->
+
+<!-- ========== 공통 푸터 :: footer :: include.footer() 영역  ========== -->
+<footer>
+    <div th:include="/header-footer/header-footer.html :: footer"></div>
+</footer>
+
+<!--// ========== 공통 푸터 :: footer :: include.footer() 영역  ========== -->
+
+<form id="logoutForm" name="logoutForm" action="/logout" method="post">
+    <div>
+        <input type="hidden" name="_csrf" value="b10b2301-79a2-4558-a078-7144759aa8ed"/>
+    </div>
+</form>
+</body>
+</html>

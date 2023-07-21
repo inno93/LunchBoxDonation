@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xml:lang="ko">
+<html lang="ko" xml:lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,45 +18,28 @@
     <!-- ======================== 공통 CSS / JS ======================== -->
 
 
-    <link rel="stylesheet" href="../header-footer/header-footer.css">
-
-
-    <link rel="stylesheet" href="../../static/css/board/board.css">
+    <link rel="stylesheet" href="/css/header-footer/header-footer.css">
+    <link rel="stylesheet" href="/css/board/board.css">
     <link rel="icon" href="https://www.rankingdak.com/resources/pc/images/icon/favicon.ico">
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
-    <!-- 서머노트를 위해 추가해야할 부분 -->
-    <script src="../summernote/summernote-lite.js"></script>
-    <script src="../summernote/lang/summernote-ko-KR.js"></script>
-    <link rel="stylesheet" href="../summernote/summernote-lite.css">
-    <script>
-        $(document).ready(function () {
-            $('.summernote').summernote({
-
-                minHeight: 500,
-
-                minHeight: 250,
-                lang: "ko-KR"
-            });
-        });
-
-
-    </script>
-
-    <script src="../../static/js/board/board.js"></script>
+    <script src="/js/board/board.js"></script>
     <!--헤더 푸터 로드 -->
-    <script src="../header-footer/header-footer.js"></script>
-    <title>랭킹닭컴 </title></head>
+    <script src="/js/header-footer/header-footer.js"></script>
+    <title>랭킹닭컴 </title>
+</head>
 <body>
+
+
+<!-- ========== 공통 헤더 :: header ========== -->
 <header>
-    <div id="header"></div>
+    <div th:include="/header-footer/header-footer.html :: header"></div>
 </header>
 
 <!--// ========== 공통 헤더 :: header ========== -->
 
 <!-- ========== 컨텐츠 영역 :: container ========== -->
 <section id="contents" class="container">
-
     <div class="content-wrap frame-sm">
         <div class="page-title-area">
             <h2 class="title-page"><a href="/service/center">고객센터</a></h2>
@@ -96,41 +79,58 @@
                     <div class="menu-title-area">
                         <h3 class="title-menu">공지사항</h3>
                     </div>
-                    <div class="board-form type2">
-                        <table>
-                            <caption>내용 작성</caption>
-                            <colgroup>
-                                <col style="width:180px">
-                                <col style="width:auto">
-                            </colgroup>
-                            <tbody>
-                            <tr>
-                                <th class="text-left" scope="row">
-                                    <div class="in-tb">제목<em class="es"><span class="blind">필수입력</span></em></div>
-                                </th>
-                                <td class="text-left">
 
-                                    <div class="input-group w-full">
+                    <div class="view-content-area">
+                        <div class="view-content-head type2">
+                            <div class="inner">
+                                <div class="tit-cell">
+                                    <h4 class="tit">KB국민카드 금융상품 판매대리&amp;중개업자 증서</h4>
+                                </div>
+                                <div class="date-cell">
+                                    <ul class="sep-list type2">
+                                        <li>2023.06.05</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><!--// view-content-head -->
 
-                                        <input type="text" name="vQuestionTitle" id="vQuestionTitle" title=""
-                                               class="input-text" placeholder="제목을 입력해주세요" value="">
-                                    </div>
 
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="text-left" scope="row">
-                                    <div class="in-tb">내용 <em class="es"><span class="blind">필수입력</span></em></div>
-                                </th>
-                                <td class="text-left">
-                                    <div class="container-input">
-                                        <textarea class="summernote" name="editordata"></textarea>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        <div class="inner-text">
+                            [금융소비자보호법] 시행령 제24조 2항에 의거하여&nbsp;KB국민카드 금융상품 판매대리·중개업무 위탁 확인증서를 게시합니다.
+                            <p><img alt=""
+                                    src="https://file.rankingdak.com/image/COMM/EDITOR/NOTICE/20230605/IMG1685LMO953197796.jpg">
+                            </p>
+                        </div><!--// inner -->
                     </div><!--// view-content-area -->
+
+                    <div class="prev-list-bottom">
+                        <ul class="prev-list-tb">
+                            <li class="list-tb-item">
+                                <div class="cla-cell">
+                                    <div class="txt"><span>이전글</span><i class="ico-arrfill-up"></i></div>
+                                </div>
+                                <div class="tit-cell">
+                                    <a href="/service/notice/view?noticeId=20230531000000000161" class="text-elps">2023년
+                                        6월 현충일 연휴 배송 안내</a>
+                                </div>
+                                <div class="date-cell">
+                                    <span class="date">2023.05.31</span>
+                                </div>
+                            </li><!--// list-tb-item -->
+                            <li class="list-tb-item">
+                                <div class="cla-cell">
+                                    <div class="txt"><span>다음글</span><i class="ico-arrfill-down"></i></div>
+                                </div>
+                                <div class="tit-cell">
+                                    <a href="/service/notice/view?noticeId=20230619000000000163" class="text-elps">랭킹닭컴
+                                        서비스 이용약관 변경 안내</a>
+                                </div>
+                                <div class="date-cell">
+                                    <span class="date">2023.06.19</span>
+                                </div>
+                            </li><!--// list-tb-item -->
+                        </ul>
+                    </div>
 
                     <div class="page-bottom">
                         <div class="btn-bottom-area">
@@ -146,11 +146,11 @@
 <!--// ========== 컨텐츠 영역 :: container ========== -->
 
 <!-- ========== 공통 푸터 :: footer :: include.footer() 영역  ========== -->
-<footer>
-    <div id="footer"></div>
-</footer>
-<!--// ========== 공통 푸터 :: footer ========== -->
 
+<!--// ========== 공통 푸터 :: footer ========== -->
+<footer>
+    <div th:include="/header-footer/header-footer.html :: footer"></div>
+</footer>
 <!--// ========== 공통 푸터 :: footer :: include.footer() 영역  ========== -->
 
 <form id="logoutForm" name="logoutForm" action="/logout" method="post">
@@ -158,6 +158,5 @@
         <input type="hidden" name="_csrf" value="6671c50e-2136-4b8f-840e-11b85abe3866"/>
     </div>
 </form>
-
 </body>
 </html>
