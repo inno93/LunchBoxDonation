@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+
+<th:block layout:fragment="css">
+  <link rel="stylesheet" type="text/css" href="/css/login/join.css">
+</th:block>
+
+
+<section id="contents" class="container" layout:fragment="content" style="padding-bottom: 0px; min-height: auto;">
+
+  <div class="join-container" style="min-height: auto;">
+    <div class="join-area type2">
+      <div class="result-cnt">
+        <i class="ico-img-info"></i>
+        <p class="message">고객님의 아이디는<br><strong class="text-primary">
+
+          [아아디****]
+        </strong> 입니다.</p>
+      </div>
+      <div class="btn-bottom-area">
+        <a href="/auth/findpw" class="btn-basic-lg2 btn-primary-line"><span>비밀번호찾기</span></a>
+        <button type="button" class="btn-basic-lg2 btn-primary" onclick="onClickFindIdResultConfirm();"><span>확인</span></button>
+      </div>
+    </div><!--// join-area -->
+  </div>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $("#contents").css({
+        "padding-bottom":"0px",
+        'min-height':"auto"
+      });
+      $(".join-container").css("min-height","auto");
+
+    });
+
+    function onClickFindIdResultConfirm() {
+      document.location.href = "/auth/login";
+    }
+  </script></section>

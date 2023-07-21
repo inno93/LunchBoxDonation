@@ -18416,7 +18416,7 @@ html.layer-on,body.layer-on {
     left: 30px;
     width: 10px;
     height: 16px;
-    background: url("../../pc/images/icon/ico_bullet.png") -150px 0
+    background: url("/static/pc/images/icon/ico_bullet.png") -150px 0
 }
 
 .accordion-list.type2 .answer:before {
@@ -19877,7 +19877,7 @@ html.layer-on,body.layer-on {
     left: 15px;
     width: 10px;
     height: 16px;
-    background: url("../../pc/images/icon/ico_bullet.png") -150px 0
+    background: url("/static/pc/images/icon/ico_bullet.png") -150px 0
 }
 
 .counsel-list .reply-box .name {

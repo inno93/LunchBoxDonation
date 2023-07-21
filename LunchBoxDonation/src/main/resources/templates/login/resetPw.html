@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+
+<th:block layout:fragment="css">
+  <link rel="stylesheet" type="text/css" href="/css/login/join.css">
+</th:block>
+
+<section id="contents" class="container" layout:fragment="content" style="padding-bottom: 0px;">
+
+  <div class="join-container">
+    <div class="join-area type2">
+      <h2 class="join-title" style="text-align: left;">비밀번호 재설정</h2>
+      <form id="reset-pw-form" action="/auth/actionresetpw" method="post" onsubmit="return onSubmitResetMemberPw();"><input type="hidden" name="_csrf" value="de17576f-9ad6-4db3-b7ff-aa2ab1558df4"><input type="hidden" id="reset-member-pw-hidden-loginid" name="reset-member-pw-hidden-loginid" value="">
+        <input type="hidden" id="reset-member-pw-hidden-pw" name="reset-member-pw-hidden-pw" value="">
+        <fieldset class="form-group-area">
+          <legend>비밀번호 재설정</legend>
+          <div class="input-group type-lg w-full">
+            <label for="reset-pw-id-text" class="blind">아이디 입력</label>
+            <input type="text" id="reset-pw-id-text" class="input-text" onblur="onEventResetMemberPwLoginId();" onkeyup="onEventResetMemberPwLoginId();" placeholder="아이디 입력" value="" readonly="">
+          </div><!--// input-group -->
+          <div id="reset-pw-id-text-error"></div>
+          <div class="input-group type-lg w-full">
+            <label for="reset-pw-pw-text" class="blind">새 비밀번호 입력 </label>
+            <input type="password" id="reset-pw-pw-text" class="input-text" onblur="onEventResetMemberPwPassword();" onkeyup="onEventResetMemberPwPassword();" placeholder="새 비밀번호 입력 ">
+          </div><!--// input-group -->
+          <div id="reset-pw-pw-text-error"><p class="valid error">비밀번호는 6 ~ 16자 제한입니다.</p></div>
+          <div class="input-group type-lg w-full">
+            <label for="reset-pw-pw-confirm-text" class="blind">새 비밀번호 확인</label>
+            <input type="password" id="reset-pw-pw-confirm-text" class="input-text" onblur="onEventResetMemberPwPassword();" onkeyup="onEventResetMemberPwPassword();" placeholder="새 비밀번호 확인">
+          </div><!--// input-group -->
+          <div id="reset-pw-pw-confirm-text-error"></div>
+          <div id="reset-pw-pw-compare-error"></div>
+
+        </fieldset>
+
+        <div class="btn-bottom-area">
+          <button type="submit" id="reset-pw-submit-btn" class="btn-basic-lg2 btn-primary btn-dim" disabled=""><span>변경하기</span></button>
+        </div><!--// btn-bottom-area -->
+        <div>
+          <input type="hidden" name="_csrf" value="de17576f-9ad6-4db3-b7ff-aa2ab1558df4">
+        </div></form></div><!--// join-area -->
+  </div>
+
+  <input type="hidden" id="RSAModulus" value="8fb596dc39605e745e4b63fa506ec8aedc98390f49da2f478c56c1b19e20258b6fdd90c574cc6b4874065719c706645f582a3e0cbd2b60fddd26ec19e145c5b1f085cba2690e967af6dc7073c912fa82d3646ae85da8bbfb9450f722dbb7c3a55220d3f73616a51598d5b7a7f341aad75cf0fc19a9a5cf58400082935a592797">
+  <input type="hidden" id="RSAExponent" value="10001">
+
+  <script src="/resources/common/js/rsa/rsa.js"></script>
+  <script src="/resources/common/js/rsa/jsbn.js"></script>
+  <script src="/resources/common/js/rsa/prng4.js"></script>
+  <script src="/resources/common/js/rsa/rng.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $("#contents").css("padding-bottom",'0');
+      $('#reset-pw-id-text-error').html('');
+      $('#reset-pw-pw-text-error').html('');
+      $('#reset-pw-pw-confirm-text-error').html('');
+      $('#reset-pw-pw-compare-error').html('');
+
+      checkSubmitBtnState();
+    });
+
+    function onEventResetMemberPwLoginId() {
+      if (!verifyResetPwLoginId()) {
+        checkSubmitBtnState();
+        return false;
+      }
+
+      checkSubmitBtnState();
+      return true;
+    }
+
+    function onEventResetMemberPwPassword() {
+      if (!(verifyResetPwPassword() && verifyResetPwPwConfirm() && verifyResetPwPasswordsMatching())) {
+        checkSubmitBtnState();
+        return false;
+      }
+
+      checkSubmitBtnState();
+      return true;
+    }
+
+    function onSubmitResetMemberPw() {
+      if (!(verifyResetPwLoginId() && verifyResetPwPassword() && verifyResetPwPwConfirm() && verifyResetPwPasswordsMatching())) {
+        return false;
+      }
+
+      const loginId = $('#reset-pw-id-text').val().toLowerCase().trim();
+      const password = $('#reset-pw-pw-text').val();
+
+      let rsa = new RSAKey();
+      rsa.setPublic($('#RSAModulus').val(),$('#RSAExponent').val());
+
+      //$('#reset-member-pw-hidden-loginid').val(loginId);
+      $('#reset-member-pw-hidden-pw').val(rsa.encrypt(password));
+
+      return true;
+    }
+
+    // 확인 버튼 활성화 여부
+    function checkSubmitBtnState() {
+      if (verifyResetPwPassword() && verifyResetPwPwConfirm() && verifyResetPwPasswordsMatching()) {
+        if ($('#reset-pw-submit-btn').hasClass('btn-dim')) {
+          $('#reset-pw-submit-btn').removeClass('btn-dim').prop('disabled', false);
+        }
+      } else {
+        if (!$('#reset-pw-submit-btn').hasClass('btn-dim')) {
+          $('#reset-pw-submit-btn').addClass('btn-dim').prop('disabled', true);
+        }
+      }
+    }
+
+    // 아이디 검증
+    function verifyResetPwLoginId() {
+      const loginId = $('#reset-pw-id-text').val().toLowerCase().trim();
+
+      if (loginId.length === 0) {
+        $('#reset-pw-id-text-error').html('<p class="valid error">회원 ID를 입력해주세요.</p>');
+        return false;
+      }
+
+      //const isValid = (loginId.length >= 4 && loginId.length <= 16) && (loginId.search(/^[a-zA-Z0-9]+(\w+)*$/) !== -1);
+
+      //if (!isValid) {
+      //    $('#reset-pw-id-text-error').html('<p class="valid error">4~16자 영문 또는 숫자만 사용 가능합니다.</p>');
+      //    return false;
+      //}
+
+      $('#reset-pw-id-text-error').html('');
+      return true;
+    }
+
+    // 패스워드 입력란 검증
+    function verifyResetPwPassword() {
+      let password = $('#reset-pw-pw-text').val();
+      const pwLength = password.length;
+
+      if (pwLength > 16) {
+        $('#reset-pw-pw-text').val(password.substring(0, 16));
+      } else if (pwLength < 6) {
+        $('#reset-pw-pw-text-error').html('<p class="valid error">비밀번호는 6 ~ 16자 제한입니다.</p>');
+        return false;
+      }
+
+      if (password.search(/^[a-zA-Z0-9!@#$%^&*]+( [a-zA-Z0-9!@#$%^&*]+)*$/) === -1) {
+        $('#reset-pw-pw-text-error').html('<p class="valid error">비밀번호에 특수문자는 !, @, #, $, %, ^, &, * 만 사용 가능합니다.</p>');
+        return false;
+      }
+
+      if (password.search(/[A-Za-z]/) === -1 || password.search(/[0-9]/) === -1 || password.search(/[!@#$%^&*]/) === -1) {
+        $('#reset-pw-pw-text-error').html('<p class="valid error">6 ~ 16자 영문, 숫자, 특수문자 1개 이상씩 혼용이 필수입니다.</p>');
+        return false;
+      }
+
+      $('#reset-pw-pw-text-error').html('');
+      return true;
+    }
+
+    // 패스워드 확인란 검증
+    function verifyResetPwPwConfirm() {
+      let pwConfirm = $('#reset-pw-pw-confirm-text').val();
+      const pwConfirmLen = pwConfirm.length;
+
+      if (pwConfirmLen > 16) {
+        $('#reset-pw-pw-confirm-text').val(pwConfirm.substring(0, 16));
+      } else if (pwConfirmLen < 6) {
+        $('#reset-pw-pw-confirm-text-error').html('<p class="valid error">확인비밀번호는 6 ~ 16자 제한입니다.</p>');
+        return false;
+      }
+
+      if (pwConfirm.search(/^[a-zA-Z0-9!@#$%^&*]+( [a-zA-Z0-9!@#$%^&*]+)*$/) === -1) {
+        $('#reset-pw-pw-confirm-text-error').html('<p class="valid error">확인비밀번호에 특수문자는 !, @, #, $, %, ^, &, * 만 사용 가능합니다.</p>');
+        return false;
+      }
+
+      if (pwConfirm.search(/[A-Za-z]/) === -1 || pwConfirm.search(/[0-9]/) === -1 || pwConfirm.search(/[!@#$%^&*]/) === -1) {
+        $('#reset-pw-pw-confirm-text-error').html('<p class="valid error">확인비밀번호는 6 ~ 16자 영문, 숫자, 특수문자 1개 이상씩 혼용이 필수입니다.</p>');
+        return false;
+      }
+
+      $('#reset-pw-pw-confirm-text-error').html('');
+      return true;
+    }
+
+    // 패스워드와 패스워드 확인란 일치 여부 검증
+    function verifyResetPwPasswordsMatching() {
+      let password = $('#reset-pw-pw-text').val();
+      let pwConfirm = $('#reset-pw-pw-confirm-text').val();
+
+      if (password !== pwConfirm) {
+        $('#reset-pw-pw-compare-error').html('<p class="valid error">비밀번호가 일치하지 않습니다.</p>');
+        return false;
+      }
+
+      $('#reset-pw-pw-compare-error').html('');
+      return true;
+    }
+  </script></section>

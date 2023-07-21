@@ -1,9 +1,16 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
 
-<link rel="stylesheet" type="text/css" href="/css/login/rangking.css">
-<link rel="stylesheet" type="text/css" href="static/css/login/rangking2.css">
+<th:block layout:fragment="css">
+    <link rel="stylesheet" type="text/css" href="/css/login/rangking.css">
+    <link rel="stylesheet" type="text/css" href="/css/login/rangking2.css">
+</th:block>
 
 
-<section id="contents" class="container">
+<section id="contents" class="container" layout:fragment="content">
 
     <form id="listForm" name="listForm" action="/display/rank/sale" method="get"><input type="hidden" name="categoryCd" value="R000">
 <input type="hidden" name="vRankType" value="REALTIME">

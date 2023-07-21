@@ -1614,7 +1614,7 @@ button.btn-grey-line[disabled]{color:#ccc; background:#fff; border:1px solid #db
 .rating-txt .ico-bl-star{display:inline-block; margin-top:-3px; vertical-align:middle;}
 .rating-txt .text-guide-sm2{vertical-align:top; margin-right:10px}
 
-[class^="ico-img-"]{display:inline-block; background-image:url("/ico_img.png");}
+[class^="ico-img-"]{display:inline-block; background-image:url("/img/login/ico_img.png");}
 .ico-img-cart{width:97px; height:97px; background-position:0 0;}
 .ico-img-check{width:56px; height:60px; background-position:-150px 0;}
 .ico-img-crown{width:76px; height:46px; background-position:-150px -.120px;}
@@ -2368,7 +2368,7 @@ body.layer-dim .layer-wrap.layer-index:before{content:none}
 .ico-footer-service02{background-position:right top; width:18px;margin-top:-2px;}
 
 /****** Content ******/
-.container{position:relative; min-height:700px;  padding-bottom:100px;}
+.container{position:relative; min-height:700px;  padding-bottom:100px; width: auto !important;}
 .content-wrap{min-height:700px;}
 /* Frame */
 .frame-left{float:left}
@@ -2618,8 +2618,8 @@ body.layer-dim .layer-wrap.layer-index:before{content:none}
 .terms-section .terms-toggle-box{border-top:none;border-bottom:1px solid #ccc;margin-top:0;padding:24px 0 12px 0;}
 .terms-section .terms-toggle-box ~ .bl-list-type2{margin-top:12px;padding-bottom:0;}
 .terms-section .terms-toggle-box .box-head{padding-bottom:0;border: none;}
-.terms-section .custom-checkbox .checkbox + label:before{width:16px;height: 12px;background: url(../../img/login/ico-terms-off-1.png);background-repeat: no-repeat;border:none;background-size:16px 12px;top:2px;}
-.terms-section .custom-checkbox .checkbox:checked + label:before{width:16px;height: 12px;background: url(../../img/login/ico-terms-on-1.png);background-repeat: no-repeat;border:none;background-size:16px 12px;top:2px;}
+.terms-section .custom-checkbox .checkbox + label:before{width:16px;height: 12px;background: url(/static/img/login/ico-terms-off-1.png);background-repeat: no-repeat;border:none;background-size:16px 12px;top:2px;}
+.terms-section .custom-checkbox .checkbox:checked + label:before{width:16px;height: 12px;background: url(/static/img/login/ico-terms-on-1.png);background-repeat: no-repeat;border:none;background-size:16px 12px;top:2px;}
 .terms-section .btn-box-link1{border:none;}
 .terms-section .terms-btn-wrap{padding-top:40px;}
 .terms-section .terms-btn-wrap button{width:520px;margin:0 auto;border-radius:5px;padding:16px 0;font-size: 15px;font-weight: 400;}
@@ -2802,7 +2802,7 @@ body.layer-dim .layer-wrap.layer-index:before{content:none}
 .counseling-confirm .result-box p{font-size: 14px;padding:22px 0;color:#333333;font-weight: 400;}
 .counseling-confirm .result-box button{width:100%;text-align: center;font-size: 17px;color:#ff6001;font-weight: 400;padding:13px 0;}
 
-.tooltip-wrap{position: absolute;top:-65px;right: 40px;display:none;}
+.tooltip-wrap{position: absolute;top:-65px;right: 20px;display:none;}
 .tooltip-wrap .tool {position: relative;width: 223px;height: 54px;padding: 9px 0px 9px 15px;background: #556180;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;color:#ffffff;line-height: 18px;font-size: 13px;cursor: pointer;}
 .tooltip-wrap .tool:after {content: '';position: absolute;border-style: solid;border-width: 12px 12px 0;border-color: #556180 transparent;display: block;width: 0;z-index: 1;bottom: -1px;left: -6px;transform: rotate(-90deg);}
 

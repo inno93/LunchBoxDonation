@@ -1,5 +1,11 @@
 /* header */
 /* d */
+.header {
+    position: relative;
+    width: 100%;
+    z-index: 20;
+    background-color: #fff;
+ }
 #stickyDiv {
     display: flex;
     flex-direction: column;
