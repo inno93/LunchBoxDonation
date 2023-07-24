@@ -1,0 +1,756 @@
+<!doctype html>
+<html lang="ko" xml:lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="/static/css/myPage/css/common.css">
+  <link rel="stylesheet" href="/static/css/myPage/css/content.css">
+  <link rel="stylesheet" href="/static/css/myPage/css/regular.css">
+
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="../header-footer/header-footer.js"></script>
+  <title>Document</title>
+</head>
+<body>
+<section id="contents" class="container">
+
+  <div class="content-wrap">
+    <div class="frame-full head-mypage">
+      <h2 class="blind">마이페이지</h2>
+      <div class="user-info-box">
+        <div class="inner">
+          <div class="column user-info">
+            <span class="img">
+                <i class="ico-cou-level01"></i>
+                <a href="/member/userTag/intro" class="user-tag-location-btn">
+                            <span class="user-tag-location-inn">나의 식단 유형은? <strong>테스트 하러가기</strong></span>
+                        </a>
+                    </span>
+            <div class="txt">
+              <p class="greeting">
+                <strong class="name">표창영</strong>님 반갑습니다
+              </p>
+              <ul class="sep-list user-info-list type3">
+                <li><!--<i class="ico-bl-crown"></i>--> <a href="/mypage/memberBenefitsInfo">닭대리<i class="ico-arr-right"></i></a></li>
+                <li id="groupPointRateText"><a href="/mypage/memberBenefitsInfo">1% 적립</a></li>
+                <li class="orange-entryItem">
+                  <a href="/mypage/orangeMember">
+                    <span class="entry-tooltip">+3% 추가적립!</span>
+                  </a>
+                </li>
+              </ul>
+              <p class="level-tip" id="levelUpText"><a href="/mypage/memberBenefitsInfo">83,000원 더 구매 시, 닭과장 진급!</a></p>
+            </div>
+          </div><!--// user-info -->
+          <dl class="column order">
+            <dt>주문/배송</dt>
+            <dd><a href="/mypage/orderlist"><strong class="num" id="orderCountText">0</strong>건</a></dd>
+          </dl><!--// order -->
+          <dl class="column coupon">
+            <dt>쿠폰</dt>
+            <dd><a href="/mypage/myCoupon"><strong class="num" id="couponCountText">0</strong>개</a></dd>
+          </dl><!--// coupon -->
+          <dl class="column point">
+            <dt>포인트</dt>
+            <dd class="text-primary"><a href="/mypage/myPoint"><strong class="num" id="totalUnusedPointText">1,370</strong>P</a></dd>
+          </dl><!--// point -->
+        </div><!--// inner -->
+      </div><!--// user-info-box -->
+
+      <div class="layer-wrap layer-usertag" id="usertag-popup">
+        <div class="layer-pop">
+          <div class="layer-inner">
+            <div class="layer-head">
+              <h4 class="layer-pop-title">나의 식단 유형</h4>
+            </div>
+            <div class="layer-body">
+              <div class="layer-usertag-inn">
+                <div class="layer-usertag-img">
+                  <img id="researchImg" src="/resources/pc/images/img/usertag-simpler.jpg" alt="간편식 러버">
+                </div>
+                <div class="layer-usertag-desc-group">
+                  <dl class="layer-usertag-defi">
+                    <dt>유형별 한마디</dt>
+                    <dd><strong id="researchTxt1">"밥보다 시간!"</strong></dd>
+                  </dl>
+                  <dl class="layer-usertag-defi">
+                    <dt>유형 소개</dt>
+                    <dd id="researchTxt2">혹시 도시락 찾으러 오셨어요? 편하고 빠른 식사를 선호해요.</dd>
+                  </dl>
+                  <dl class="layer-usertag-defi">
+                    <dt>랭닭 이용 꿀팁</dt>
+                    <dd id="researchTxt3">홈화면 [랭킹]메뉴의 [별별랭킹] 카테고리에서 상황에 맞는 다양한 꿀조합을 소개 받아요!</dd>
+                  </dl>
+                </div>
+              </div>
+              <div class="layer-usertag-btn-group">
+                <a href="/member/userTag/intro" class="btn-basic-lg2 btn-default">
+                  <span>테스트 다시하기</span>
+                </a>
+                <a href="/promotion/exhibit/userTagList" id="researchTag" class="btn-basic-lg2 btn-black">
+                  <span>추천 식단 보러가기</span>
+                </a>
+              </div>
+            </div><!--// layer-body -->
+            <button type="button" class="btn-x-sm ui-close-pop" title="닫기"><i class="ico-x-black"></i><span class="blind">닫기</span></button>
+          </div>
+        </div><!--// layer-pop  -->
+      </div><!--// layer-pop-wrap #popupSample-02 -->
+
+      <script>
+
+        $(document).ready(function () {
+          let tagResult = '';
+          let resultObj = {
+            '01':{
+              img:'/resources/pc/images/img/usertag-newbie.jpg',
+              text1:'"여기는 뭐가 맛있어?"',
+              text2:'환영해요! 닭가슴살의 세계에 이제 막 입문했네요!',
+              text3:'내 입맛에 딱 맞는 닭가슴살 찾고 있다면, 홈화면의 [1팩 담기]에서 여러 상품을 한 팩 씩 골라보세요! ',
+              tag: '',
+              type: '01'
+            },
+            '02':{
+              img:'/resources/pc/images/img/usertag-smart.jpg',
+              text1:'"어? 이거 맛있을까?"',
+              text2:'이 구역의 맛잘알! 하지만 그냥 사진 않죠. 할인 혜택과 후기까지 꼼꼼히 살피고 신중하게 구매해요. ',
+              text3:'홈화면에서 [이달의 특가]를 확인하세요! 매달 새로운 맛과 혜택으로 찾아갑니다!',
+              tag: '',
+              type: '02'
+            },
+            '03':{
+              img:'/resources/pc/images/img/usertag-maint.jpg',
+              text1:'"다이어트는 꾸준히 해야죠~"',
+              text2:'타이트하기 보단 꾸준히 실천할 수 있는 식단을 선호해요. 맛있으면서도 단백질, 당류 등 성분은 꼭 체크하는 진짜 다이어터! ',
+              text3:'맛도 성분도 한 번에 비교하려면 최근 본 상품에서 [비교담기] 서비스를 이용해보세요!',
+              tag: '',
+              type: '03'
+            },
+            '04':{
+              img:'/resources/pc/images/img/usertag-mania.jpg',
+              text1:'"먹다보면 다~ 맛있어"',
+              text2:'다이어트에서 효율을 아주 중시해요. 때로 지겹더라도 끈기있는 실천이 다이어트의 지름길이라고 생각해요.',
+              text3:'[오렌지멤버스]에 가입하고, 살 때마다 추가할인&적립 받아요!',
+              tag: '',
+              type: '04'
+            },
+            '05':{
+              img:'/resources/pc/images/img/usertag-frenz.jpg',
+              text1:'"저는 그냥 랭닭에서 사요"',
+              text2:'식단은 이미 일상이에요. 오랜 경험으로 믿고 먹는, 믿고 추천하는 제품들이 있어요.',
+              text3:'꾸준히 먹는 제품은 [정기구매] 서비스를 통해서 추가할인 받아보세요!',
+              tag: '',
+              type: '05'
+            },
+            '06':{
+              img:'/resources/pc/images/img/usertag-standard.jpg',
+              text1:'"저는 그냥 정석대로 먹는 편?"',
+              text2:'대회, 바디프로필 등 명확한 목표를 갖고 식단을 하고 있어요. 건강기능식품부터 다이어트 간식까지 다이어트 제품에 대해서는 빠삭해요!',
+              text3:'식단은 하루라도 놓칠 수 없어! [특급배송]으로 빠르게 받아 완벽한 식단 텐션을 유지하세요!',
+              tag: '',
+              type: '06'
+            },
+            '07':{
+              img:'/resources/pc/images/img/usertag-simpler.jpg',
+              text1:'"밥보다 시간!"',
+              text2:'혹시 도시락 찾으러 오셨어요? 편하고 빠른 식사를 선호해요.',
+              text3:'홈화면 [랭킹]메뉴의 [별별랭킹] 카테고리에서 상황에 맞는 다양한 꿀조합을 소개 받아요!',
+              tag: '',
+              type: '07'
+            },
+          };
+
+          let userTagExhibitionList = '[{v_exhibition_cd=EX202306230000000247, n_sort=7, v_exhibition_nm=간편식 러버, v_ex_name=07, n_num=1}, {v_exhibition_cd=EX202306230000000245, n_sort=6, v_exhibition_nm=스마트 다이어터, v_ex_name=02, n_num=2}, {v_exhibition_cd=EX202306220000000241, n_sort=5, v_exhibition_nm=닭가슴살 뉴비, v_ex_name=01, n_num=3}, {v_exhibition_cd=EX202306230000000242, n_sort=4, v_exhibition_nm=랭닭 프렌즈, v_ex_name=05, n_num=4}, {v_exhibition_cd=EX202306230000000243, n_sort=3, v_exhibition_nm=유지어터, v_ex_name=03, n_num=5}, {v_exhibition_cd=EX202306230000000244, n_sort=2, v_exhibition_nm=헬스 매니아, v_ex_name=04, n_num=6}, {v_exhibition_cd=EX202306230000000246, n_sort=1, v_exhibition_nm=다이어트의 정석, v_ex_name=06, n_num=7}]';
+          if(isEmpty(userTagExhibitionList) == false){
+            for (const key in resultObj) {
+
+              if ("07" === resultObj[key].type) {
+                resultObj[key]['tag'] = "#special-div"+1;
+              }
+
+              if ("02" === resultObj[key].type) {
+                resultObj[key]['tag'] = "#special-div"+2;
+              }
+
+              if ("01" === resultObj[key].type) {
+                resultObj[key]['tag'] = "#special-div"+3;
+              }
+
+              if ("05" === resultObj[key].type) {
+                resultObj[key]['tag'] = "#special-div"+4;
+              }
+
+              if ("03" === resultObj[key].type) {
+                resultObj[key]['tag'] = "#special-div"+5;
+              }
+
+              if ("04" === resultObj[key].type) {
+                resultObj[key]['tag'] = "#special-div"+6;
+              }
+
+              if ("06" === resultObj[key].type) {
+                resultObj[key]['tag'] = "#special-div"+7;
+              }
+
+            }
+          }
+
+          let userTag = '';
+          if(isEmpty(userTag) == false){
+            let userTagType = '';
+            for (const key in resultObj) {
+              if (key === userTagType) {
+                tagResult = resultObj[key];
+                break;
+              };
+            };
+            $('#researchImg').attr('src',tagResult.img);
+            $('#researchTxt1').text(tagResult.text1);
+            $('#researchTxt2').text(tagResult.text2);
+            $('#researchTxt3').text(tagResult.text3);
+            $('#researchTag').attr('href',"/promotion/exhibit/userTagList"+tagResult.tag);
+          }
+
+          const benefitsAlertMsg = '';
+          //혜택 쿠폰 alert 메시지
+          if(isEmpty(benefitsAlertMsg) == false){
+            alert(benefitsAlertMsg);
+          }
+        });
+
+        $(document).ready(function(){
+          if(get_cookie("closePoint") != "done"){
+            pointAlert();
+          }
+        })
+        function pointAlert(){
+          setTimeout(()=>{
+            if($(window).scrollTop() > 150){
+              $("#pointAlert").css("position","fixed");
+              $("#pointAlert").animate({"top":"70px"})
+            }
+            else if($(".all-depth-cate").css("display") != "block"){
+              $("#pointAlert").animate({"top":"15px"})
+            }
+
+            $(window).on('load scroll', function() {
+              if ($('#pointAlert').length > 0 && $('#pointAlert').css("display") == "block") { pointAlertScroll();}
+            });
+            setTimeout(()=>{
+              $("#pointAlert").animate(
+                      {"top":"-100px"},
+                      1000,
+                      function(){
+                        $("#pointAlert").remove();
+                      });
+            },5000)
+          },1000)
+        }
+
+        var lastScrollTop = 0;
+        function pointAlertScroll(){
+          var winS = $(window).scrollTop();
+          var gnbw = $('.gnb-wrap'),
+                  gnbPosition = gnbw.position();
+          var $header= $('.header'),
+                  $headerP = $header.offset().top,
+                  $headerH = $header.height();
+
+          if(winS > lastScrollTop) { //downscroll
+
+            if( winS > gnbPosition.top){
+              // fix 생김
+              $("#pointAlert").css({"position":"fixed"});
+            } else {
+              // fix 지움
+              $("#pointAlert").css({"position":"absolute"})
+            }
+          } else { //upscroll
+
+            if( winS < $headerP + $headerH){
+              // fix 지움
+              $("#pointAlert").css({"position":"absolute"})
+              if($("#pointAlert").css("top") == "70px"){
+                $("#pointAlert").css("top","15px");
+              }
+            } else{
+              // fix 생김
+              $("#pointAlert").css({"position":"fixed"});
+              if($("#pointAlert").css("top") == "15px"){
+                $("#pointAlert").css("top","70px");
+              }
+            }
+          }
+          lastScrollTop = winS;
+        }
+
+
+
+        function closePoint(cookieNm, expiredays) {
+          setCookiePointAlert( cookieNm, "done" , expiredays);
+          $("#pointAlert").animate({"top":"-100px"});
+        }
+
+        function setCookiePointAlert( name, value, expiredays ) {
+          var todayDate = new Date();
+          todayDate = new Date(parseInt(todayDate.getTime() / 86400000) * 86400000 + 54000000);
+          if ( todayDate > new Date() )
+          {
+            expiredays = expiredays - 1;
+          }
+          todayDate.setDate( todayDate.getDate() + expiredays );
+          document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";"
+        }
+        function get_cookie(name) {
+          var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+          return value? value[2] : null;
+        }
+
+
+
+      </script></div>
+    <div class="frame-sm">
+      <div class="frame-left">
+        <div class="aside-menu-wrap">
+          <nav class="aside-menu">
+            <ul class="menu-list">
+              <li>
+                <a href="/mypage/orderlist" class="menu">주문관리</a>
+                <ul class="depth2">
+                  <li><a href="/mypage/orderlist">주문내역</a></li>
+                  <li class=""><a href="/mypage/oldOrderlist">이전 주문내역<span class="sub">(22.04.24 이전)</span></a></li>
+                  <li><a href="/mypage/cancellist">취소/반품 내역</a></li>
+                  <li class="current"><a href="/mypage/routineDelivery">정기배송 관리</a></li>
+                  <li class=""><a href="/mypage/restock/list">재입고 알림 상품</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#" class="menu">혜택관리</a>
+                <ul class="depth2">
+                  <li class=""><a href="/mypage/myCoupon">쿠폰</a></li>
+                  <li class=""><a href="/mypage/myPoint">포인트</a></li>
+                  <li class=""><a href="/mypage/giftCard/list">랭킹닭컴 상품권 관리</a></li><!-- 활성화될 경우 li에 addClass current  -->
+                </ul>
+              </li>
+              <li>
+                <a href="#" class="menu">활동관리</a>
+                <ul class="depth2">
+                  <li class=""><a href="/mypage/recentProduct/list">최근 본 상품</a></li>
+                  <li class=""><a href="/mypage/wish/list">찜한상품</a></li>
+                  <li class=""><a href="/mypage/wishBrand/list">관심브랜드</a></li>
+                  <li><a href="/mypage/userCounsel/list">1:1문의</a></li><!-- 활성화될 경우 li에 addClass current  -->
+                  <li><a href="/mypage/prodReview/list">상품후기</a></li><!-- 활성화될 경우 li에 addClass current  -->
+                  <li><a href="/mypage/prodCounsel/list">상품문의내역</a></li><!-- 활성화될 경우 li에 addClass current  -->
+                </ul>
+              </li>
+              <li>
+                <a href="#" class="menu">식단상담</a>
+                <ul class="depth2">
+                  <li><a href="/mypage/dietManage/list">식단상담 목록</a></li><!-- 활성화될 경우 li에 addClass current  -->
+                  <li><a href="/mypage/dietManage/app">식단상담 등록</a></li><!-- 활성화될 경우 li에 addClass current  -->
+                </ul>
+              </li>
+              <li>
+                <a href="" class="menu goVipView">VIP전용관</a>
+              </li>
+              <li class="">
+                <a href="/mypage/orangeMember" class="menu">오렌지멤버스</a>
+              </li>
+              <li>
+                <a href="/mypage/delivery" class="menu">회원정보관리</a>
+                <ul class="depth2">
+                  <li class=""><a href="/mypage/delivery">배송지 관리</a></li>
+                  <li><a href="/mypage/info/mypage">정보수정</a></li><!-- 활성화될 경우 li에 addClass current  -->
+                </ul>
+              </li>
+            </ul>
+          </nav><!--// menu-mypage -->
+          <div class="aside-link-box">
+            <a href="/service/voc"><i class="ico-bl-speaker"></i><span>고객의 소리</span><i class="ico-arr-right"></i></a>
+          </div>
+        </div><!--// aside-menu-wrap -->
+      </div>
+
+      <script type="text/javascript">
+        $(document).ready(function () {
+          /*setCurrnetMenuCss();*/
+
+          $(".goVipView").click(function (e) {
+            e.preventDefault();
+            cmAjax({
+              url : "/mypage/vip/checkTargetAjax"
+              , type : "POST"
+              , dataType : "json"
+              , success : function (data) {
+
+                if (data.status == "succ") {
+                  if(data.message == "Y") {
+                    document.location.href = "/mypage/vip/list";
+                    return;
+                  } else {
+                    alert(data.message);
+                    return false;
+                  }
+                } else {
+                  return false;
+                }
+              }
+            });
+          });
+        });
+
+        function setCurrnetMenuCss(){
+          const pathUrl = window.location.pathname;
+          $('.menu-list').find('li').removeClass('current');
+          $('.menu-list').find('a').each(function (){
+            if(pathUrl.indexOf($(this).attr('href')) > -1){
+              $(this).parent('li').addClass('current')
+            }
+          });
+        }
+      </script>
+      <script src="/static/js/myPage/regular_ui.js"></script>
+
+      <link rel="stylesheet" type="text/css" href="/static/css/myPage/css/jquery-ui-1.9.2.custom.css?">
+      <script src="/static/js/myPage/lib/jquery-ui.min.js?"></script>
+
+      <div class="frame-right order-list-wrap">
+        <div class="frame-cnt-inner">
+          <div class="menu-title-area">
+            <h3 class="title-menu">정기배송관리</h3>
+
+          </div><!--// menu-title-area -->
+
+          <!-- [Pub] 20220717 탭영역 추가 -->
+          <div class="page-mid"><!-- [Pub] 20220728 태그 클래스 오류 사항 수정(1px solid #666 > page-mid ) -->
+            <ul class="top-tab-menu">
+              <li class="current"><a href="/mypage/routineDelivery">주문내역</a></li>
+              <li><a href="/mypage/routineDelivery/card">결제카드 관리</a></li>
+            </ul>
+          </div>
+
+
+
+          <div class="search-detail mt40">
+            <fieldset>
+              <legend>상세 검색</legend>
+              <div class="search-detail-top">
+                <div class="search-detail-date-wrapper">
+                  <input type="text" id="searchDateFrom" class="input-text hasDatepicker" readonly="">
+                  ~
+                  <input type="text" id="searchDateTo" class="input-text hasDatepicker" readonly="">
+                </div>
+                <div class="search-detail-date-itemname">
+                  <div class="input-group w-full">
+                    <label for="vProductNm" class="blind">검색</label>
+                    <input type="text" id="vProductNm" value="" class="input-text" placeholder="주문 상품명 검색">
+                    <span class="input-group-btn" id="btnProductNmSearch">
+                                <button type="button" class="btn-icon-search" title="검색하기"><i class="ico-btn-search"></i><span class="blind">검색하기</span></button>
+                            </span>
+                  </div><!--// input-group -->
+                </div>
+              </div>
+              <div class="search-detail-filter">
+                <div class="search-detail-filter-btn-group">
+                  <button type="button" class="detail-filter-btn active" value="1">1개월</button>
+                  <button type="button" class="detail-filter-btn" value="3">3개월</button>
+                  <button type="button" class="detail-filter-btn" value="6">6개월</button>
+                  <button type="button" class="detail-filter-btn" value="12">12개월</button>
+                </div>
+                <div class="search-detail-filter-end">
+                  <div class="input-group-form">
+                    <div class="input-group-btn dis-inb">
+                      <a href="javascript:void(0);" class="btn-form btn-black" id="btnSearch"><span>조회하기</span></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div><script src="/static/js/myPage/regular_ui.js"></script>
+
+
+          <div class="no-data-type1" id="noDataWrap">
+            <p class="message">기간 내에 주문내역이 없습니다.</p>
+          </div>
+          <!--// 내역 없을 경우 -->
+
+
+
+
+
+
+
+
+        </div><!--// frame-cnt-inner -->
+      </div><!--// frame-right -->
+
+      <input type="hidden" id="vStartYear">
+      <input type="hidden" id="vStartMonth">
+      <input type="hidden" id="vStartDay">
+      <input type="hidden" id="vEndYear">
+      <input type="hidden" id="vEndMonth">
+      <input type="hidden" id="vEndDay">
+
+      <form id="searchForm" name="searchForm" action="/mypage/routineDelivery" method="GET"><input type="hidden" name="vPeriodOption" value="PERIOD" data-text="기간">
+        <input type="hidden" id="vProductNm" name="vProductNm" value="">
+        <input type="hidden" id="vStartDate" name="vStartDate" value="">
+        <input type="hidden" id="vEndDate" name="vEndDate" value="">
+        <input type="hidden" id="nowPageNo" name="nowPageNo" value="[object Object]">
+      </form><script>
+      $(document).ready(function(){
+        var fromInput = $('#searchDateFrom');
+        var toInput = $('#searchDateTo');
+        var options = {
+          dateFormat: 'yy-mm-dd',
+          prevText: '이전 달',
+          nextText: '다음 달',
+          monthNames: ['01월','02월','03월','04월','05월','06월','07월','08월','09월','10월','11월','12월'],
+          monthNamesShort: ['01월','02월','03월','04월','05월','06월','07월','08월','09월','10월','11월','12월'],
+          dayNames: ['일','월','화','수','목','금','토'],
+          dayNamesShort: ['일','월','화','수','목','금','토'],
+          dayNamesMin: ['일','월','화','수','목','금','토'],
+          showOtherMonths: true, // 타 월 보이기
+          showButtonPanel: false, // 버튼 show, hide
+          autoClose: false,
+          changeMonth: true,
+          changeYear: true,
+          yearSuffix: '년', // year 텍스트 추가
+          closeText: '닫기',
+          currentText: '오늘',
+          firstDay: 0, // 월요일부터 시작
+          showMonthAfterYear:true,
+        };
+
+        var thisDay = new Date();
+        var compDay = new Date(thisDay.getFullYear(), thisDay.getMonth() - 1, thisDay.getDate());
+        var thisYear = thisDay.getFullYear();
+        var compYear = compDay.getFullYear();
+        var thisMonth = thisDay.getMonth() + 1;
+        var compMonth = compDay.getMonth() + 1;
+        var thisDaynumb = thisDay.getDate();
+        var compDaynumb = compDay.getDate();if(Number(thisMonth) < 10){
+          thisMonth = '0'+thisMonth;
+        }
+        var thisDaynumb = thisDay.getDate();
+        if(Number(thisDaynumb) < 10){
+          thisDaynumb = '0'+thisDaynumb;
+        };
+        if(Number(compMonth) < 10){
+          compMonth = '0'+compMonth;
+        }
+        if(Number(compDaynumb) < 10){
+          compDaynumb = '0'+compDaynumb;
+        };
+        var fullDay = thisYear + '-' + thisMonth + '-' + thisDaynumb;
+        var compDayfull = compYear + '-' + compMonth + '-' + compDaynumb;
+
+        fromInput.val(compDayfull);
+        toInput.val(fullDay);
+
+        fromInput.datepicker(options);
+        toInput.datepicker(options);
+        var datepickerOverlay = $(".ui-datepicker").datepicker("widget");
+        $('body').append('<div class="filter-datepicker"></div>')
+        $(".filter-datepicker").append(datepickerOverlay);
+        fromInput.on('change',function(){
+          dateSelectEvent(this,'Start');
+        });
+        toInput.on('change',function(){
+          dateSelectEvent(this,'End');
+        });
+
+        dateControlBtn();
+
+      });
+
+      function dateControlBtn(){
+        $('.detail-filter-btn').click(function(){
+          var btnVal = $(this).val();
+
+          var thisDay = new Date();
+          var compDay = new Date(thisDay.getFullYear(), thisDay.getMonth() - btnVal, thisDay.getDate());
+          var thisYear = thisDay.getFullYear();
+          var compYear = compDay.getFullYear();
+          var thisMonth = thisDay.getMonth() + 1;
+          var compMonth = compDay.getMonth() + 1;
+          var thisDaynumb = thisDay.getDate();
+          var compDaynumb = compDay.getDate();
+          $('.detail-filter-btn').removeClass('active');
+          $(this).addClass('active');
+          if(Number(thisMonth) < 10){
+            thisMonth = '0'+thisMonth;
+          }
+          var thisDaynumb = thisDay.getDate();
+          if(Number(thisDaynumb) < 10){
+            thisDaynumb = '0'+thisDaynumb;
+          };
+          if(Number(compMonth) < 10){
+            compMonth = '0'+compMonth;
+          }
+          if(Number(compDaynumb) < 10){
+            compDaynumb = '0'+compDaynumb;
+          };
+          var fullDay = thisYear + '-' + thisMonth + '-' + thisDaynumb;
+          var compDayfull = compYear + '-' + compMonth + '-' + compDaynumb;
+
+          $('#searchDateFrom').val(compDayfull);
+          $('#searchDateTo').val(fullDay);
+          $('#searchDateFrom').trigger('change');
+          $('#searchDateTo').trigger('change');
+        });
+      };
+      function dateSelectEvent(sel,x){
+        let inputval = $(sel).val();
+        let valSplit = inputval.split('-');
+        let splitCell = {
+          'year':$('#v'+x+'Year'),
+          'month':$('#v'+x+'Month'),
+          'day':$('#v'+x+'Day'),
+        };
+        splitCell.year.val(valSplit[0]);
+        splitCell.year.data('value',valSplit[0]);
+        splitCell.year.attr('data-value',valSplit[0]);
+        splitCell.month.val(valSplit[1]);
+        splitCell.month.data('value',valSplit[1]);
+        splitCell.month.attr('data-value',valSplit[1]);
+        splitCell.day.val(valSplit[2]);
+        splitCell.day.data('value',valSplit[2]);
+        splitCell.day.attr('data-value',valSplit[2]);
+
+      }
+
+      function searchList(nowPageNo) {
+        // $('.ui-toggle-btn.toggle-on').click();
+
+        const vStartDate       = $('#vStartYear').data('value') + '.' + $('#vStartMonth').data('value') + '.' + $('#vStartDay').data('value');
+        const vEndDate         = $('#vEndYear').data('value') + '.' + $('#vEndMonth').data('value') + '.' + $('#vEndDay').data('value');
+        const vProductNm       = $('#vProductNm').val();
+        const periodOptionText = $('[name="vPeriodOption"]').data('text');
+        const periodText       = '조회기간 {0} ~ {1} ({2})'.formatter(vStartDate, vEndDate, periodOptionText);
+
+        $('#searchForm > #vStartDate').val(vStartDate.replace(/[^0-9]/g, ''));
+        $('#searchForm > #vEndDate').val(vEndDate.replace(/[^0-9]/g, ''));
+        $('#searchForm > #vProductNm'   ).val(vProductNm);
+        $('#searchForm > #nowPageNo'    ).val(nowPageNo );
+
+        cmAjax({
+          url: '/mypage/routineDelivery/listAjax',
+          type: 'GET',
+          dataType: 'html',
+          data: $('#searchForm').serialize(),
+          async: false,
+          success: function (html) {
+
+            $('.search-detail').nextAll().remove();
+            $('.search-detail').after(html);
+
+            $('#noDataWrap .message').text('기간 내에 주문내역이 없습니다.');
+          }
+        });
+      }
+
+      function goDetail(e) {
+        const dlvReqno = $(e.target).closest('li[name="dlvReqnoWrap"]').data('dlvReqno');
+        document.location.href = '/mypage/routineDelivery/detail?vDlvReqno=' + dlvReqno;
+      }
+
+
+      function enterSearchList(e) {
+        if(e.keyCode == 13) {
+          searchList();
+        }
+      }
+
+
+      function setPeriod(periodOption) {
+        let startDate = new Date();
+        let nowDate   = new Date();
+
+        switch (periodOption) {
+          case '2WEEK':
+            startDate.setDate(nowDate.getDate() - 14);
+            break;
+          case '1MONTH':
+            startDate.setMonth(nowDate.getMonth() - 1);
+            break;
+          case '3MONTH':
+            startDate.setMonth(nowDate.getMonth() - 3);
+            break;
+          case '6MONTH':
+            startDate.setMonth(nowDate.getMonth() - 6);
+            break;
+          case '12MONTH':
+            startDate.setMonth(nowDate.getMonth() - 12);
+            break;
+          default:
+            break;
+        }
+
+        const startYear  = startDate.getFullYear();
+        const startMonth = lpad(startDate.getMonth() + 1, 2, '0');
+        const startDay   = lpad(startDate.getDate(), 2, '0');
+        const endYear    = nowDate.getFullYear();
+        const endMonth   = lpad(nowDate.getMonth() + 1, 2, '0');
+        const endDay     = lpad(nowDate.getDate(), 2, '0');
+
+        $('#vStartYear' ).data('value', startYear );
+        $('#vStartMonth').data('value', startMonth);
+        $('#vStartDay'  ).data('value', startDay  );
+        $('#vEndYear'   ).data('value', endYear   );
+        $('#vEndMonth'  ).data('value', endMonth  );
+        $('#vEndDay'    ).data('value', endDay    );
+
+        $('#vStartYear  > .select-value > span').text(startYear );
+        $('#vStartMonth > .select-value > span').text(startMonth);
+        $('#vStartDay   > .select-value > span').text(startDay  );
+        $('#vEndYear    > .select-value > span').text(endYear   );
+        $('#vEndMonth   > .select-value > span').text(endMonth  );
+        $('#vEndDay     > .select-value > span').text(endDay    );
+      }
+
+
+      function onClickPeriodOption() {
+
+        if($(this).hasClass('date-setting')) {
+
+          $(this).parents('.radio-list').siblings('.ui-toggle-sub').removeClass('hide');
+        }
+
+        else if($(this).hasClass('date-setting') == false) {
+
+          $(this).parents('.radio-list').siblings('.ui-toggle-sub').addClass('hide');
+          setPeriod($(this).val());
+          searchList();
+        }
+      }
+
+
+      function initPage() {
+        $('#vProductNm').val('');
+        //$('#vPeriodOption1M').click();
+      }
+
+
+      function addBtnEvent() {
+        $('#vProductNm'           ).on('keyup', enterSearchList    );
+        $('#btnProductNmSearch'   ).on('click', searchList         );
+        $('#btnSearch'            ).on('click', searchList         );
+        $('#btnInit'              ).on('click', initPage           );
+        $('[name="vPeriodOption"]').on('click', onClickPeriodOption);
+        $(document).on('click', '[name="btnDetail"]', goDetail     );
+      }
+
+      $(document).ready(function() {
+        addBtnEvent();
+        initPage();
+        $('#btnSearch').trigger('click');
+      });
+    </script></div><!--// frame-sm -->
+  </div><!--// content-wrap -->
+
+</section>
+</body>
+</html>

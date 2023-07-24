@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="ko" xml:lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="/static/css/myPage/css/common.css">
+  <link rel="stylesheet" href="/static/css/myPage/css/content.css">
+  <link rel="stylesheet" href="/static/css/myPage/css/regular.css">
+
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="../header-footer/header-footer.js"></script>
+  <title>Document</title>
+</head>
+<body>
+<section id="contents" class="container">
+
+  <div class="content-wrap">
+    <div class="frame-full head-mypage">
+      <h2 class="blind">마이페이지</h2>
+      <div class="user-info-box">
+        <div class="inner">
+          <div class="column user-info">
+            <span class="img">
+                <i class="ico-cou-level01"></i>
+                <a href="/member/userTag/intro" class="user-tag-location-btn">
+                            <span class="user-tag-location-inn">나의 식단 유형은? <strong>테스트 하러가기</strong></span>
+                        </a>
+                    </span>
+            <div class="txt">
+              <p class="greeting">
+                <strong class="name">표창영</strong>님 반갑습니다
+              </p>
+              <ul class="sep-list user-info-list type3">
+                <li><!--<i class="ico-bl-crown"></i>--> <a href="/mypage/memberBenefitsInfo">닭대리<i class="ico-arr-right"></i></a></li>
+                <li id="groupPointRateText"><a href="/mypage/memberBenefitsInfo">1% 적립</a></li>
+                <li class="orange-entryItem">
+                  <a href="/mypage/orangeMember">
+                    <span class="entry-tooltip">+3% 추가적립!</span>
+                  </a>
+                </li>
+              </ul>
+              <p class="level-tip" id="levelUpText"><a href="/mypage/memberBenefitsInfo">83,000원 더 구매 시, 닭과장 진급!</a></p>
+            </div>
+          </div><!--// user-info -->
+          <dl class="column order">
+            <dt>주문/배송</dt>
+            <dd><a href="/mypage/orderlist"><strong class="num" id="orderCountText">0</strong>건</a></dd>
+          </dl><!--// order -->
+          <dl class="column coupon">
+            <dt>쿠폰</dt>
+            <dd><a href="/mypage/myCoupon"><strong class="num" id="couponCountText">0</strong>개</a></dd>
+          </dl><!--// coupon -->
+          <dl class="column point">
+            <dt>포인트</dt>
+            <dd class="text-primary"><a href="/mypage/myPoint"><strong class="num" id="totalUnusedPointText">1,370</strong>P</a></dd>
+          </dl><!--// point -->
+        </div><!--// inner -->
+      </div><!--// user-info-box -->
+
+      <div class="layer-wrap layer-usertag" id="usertag-popup">
+        <div class="layer-pop">
+          <div class="layer-inner">
+            <div class="layer-head">
+              <h4 class="layer-pop-title">나의 식단 유형</h4>
+            </div>
+            <div class="layer-body">
+              <div class="layer-usertag-inn">
+                <div class="layer-usertag-img">
+                  <img id="researchImg" src="/resources/pc/images/img/usertag-simpler.jpg" alt="간편식 러버">
+                </div>
+                <div class="layer-usertag-desc-group">
+                  <dl class="layer-usertag-defi">
+                    <dt>유형별 한마디</dt>
+                    <dd><strong id="researchTxt1">"밥보다 시간!"</strong></dd>
+                  </dl>
+                  <dl class="layer-usertag-defi">
+                    <dt>유형 소개</dt>
+                    <dd id="researchTxt2">혹시 도시락 찾으러 오셨어요? 편하고 빠른 식사를 선호해요.</dd>
+                  </dl>
+                  <dl class="layer-usertag-defi">
+                    <dt>랭닭 이용 꿀팁</dt>
+                    <dd id="researchTxt3">홈화면 [랭킹]메뉴의 [별별랭킹] 카테고리에서 상황에 맞는 다양한 꿀조합을 소개 받아요!</dd>
+                  </dl>
+                </div>
+              </div>
+              <div class="layer-usertag-btn-group">
+                <a href="/member/userTag/intro" class="btn-basic-lg2 btn-default">
+                  <span>테스트 다시하기</span>
+                </a>
+                <a href="/promotion/exhibit/userTagList" id="researchTag" class="btn-basic-lg2 btn-black">
+                  <span>추천 식단 보러가기</span>
+                </a>
+              </div>
+            </div><!--// layer-body -->
+            <button type="button" class="btn-x-sm ui-close-pop" title="닫기"><i class="ico-x-black"></i><span class="blind">닫기</span></button>
+          </div>
+        </div><!--// layer-pop  -->
+      </div><!--// layer-pop-wrap #popupSample-02 -->
+
+      <script>
+
+        $(document).ready(function () {
+          let tagResult = '';
+          let resultObj = {
+            '01':{
+              img:'/resources/pc/images/img/usertag-newbie.jpg',
+              text1:'"여기는 뭐가 맛있어?"',
+              text2:'환영해요! 닭가슴살의 세계에 이제 막 입문했네요!',
+              text3:'내 입맛에 딱 맞는 닭가슴살 찾고 있다면, 홈화면의 [1팩 담기]에서 여러 상품을 한 팩 씩 골라보세요! ',
+              tag: '',
+              type: '01'
+            },
+            '02':{
+              img:'/resources/pc/images/img/usertag-smart.jpg',
+              text1:'"어? 이거 맛있을까?"',
+              text2:'이 구역의 맛잘알! 하지만 그냥 사진 않죠. 할인 혜택과 후기까지 꼼꼼히 살피고 신중하게 구매해요. ',
+              text3:'홈화면에서 [이달의 특가]를 확인하세요! 매달 새로운 맛과 혜택으로 찾아갑니다!',
+              tag: '',
+              type: '02'
+            },
+            '03':{
+              img:'/resources/pc/images/img/usertag-maint.jpg',
+              text1:'"다이어트는 꾸준히 해야죠~"',
+              text2:'타이트하기 보단 꾸준히 실천할 수 있는 식단을 선호해요. 맛있으면서도 단백질, 당류 등 성분은 꼭 체크하는 진짜 다이어터! ',
+              text3:'맛도 성분도 한 번에 비교하려면 최근 본 상품에서 [비교담기] 서비스를 이용해보세요!',
+              tag: '',
+              type: '03'
+            },
+            '04':{
+              img:'/resources/pc/images/img/usertag-mania.jpg',
+              text1:'"먹다보면 다~ 맛있어"',
+              text2:'다이어트에서 효율을 아주 중시해요. 때로 지겹더라도 끈기있는 실천이 다이어트의 지름길이라고 생각해요.',
+              text3:'[오렌지멤버스]에 가입하고, 살 때마다 추가할인&적립 받아요!',
+              tag: '',
+              type: '04'
+            },
+            '05':{
+              img:'/resources/pc/images/img/usertag-frenz.jpg',
+              text1:'"저는 그냥 랭닭에서 사요"',
+              text2:'식단은 이미 일상이에요. 오랜 경험으로 믿고 먹는, 믿고 추천하는 제품들이 있어요.',
+              text3:'꾸준히 먹는 제품은 [정기구매] 서비스를 통해서 추가할인 받아보세요!',
+              tag: '',
+              type: '05'
+            },
+            '06':{
+              img:'/resources/pc/images/img/usertag-standard.jpg',
+              text1:'"저는 그냥 정석대로 먹는 편?"',
+              text2:'대회, 바디프로필 등 명확한 목표를 갖고 식단을 하고 있어요. 건강기능식품부터 다이어트 간식까지 다이어트 제품에 대해서는 빠삭해요!',
+              text3:'식단은 하루라도 놓칠 수 없어! [특급배송]으로 빠르게 받아 완벽한 식단 텐션을 유지하세요!',
+              tag: '',
+              type: '06'
+            },
+            '07':{
+              img:'/resources/pc/images/img/usertag-simpler.jpg',
+              text1:'"밥보다 시간!"',
+              text2:'혹시 도시락 찾으러 오셨어요? 편하고 빠른 식사를 선호해요.',
+              text3:'홈화면 [랭킹]메뉴의 [별별랭킹] 카테고리에서 상황에 맞는 다양한 꿀조합을 소개 받아요!',
+              tag: '',
+              type: '07'
+            },
+          };
+
+          let userTagExhibitionList = '[{v_exhibition_cd=EX202306230000000247, n_sort=7, v_exhibition_nm=간편식 러버, v_ex_name=07, n_num=1}, {v_exhibition_cd=EX202306230000000245, n_sort=6, v_exhibition_nm=스마트 다이어터, v_ex_name=02, n_num=2}, {v_exhibition_cd=EX202306220000000241, n_sort=5, v_exhibition_nm=닭가슴살 뉴비, v_ex_name=01, n_num=3}, {v_exhibition_cd=EX202306230000000242, n_sort=4, v_exhibition_nm=랭닭 프렌즈, v_ex_name=05, n_num=4}, {v_exhibition_cd=EX202306230000000243, n_sort=3, v_exhibition_nm=유지어터, v_ex_name=03, n_num=5}, {v_exhibition_cd=EX202306230000000244, n_sort=2, v_exhibition_nm=헬스 매니아, v_ex_name=04, n_num=6}, {v_exhibition_cd=EX202306230000000246, n_sort=1, v_exhibition_nm=다이어트의 정석, v_ex_name=06, n_num=7}]';
+          if(isEmpty(userTagExhibitionList) == false){
+            for (const key in resultObj) {
+
+              if ("07" === resultObj[key].type) {
+                resultObj[key]['tag'] = "#special-div"+1;
+              }
+
+              if ("02" === resultObj[key].type) {
+                resultObj[key]['tag'] = "#special-div"+2;
+              }
+
+              if ("01" === resultObj[key].type) {
+                resultObj[key]['tag'] = "#special-div"+3;
+              }
+
+              if ("05" === resultObj[key].type) {
+                resultObj[key]['tag'] = "#special-div"+4;
+              }
+
+              if ("03" === resultObj[key].type) {
+                resultObj[key]['tag'] = "#special-div"+5;
+              }
+
+              if ("04" === resultObj[key].type) {
+                resultObj[key]['tag'] = "#special-div"+6;
+              }
+
+              if ("06" === resultObj[key].type) {
+                resultObj[key]['tag'] = "#special-div"+7;
+              }
+
+            }
+          }
+
+          let userTag = '';
+          if(isEmpty(userTag) == false){
+            let userTagType = '';
+            for (const key in resultObj) {
+              if (key === userTagType) {
+                tagResult = resultObj[key];
+                break;
+              };
+            };
+            $('#researchImg').attr('src',tagResult.img);
+            $('#researchTxt1').text(tagResult.text1);
+            $('#researchTxt2').text(tagResult.text2);
+            $('#researchTxt3').text(tagResult.text3);
+            $('#researchTag').attr('href',"/promotion/exhibit/userTagList"+tagResult.tag);
+          }
+
+          const benefitsAlertMsg = '';
+          //혜택 쿠폰 alert 메시지
+          if(isEmpty(benefitsAlertMsg) == false){
+            alert(benefitsAlertMsg);
+          }
+        });
+
+        $(document).ready(function(){
+          if(get_cookie("closePoint") != "done"){
+            pointAlert();
+          }
+        })
+        function pointAlert(){
+          setTimeout(()=>{
+            if($(window).scrollTop() > 150){
+              $("#pointAlert").css("position","fixed");
+              $("#pointAlert").animate({"top":"70px"})
+            }
+            else if($(".all-depth-cate").css("display") != "block"){
+              $("#pointAlert").animate({"top":"15px"})
+            }
+
+            $(window).on('load scroll', function() {
+              if ($('#pointAlert').length > 0 && $('#pointAlert').css("display") == "block") { pointAlertScroll();}
+            });
+            setTimeout(()=>{
+              $("#pointAlert").animate(
+                      {"top":"-100px"},
+                      1000,
+                      function(){
+                        $("#pointAlert").remove();
+                      });
+            },5000)
+          },1000)
+        }
+
+        var lastScrollTop = 0;
+        function pointAlertScroll(){
+          var winS = $(window).scrollTop();
+          var gnbw = $('.gnb-wrap'),
+                  gnbPosition = gnbw.position();
+          var $header= $('.header'),
+                  $headerP = $header.offset().top,
+                  $headerH = $header.height();
+
+          if(winS > lastScrollTop) { //downscroll
+
+            if( winS > gnbPosition.top){
+              // fix 생김
+              $("#pointAlert").css({"position":"fixed"});
+            } else {
+              // fix 지움
+              $("#pointAlert").css({"position":"absolute"})
+            }
+          } else { //upscroll
+
+            if( winS < $headerP + $headerH){
+              // fix 지움
+              $("#pointAlert").css({"position":"absolute"})
+              if($("#pointAlert").css("top") == "70px"){
+                $("#pointAlert").css("top","15px");
+              }
+            } else{
+              // fix 생김
+              $("#pointAlert").css({"position":"fixed"});
+              if($("#pointAlert").css("top") == "15px"){
+                $("#pointAlert").css("top","70px");
+              }
+            }
+          }
+          lastScrollTop = winS;
+        }
+
+
+
+        function closePoint(cookieNm, expiredays) {
+          setCookiePointAlert( cookieNm, "done" , expiredays);
+          $("#pointAlert").animate({"top":"-100px"});
+        }
+
+        function setCookiePointAlert( name, value, expiredays ) {
+          var todayDate = new Date();
+          todayDate = new Date(parseInt(todayDate.getTime() / 86400000) * 86400000 + 54000000);
+          if ( todayDate > new Date() )
+          {
+            expiredays = expiredays - 1;
+          }
+          todayDate.setDate( todayDate.getDate() + expiredays );
+          document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";"
+        }
+        function get_cookie(name) {
+          var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+          return value? value[2] : null;
+        }
+
+
+
+      </script></div>
+    <div class="frame-sm">
+      <div class="frame-left">
+        <div class="aside-menu-wrap">
+          <nav class="aside-menu">
+            <ul class="menu-list">
+              <li>
+                <a href="/mypage/orderlist" class="menu">주문관리</a>
+                <ul class="depth2">
+                  <li><a href="/mypage/orderlist">주문내역</a></li>
+                  <li class=""><a href="/mypage/oldOrderlist">이전 주문내역<span class="sub">(22.04.24 이전)</span></a></li>
+                  <li><a href="/mypage/cancellist">취소/반품 내역</a></li>
+                  <li class=""><a href="/mypage/routineDelivery">정기배송 관리</a></li>
+                  <li class=""><a href="/mypage/restock/list">재입고 알림 상품</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#" class="menu">혜택관리</a>
+                <ul class="depth2">
+                  <li class=""><a href="/mypage/myCoupon">쿠폰</a></li>
+                  <li class=""><a href="/mypage/myPoint">포인트</a></li>
+                  <li class="current"><a href="/mypage/giftCard/list">랭킹닭컴 상품권 관리</a></li><!-- 활성화될 경우 li에 addClass current  -->
+                </ul>
+              </li>
+              <li>
+                <a href="#" class="menu">활동관리</a>
+                <ul class="depth2">
+                  <li class=""><a href="/mypage/recentProduct/list">최근 본 상품</a></li>
+                  <li class=""><a href="/mypage/wish/list">찜한상품</a></li>
+                  <li class=""><a href="/mypage/wishBrand/list">관심브랜드</a></li>
+                  <li><a href="/mypage/userCounsel/list">1:1문의</a></li><!-- 활성화될 경우 li에 addClass current  -->
+                  <li><a href="/mypage/prodReview/list">상품후기</a></li><!-- 활성화될 경우 li에 addClass current  -->
+                  <li><a href="/mypage/prodCounsel/list">상품문의내역</a></li><!-- 활성화될 경우 li에 addClass current  -->
+                </ul>
+              </li>
+              <li>
+                <a href="#" class="menu">식단상담</a>
+                <ul class="depth2">
+                  <li><a href="/mypage/dietManage/list">식단상담 목록</a></li><!-- 활성화될 경우 li에 addClass current  -->
+                  <li><a href="/mypage/dietManage/app">식단상담 등록</a></li><!-- 활성화될 경우 li에 addClass current  -->
+                </ul>
+              </li>
+              <li>
+                <a href="" class="menu goVipView">VIP전용관</a>
+              </li>
+              <li class="">
+                <a href="/mypage/orangeMember" class="menu">오렌지멤버스</a>
+              </li>
+              <li>
+                <a href="/mypage/delivery" class="menu">회원정보관리</a>
+                <ul class="depth2">
+                  <li class=""><a href="/mypage/delivery">배송지 관리</a></li>
+                  <li><a href="/mypage/info/mypage">정보수정</a></li><!-- 활성화될 경우 li에 addClass current  -->
+                </ul>
+              </li>
+            </ul>
+          </nav><!--// menu-mypage -->
+          <div class="aside-link-box">
+            <a href="/service/voc"><i class="ico-bl-speaker"></i><span>고객의 소리</span><i class="ico-arr-right"></i></a>
+          </div>
+        </div><!--// aside-menu-wrap -->
+      </div>
+
+      <script type="text/javascript">
+        $(document).ready(function () {
+          /*setCurrnetMenuCss();*/
+
+          $(".goVipView").click(function (e) {
+            e.preventDefault();
+            cmAjax({
+              url : "/mypage/vip/checkTargetAjax"
+              , type : "POST"
+              , dataType : "json"
+              , success : function (data) {
+
+                if (data.status == "succ") {
+                  if(data.message == "Y") {
+                    document.location.href = "/mypage/vip/list";
+                    return;
+                  } else {
+                    alert(data.message);
+                    return false;
+                  }
+                } else {
+                  return false;
+                }
+              }
+            });
+          });
+        });
+
+        function setCurrnetMenuCss(){
+          const pathUrl = window.location.pathname;
+          $('.menu-list').find('li').removeClass('current');
+          $('.menu-list').find('a').each(function (){
+            if(pathUrl.indexOf($(this).attr('href')) > -1){
+              $(this).parent('li').addClass('current')
+            }
+          });
+        }
+      </script>
+      <div class="frame-right" id="giftCardList">
+        <div class="frame-cnt-inner">
+          <div class="menu-title-area">
+            <h3 class="title-menu">랭킹닭컴 상품권 관리 <button type="button" class="btn-icon-mark ui-open-pop" data-layer="#giftPayInfoText"><i class="ico-excl" style="margin-top:7px;"></i><span class="blind">안내</span></button></h3>
+          </div><!--// menu-title-area -->
+          <div class="page-intro">
+            <div class="gift-price-wrap ">
+              <div class="left-item">
+                <p>총 보유 잔액</p>
+                <span class="default-gift-text">잔액조회를 눌러 금액을 조회해주세요.</span>
+                <strong class="user-gift-price-point hide"><em id="regGiftCardPrice">0</em> 원</strong>
+              </div>
+              <div class="right-item">
+                <button type="button" class="btn-black btn-basic-md btn-inquiry">잔액조회</button>
+              </div>
+            </div>
+          </div>
+
+          <form id="giftCardList" name="giftCardList" action="/mypage/giftCard/list" method="get"><input type="hidden" name="nowPageNo" value="1">
+            <div id="gift-card-use" class="board-list">
+              <!-- 상품권 없을 경우 노출 -->
+              <div class="notHave">
+                <i class="ico-giftCard"></i>
+                <p>사용한 상품권이 없어요</p>
+              </div>
+            </div>
+          </form></div> <!-- frame-cnt-inner -->
+      </div>
+
+      <div class="layer-wrap" id="giftPayInfoText" tabindex="0" style="display: none;">
+        <div class="layer-pop">
+          <div class="layer-inner">
+            <div class="layer-head">
+              <h4 class="layer-pop-title">랭킹닭컴 상품권 이용안내</h4>
+            </div>
+            <div class="gift-info-text-box">
+              <p>이용안내 및 환불규정</p>
+              <ul>
+                <li><span>본 상품권 사용을 위해서는 랭킹닭컴에 회원가입해 상품권 번호를 등록해야 사용이 가능합니다.</span></li>
+                <li><span>본 상품권은 주문 1회당 횟수 제한 없이 등록하여 사용이 가능합니다.</span></li>
+                <li><span>랭킹닭컴 상품권은 주문/결제 시, 등록하여 사용이 가능하며 [마이랭닭] &gt; 랭킹닭컴 상품권 관리에서는 등록된 상품권 한정으로 잔액 조회가 가능합니다. </span></li>
+                <li><span>본 상품권은 분할 사용이 가능한 잔액 관리형 상품입니다. (다음 주문 시 남은 금액을 사용할 수 있습니다.)</span></li>
+                <li><span>본 상품권은 랭킹닭컴 주문 시 현금영수증 발행 가능합니다. </span></li>
+                <li><span>본 상품권의 유효기간은 발행일로부터 365일입니다.</span></li>
+                <li><strong>유효기간 연장은 기프티콘 APP 고객센터 또는, 기프티콘 고객센터(1800-0133)로 연락하여 신청할 수 있으며, 쿠폰 유효기간 만료시 기간연장이 불가합니다.</strong></li>
+                <li><span>위 방식으로 5년 이내 횟수 제한 없이 기간연장이 가능하며, 1회 연장 시 90일 단위로 사용 기간이 연장됩니다.</span></li>
+                <li><span>유효기간 만료 시, 결제 금액의 90% 환불만 가능(기간연장 불가)하며 기프티콘 APP 고객센터 또는 기프티콘 고객센터 (1800-0133)로 연락하여 신청할 수 있습니다.</span></li>
+                <li><span>본 상품권 사용 후 주문 취소 건에 대한 환불 문의는 랭킹닭컴 고객센터로 문의 바랍니다. (02-6405-8088)</span></li>
+                <li><span>본 상품권을 사용한 복합결제의 환불/일부 환불의 경우, 동일비율로 계산되어 환불처리 됩니다.</span></li>
+                <li><span>본 상품권 번호 도난, 분실 등의 부주의로 발생한 사고에 대해서는 보상이 불가합니다.</span></li>
+              </ul>
+              <p style="margin-top:15px;">※ 주의사항</p>
+              <ul>
+                <li><strong>랭킹닭컴 상품권 사용 시 정기배송, 선물하기, 무통장 결제 서비스 이용 및 오렌지 멤버스 구매가 불가한 점 안내 드립니다.</strong></li>
+              </ul>
+            </div>
+
+            <button type="button" class="btn-x-md2 ui-close-pop" title="닫기"><i class="ico-x-black"></i><span class="blind">닫기</span></button>
+          </div><!--// layer-inner -->
+        </div><!--// layer-pop  -->
+      </div>
+      <div class="loading-area" style="position: fixed; left: 0px; bottom: 0px; background-color: rgba(0, 0, 0, 0.8); width: 100%; height: 100%; z-index: 100000; display: none;">
+        <div style="position: absolute;left: 50%;bottom: 50%;transform: translate(-50%, -50%);width: 56px;height: 56px;">
+          <img src="/resources/pc/images/ico-upload-imgx2.gif" alt="로딩중">
+        </div>
+      </div>
+
+      <script>
+
+        $(".btn-inquiry").click(function(){
+          $("body").css("overflow","hidden");
+          $(".loading-area").css("display","block");
+
+          cmAjax({
+            url: "/order/order/checkGiftCardAjax"
+            , type: "POST"
+            , data: {}
+            , dataType : "json"
+            , success: function (data) {
+
+              $(".default-gift-text").css("display","none");
+              $(".user-gift-price-point").removeClass("hide");
+
+              if (data.status == "succ") {
+                $("#regGiftCardPrice").text(SetNumComma(parseInt(data.object.currentGiftPrice)));
+              }
+
+              $(".loading-area").css("display","none");
+              $("body").removeAttr("style");
+            }
+          });
+        });
+
+        function CustomPagingSetting(pg) {
+
+          var frm = $('#giftCardList');
+
+          $("input[name='nowPageNo']", frm).val(pg);
+
+          frm.attr('action', '/mypage/giftCard/list');
+          frm.submit();
+        }
+      </script></div><!--// frame-sm -->
+  </div><!--// content-wrap -->
+
+</section>
+</body>
+</html>
