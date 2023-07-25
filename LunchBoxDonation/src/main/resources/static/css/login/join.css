@@ -2018,7 +2018,7 @@ body.layer-dim .layer-wrap.layer-index:before{content:none}
 ========================================================*/
 .error-wrap{width:100%; padding-top:260px; text-align:center;}
 .error-inner{display:inline-block}
-.img-error{position:relative; display:inline-block; margin-left:30px; width:88px; height:76px; background:url("/ico_img.png") -280px -275px}
+.img-error{position:relative; display:inline-block; margin-left:30px; width:88px; height:76px; background:url("/img/login/ico_img.png") -280px -275px}
 .img-error .num{position:absolute; top:5px; right:10px; color:#fff; font-size:16px; }
 .error-inner .txt{position:relative; font-size:18px; font-weight:700; margin-top:10px; padding-bottom:20px;}
 .error-inner .txt:after{position:absolute; bottom:0; left:50%; margin-left:-15px; width:30px; height:1px; background:#ccc; display:block; content:'';}

@@ -144,7 +144,7 @@ html.layer-on,body.layer-on {
     .frame-max{position:relative; max-width:1920px; margin:0 auto;}
     .frame-mid{position:relative; max-width:1440px; margin:0 auto;}
     .frame-min{position:relative; max-width:1280px; margin:0 auto;}
-    .frame-sm{position:relative; max-width:1100px; margin:0 auto;}
+    .frame-sm{position:relative; max-width:800px; margin:0 auto;}
     .frame-xxs{position:relative; max-width:860px; margin:0 auto;}
     .frame-xxxs{position:relative; max-width:820px; margin:0 auto;}
     
@@ -3312,8 +3312,7 @@ html.layer-on,body.layer-on {
 }
 
 .prd-info-area .inner {
-    display: table;
-    table-layout: auto;
+    display: inline-block;
     width: 100%;
 }
 
@@ -3395,6 +3394,7 @@ html.layer-on,body.layer-on {
 .prd-info-area .column.tit {
     padding: 0 10px 0 15px;
     text-align: left;
+    width: 500px;
 }
 
 .prd-info-area .column.qty {
@@ -3414,7 +3414,7 @@ html.layer-on,body.layer-on {
 }
 
 .prd-info-area .column.price {
-    width: 130px;
+    width: 200px;
     vertical-align: middle;
     text-align: right;
     word-break: keep-all;
@@ -3494,7 +3494,7 @@ html.layer-on,body.layer-on {
 }
 
 .prd-info-area .column.dlv .btn-option {
-    margin-top: 5px
+    margin-top: 5px`
 }
 
 .prd-info-area .column.tit .order-num {
@@ -6103,7 +6103,10 @@ html.layer-on,body.layer-on {
 }
 
 .ranking-list .rank-item:nth-child(-n+3) [class*="number-rd-"] {
-    border-bottom: 2px solid #333
+    border-bottom: 2px solid #333;
+    background: url(/img/login/ranking_icon.jpg) -50px -30px;
+    width: 18px;
+    height: 18px;
 }
 
 .ranking-list .rank-item .prd-info-area {
@@ -30280,3 +30283,4 @@ html.layer-on,body.layer-on {
     background-image: url("/resources/pc/images/icon/ico-giftCard.png");
     background-size: 42px 34px;
 }
+
