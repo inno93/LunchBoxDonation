@@ -29,7 +29,7 @@ public class AdminBoardController {
     public ModelAndView write(){
         ModelAndView mv = new ModelAndView();
 
-        mv.setViewName("/admin/board/notice/write.html"); // html 파일 이름 설정
+        mv.setViewName("/admin/board/notice/write"); // html 파일 이름 설정
         return mv;
     }
 

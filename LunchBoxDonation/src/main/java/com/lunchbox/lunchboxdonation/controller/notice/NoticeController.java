@@ -1,4 +1,4 @@
-package com.lunchbox.lunchboxdonation.controller.board;
+package com.lunchbox.lunchboxdonation.controller.notice;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/board/notice")
 @Slf4j
-public class BoardController {
+public class NoticeController {
     @RequestMapping("content")
     public ModelAndView content(){
         ModelAndView mv = new ModelAndView();

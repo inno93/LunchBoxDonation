@@ -1,4 +1,4 @@
-package com.lunchbox.lunchboxdonation.controller;
+package com.lunchbox.lunchboxdonation.controller.mypage;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -7,7 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @Slf4j
-public class mypageController {
+public class MypageController {
 
     @RequestMapping("mypage")
     public ModelAndView mypage(){
@@ -17,4 +17,5 @@ public class mypageController {
         log.info(String.valueOf(mv));
         return mv;
     }
+
 }
