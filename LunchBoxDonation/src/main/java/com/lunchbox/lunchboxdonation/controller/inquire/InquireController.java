@@ -15,7 +15,7 @@ public class InquireController {
     public ModelAndView list(){
         ModelAndView mv = new ModelAndView();
 
-        mv.setViewName("/mypage/inquire/inquireList.html"); // html 파일 이름 설정
+        mv.setViewName("/mypage/inquire/list.html"); // html 파일 이름 설정
         return mv;
     }
 
@@ -23,7 +23,7 @@ public class InquireController {
     public ModelAndView write(){
         ModelAndView mv = new ModelAndView();
 
-        mv.setViewName("/mypage/inquire/inquireWrite.html"); // html 파일 이름 설정
+        mv.setViewName("/mypage/inquire/write.html"); // html 파일 이름 설정
         return mv;
     }
 }

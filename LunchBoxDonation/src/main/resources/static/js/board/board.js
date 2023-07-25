@@ -1,6 +1,5 @@
 
 /****** SelectBox ******/
-function selectBox (e) {
     $(document).on('click','.select-value',function(e){
         if ( !$(this).hasClass('disabled') ) {
             if ( $(this).parent('.ui-select').hasClass('on')) {
@@ -21,7 +20,7 @@ function selectBox (e) {
     $(document).on('click','.select-list a',function(){
         selectBoxAction(this);
     })
-}
+
 
 function selectBoxAction (el) {
     var listValue = $(el).children('span').text();

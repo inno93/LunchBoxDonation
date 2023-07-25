@@ -13,7 +13,7 @@ public class AdminBoardController {
     public ModelAndView content(){
         ModelAndView mv = new ModelAndView();
 
-        mv.setViewName("/admin/board/content.html"); // html 파일 이름 설정
+        mv.setViewName("/admin/board/notice/content.html"); // html 파일 이름 설정
         return mv;
     }
 
@@ -21,7 +21,7 @@ public class AdminBoardController {
     public ModelAndView list(){
         ModelAndView mv = new ModelAndView();
 
-        mv.setViewName("board/list.html"); // html 파일 이름 설정
+        mv.setViewName("/admin/board/notice/list.html"); // html 파일 이름 설정
         return mv;
     }
 
@@ -29,7 +29,7 @@ public class AdminBoardController {
     public ModelAndView write(){
         ModelAndView mv = new ModelAndView();
 
-        mv.setViewName("board/noticeWrite.html"); // html 파일 이름 설정
+        mv.setViewName("/admin/board/notice/write.html"); // html 파일 이름 설정
         return mv;
     }
 

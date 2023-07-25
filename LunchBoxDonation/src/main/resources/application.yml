@@ -22,7 +22,7 @@ spring:
 
   devtools:
     livereload:
-      enabled: false
+      enabled: true
 
   #    mvc:
   #      static-path-pattern: /static/**

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8800162a-b0cc-47d4-9bd2-31af1b648486" name="Default Changelist" comment="인텔리제이 테스트" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2Rbu3yViJlT1RqRNWxv3uObjdiv" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/LunchBoxDonation" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8800162a-b0cc-47d4-9bd2-31af1b648486" name="Default Changelist" comment="" />
+      <created>1687530906899</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1687530906899</updated>
+      <workItem from="1687530908054" duration="1821000" />
+      <workItem from="1687532883334" duration="3000" />
+      <workItem from="1687748314177" duration="7831000" />
+      <workItem from="1687867190269" duration="1211000" />
+      <workItem from="1687872694195" duration="895000" />
+      <workItem from="1687914288024" duration="15209000" />
+      <workItem from="1688017148100" duration="5339000" />
+      <workItem from="1688045713999" duration="2000" />
+      <workItem from="1688128857013" duration="5196000" />
+      <workItem from="1688970756313" duration="11277000" />
+      <workItem from="1689053089765" duration="12586000" />
+      <workItem from="1689256022461" duration="4581000" />
+      <workItem from="1689565746711" duration="5261000" />
+      <workItem from="1689654949309" duration="4858000" />
+      <workItem from="1689691229308" duration="25000" />
+      <workItem from="1689691277893" duration="359000" />
+    </task>
+    <task id="LOCAL-00001" summary="인텔리제이 테스트">
+      <created>1687531010021</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1687531010021</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="인텔리제이 테스트" />
+    <option name="LAST_COMMIT_MESSAGE" value="인텔리제이 테스트" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1689691639644">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.5.1920.1040@0.0.1920.1040" timestamp="1689691639644" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1687531703883">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1920.5.1920.1040@0.0.1920.1040" timestamp="1687531703883" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1689065072990">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1920.5.1920.1040@0.0.1920.1040" timestamp="1689065072990" />
+  </component>
+</project>

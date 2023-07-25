@@ -29,7 +29,7 @@ public class BoardController {
     public ModelAndView write(){
         ModelAndView mv = new ModelAndView();
 
-        mv.setViewName("/board/notice/noticeWrite.html"); // html 파일 이름 설정
+        mv.setViewName("/board/notice/write.html"); // html 파일 이름 설정
         return mv;
     }
 

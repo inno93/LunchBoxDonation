@@ -1,40 +1,15 @@
 <!DOCTYPE html>
-<html lang="ko" xml:lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="_csrf" content="6671c50e-2136-4b8f-840e-11b85abe3866"/>
-    <meta name="_csrf_header" content="X-CSRF-TOKEN"/>
-
-    <meta property="og:title" content="랭킹닭1컴">
-    <meta property="og:description" content="No.1 닭가슴살 순위스토어,닭가슴살 식단,헬스,훈제,소세지,추천 요리법">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.rankingdak.com/">
-    <meta property="og:image" content="https://file.rankingdak.com/rankingdak_og.jpg">
-    <meta name="referrer" content="unsafe-url">
-    <meta name="facebook-domain-verification" content="n9wxauvvyf2hn7mnw0h7h78b8s6ade">
-    <meta name="naver-site-verification" content="f49456f63ff3a881b3c179737e504259c28307f8"/>
-    <!-- ======================== 공통 CSS / JS ======================== -->
-
-    <link rel="stylesheet" href="/css/header-footer/header-footer.css">
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+<th:block layout:fragment="css">
     <link rel="stylesheet" href="/css/board/board.css">
-    <link rel="icon" href="https://www.rankingdak.com/resources/pc/images/icon/favicon.ico">
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-    <script src="/js/board/board.js"></script>
-    <title>랭킹닭컴 </title></head>
-<body>
-
-<!--// ========== 공통 헤더 :: header ========== -->
-<header>
-    <div th:include="/header-footer/header-footer.html :: header"></div>
-</header>
-
+</th:block>
 
 <!-- ========== 컨텐츠 영역 :: container ========== -->
-<section id="contents" class="container">
-
+<section id="contents" class="container" layout:fragment="content">
+    <script src="/js/board/board.js"></script>
     <div class="content-wrap frame-sm">
         <div class="page-title-area">
             <h2 class="title-page"><a href="/service/center">고객센터</a></h2>
@@ -297,20 +272,4 @@
 
 </section>
 <!--// ========== 컨텐츠 영역 :: container ========== -->
-
-<!-- ========== 공통 푸터 :: footer :: include.footer() 영역  ========== -->
-
-
-<!--// ========== 공통 푸터 :: footer ========== -->
-<footer>
-    <div th:include="/header-footer/header-footer.html :: footer"></div>
-</footer>
-<!--// ========== 공통 푸터 :: footer :: include.footer() 영역  ========== -->
-
-<form id="logoutForm" name="logoutForm" action="/logout" method="post">
-    <div>
-        <input type="hidden" name="_csrf" value="6671c50e-2136-4b8f-840e-11b85abe3866"/>
-    </div>
-</form>
-</body>
 </html>

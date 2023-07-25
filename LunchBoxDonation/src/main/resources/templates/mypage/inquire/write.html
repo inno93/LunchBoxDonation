@@ -1,54 +1,29 @@
 <!DOCTYPE html>
-<html lang="ko" xml:lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="_csrf" content="6671c50e-2136-4b8f-840e-11b85abe3866"/>
-    <meta name="_csrf_header" content="X-CSRF-TOKEN"/>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
 
-    <meta property="og:title" content="랭킹닭1컴">
-    <meta property="og:description" content="No.1 닭가슴살 순위스토어,닭가슴살 식단,헬스,훈제,소세지,추천 요리법">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.rankingdak.com/">
-    <meta property="og:image" content="https://file.rankingdak.com/rankingdak_og.jpg">
-    <meta name="referrer" content="unsafe-url">
-    <meta name="facebook-domain-verification" content="n9wxauvvyf2hn7mnw0h7h78b8s6ade">
-    <meta name="naver-site-verification" content="f49456f63ff3a881b3c179737e504259c28307f8"/>
-    <!-- ======================== 공통 CSS / JS ======================== -->
-
-    <link rel="stylesheet" href="/css/header-footer/header-footer.css">
+<th:block layout:fragment="css">
     <link rel="stylesheet" href="/css/board/board.css">
-    <link rel="icon" href="https://www.rankingdak.com/resources/pc/images/icon/favicon.ico">
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <link rel="stylesheet" href="/summernote/summernote-lite.css">
+</th:block>
 
+<section id="contents" class="container" layout:fragment="content">
     <!-- 서머노트를 위해 추가해야할 부분 -->
     <script src="/summernote/summernote-lite.js"></script>
     <script src="/summernote/lang/summernote-ko-KR.js"></script>
-    <link rel="stylesheet" href="/summernote/summernote-lite.css">
     <script>
         $(document).ready(function () {
             $('.summernote').summernote({
                 minHeight: 250,
-                maxHeight: null,
+                minWidth : 250,
                 lang: "ko-KR"
             });
         });
-
-
     </script>
 
     <script src="/js/board/board.js"></script>
-    <title>랭킹닭컴 </title></head>
-<body>
-
-<!--// ========== 공통 헤더 :: header ========== -->
-<header>
-    <div th:include="/header-footer/header-footer.html :: header"></div>
-</header>
-
-<!-- ========== 컨텐츠 영역 :: container ========== -->
-<section id="contents" class="container">
 
     <div class="content-wrap">
         <div class="frame-full head-mypage" th:include="/mypage/userInfo/userinfo.html"></div>
@@ -170,143 +145,143 @@
                                         <div class="file-add-boxes">
 
                                             <div class="div-attach-thumb" id="US_RV_IMG1_attachThumb">
-                                                <button type="button" class="btn-attach-thumb"
-                                                        onclick="javascript:jfupload.uploadImage('US_RV_IMG1')">
+                                                <button type="button" class="btn-attach-thumb">
+                                                        <!--onclick="javascript:jfupload.uploadImage('US_RV_IMG1')">-->
                                                     <i class="ico-plus-xlg"></i><span class="blind">파일첨부</span>
                                                 </button>
                                                 <input class="input_file" id="US_RV_IMG1_imageFile"
                                                        name="US_RV_IMG1_imageFile" type="file" accept="image/*"
                                                        style="display:none;"/>
                                             </div>
-                                            <script type="text/javascript">
-                                                jfupload.initImageUpload({
-                                                    target: $('#US_RV_IMG1_imageFile')
-                                                    ,
-                                                    formName: 'counselRegFrm'
-                                                    ,
-                                                    uploadCd: 'US_RV_IMG1'
-                                                    ,
-                                                    recordId: ''
-                                                    ,
-                                                    fileCd: $('input[name=fileCd]', $('form[name="counselRegFrm"]')).val()
-                                                    ,
-                                                    siteCd: $('input[name=siteCd]', $('form[name="counselRegFrm"]')).val()
-                                                    ,
-                                                    resizeWidth: ''
-                                                    ,
-                                                    resizeHeight: ''
-                                                    ,
-                                                    rvFlag: 'Y'
-                                                    ,
-                                                    tempYn: 'Y'
-                                                    ,
-                                                    limitFileMBSize: 20
-                                                    ,
-                                                    success: function (imgData, uploadCd) {
-                                                        jfupload.deleteImage('US_RV_IMG1', 'counselRegFrm');
-                                                        const previewTag = $('#US_RV_IMG1_attachThumb');
-                                                        const src = imgData.image_url + imgData.image_path + imgData.image_id + imgData.image_ext;
-                                                        let imgStr = '<div class="attach-img">';
-                                                        imgStr += '<button type="button" class="btn-x-xs2 btn_del" onClick="javascript:jfupload.deleteImage(\'US_RV_IMG1\', \'counselRegFrm\')";><i class="ico-x-white"></i><span class="blind">삭제</span></button>';
-                                                        imgStr += '</div>';
-                                                        previewTag.append(imgStr);
-                                                        const previewImgTag = $('#US_RV_IMG1_attachThumb').find('.attach-img');
-                                                        previewImgTag.prepend('<img src="' + src + '" style="width:68px;height:68px;">');
-                                                    }
-                                                });
-                                            </script>
+<!--                                            <script type="text/javascript">-->
+<!--                                                jfupload.initImageUpload({-->
+<!--                                                    target: $('#US_RV_IMG1_imageFile')-->
+<!--                                                    ,-->
+<!--                                                    formName: 'counselRegFrm'-->
+<!--                                                    ,-->
+<!--                                                    uploadCd: 'US_RV_IMG1'-->
+<!--                                                    ,-->
+<!--                                                    recordId: ''-->
+<!--                                                    ,-->
+<!--                                                    fileCd: $('input[name=fileCd]', $('form[name="counselRegFrm"]')).val()-->
+<!--                                                    ,-->
+<!--                                                    siteCd: $('input[name=siteCd]', $('form[name="counselRegFrm"]')).val()-->
+<!--                                                    ,-->
+<!--                                                    resizeWidth: ''-->
+<!--                                                    ,-->
+<!--                                                    resizeHeight: ''-->
+<!--                                                    ,-->
+<!--                                                    rvFlag: 'Y'-->
+<!--                                                    ,-->
+<!--                                                    tempYn: 'Y'-->
+<!--                                                    ,-->
+<!--                                                    limitFileMBSize: 20-->
+<!--                                                    ,-->
+<!--                                                    success: function (imgData, uploadCd) {-->
+<!--                                                        jfupload.deleteImage('US_RV_IMG1', 'counselRegFrm');-->
+<!--                                                        const previewTag = $('#US_RV_IMG1_attachThumb');-->
+<!--                                                        const src = imgData.image_url + imgData.image_path + imgData.image_id + imgData.image_ext;-->
+<!--                                                        let imgStr = '<div class="attach-img">';-->
+<!--                                                        imgStr += '<button type="button" class="btn-x-xs2 btn_del" onClick="javascript:jfupload.deleteImage(\'US_RV_IMG1\', \'counselRegFrm\')";><i class="ico-x-white"></i><span class="blind">삭제</span></button>';-->
+<!--                                                        imgStr += '</div>';-->
+<!--                                                        previewTag.append(imgStr);-->
+<!--                                                        const previewImgTag = $('#US_RV_IMG1_attachThumb').find('.attach-img');-->
+<!--                                                        previewImgTag.prepend('<img src="' + src + '" style="width:68px;height:68px;">');-->
+<!--                                                    }-->
+<!--                                                });-->
+<!--                                            </script>-->
                                             <div class="div-attach-thumb" id="US_RV_IMG2_attachThumb">
-                                                <button type="button" class="btn-attach-thumb"
-                                                        onclick="javascript:jfupload.uploadImage('US_RV_IMG2')">
+                                                <button type="button" class="btn-attach-thumb">
+                                                        <!--onclick="javascript:jfupload.uploadImage('US_RV_IMG2')">-->
                                                     <i class="ico-plus-xlg"></i><span class="blind">파일첨부</span>
                                                 </button>
                                                 <input class="input_file" id="US_RV_IMG2_imageFile"
                                                        name="US_RV_IMG2_imageFile" type="file" accept="image/*"
                                                        style="display:none;"/>
                                             </div>
-                                            <script type="text/javascript">
-                                                jfupload.initImageUpload({
-                                                    target: $('#US_RV_IMG2_imageFile')
-                                                    ,
-                                                    formName: 'counselRegFrm'
-                                                    ,
-                                                    uploadCd: 'US_RV_IMG2'
-                                                    ,
-                                                    recordId: ''
-                                                    ,
-                                                    fileCd: $('input[name=fileCd]', $('form[name="counselRegFrm"]')).val()
-                                                    ,
-                                                    siteCd: $('input[name=siteCd]', $('form[name="counselRegFrm"]')).val()
-                                                    ,
-                                                    resizeWidth: ''
-                                                    ,
-                                                    resizeHeight: ''
-                                                    ,
-                                                    rvFlag: 'Y'
-                                                    ,
-                                                    tempYn: 'Y'
-                                                    ,
-                                                    limitFileMBSize: 20
-                                                    ,
-                                                    success: function (imgData, uploadCd) {
-                                                        jfupload.deleteImage('US_RV_IMG2', 'counselRegFrm');
-                                                        const previewTag = $('#US_RV_IMG2_attachThumb');
-                                                        const src = imgData.image_url + imgData.image_path + imgData.image_id + imgData.image_ext;
-                                                        let imgStr = '<div class="attach-img">';
-                                                        imgStr += '<button type="button" class="btn-x-xs2 btn_del" onClick="javascript:jfupload.deleteImage(\'US_RV_IMG2\', \'counselRegFrm\')";><i class="ico-x-white"></i><span class="blind">삭제</span></button>';
-                                                        imgStr += '</div>';
-                                                        previewTag.append(imgStr);
-                                                        const previewImgTag = $('#US_RV_IMG2_attachThumb').find('.attach-img');
-                                                        previewImgTag.prepend('<img src="' + src + '" style="width:68px;height:68px;">');
-                                                    }
-                                                });
-                                            </script>
+<!--                                            <script type="text/javascript">-->
+<!--                                                jfupload.initImageUpload({-->
+<!--                                                    target: $('#US_RV_IMG2_imageFile')-->
+<!--                                                    ,-->
+<!--                                                    formName: 'counselRegFrm'-->
+<!--                                                    ,-->
+<!--                                                    uploadCd: 'US_RV_IMG2'-->
+<!--                                                    ,-->
+<!--                                                    recordId: ''-->
+<!--                                                    ,-->
+<!--                                                    fileCd: $('input[name=fileCd]', $('form[name="counselRegFrm"]')).val()-->
+<!--                                                    ,-->
+<!--                                                    siteCd: $('input[name=siteCd]', $('form[name="counselRegFrm"]')).val()-->
+<!--                                                    ,-->
+<!--                                                    resizeWidth: ''-->
+<!--                                                    ,-->
+<!--                                                    resizeHeight: ''-->
+<!--                                                    ,-->
+<!--                                                    rvFlag: 'Y'-->
+<!--                                                    ,-->
+<!--                                                    tempYn: 'Y'-->
+<!--                                                    ,-->
+<!--                                                    limitFileMBSize: 20-->
+<!--                                                    ,-->
+<!--                                                    success: function (imgData, uploadCd) {-->
+<!--                                                        jfupload.deleteImage('US_RV_IMG2', 'counselRegFrm');-->
+<!--                                                        const previewTag = $('#US_RV_IMG2_attachThumb');-->
+<!--                                                        const src = imgData.image_url + imgData.image_path + imgData.image_id + imgData.image_ext;-->
+<!--                                                        let imgStr = '<div class="attach-img">';-->
+<!--                                                        imgStr += '<button type="button" class="btn-x-xs2 btn_del" onClick="javascript:jfupload.deleteImage(\'US_RV_IMG2\', \'counselRegFrm\')";><i class="ico-x-white"></i><span class="blind">삭제</span></button>';-->
+<!--                                                        imgStr += '</div>';-->
+<!--                                                        previewTag.append(imgStr);-->
+<!--                                                        const previewImgTag = $('#US_RV_IMG2_attachThumb').find('.attach-img');-->
+<!--                                                        previewImgTag.prepend('<img src="' + src + '" style="width:68px;height:68px;">');-->
+<!--                                                    }-->
+<!--                                                });-->
+<!--                                            </script>-->
                                             <div class="div-attach-thumb" id="US_RV_IMG3_attachThumb">
-                                                <button type="button" class="btn-attach-thumb"
-                                                        onclick="javascript:jfupload.uploadImage('US_RV_IMG3')">
+                                                <button type="button" class="btn-attach-thumb">
+                                                        <!--onclick="javascript:jfupload.uploadImage('US_RV_IMG3')">-->
                                                     <i class="ico-plus-xlg"></i><span class="blind">파일첨부</span>
                                                 </button>
                                                 <input class="input_file" id="US_RV_IMG3_imageFile"
                                                        name="US_RV_IMG3_imageFile" type="file" accept="image/*"
                                                        style="display:none;"/>
                                             </div>
-                                            <script type="text/javascript">
-                                                jfupload.initImageUpload({
-                                                    target: $('#US_RV_IMG3_imageFile')
-                                                    ,
-                                                    formName: 'counselRegFrm'
-                                                    ,
-                                                    uploadCd: 'US_RV_IMG3'
-                                                    ,
-                                                    recordId: ''
-                                                    ,
-                                                    fileCd: $('input[name=fileCd]', $('form[name="counselRegFrm"]')).val()
-                                                    ,
-                                                    siteCd: $('input[name=siteCd]', $('form[name="counselRegFrm"]')).val()
-                                                    ,
-                                                    resizeWidth: ''
-                                                    ,
-                                                    resizeHeight: ''
-                                                    ,
-                                                    rvFlag: 'Y'
-                                                    ,
-                                                    tempYn: 'Y'
-                                                    ,
-                                                    limitFileMBSize: 20
-                                                    ,
-                                                    success: function (imgData, uploadCd) {
-                                                        jfupload.deleteImage('US_RV_IMG3', 'counselRegFrm');
-                                                        const previewTag = $('#US_RV_IMG3_attachThumb');
-                                                        const src = imgData.image_url + imgData.image_path + imgData.image_id + imgData.image_ext;
-                                                        let imgStr = '<div class="attach-img">';
-                                                        imgStr += '<button type="button" class="btn-x-xs2 btn_del" onClick="javascript:jfupload.deleteImage(\'US_RV_IMG3\', \'counselRegFrm\')";><i class="ico-x-white"></i><span class="blind">삭제</span></button>';
-                                                        imgStr += '</div>';
-                                                        previewTag.append(imgStr);
-                                                        const previewImgTag = $('#US_RV_IMG3_attachThumb').find('.attach-img');
-                                                        previewImgTag.prepend('<img src="' + src + '" style="width:68px;height:68px;">');
-                                                    }
-                                                });
-                                            </script>
+<!--                                            <script type="text/javascript">-->
+<!--                                                jfupload.initImageUpload({-->
+<!--                                                    target: $('#US_RV_IMG3_imageFile')-->
+<!--                                                    ,-->
+<!--                                                    formName: 'counselRegFrm'-->
+<!--                                                    ,-->
+<!--                                                    uploadCd: 'US_RV_IMG3'-->
+<!--                                                    ,-->
+<!--                                                    recordId: ''-->
+<!--                                                    ,-->
+<!--                                                    fileCd: $('input[name=fileCd]', $('form[name="counselRegFrm"]')).val()-->
+<!--                                                    ,-->
+<!--                                                    siteCd: $('input[name=siteCd]', $('form[name="counselRegFrm"]')).val()-->
+<!--                                                    ,-->
+<!--                                                    resizeWidth: ''-->
+<!--                                                    ,-->
+<!--                                                    resizeHeight: ''-->
+<!--                                                    ,-->
+<!--                                                    rvFlag: 'Y'-->
+<!--                                                    ,-->
+<!--                                                    tempYn: 'Y'-->
+<!--                                                    ,-->
+<!--                                                    limitFileMBSize: 20-->
+<!--                                                    ,-->
+<!--                                                    success: function (imgData, uploadCd) {-->
+<!--                                                        jfupload.deleteImage('US_RV_IMG3', 'counselRegFrm');-->
+<!--                                                        const previewTag = $('#US_RV_IMG3_attachThumb');-->
+<!--                                                        const src = imgData.image_url + imgData.image_path + imgData.image_id + imgData.image_ext;-->
+<!--                                                        let imgStr = '<div class="attach-img">';-->
+<!--                                                        imgStr += '<button type="button" class="btn-x-xs2 btn_del" onClick="javascript:jfupload.deleteImage(\'US_RV_IMG3\', \'counselRegFrm\')";><i class="ico-x-white"></i><span class="blind">삭제</span></button>';-->
+<!--                                                        imgStr += '</div>';-->
+<!--                                                        previewTag.append(imgStr);-->
+<!--                                                        const previewImgTag = $('#US_RV_IMG3_attachThumb').find('.attach-img');-->
+<!--                                                        previewImgTag.prepend('<img src="' + src + '" style="width:68px;height:68px;">');-->
+<!--                                                    }-->
+<!--                                                });-->
+<!--                                            </script>-->
                                             <p class="text-guide-md ">- 최대 15MB 이하의 JPG, PNG, GIF, BMP 파일 3장까지 첨부
                                                 가능합니다.</p>
 
@@ -336,18 +311,4 @@
 
 </section>
 <!--// ========== 컨텐츠 영역 :: container ========== -->
-
-<!-- ========== 공통 푸터 :: footer :: include.footer() 영역  ========== -->
-<footer>
-    <div th:include="/header-footer/header-footer.html :: footer"></div>
-</footer>
-
-<!--// ========== 공통 푸터 :: footer :: include.footer() 영역  ========== -->
-
-<form id="logoutForm" name="logoutForm" action="/logout" method="post">
-    <div>
-        <input type="hidden" name="_csrf" value="b10b2301-79a2-4558-a078-7144759aa8ed"/>
-    </div>
-</form>
-</body>
 </html>
