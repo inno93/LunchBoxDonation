@@ -16,6 +16,10 @@ spring:
     username: hr
     password: hr
 
+  web:
+    resources:
+      static-locations: classpath:/static/
+
   jpa:
     defer-datasource-initialization: true
     open-in-view: false
@@ -27,9 +31,7 @@ spring:
   #    mvc:
   #      static-path-pattern: /static/**
 
-  web:
-    resources:
-      static-locations: classpath:/static/
+
 
 
     thymeleaf:

@@ -73,4 +73,22 @@ public class LoginController {
 
         return mv;
     }
+
+    @RequestMapping("kit")
+    public ModelAndView kit(){
+        ModelAndView mv = new ModelAndView();
+
+        mv.setViewName("login/kit"); // html 파일 경로
+
+        return mv;
+    }
+
+    @RequestMapping("order")
+    public ModelAndView order(){
+        ModelAndView mv = new ModelAndView();
+
+        mv.setViewName("login/order"); // html 파일 경로
+
+        return mv;
+    }
 }

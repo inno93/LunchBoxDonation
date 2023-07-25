@@ -14,6 +14,48 @@
     input:focus {
     outline: none; /* 클릭 시 테두리 제거 */
     }
+    .my-container2 {
+        display: flex;
+        flex-wrap: wrap;
+        width: 1200px;
+        margin: 0 auto;
+        margin-top: 100px;
+    }
+
+    .my-box {
+        border-radius: 10px;
+        width: 250px;
+        height: 379px;
+        background-color: white;
+        margin: 15px;
+        overflow:hidden;
+        margin-bottom: 10px;
+    }
+    .my-box > img{
+        height: 250px;
+    }
+    .fast-box{
+        background-image: url("https://www.rankingdak.com/resources/pc/images/txt/txt_badge_dlv.png");
+        background-size: 90px;
+    }
+    .fast-word{
+        word-spacing: 1px;
+        font-size: 14px;
+        font-weight: bolder;
+        color: gray;
+    }
+    .fast-price{
+        margin-top: 30px;
+        font-weight: bolder;
+        font-size: 20px;
+    }
+    .fast-price2{
+        font-size: 12px;
+    }
+    .fast-price3{
+        margin-top: 2px;
+        font-size: 12px;
+    }
 </style>
 <body>
     <!-- scroll-따라오는 애 -->
@@ -701,50 +743,7 @@ function changeContainer(containerId, buttonId) {
 
 
 
-<style>
-    .my-container2 {
-      display: flex;
-      flex-wrap: wrap;
-      width: 1200px;
-      margin: 0 auto;
-      margin-top: 100px;
-    }
-    
-    .my-box {
-      border-radius: 10px;
-      width: 250px;
-      height: 379px;
-      background-color: white;
-      margin: 15px;
-      overflow:hidden;
-      margin-bottom: 10px;
-    }
-    .my-box > img{
-      height: 250px;
-    }
-    .fast-box{
-      background-image: url("https://www.rankingdak.com/resources/pc/images/txt/txt_badge_dlv.png");
-      background-size: 90px;
-    }
-    .fast-word{
-      word-spacing: 1px;
-      font-size: 14px;
-      font-weight: bolder;
-      color: gray;
-    }
-    .fast-price{
-      margin-top: 30px;
-      font-weight: bolder;
-      font-size: 20px;
-    }
-    .fast-price2{
-      font-size: 12px;
-    }
-    .fast-price3{
-      margin-top: 2px;
-      font-size: 12px;
-    }
-</style>
+
 
 <div class="theme-recommend2">인기 카테고리 상품</div>
 <div class="theme-recommend-div2">

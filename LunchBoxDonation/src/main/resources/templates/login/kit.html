@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+<th:block layout:fragment="css">
+  <link rel="stylesheet" type="text/css" href="/css/login/common.css">
+  <link rel="stylesheet" type="text/css" href="/css/login/content.css">
+</th:block>
+<section id="contents" class="container" layout:fragment="content">
+
+  <div class="content-wrap frame-sm cart-jsp">
+    <div class="page-title-area">
+      <h2 class="title-page">장바구니</h2>
+      <div class="cart-option">
+        <div class="custom-checkbox">
+          <input type="checkbox" id="checkAll" class="checkbox checkboxGroup" checked="">
+          <label for="checkAll">전체해제</label>
+        </div>
+        <button type="button" id="deleteUserCartList" class="btn-option btn-default"><span>선택삭제</span></button>
+      </div>
+    </div>
+
+    <form id="frm" name="frm" action="/order/order" method="post"><input type="hidden" name="cartType" value="01">
+      <input type="hidden" name="vProductcdArr">
+      <input type="hidden" name="nonmemberYn" value="Y">
+      <input type="hidden" name="orangeMembersBenefit" value="N">
+      <div>
+        <input type="hidden" name="_csrf" value="248e0e73-fdd5-4706-aad8-266bb5b012d6">
+      </div></form><form id="productCouponForm" name="productCouponForm" action="/order/cart" method="post"><input type="hidden" name="vProductcdArr">
+    <div>
+      <input type="hidden" name="_csrf" value="248e0e73-fdd5-4706-aad8-266bb5b012d6">
+    </div></form><div class="cart-list-area" id="delivery-group-1600" data-free-delivery-price="20000" data-v-dlv-group-cd="16" data-v-dlv-charge-cd="00" data-v-express-yn="Y" data-v-paid-delivery-yn="N" data-delivery-type="E">
+
+    <div class="list-head">
+
+      <div class="custom-checkbox">
+        <input type="hidden" name="defaultDeliveryPrice" value="3000">
+        <input type="hidden" name="calcDeliveryPrice" value="3000">
+        <input type="checkbox" id="check-1" class="checkbox checkboxGroup" name="check1600">
+        <label for="check-1"> 랭킹닭컴(냉동)</label>
+      </div>
+
+
+      <p class="dlv-guide" style="display: inline-block;">
+        20,000원 이상 무료배송
+      </p>
+
+      <div class="right-dlv-info">
+
+        <div class="dlvFree" style="display: none;">
+
+          <em class="imgbadge-dlv-free">
+            <span class="blind">무료배송</span>
+          </em>
+
+        </div>
+
+        <div class="dlvNotFree" style="">
+
+          <p class="txt">
+            <span>배송비</span>
+            <span id="span-dlv-price-1600">3,000</span>원
+          </p>
+
+          <div class="dlv-tipbox-bottom" id="div-more-dlv-group-16-00" style="display: ">
+            <p class="txt">
+
+              <a href="/product/dlvGroupList?dlvGroupCd=16"><span class="more-delivery-price">1,500</span>원 더 구매시,
+                <em>무료배송</em><i class="ico-arr-right"></i></a>
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <ul class="cart-list">
+      <li id="delivery-product-89781600N" class="delivery-product-89781600NY" data-v-productcd="8978" data-v-uproductcd="8978" data-v-gproductcd="8978" data-v-add-prod-yn="N">
+        <div class="prd-info-area cart-info-area  ">
+          <div class="inner">
+            <div class="column check">
+              <div class="custom-checkbox single">
+                <input type="checkbox" checked="" id="check-product-8978N" class="checkbox deleteUserCartList productCheckbox" name="check1600" data-v-cartid="20230725000017891400" data-v-dlv-group-cd="1600" data-v-productcd="8978" data-v-island-dlv-yn="Y" data-v-uproductcd-cart="8978" data-v-gproductcd="8978" data-v-sitecd="RANK" data-n-min-sale-qty="0" data-n-max-sale-qty="0" data-v-add-prod-yn="N" data-n-sale-limit="0" data-n-user-purchase-count="0" data-v-productnm="맛있닭 닭가슴살 스테이크  갈릭맛 100g" data-n-dlv-charge="0" data-n-qty="1" data-v-paid-delivery-yn="N">
+                <label for="check-product-8978N" class="blind">선택</label>
+              </div>
+            </div>
+            <input type="hidden" class="arrCartid-8978" value="20230725000017891400">
+            <input type="hidden" class="vProductcd-8978" data-v-add-prod-yn="N" data-out-of-stock-status="N" value="8978">
+            <input type="hidden" class="vProductcd-8978-couponPrice couponPrice" value="0" data-v-productcd="8978" data-v-uproductcd-cart="8978">
+
+            <div class="column img">
+              <label for="check-product-8978N">
+                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652Vjg147858177_100_100.jpg" alt="상품이미지">
+              </label>
+            </div>
+            <div class="column tit">
+              <p class="tit">
+                <a href="/product/view?productCd=8978" class="productNm">
+                  맛있닭 닭가슴살 스테이크  갈릭맛 100g</a>
+              </p>
+              <p class="desc">10팩</p>
+              <p class="desc">
+              </p>
+
+              <ul class="price-item">
+                <li><span class="num">18,500</span>원</li>
+                <li class="dlv-type"><em class="imgbadge-dlv-exp"><span class="blind">특급배송</span></em></li>
+              </ul>
+            </div>
+
+            <div class="column qty">
+              <div class="qty-group">
+                <button type="button" class="btn-qty cart" title="" data-v-cartid="20230725000017891400" data-calculate="SUBTRACT" data-out-of-stock-status="N" data-v-dlv-group-cd="1600" data-v-gproductcd="8978" data-v-uproductcd-cart="8978" data-v-productcd="8978" data-v-optionid="20220424000000005291">
+                  <i class="ico-minus-bold"></i><span class="blind">빼기</span>
+                </button>
+                <input type="text" title="" class="input-qty product-8978" id="qty-20230725000017891400" value="1" data-max-qty="0" readonly="">
+                <button type="button" class="btn-qty cart" title="" data-v-cartid="20230725000017891400" data-calculate="ADD" data-out-of-stock-status="N" data-v-dlv-group-cd="1600" data-v-gproductcd="8978" data-v-uproductcd-cart="8978" data-v-productcd="8978" data-v-optionid="20220424000000005291">
+                  <i class="ico-plus-bold"></i><span class="blind">더하기</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="column price">
+              <input type="hidden" id="cart-orange-save-price-minus-20230725000017891400" class="nOrangeSavePriceMinus" value="370" data-out-of-stock-status="N">
+              <input type="hidden" id="cart-orange-save-price-20230725000017891400" class="nOrangeSavePrice" value="18130" data-out-of-stock-status="N">
+              <div class="price-div">
+                <span class="num cart-price-8978 brand-cd-1042 partner-cd-16 cart-price-8978" id="cart-price-20230725000017891400" data-out-of-stock-status="N">18,500</span>원
+              </div>
+            </div>
+
+            <input type="hidden" id="cart-save-point-20230725000017891400" class="nSavePoint" value="0" data-out-of-stock-status="N">
+            <input type="hidden" id="cart-orange-save-point-20230725000017891400" class="nOrangeSavePoint" value="0" data-out-of-stock-status="N">
+            <div class="column point" id="cart-point-20230725000017891400" data-out-of-stock-status="N">0P</div>
+
+            <div class="column btnKit">
+              <button type="button" class="btn-x-sm deleteUserCart" title="" data-v-cartid="20230725000017891400" data-v-productcd="8978" data-v-dlv-group-cd="1600" data-v-uproductcd-cart="8978" data-v-gproductcd="8978">
+                <i class="ico-x-black"></i><span class="blind">삭제</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="bottom-price-box">
+
+          <p class="price-txt">
+            <span class="txt">상품</span>
+            <span class="num productPrice-8978">18,500</span>원
+            - <span class="txt">할인</span>
+            <span class="num discount" id="discountPrice-8978">0</span>원
+
+            = <span class="num-total" data-total-price="" id="totalPrice-8978">18,500</span>원
+          </p>
+
+        </div>
+      </li>
+    </ul>
+    <script>
+      $(function () {
+
+      });
+    </script>
+
+  </div>
+    <div class="cart-total-box grid-area-span4">
+      <div class="colum">
+        <dl class="price-info">
+          <dt class="tit">상품금액</dt>
+          <dd class="price"><em class="num" id="totalProductPrice">18,500</em>원
+          </dd>
+        </dl>
+      </div>
+      <div class="colum">
+        <dl class="price-info">
+          <dt class="tit">할인금액</dt>
+          <dd class="price"><em class="num" id="totalDiscountPrice">0</em>원</dd>
+        </dl>
+      </div>
+      <div class="colum">
+        <dl class="price-info">
+          <dt class="tit">배송비</dt>
+          <dd class="price"><em class="num" id="totalDeliveryPrice">3,000</em>원</dd>
+        </dl>
+      </div>
+      <div class="colum">
+        <dl class="price-info">
+          <dt class="tit">총 결제금액</dt>
+          <dd class="price">
+            <em class="num text-primary totalOrderPrice">21,500</em>원
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <a href="/mypage/orangeMember" style="">
+      <div class="orangeMembers-skin-banner text-center">
+        <p><i class="ico-orangeMembers"></i><strong>오렌지멤버스</strong> 가입 시 <em id="obanner-p-text" style="display: none;"><span id="obanner-point">0P</span> 추가적립</em> <em id="obanner-or-text" style="display: none;">or</em> <em id="obanner-d-text"><span id="obanner-price-minus" style="color: rgb(255, 112, 1);">370원</span> 추가할인</em> <i class="ico-arr-right"></i></p>
+      </div>
+    </a>
+    <div class="page-guide-center">
+      <ul class="bl-list-type1">
+        <li>배송방법 선택 또는 배송지에 따라 배송비가 달라질 수 있습니다.</li>
+        <li>제품별로 출고지 및 출고일정이 상이하여 합포장 또는 개별발송될 수 있습니다.</li>
+        <li>상온과 냉동 합배송이 가능한 품목의 경우에는 상온 마감시간 기준으로 합배송 출고될 수 있습니다.</li>
+      </ul>
+    </div>
+    <div class="btn-bottom-area">
+      <a href="/static" class="btn-basic-xxlg btn-default-ex"><span>쇼핑계속하기</span></a>
+      <a href="javascript:void(0);" class="btn-basic-xxlg btn-primary-ex" id="order">
+        <span><em class="text-num-bold totalOrderPrice">21,500</em>원 주문하기</span>
+      </a>
+    </div>
+
+    <!-- ========== 팝업 영역 ========== -->
+    <div class="layer-wrap" id="orangeMemberPop">
+      <div class="layer-pop">
+        <div class="layer-inner">
+          <div class="layer-head">
+            <h4 class="layer-pop-title">오렌지멤버스 혜택 안내</h4>
+          </div>
+          <div class="layer-contents">
+
+            <ul>
+              <li onclick="radioCheck(this)" id="radioOPoint" style="display: none;">
+                <div class="custom-radio point">
+                  <input type="radio" id="point" class="radio" name="orangeChoice">
+                  <label for="point"><span>[적립]</span> 선택 시</label>
+                </div>
+                <div class="contents-sub">
+                  <p class="point">적립 예정 <span class="fr on"><span id="totOrangeSalePoint">000</span>P</span></p>
+                  <p class="result-price">총 결제 금액 <span class="fr"><span id="totOrangeSalePoint2">000</span>원</span></p>
+                </div>
+              </li>
+
+              <li onclick="radioCheck(this)" id="radioODiscount" style="">
+                <div class="custom-radio discount hide">
+                  <input type="radio" id="discount" class="radio" name="orangeChoice">
+                  <label for="discount"><span>[할인]</span> 선택 시</label>
+                </div>
+                <div class="contents-sub">
+                  <p class="tobeDiscount">할인 예정 <span class="fr">-<span id="totOrangeSalePrice">000</span>원</span></p>
+                  <p class="result-price">총 결제 금액 <span class="fr"><span id="totOrangeSalePrice2">000</span>원</span></p>
+                </div>
+              </li>
+            </ul>
+
+            <p class="info-text hide">결제 단계에서 다시 선택하실 수 있어요!</p>
+
+            <!-- [dev] 실제 주문 버튼 -->
+            <a href="javascript:void(0);" class="btn-basic-per btn-primary-ex" id="order">
+              <span><em class="text-num-bold totalOrderPrice">21,500</em>원 주문하기</span>
+            </a>
+
+          </div>
+          <button type="button" class="btn-x-md2 ui-close-pop" title="닫기"><i class="ico-x-black"></i><span class="blind">닫기</span></button>
+        </div><!--// layer-inner -->
+      </div><!--// layer-pop  -->
+    </div><!--// layer-pop-wrap #main-event -->
+
+    <!-- ========== 팝업 영역 ========== -->
+    <div class="layer-wrap" id="popup-product-coupon" style="display:none">
+      <div class="layer-pop couponselect-pop-area">
+        <div class="layer-inner">
+          <div class="layer-head">
+            <h4 class="layer-pop-title">쿠폰 할인</h4>
+          </div>
+
+          <div class="layer-content">
+            <div class="coupon-total-box">
+              <div class="inner">
+                <dl class="cell">
+                  <dt class="tit">상품금액</dt>
+                  <dd class="price"><span id="nPrice" class="resetPrice">0</span>원</dd>
+                </dl><!--// cell -->
+                <dl class="cell">
+                  <dt class="tit">할인금액</dt>
+                  <dd class="price text-primary"><span id="nSalePrice" class="resetPrice">0</span>원</dd>
+                </dl><!--// cell -->
+                <dl class="cell">
+                  <dt class="tit">쿠폰적용가</dt>
+                  <dd class="price text-primary"><span id="calcPrice" class="resetPrice">0</span>원</dd>
+                </dl><!--// cell -->
+              </div><!--// inner -->
+            </div><!--// coupon-total-box -->
+
+            <div class="scroll-area ui-custom-scroll mCustomScrollbar _mCS_1 mCS_no_scrollbar"><div id="mCSB_1" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" style="max-height: 360px;" tabindex="0"><div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+              <div class="pop-subtit-area">
+                <h5 class="pop-sub-title">상품쿠폰</h5>
+              </div>
+
+              <div class="coupon-box-list">
+                <ul id="couponList">
+                </ul>
+              </div><!--// coupon-box-list -->
+
+            </div><div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light mCSB_scrollTools_vertical" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 0px; top: 0px;"><div class="mCSB_dragger_bar" style="line-height: 0px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div></div>
+          </div><!--// layer-body -->
+
+          <div class="layer-bottom type-shadow">
+            <div class="btn-area">
+              <!-- [Dev] 20210908 버튼 클래스 수정 btn-basic-lg2, 적용취소 버튼 추가 -->
+              <button type="button" class="btn-basic-lg2 btn-grey3" id="couponApplyCancel"><span>적용취소</span></button>
+              <button type="button" class="btn-basic-lg2 btn-primary" id="useCoupon"><span>쿠폰적용</span></button>
+            </div>
+          </div>
+
+          <button type="button" class="btn-x-md2 ui-close-pop close" title=""><i class="ico-x-black"></i><span class="blind">닫기</span></button>
+        </div><!--// layer-inner -->
+      </div><!--// layer-pop  -->
+    </div>
+    <!--// layer-pop-wrap #popup-product-coupon -->
+    <!-- ========== 팝업 영역 ========== -->
+
+    <script type="text/javascript">
+
+    </script><!-- ========== 팝업 영역 ========== -->
+    <div class="layer-wrap" id="restock-popup" style="display:none">
+      <div class="layer-pop alarm-pop">
+        <div class="layer-inner">
+          <i class="ico-img-alarm"></i>
+          <strong class="tit">재입고 알림이 신청되었습니다.</strong>
+          <p class="txt">재입고 시 알림톡이나 SMS로 알림을 보내드립니다.</p>
+          <div class="btn-area">
+            <button type="button" class="btn-basic-md btn-black btn-default ui-close-pop restockBtnClose"><span>확인</span></button>
+          </div>
+        </div><!--// layer-inner -->
+      </div><!--// layer-pop  -->
+    </div><!--// layer-pop-wrap #main-event -->
+    <!-- ========== 팝업 영역 ========== --><!-- 재입고 신청 팝업 -->
+  </div>
+
+  <script>
+    let dlvMap;
+    $(document).ready(function () {
+      const vDlvGroupCdListTemp = [];
+      $('.productCheckbox:checked').each(function (i, v) {
+        vDlvGroupCdListTemp.push(this.dataset.vDlvGroupCd);
+      });
+      //const vDlvGroupCdList = Array.from(new Set(vDlvGroupCdListTemp));
+      const vDlvGroupCdList = getUnique(vDlvGroupCdListTemp);
+
+      $.each(vDlvGroupCdList, function (i, vDlvGroupCd) {
+        $('.checkboxGroup[name=check' + vDlvGroupCd + ']').prop('checked', 'checked');
+      });
+
+      // wnsgml351 인수인계 추가 - 품절상태 disabled 속성처리된 상품 있는지 확인 후, 전부 다 disabled 처리되면 배송그룹도 disabled 처리
+      // disabled 속성 찾기
+      const vDlvGroupCdDisabledTemp = [];
+      $('.productCheckbox:disabled').each(function (i, v) {
+        vDlvGroupCdDisabledTemp.push(this.dataset.vDlvGroupCd);
+      });
+      //const vDlvGroupCdDisabledList = Array.from(new Set(vDlvGroupCdDisabledTemp));
+      const vDlvGroupCdDisabledList = getUnique(vDlvGroupCdDisabledTemp);
+
+      // 배송그룹 disabled 처리
+      $.each(vDlvGroupCdDisabledList, function (i, vDlvGroupCd) {
+        const productLength = $('#delivery-group-' + vDlvGroupCd).find('ul.cart-list li input.productCheckbox').length;
+        const disabledLength = $('#delivery-group-' + vDlvGroupCd).find('ul.cart-list li input.productCheckbox:disabled').length;
+        if(productLength == disabledLength) {
+          $('.checkboxGroup[name=check' + vDlvGroupCd + ']').attr('disabled', true);
+        }
+      });
+      // wnsgml351 인수인계 추가 - 품절상태 disabled 속성처리된 상품 있는지 확인 후, 전부 다 disabled 처리되면 배송그룹도 disabled 처리
+
+      $('.warning-msg-box').each(function (i, v) {
+        $('#check-product-' + $(this).data('vUproductcd')).prop('checked', false);
+        $('#check-product-' + $(this).data('vUproductcd')).prop('disabled', true);
+      });
+      calculateTotalOrderPrice();
+    });
+
+    function siblings(t) {
+      var children = t.parentElement.children;
+      var tempArr = [];
+
+      for (var i = 0; i < children.length; i++) {
+        tempArr.push(children[i]);
+      }
+
+      return tempArr.filter(function(e){
+        return e != t;
+      });
+    }
+
+    function radioCheck(target){
+      // li 태그 클릭시 radio 체크 처리 함수
+      let li        = target;
+      let input     = li.querySelector('input[type=radio]');
+      input.checked = true;
+
+      // 폰트 색상 변경
+      let liChild  = li.children;
+      let span = liChild[1].querySelector('span.fr');
+      span.classList.add('on');
+
+      // 폰트 색상 삭제
+      var one           = target;
+      let siblingTarget = siblings(one);
+      let siblingTag    = siblingTarget[0].children;
+      let oldSpan       = siblingTag[1].querySelector('span');
+      oldSpan.classList.remove("on");
+
+      let totPrice = '';
+      let orangMemebersBenefit = 'N';
+      if(input.id == 'discount') {
+        totPrice = document.getElementById('totOrangeSalePrice2').innerText;
+        orangMemebersBenefit = 'discount';
+      } else if(input.id == 'point') {
+        totPrice = document.getElementById('totOrangeSalePoint2').innerText;
+        orangMemebersBenefit = 'point';
+      }
+      document.querySelector('#orangeMemberPop .totalOrderPrice').innerText = totPrice;
+      document.querySelector('input[name="orangeMembersBenefit"]' ).value = orangMemebersBenefit;
+    }
+
+    function calculateOrangeMember(e) {
+      const matches = document.querySelectorAll('ul.cart-list li input:checked');
+      let orangePoint = 0;
+      let orangePrice = 0;
+      let orangePriceMinus = 0;
+      let couponPrice = 0;
+      matches.forEach(function(iCheck) {
+        const vProductcd = iCheck.dataset.vProductcd;
+        const vGproductcd = iCheck.dataset.vGproductcd;
+        const vDlvGroupCd = iCheck.dataset.vDlvGroupCd;
+        const vAddProdYn = iCheck.dataset.vAddProdYn;
+        const id = vGproductcd + vDlvGroupCd + vAddProdYn;
+
+
+
+        document.querySelectorAll('#delivery-product-' + id + ' .nSavePoint').forEach(function (iSPoint) {
+          const oos = iSPoint.dataset.outOfStockStatus;
+          if(oos == 'N') {
+            orangePoint += Number(iSPoint.value);
+          }
+        });
+
+        document.querySelectorAll('#delivery-product-' + id + ' .nOrangeSavePoint').forEach(function (iPoint) {
+          const oos = iPoint.dataset.outOfStockStatus;
+          if(oos == 'N') {
+            orangePoint += Number(iPoint.value);
+          }
+        });
+
+        document.querySelectorAll('#delivery-product-' + id + ' .nOrangeSavePriceMinus').forEach(function (iPriceMinus) {
+          const oos = iPriceMinus.dataset.outOfStockStatus;
+          if(oos == 'N') {
+            orangePriceMinus += Number(iPriceMinus.value);
+          }
+        });
+
+        document.querySelectorAll('#delivery-product-' + id + ' .nOrangeSavePrice').forEach(function (iPrice) {
+          const oos = iPrice.dataset.outOfStockStatus;
+          if(oos == 'N') {
+            orangePrice += Number(iPrice.value);
+          }
+        });
+
+        document.querySelectorAll('#delivery-product-' + id + ' .bottom-price-box .discount').forEach(function (idPrice) {
+          /*
+          const oos = idPrice.innerText.replace(/,/g, "");
+          if(oos == 'N') {
+              couponPrice += Number(iPrice.value);
+          }
+          */
+          couponPrice += Number(idPrice.innerText.replace(/,/g, ""));
+        });
+      });
+      orangePrice += Number(document.getElementById('totalDeliveryPrice').innerText.replace(/,/g, ""));
+      orangePrice -= couponPrice;
+      document.getElementById('totOrangeSalePrice').innerText = SetNumComma(orangePriceMinus);
+      document.getElementById('totOrangeSalePoint').innerText = SetNumComma(orangePoint);
+
+      const totalOrderPrice = document.querySelector('.cart-total-box .price-info .price .totalOrderPrice');
+      document.getElementById('totOrangeSalePrice2').innerText = SetNumComma(orangePrice);
+      document.getElementById('totOrangeSalePoint2').innerText = totalOrderPrice.innerText;
+
+      if(document.getElementById('radioOPoint').style.display == 'none' && document.getElementById('radioODiscount').style.display == 'none') {
+      } else if(document.getElementById('radioOPoint').style.display == 'none') {
+        document.querySelector('label[for=discount]').click();
+      } else {
+        document.querySelector('label[for=point]').click();
+      }
+    }
+  </script>
+
+  <script src="/resources/pc/js/order/cart.js?ver=20230302-1"></script>
+
+  <div class="slide-area frame-sm mt60" id="recommendProdDiv"></div>
+</section>
+</html>
