@@ -6,14 +6,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/board/notice")
+@RequestMapping("/notice")
 @Slf4j
 public class NoticeController {
     @RequestMapping("content")
     public ModelAndView content(){
         ModelAndView mv = new ModelAndView();
 
-        mv.setViewName("/board/notice/content.html"); // html 파일 이름 설정
+        mv.setViewName("/content.html"); // html 파일 이름 설정
         return mv;
     }
 
@@ -21,7 +21,7 @@ public class NoticeController {
     public ModelAndView list(){
         ModelAndView mv = new ModelAndView();
 
-        mv.setViewName("/board/notice/list.html"); // html 파일 이름 설정
+        mv.setViewName("/list.html"); // html 파일 이름 설정
         return mv;
     }
 
@@ -29,7 +29,7 @@ public class NoticeController {
     public ModelAndView write(){
         ModelAndView mv = new ModelAndView();
 
-        mv.setViewName("/board/notice/write.html"); // html 파일 이름 설정
+        mv.setViewName("/write.html"); // html 파일 이름 설정
         return mv;
     }
 

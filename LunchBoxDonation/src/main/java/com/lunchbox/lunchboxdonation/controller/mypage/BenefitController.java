@@ -8,22 +8,22 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @Slf4j
 public class BenefitController {
-    @RequestMapping("mypage")
-    public ModelAndView benefit_coupon(){
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("mypage/benefit_coupon");
-        return mv;
-    }
-    @RequestMapping("mypage")
-    public ModelAndView benefit_point(){
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("mypage/benefit_point");
-        return mv;
-    }
-    @RequestMapping("mypage")
-    public ModelAndView benefit_voucher(){
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("mypage/benefit_voucher");
-        return mv;
-    }
+//    @RequestMapping("mypage")
+//    public ModelAndView benefit_coupon(){
+//        ModelAndView mv = new ModelAndView();
+//        mv.setViewName("mypage/benefit_coupon");
+//        return mv;
+//    }
+//    @RequestMapping("mypage")
+//    public ModelAndView benefit_point(){
+//        ModelAndView mv = new ModelAndView();
+//        mv.setViewName("mypage/benefit_point");
+//        return mv;
+//    }
+//    @RequestMapping("mypage")
+//    public ModelAndView benefit_voucher(){
+//        ModelAndView mv = new ModelAndView();
+//        mv.setViewName("mypage/benefit_voucher");
+//        return mv;
+//    }
 }

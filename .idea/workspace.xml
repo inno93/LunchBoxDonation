@@ -19,11 +19,49 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8800162a-b0cc-47d4-9bd2-31af1b648486" name="Default Changelist" comment="인텔리제이 테스트" />
+    <list default="true" id="8800162a-b0cc-47d4-9bd2-31af1b648486" name="Default Changelist" comment="인텔리제이 테스트">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/admin/CouponController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/admin/BoCouponController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/admin/NoticeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/admin/BoNoticeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/mypage/ActivityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/mypage/ActivityController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/mypage/BenefitController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/mypage/BenefitController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/mypage/DietController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/mypage/DietController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/mypage/InformationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/mypage/InformationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/mypage/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/mypage/OrderListController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/notice/NoticeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/notice/NoticeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/domain/NoticeDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/domain/NoticeDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Notice.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Notice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/order/kit.html" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/order/kit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/order/order.html" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/order/order.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/LunchBoxDonation">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -43,11 +81,26 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/LunchBoxDonation" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
+  </component>
+  <component name="RunManager">
+    <configuration name="LunchBoxDonationApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="LunchBoxDonation.LunchBoxDonation.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.lunchbox.lunchboxdonation.LunchBoxDonationApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -75,6 +128,9 @@
       <workItem from="1689654949309" duration="4858000" />
       <workItem from="1689691229308" duration="25000" />
       <workItem from="1689691277893" duration="359000" />
+      <workItem from="1690356674871" duration="571000" />
+      <workItem from="1690357271209" duration="13433000" />
+      <workItem from="1690434825626" duration="6887000" />
     </task>
     <task id="LOCAL-00001" summary="인텔리제이 테스트">
       <created>1687531010021</created>
@@ -106,17 +162,74 @@
     <option name="LAST_COMMIT_MESSAGE" value="인텔리제이 테스트" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1690357146968">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1690357146968" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1689691639644">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.5.1920.1040@0.0.1920.1040" timestamp="1689691639644" />
+    <state width="1493" height="201" key="GridCell.Tab.0.bottom" timestamp="1690450975557">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="201" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1690450975557" />
+    <state width="1493" height="201" key="GridCell.Tab.0.center" timestamp="1690450975557">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="201" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1690450975557" />
+    <state width="1493" height="201" key="GridCell.Tab.0.left" timestamp="1690450975557">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="201" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1690450975557" />
+    <state width="1493" height="201" key="GridCell.Tab.0.right" timestamp="1690450975557">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="201" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1690450975557" />
+    <state width="1493" height="201" key="GridCell.Tab.1.bottom" timestamp="1690450975558">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="201" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1690450975558" />
+    <state width="1493" height="201" key="GridCell.Tab.1.center" timestamp="1690450975557">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="201" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1690450975557" />
+    <state width="1493" height="201" key="GridCell.Tab.1.left" timestamp="1690450975557">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="201" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1690450975557" />
+    <state width="1493" height="201" key="GridCell.Tab.1.right" timestamp="1690450975558">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="201" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1690450975558" />
+    <state x="277" y="57" key="SettingsEditor" timestamp="1690357813573">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1690357813573" />
     <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1687531703883">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1920.5.1920.1040@0.0.1920.1040" timestamp="1687531703883" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1689065072990">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="571" y="325" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1690357149750">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state x="571" y="325" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1690357149750" />
+    <state x="498" y="178" width="672" height="538" key="search.everywhere.popup" timestamp="1690362058848">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="498" y="178" width="672" height="538" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1690362058848" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1920.5.1920.1040@0.0.1920.1040" timestamp="1689065072990" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/order/order.html</url>
+          <line>444</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

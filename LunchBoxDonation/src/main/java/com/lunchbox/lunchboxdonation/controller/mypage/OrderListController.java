@@ -7,41 +7,36 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @Slf4j
-public class ActivityController {
+public class OrderListController {
 //    @RequestMapping("mypage")
-//    public ModelAndView activity_brand(){
+//    public ModelAndView order_before(){
 //        ModelAndView mv = new ModelAndView();
-//        mv.setViewName("mypage/activity_brand");
+//        mv.setViewName("mypage/order_before");
 //        return mv;
 //    }
 //    @RequestMapping("mypage")
-//    public ModelAndView activity_inquiry_details(){
+//    public ModelAndView order_cancel(){
 //        ModelAndView mv = new ModelAndView();
-//        mv.setViewName("mypage/activity_inquiry_details");
+//        mv.setViewName("mypage/order_cancel");
 //        return mv;
 //    }
 //    @RequestMapping("mypage")
-//    public ModelAndView activity_interview(){
+//    public ModelAndView order_details(){
 //        ModelAndView mv = new ModelAndView();
-//        mv.setViewName("mypage/activity_interview");
+//        mv.setViewName("mypage/order_details");
 //        return mv;
 //    }
 //    @RequestMapping("mypage")
-//    public ModelAndView activity_likes(){
+//    public ModelAndView order_regular_delivery(){
 //        ModelAndView mv = new ModelAndView();
-//        mv.setViewName("mypage/activity_likes");
+//        mv.setViewName("mypage/order_regular_delivery");
 //        return mv;
 //    }
 //    @RequestMapping("mypage")
-//    public ModelAndView activity_recently(){
+//    public ModelAndView order_restocked(){
 //        ModelAndView mv = new ModelAndView();
-//        mv.setViewName("mypage/activity_recently");
+//        mv.setViewName("mypage/order_restocked");
 //        return mv;
 //    }
-//    @RequestMapping("mypage")
-//    public ModelAndView activity_review(){
-//        ModelAndView mv = new ModelAndView();
-//        mv.setViewName("mypage/activity_review");
-//        return mv;
-//    }
+
 }

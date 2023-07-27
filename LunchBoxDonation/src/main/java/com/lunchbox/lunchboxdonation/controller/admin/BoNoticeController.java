@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 @Slf4j
-public class NoticeController {
+public class BoNoticeController {
 
     // 공지사항
 

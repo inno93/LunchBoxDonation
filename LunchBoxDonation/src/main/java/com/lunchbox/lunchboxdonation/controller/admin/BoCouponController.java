@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @Slf4j
 @RequestMapping("coupon")
-public class CouponController {
+public class BoCouponController {
 
     // 쿠폰
 
