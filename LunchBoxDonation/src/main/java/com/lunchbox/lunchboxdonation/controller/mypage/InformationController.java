@@ -1,13 +1,13 @@
-package com.lunchbox.lunchboxdonation.controller.mypage;
-
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
-
-@Controller
-@Slf4j
-public class InformationController {
+//package com.lunchbox.lunchboxdonation.controller.mypage;
+//
+//import lombok.extern.slf4j.Slf4j;
+//import org.springframework.stereotype.Controller;
+//import org.springframework.web.bind.annotation.RequestMapping;
+//import org.springframework.web.servlet.ModelAndView;
+//
+//@Controller
+//@Slf4j
+//public class InformationController {
 //
 //    @RequestMapping("mypage")
 //    public ModelAndView information_crystal(){
@@ -21,4 +21,4 @@ public class InformationController {
 //        mv.setViewName("mypage/information_shipping_address");
 //        return mv;
 //    }
-}
+//}

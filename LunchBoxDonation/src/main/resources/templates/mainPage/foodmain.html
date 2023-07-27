@@ -1,64 +1,62 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="../../static/css/mainPage/foodmain.css">
-  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-  <script src="../../static/js/header-footer/header-footer.js"></script>
-  <title>Document</title>
-</head>
-<style>
-    input:focus {
-    outline: none; /* 클릭 시 테두리 제거 */
-    }
-    .my-container2 {
-        display: flex;
-        flex-wrap: wrap;
-        width: 1200px;
-        margin: 0 auto;
-        margin-top: 100px;
-    }
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+<th:block layout:fragment="css">
+    <link rel="stylesheet" href="/css/mainPage/foodmain.css">
+    <style>
+        input:focus {
+            outline: none; /* 클릭 시 테두리 제거 */
+        }
+        .my-container2 {
+            display: flex;
+            flex-wrap: wrap;
+            width: 1200px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
 
-    .my-box {
-        border-radius: 10px;
-        width: 250px;
-        height: 379px;
-        background-color: white;
-        margin: 15px;
-        overflow:hidden;
-        margin-bottom: 10px;
-    }
-    .my-box > img{
-        height: 250px;
-    }
-    .fast-box{
-        background-image: url("https://www.rankingdak.com/resources/pc/images/txt/txt_badge_dlv.png");
-        background-size: 90px;
-    }
-    .fast-word{
-        word-spacing: 1px;
-        font-size: 14px;
-        font-weight: bolder;
-        color: gray;
-    }
-    .fast-price{
-        margin-top: 30px;
-        font-weight: bolder;
-        font-size: 20px;
-    }
-    .fast-price2{
-        font-size: 12px;
-    }
-    .fast-price3{
-        margin-top: 2px;
-        font-size: 12px;
-    }
-</style>
-<body>
-    <!-- scroll-따라오는 애 -->
+        .my-box {
+            border-radius: 10px;
+            width: 250px;
+            height: 379px;
+            background-color: white;
+            margin: 15px;
+            overflow:hidden;
+            margin-bottom: 10px;
+        }
+        .my-box > img{
+            height: 250px;
+        }
+        .fast-box{
+            background-image: url("https://www.rankingdak.com/resources/pc/images/txt/txt_badge_dlv.png");
+            background-size: 90px;
+        }
+        .fast-word{
+            word-spacing: 1px;
+            font-size: 14px;
+            font-weight: bolder;
+            color: gray;
+        }
+        .fast-price{
+            margin-top: 30px;
+            font-weight: bolder;
+            font-size: 20px;
+        }
+        .fast-price2{
+            font-size: 12px;
+        }
+        .fast-price3{
+            margin-top: 2px;
+            font-size: 12px;
+        }
+    </style>
+</th:block>
+<!-- scroll-따라오는 애 -->
+<!-- scroll-따라오는 애 -->
+<!-- header -->
+<section class="container" layout:fragment="content">
     <div class="scrollable-container">
         <div id="stickyDiv">
             <a href="">
@@ -76,24 +74,16 @@
                 </div>
             </a>
         </div>
-      </div>
-    <!-- scroll-따라오는 애 -->
-
-
-<header id="header"></header>
-
-<!-- header -->
-<section class="container">
-    <div class="arrow prev" id="arrow-prev">&lt;</div>
-    <div class="banner">
-        <div class="img"><img src="/mainPage/assets/img/slide1.jpg"></div>
-        <div class="img"><img src="/mainPage/assets/img/slide2.jpg"></div>
-        <div class="img"><img src="/mainPage/assets/img/slide3.jpg"></div>
-        <div class="img"><img src="/mainPage/assets/img/slide4.jpg"></div>
-        <div class="img"><img src="/mainPage/assets/img/slide5.jpg"></div>
-        <div class="img"><img src="/mainPage/assets/img/slide6.jpg"></div>
     </div>
-    <div class="arrow next" id="arrow-next">&gt;</div>
+    <div class="arrow prev" id="arrow-prev"></div>
+    <div class="banner">
+        <div class="img"><img src="/img/mainPage/slide1.jpg"></div>
+        <div class="img"><img src="/img/mainPage/slide2.jpg"></div>
+        <div class="img"><img src="/img/mainPage/slide3.jpg"></div>
+        <div class="img"><img src="/img/mainPage/slide4.jpg"></div>
+        <div class="img"><img src="/img/mainPage/slide5.jpg"></div>
+        <div class="img"><img src="/img/mainPage/slide6.jpg"></div>
+    </div>
     <div class="btns">
         <button class="btn">1</button>
         <button class="btn">2</button>
@@ -102,1343 +92,1313 @@
         <button class="btn">5</button>
         <button class="btn">6</button>
     </div>
-</section>
-<!-- 베너 JS -->
-<script>   
-    const banner = document.querySelector("div.banner");
-    const arrows = document.querySelectorAll("div.arrow")
-    const btns = document.querySelectorAll("button.btn");
-    let count = 0;
+    <div class="arrow next" id="arrow-next"></div>
+    <!-- 베너 JS -->
+    <script>
+        const banner = document.querySelector("div.banner");
+        const arrows = document.querySelectorAll("div.arrow")
+        const btns = document.querySelectorAll("button.btn");
+        let count = 0;
 
-    // 원하는 번호의 배너로 이동
-    btns.forEach(function(btn, i, ar){
-        // 각 버튼에 클릭이벤트 적용
-        ar[i].addEventListener("click", function(){
-            // 해당 버튼 번호(i)로 count변경
-            count = i;
-            banner.style.transform = "translate(-" + count * 90 + "vw)";
+        // 원하는 번호의 배너로 이동
+        btns.forEach(function(btn, i, ar){
+            // 각 버튼에 클릭이벤트 적용
+            ar[i].addEventListener("click", function(){
+                // 해당 버튼 번호(i)로 count변경
+                count = i;
+                banner.style.transform = "translate(-" + count * 90 + "vw)";
+            });
         });
-    });
 
-    // 이전버튼, 다음버튼 기능 구현
-    arrows.forEach(arrow => {
-        arrow.addEventListener("click", function(){
-            let arrowType = arrow.classList[1];
-            if(arrowType == 'prev'){
-                count--;
-                if(count == -1) {
-                    count = 5;
+        // 이전버튼, 다음버튼 기능 구현
+        arrows.forEach(arrow => {
+            arrow.addEventListener("click", function(){
+                let arrowType = arrow.classList[1];
+                if(arrowType == 'prev'){
+                    count--;
+                    if(count == -1) {
+                        count = 5;
+                    }
+                }else{
+                    count++;
+                    if(count == 6) {
+                        count = 0;
+                    }
                 }
-            }else{
-                count++;
-                if(count == 6) {
-                    count = 0;
+                banner.style.transform = "translate(-" + count * 90 + "vw)";
+            });
+        });
+
+        setInterval(function(){
+            count++;
+            count = count == 6 ? 0 : count;
+            banner.style.transform = "translate(-" + count * 90 + "vw)";
+        }, 4000);</script>
+    <!-- 베너 JS -->
+
+    <!-- category -->
+    <div id="jaeweon" style="margin-top: 88px">
+        <div id="category-box-1">
+            <i id="category-img-1"></i>
+            <span id="category-comment" style="margin-top: 26px;">신상품</span>
+        </div>
+        <div id="category-box-2">
+            <i id="category-img-2"></i>
+            <span id="category-comment">선물하기</span>
+        </div>
+        <div id="category-box-3">
+            <i id="category-img-3"></i>
+            <span id="category-comment"  style="margin-top: 20px; margin-left: 4px;">도시락·볶음밥</span>
+        </div>
+        <div id="category-box-4">
+            <i id="category-img-4"></i>
+            <span id="category-comment">닭가슴살</span>
+        </div>
+        <div id="category-box-5">
+            <i id="category-img-5"></i>
+            <span id="category-comment" style="margin-left: 8px;">샐러드·과일</span>
+        </div>
+        <div id="category-box-6">
+            <i id="category-img-6"></i>
+            <span id="category-comment" style="margin-left: 4px;">베이커리·치즈</span>
+        </div>
+        <div id="category-box-7">
+            <i id="category-img-7"></i>
+            <span id="category-comment" style="margin-left: 0px;">음료·차·프로틴</span>
+        </div>
+        <div id="category-box-8">
+            <i id="category-img-8"></i>
+            <span id="category-comment">비건식품</span>
+        </div>
+        <div id="category-box-9">
+            <i id="category-img-9"></i>
+            <span id="category-comment"  style="margin-top: 28px;">수산·해산</span>
+        </div>
+        <div id="category-box-10">
+            <i id="category-img-10"></i>
+            <span id="category-comment">건강식품</span>
+        </div>
+    </div>
+    <!-- category -->
+
+    <!-- MD Pick! -->
+    <div class="md-pick">MD Pick! 추천 상품</div>
+    <!-- MD Pick! -->
+
+    <!-- img x 4 category -->
+    <div id="imageContainer" class="image-container"></div>
+    <div id="navigationButtons" class="navigation-buttons">
+        <button id="prevButton" class="navigation-button-prev">&lt;</button>
+        <button id="nextButton" class="navigation-button-next">&gt;</button>
+    </div>
+    <script>
+        // 이미지 파일 목록
+        const imageFiles = [
+            {
+                file : "/img/mainPage/mdpick1.jpg",
+                description : "저염+고단백 모두 완벽!"
+            },
+            {
+                file : "/img/mainPage/mdpick2.jpg",
+                description : "식단은 물론, GI지수에도 딱!"
+            },
+            {
+                file : "/img/mainPage/mdpick3.jpg",
+                description : "가방에 쏙! 1일 1샐의 시작"
+            },
+            {
+                file : "/img/mainPage/mdpick4.jpg",
+                description : "흰 쌀밥과 찰떡궁합💛"
+            },
+            {
+                file : "/img/mainPage/mdpick5.jpg",
+                description : "속까지 꽉 채워진 수분감💦"
+            },
+            {
+                file : "/img/mainPage/mdpick6.jpg",
+                description : "소스까지 다 먹어도 115kcal"
+            },
+            {
+                file : "/img/mainPage/mdpick7.jpg",
+                description : "식단 패키지로 몸짱 도전😎"
+            },
+            {
+                file : "/img/mainPage/mdpick8.jpg",
+                description : "10팩 사면 10팩 더!"
+            }
+        ];
+
+        let currentIndex = 0;
+        const imageContainer = document.getElementById("imageContainer");
+        const prevButton = document.getElementById("prevButton");
+        const nextButton = document.getElementById("nextButton");
+
+        showImages();
+
+        // 다음 버튼 클릭 이벤트 처리
+        nextButton.addEventListener("click", () => {
+            currentIndex = (currentIndex + 1) % imageFiles.length;
+            showImages();
+        });
+
+        // 이전 버튼 클릭 이벤트 처리
+        prevButton.addEventListener("click", () => {
+            currentIndex = (currentIndex - 1 + imageFiles.length) % imageFiles.length;
+            showImages();
+        });
+
+        // 이미지와 설명 표시 함수
+        function showImages() {
+            const visibleImages = [];                  /* 화면에서 보여지는 이미지 수 */
+            for (let i = currentIndex; visibleImages.length < 4; i = (i + 1) % imageFiles.length) {
+                visibleImages.push(imageFiles[i]);
+            }
+
+            imageContainer.innerHTML = "";
+
+            for (let i = 0; i < visibleImages.length; i++) {
+                const image = visibleImages[i];
+
+                const wrapperElement = document.createElement("div");
+                wrapperElement.className = "image-wrapper";
+                imageContainer.appendChild(wrapperElement);
+
+                const imageElement = document.createElement("img");
+                imageElement.className = "image";
+                imageElement.src = image.file;
+                wrapperElement.appendChild(imageElement);
+
+                const descriptionElement = document.createElement("p");
+                descriptionElement.className = "description";
+                descriptionElement.textContent = image.description;
+                wrapperElement.appendChild(descriptionElement);
+            }
+        }
+
+    </script>
+    <!-- img x 4 category -->
+
+
+    <div class="time-sale">
+        <h2>
+            <span class="time-sale-img">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;지금 이순간</span>
+            <br>
+            <span>깜짝 타임세일!</span>
+            <br>
+            <h3>오늘이 가면 없을 기회, 놓치지 마세요.</h3>
+        </h2>
+    </div>
+    <!-- img x 2 category -->
+    <div id="imageContainer2" class="image-container2"></div>
+    <div id="navigationButtons2" class="navigation-buttons2">
+        <button id="prevButton2" class="navigation-button-prev2">&lt;</button>
+        <button id="nextButton2" class="navigation-button-next2">&gt;</button>
+    </div>
+
+    <script>
+        // 이미지 파일 목록
+        const imageFiles2 = [
+            {
+                file : "/img/mainPage/timeSale1.jpg",
+                description : "☎TIME SALE☎ 맛있닭 닭가슴살 5+5"
+            },
+            {
+                file : "/img/mainPage/timeSale2.jpg",
+                description : "[유통기한임박특가] 네이처엠 웰바이츠 견과 1봉 420원 특가"
+            },
+            {
+                file : "/img/mainPage/timeSale3.jpg",
+                description : "☎TIME SALE☎ 맛있닭 씨푸드 다이어트 도시락 최대 48% 할인"
+            },
+            {
+                file : "/img/mainPage/timeSale4.jpg",
+                description : "☎TIME SALE☎ 맛있닭 씨푸드 다이어트 도시락 최대 48% 할인"
+            },
+            {
+                file : "/img/mainPage/timeSale5.jpg",
+                description : "☎TIME SALE☎ 맛있닭 통안심 탕수육 최대 51% 할인"
+            }
+        ];
+
+        let currentIndex2 = 0;
+        const imageContainer2 = document.getElementById("imageContainer2");
+        const prevButton2 = document.getElementById("prevButton2");
+        const nextButton2 = document.getElementById("nextButton2");
+
+        showImages2();
+
+        // 다음 버튼 클릭 이벤트 처리
+        nextButton2.addEventListener("click", () => {
+            currentIndex2 = (currentIndex2 + 1) % imageFiles2.length;
+            showImages2();
+        });
+
+        // 이전 버튼 클릭 이벤트 처리
+        prevButton2.addEventListener("click", () => {
+            currentIndex2 = (currentIndex2 - 1 + imageFiles2.length) % imageFiles2.length;
+            showImages2();
+        });
+
+        // 이미지와 설명 표시 함수
+        function showImages2() {
+            const visibleImages2 = []; /* 화면에서 보여지는 이미지 수 */
+            for (let i = currentIndex2; visibleImages2.length < 2; i = (i + 1) % imageFiles2.length) {
+                visibleImages2.push(imageFiles2[i]);
+            }
+
+            imageContainer2.innerHTML = "";
+
+            for (let i = 0; i < visibleImages2.length; i++) {
+                const image2 = visibleImages2[i];
+
+                const wrapperElement2 = document.createElement("div");
+                wrapperElement2.className = "image-wrapper2";
+                imageContainer2.appendChild(wrapperElement2);
+
+                const imageElement2 = document.createElement("img");
+                imageElement2.className = "image2";
+                imageElement2.src = image2.file;
+                wrapperElement2.appendChild(imageElement2);
+
+                const descriptionElement2 = document.createElement("p");
+                descriptionElement2.className = "description2";
+                descriptionElement2.textContent = image2.description;
+                wrapperElement2.appendChild(descriptionElement2);
+                // 추가한 <div> 요소 안에 내용 추가
+                const innerDivElement2 = document.createElement("div");
+                innerDivElement2.textContent = "42%"; // 원하는 내용으로 수정
+                innerDivElement2.style.color = "#ff8001"; // 빨간색으로 스타일 지정
+                innerDivElement2.style.textAlign = "left"; // 왼쪽 정렬 스타일 지정
+                innerDivElement2.style.marginLeft ="-5px";
+                innerDivElement2.style.fontSize = "22px";
+                //   innerDivElement2.style.float ="left";
+                descriptionElement2.appendChild(innerDivElement2);
+                // 추가한 <div> 요소 연결
+                const additionalDivElement = document.createElement("div");
+                additionalDivElement.textContent = "한 정 특 가!";  // 원하는 내용으로 수정
+                additionalDivElement.style.float ="right";
+                additionalDivElement.style.marginTop="-27px"
+                additionalDivElement.style.marginRight="210px"
+                additionalDivElement.style.fontSize = "20px";
+                descriptionElement2.appendChild(additionalDivElement);
+            }
+        }
+    </script>
+    <!-- img x 2 category -->
+
+
+
+    <div class="theme-recommend">테마별 추천 상품</div>
+    <div class="theme-recommend-div">
+        <button id="button1" onclick="changeContainer('container1', 'button1')">소스의 매력에 퐁당</button>
+        <button id="button2" onclick="changeContainer('container2', 'button2')">탱글 뽀득 소시지</button>
+        <button id="button3" onclick="changeContainer('container3', 'button3')">신선함 가득 생 닭가슴살</button>
+        <button id="button4" onclick="changeContainer('container4', 'button4')">더담아 든든한 식단</button>
+        <button id="button5" onclick="changeContainer('container5', 'button5')">쫄깃 탱탱 계란 단백질</button>
+    </div>
+
+    <div class="my-container" id="container1">
+        <div class="my-left-div">
+            <a href="/read.html">
+                <img src="/img/mainPage/big1.jpg">
+            </a>
+            <div class="context">
+                <em class="title">매일 다른 맛으로 실천하는 1일 1소스닭</em>
+                <p class="text">특제소스 듬뿍 찍어 입속으로 DIVE🧡</p>
+            </div>
+        </div>
+        <div class="my-right-divs">
+            <div class="my-right-div" id="my-right-div1">
+                <img src="/img/mainPage/big1-1.jpg" alt="이미지">
+                <span class="my-top-div">랭커 스팀 소스 닭가슴살 100g X 10팩</span>
+                <span class="my-bottom-div">17,900원</span>
+            </div>
+            <div class="my-right-div" id="my-right-div2">
+                <img src="/img/mainPage/big1-2.jpg" alt="이미지">
+                <span class="my-top-div">맛있닭 닭가슴살 오븐구이 혼합 150g X 12팩</span>
+                <span class="my-bottom-div">34,680원</span>
+            </div>
+            <div class="my-right-div" id="my-right-div3">
+                <img src="/img/mainPage/big1-3.jpg" alt="이미지">
+                <span class="my-top-div">맛있닭 한입 소스 닭가슴살 혼합 100g X 16팩</span>
+                <span class="my-bottom-div">38,240원</span>
+            </div>
+            <div class="my-right-div" id="my-right-div4">
+                <img src="/img/mainPage/big1-4.jpg" alt="이미지">
+                <span class="my-top-div">잇메이트 슬라이스 소스 닭가슴살 혼합 150g X 10팩</span>
+                <span class="my-bottom-div">25,900원</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="my-container" id="container2" style="display: none;">
+        <div class="my-left-div">
+            <img src="/img/mainPage/big2.jpg">
+            <div class="context">
+                <em class="title">톡터지는 육즙 & 단백질</em>
+                <p class="text">돈육 소시지처럼 부드럽고 육즙 가득해요💦</p>
+            </div>
+        </div>
+        <div class="my-right-divs">
+            <div class="my-right-div" id="my-right-div5">
+                <img src="/img/mainPage/big2-1.jpg" alt="이미지">
+                <span class="my-top-div">잇메이트 닭가슴살 소시지 혼합 100g X 15팩</span>
+                <span class="my-bottom-div">24,000원</span>
+            </div>
+            <div class="my-right-div" id="my-right-div6">
+                <img src="/img/mainPage/big2-2.jpg" alt="이미지">
+                <span class="my-top-div">맛있닭 닭가슴살 소시지 훈제맛 100g X 10팩</span>
+                <span class="my-bottom-div">19,500원</span>
+            </div>
+            <div class="my-right-div" id="my-right-div7">
+                <img src="/img/mainPage/big2-3.jpg" alt="이미지">
+                <span class="my-top-div">잇메이트 닭가슴살 소시지 프로 훈제맛 120g X 15팩</span>
+                <span class="my-bottom-div">26,850원</span>
+            </div>
+            <div class="my-right-div" id="my-right-div8">
+                <img src="/img/mainPage/big2-4.jpg" alt="이미지">
+                <span class="my-top-div">랭커 닭가슴살 소시지 혼합 100g X 10팩</span>
+                <span class="my-bottom-div">12,800원</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="my-container" id="container3" style="display: none;">
+        <div class="my-left-div">
+            <img src="/img/mainPage/big3.jpg">
+            <div class="context">
+                <em class="title">요즘 헬짱들의 장바구니 필수템🛒</em>
+                <p class="text">개별 급속 냉동으로 신선함은 물론 편리성까지!</p>
+            </div>
+        </div>
+        <div class="my-right-divs">
+            <div class="my-right-div" id="my-right-div9">
+                <img src="/img/mainPage/big3-1.jpg" alt="이미지">
+                <span class="my-top-div">랭커 IQF 한입 닭가슴살 100g X 10팩</span>
+                <span class="my-bottom-div">9,500원</span>
+            </div>
+            <div class="my-right-div" id="my-right-div10">
+                <img src="/img/mainPage/big3-2.jpg" alt="이미지">
+                <span class="my-top-div">하림 동물복지 IFF 냉동 생 닭가슴살 800g X 1팩</span>
+                <span class="my-bottom-div">10,000원</span>
+            </div>
+            <div class="my-right-div" id="my-right-div11">
+                <img src="/img/mainPage/big3-3.jpg" alt="이미지">
+                <span class="my-top-div">다향 IGF 닭가슴살 1kg X 1팩</span>
+                <span class="my-bottom-div">8,400원</span>
+            </div>
+            <div class="my-right-div" id="my-right-div12">
+                <img src="/img/mainPage/big3-4.jpg" alt="이미지">
+                <span class="my-top-div">닭스몰 무항상제 1등듭 냉동 생 닭가슴살 400g X 5팩</span>
+                <span class="my-bottom-div">31,900원</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="my-container" id="container4" style="display: none;">
+        <div class="my-left-div">
+            <img src="/img/mainPage/big4.jpg">
+            <div class="context">
+                <em class="title">식단만 하면 배가 고파 왔다면...?</em>
+                <p class="text">더담은 시리즈로 용량은 물론 영양까지 넉넉하게!</p>
+            </div>
+        </div>
+        <div class="my-right-divs">
+            <div class="my-right-div" id="my-right-div13">
+                <img src="/img/mainPage/big4-1.jpg" alt="이미지">
+                <span class="my-top-div">맛있닭 더담은 닭가슴살 귀리 볶음밥 프로 혼합 275g X 10팩</span>
+                <span class="my-bottom-div">38,900원</span>
+            </div>
+            <div class="my-right-div" id="my-right-div14">
+                <img src="/img/mainPage/big4-2.jpg" alt="이미지">
+                <span class="my-top-div">맛있닭 더담은 닭가슴살 도시락 시즌2 혼합 275g X 5팩</span>
+                <span class="my-bottom-div">26,900원</span>
+            </div>
+            <div class="my-right-div" id="my-right-div15">
+                <img src="/img/mainPage/big4-3.jpg" alt="이미지">
+                <span class="my-top-div">맛있닭 더담은 저염 도시락 혼합 270g X 5팩</span>
+                <span class="my-bottom-div">24,450원</span>
+            </div>
+            <div class="my-right-div" id="my-right-div16">
+                <img src="/img/mainPage/big4-4.jpg" alt="이미지">
+                <span class="my-top-div">맛있닭 더담은 닭가슴살 도시락 혼합 275g X 5팩</span>
+                <span class="my-bottom-div">26,450원</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="my-container" id="container5" style="display: none;">
+        <div class="my-left-div">
+            <img src="/img/mainPage/big5.jpg">
+            <div class="context">
+                <em class="title">저지방&고단백 계란으로 채우는 영양</em>
+                <p class="text">철저한 관리 중이라면 난백 섭취는 필수!</p>
+            </div>
+        </div>
+        <div class="my-right-divs">
+            <div class="my-right-div" id="my-right-div13">
+                <img src="/img/mainPage/big5-1.jpg" alt="이미지">
+                <span class="my-top-div">알쉐프 냉장 살균난백 1kg X 1팩  </span>
+                <span class="my-bottom-div">10,600원</span>
+            </div>
+            <div class="my-right-div" id="my-right-div14">
+                <img src="/img/mainPage/big5-2.jpg" alt="이미지">
+                <span class="my-top-div">프레쉬홈 구운계란 800g X 1판</span>
+                <span class="my-bottom-div">10,000원</span>
+            </div>
+            <div class="my-right-div" id="my-right-div15">
+                <img src="/img/mainPage/big5-3.jpg" alt="이미지">
+                <span class="my-top-div">프래시라이브 살균난백 1kg X 2팩</span>
+                <span class="my-bottom-div">14,900원</span>
+            </div>
+            <div class="my-right-div" id="my-right-div16">
+                <img src="/img/mainPage/big5-4.jpg" alt="이미지">
+                <span class="my-top-div">닭대리 훈제계란 1.05kg X 1판</span>
+                <span class="my-bottom-div">12,400원</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let previousButtonId = '';
+
+        function changeContainer(containerId, buttonId) {
+            const containers = document.getElementsByClassName('my-container');
+            const buttons = document.getElementsByClassName('theme-recommend-div')[0].getElementsByTagName('button');
+
+            for (let i = 0; i < containers.length; i++) {
+                const container = containers[i];
+                if (container.id === containerId) {
+                    container.style.display = 'flex';
+                } else {
+                    container.style.display = 'none';
                 }
             }
-            banner.style.transform = "translate(-" + count * 90 + "vw)";
-        });
-    });
 
-    setInterval(function(){
-        count++;
-        count = count == 6 ? 0 : count;
-        banner.style.transform = "translate(-" + count * 90 + "vw)";
-    }, 4000);</script>
-<!-- 베너 JS -->
+            if (previousButtonId) {
+                const previousButton = document.getElementById(previousButtonId);
+                previousButton.classList.remove('selected-button');
+            }
 
-<!-- category -->
-<div id="category-box-1">
-    <i id="category-img-1"></i>
-    <span id="category-comment" style="margin-top: 26px;">신상품</span>
-</div>
-<div id="category-box-2">
-    <i id="category-img-2"></i>
-    <span id="category-comment">선물하기</span>
-</div>
-<div id="category-box-3">
-    <i id="category-img-3"></i>
-    <span id="category-comment"  style="margin-top: 20px; margin-left: 4px;">도시락·볶음밥</span>
-</div>
-<div id="category-box-4">
-    <i id="category-img-4"></i>
-    <span id="category-comment">닭가슴살</span>
-</div>
-<div id="category-box-5">
-    <i id="category-img-5"></i>
-    <span id="category-comment" style="margin-left: 8px;">샐러드·과일</span>
-</div>
-<div id="category-box-6">
-    <i id="category-img-6"></i>
-    <span id="category-comment" style="margin-left: 4px;">베이커리·치즈</span>
-</div>
-<div id="category-box-7">
-    <i id="category-img-7"></i>
-    <span id="category-comment" style="margin-left: 0px;">음료·차·프로틴</span>
-</div>
-<div id="category-box-8">
-    <i id="category-img-8"></i>
-    <span id="category-comment">비건식품</span>
-</div>
-<div id="category-box-9">
-    <i id="category-img-9"></i>
-    <span id="category-comment"  style="margin-top: 28px;">수산·해산</span>
-</div>
-<div id="category-box-10">
-    <i id="category-img-10"></i>
-    <span id="category-comment">건강식품</span>
-</div>
-<!-- category -->
-
-<!-- MD Pick! -->
-<div class="md-pick">MD Pick! 추천 상품</div>
-<!-- MD Pick! -->
-
-<!-- img x 4 category -->
-<div id="imageContainer" class="image-container"></div>
-  <div id="navigationButtons" class="navigation-buttons">
-    <button id="prevButton" class="navigation-button-prev">&lt;</button>
-    <button id="nextButton" class="navigation-button-next">&gt;</button>
-  </div>
-
-  <script>
-    // 이미지 파일 목록
-    const imageFiles = [
-      {
-        file : "/mainPage/assets/img/mdpick1.jpg",
-        description : "저염+고단백 모두 완벽!"
-      },
-      {
-        file : "/mainPage/assets/img/mdpick2.jpg",
-        description : "식단은 물론, GI지수에도 딱!"
-      },
-      {
-        file : "/mainPage/assets/img/mdpick3.jpg",
-        description : "가방에 쏙! 1일 1샐의 시작"
-      },
-      {
-        file : "/mainPage/assets/img/mdpick4.jpg",
-        description : "흰 쌀밥과 찰떡궁합💛"
-      },
-      {
-        file : "/mainPage/assets/img/mdpick5.jpg",
-        description : "속까지 꽉 채워진 수분감💦"
-      },
-      {
-        file : "/mainPage/assets/img/mdpick6.jpg",
-        description : "소스까지 다 먹어도 115kcal"
-      },
-      {
-        file : "/mainPage/assets/img/mdpick7.jpg",
-        description : "식단 패키지로 몸짱 도전😎"
-      },
-      {
-        file : "/mainPage/assets/img/mdpick8.jpg",
-        description : "10팩 사면 10팩 더!"
-      }
-    ];
-
-    let currentIndex = 0;
-    const imageContainer = document.getElementById("imageContainer");
-    const prevButton = document.getElementById("prevButton");
-    const nextButton = document.getElementById("nextButton");
-
-    showImages();
-
-  // 다음 버튼 클릭 이벤트 처리
-nextButton.addEventListener("click", () => {
-  currentIndex = (currentIndex + 1) % imageFiles.length;
-  showImages();
-});
-
-// 이전 버튼 클릭 이벤트 처리
-prevButton.addEventListener("click", () => {
-  currentIndex = (currentIndex - 1 + imageFiles.length) % imageFiles.length;
-  showImages();
-});
-
-// 이미지와 설명 표시 함수
-function showImages() {
-  const visibleImages = [];                  /* 화면에서 보여지는 이미지 수 */
-  for (let i = currentIndex; visibleImages.length < 4; i = (i + 1) % imageFiles.length) { 
-    visibleImages.push(imageFiles[i]);
-  }
-
-  imageContainer.innerHTML = "";
-
-  for (let i = 0; i < visibleImages.length; i++) {
-    const image = visibleImages[i];
-
-    const wrapperElement = document.createElement("div");
-    wrapperElement.className = "image-wrapper";
-    imageContainer.appendChild(wrapperElement);
-
-    const imageElement = document.createElement("img");
-    imageElement.className = "image";
-    imageElement.src = image.file;
-    wrapperElement.appendChild(imageElement);
-
-    const descriptionElement = document.createElement("p");
-    descriptionElement.className = "description";
-    descriptionElement.textContent = image.description;
-    wrapperElement.appendChild(descriptionElement);
-  }
-}
-
-  </script>
-<!-- img x 4 category -->
-
-
-<div class="time-sale">
-    <h2>
-        <span class="time-sale-img">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;지금 이순간</span>
-        <br>
-        <span>깜짝 타임세일!</span>
-        <br>
-        <h3>오늘이 가면 없을 기회, 놓치지 마세요.</h3>
-    </h2>
-</div>
-<!-- img x 2 category -->
-<div id="imageContainer2" class="image-container2"></div>
-<div id="navigationButtons2" class="navigation-buttons2">
-  <button id="prevButton2" class="navigation-button-prev2">&lt;</button>
-  <button id="nextButton2" class="navigation-button-next2">&gt;</button>
-</div>
-
-<script>
-  // 이미지 파일 목록
-  const imageFiles2 = [
-    {
-      file : "/mainPage/assets/img/timeSale1.jpg",
-      description : "☎TIME SALE☎ 맛있닭 닭가슴살 5+5"
-    },
-    {
-      file : "/mainPage/assets/img/timeSale2.jpg",
-      description : "[유통기한임박특가] 네이처엠 웰바이츠 견과 1봉 420원 특가"
-    },
-    {
-      file : "/mainPage/assets/img/timeSale3.jpg",
-      description : "☎TIME SALE☎ 맛있닭 씨푸드 다이어트 도시락 최대 48% 할인"
-    },
-    {
-      file : "/mainPage/assets/img/timeSale4.jpg",
-      description : "☎TIME SALE☎ 맛있닭 씨푸드 다이어트 도시락 최대 48% 할인"
-    },
-    {
-      file : "/mainPage/assets/img/timeSale5.jpg",
-      description : "☎TIME SALE☎ 맛있닭 통안심 탕수육 최대 51% 할인"
-    }  
-  ];
-
-  let currentIndex2 = 0;
-  const imageContainer2 = document.getElementById("imageContainer2");
-  const prevButton2 = document.getElementById("prevButton2");
-  const nextButton2 = document.getElementById("nextButton2");
-
-  showImages2();
-
-  // 다음 버튼 클릭 이벤트 처리
-  nextButton2.addEventListener("click", () => {
-    currentIndex2 = (currentIndex2 + 1) % imageFiles2.length;
-    showImages2();
-  });
-
-  // 이전 버튼 클릭 이벤트 처리
-  prevButton2.addEventListener("click", () => {
-    currentIndex2 = (currentIndex2 - 1 + imageFiles2.length) % imageFiles2.length;
-    showImages2();
-  });
-
-  // 이미지와 설명 표시 함수
-  function showImages2() {
-    const visibleImages2 = []; /* 화면에서 보여지는 이미지 수 */
-    for (let i = currentIndex2; visibleImages2.length < 2; i = (i + 1) % imageFiles2.length) { 
-      visibleImages2.push(imageFiles2[i]);
-    }
-
-    imageContainer2.innerHTML = "";
-
-    for (let i = 0; i < visibleImages2.length; i++) {
-      const image2 = visibleImages2[i];
-
-      const wrapperElement2 = document.createElement("div");
-      wrapperElement2.className = "image-wrapper2";
-      imageContainer2.appendChild(wrapperElement2);
-
-      const imageElement2 = document.createElement("img");
-      imageElement2.className = "image2";
-      imageElement2.src = image2.file;
-      wrapperElement2.appendChild(imageElement2);
-
-      const descriptionElement2 = document.createElement("p");
-      descriptionElement2.className = "description2";
-      descriptionElement2.textContent = image2.description;
-      wrapperElement2.appendChild(descriptionElement2);
-          // 추가한 <div> 요소 안에 내용 추가
-      const innerDivElement2 = document.createElement("div");
-      innerDivElement2.textContent = "42%"; // 원하는 내용으로 수정
-      innerDivElement2.style.color = "#ff8001"; // 빨간색으로 스타일 지정
-      innerDivElement2.style.textAlign = "left"; // 왼쪽 정렬 스타일 지정
-      innerDivElement2.style.marginLeft ="-5px";
-      innerDivElement2.style.fontSize = "22px";
-    //   innerDivElement2.style.float ="left";
-      descriptionElement2.appendChild(innerDivElement2);
-          // 추가한 <div> 요소 연결
-      const additionalDivElement = document.createElement("div");
-        additionalDivElement.textContent = "한 정 특 가!";  // 원하는 내용으로 수정
-        additionalDivElement.style.float ="right";
-        additionalDivElement.style.marginTop="-27px"
-        additionalDivElement.style.marginRight="210px"
-        additionalDivElement.style.fontSize = "20px";
-        descriptionElement2.appendChild(additionalDivElement);
-    }
-  }
-</script>
-<!-- img x 2 category -->
-
-
-
-<div class="theme-recommend">테마별 추천 상품</div>
-<div class="theme-recommend-div">
-    <button id="button1" onclick="changeContainer('container1', 'button1')">소스의 매력에 퐁당</button>
-    <button id="button2" onclick="changeContainer('container2', 'button2')">탱글 뽀득 소시지</button>
-    <button id="button3" onclick="changeContainer('container3', 'button3')">신선함 가득 생 닭가슴살</button>
-    <button id="button4" onclick="changeContainer('container4', 'button4')">더담아 든든한 식단</button>
-    <button id="button5" onclick="changeContainer('container5', 'button5')">쫄깃 탱탱 계란 단백질</button>
-</div>
-
-<div class="my-container" id="container1">
-    <div class="my-left-div">
-      <a href="/read.html">
-        <img src="/mainPage/assets/img/big1.jpg">
-      </a>
-        <div class="context">
-            <em class="title">매일 다른 맛으로 실천하는 1일 1소스닭</em>
-            <p class="text">특제소스 듬뿍 찍어 입속으로 DIVE🧡</p>
-        </div>
-    </div>
-    <div class="my-right-divs">
-      <div class="my-right-div" id="my-right-div1">
-        <img src="/mainPage/assets/img/big1-1.jpg" alt="이미지">
-        <span class="my-top-div">랭커 스팀 소스 닭가슴살 100g X 10팩</span>
-        <span class="my-bottom-div">17,900원</span>
-      </div>
-      <div class="my-right-div" id="my-right-div2">
-        <img src="/mainPage/assets/img/big1-2.jpg" alt="이미지">
-        <span class="my-top-div">맛있닭 닭가슴살 오븐구이 혼합 150g X 12팩</span>
-        <span class="my-bottom-div">34,680원</span>
-      </div>
-      <div class="my-right-div" id="my-right-div3">
-        <img src="/mainPage/assets/img/big1-3.jpg" alt="이미지">
-        <span class="my-top-div">맛있닭 한입 소스 닭가슴살 혼합 100g X 16팩</span>
-        <span class="my-bottom-div">38,240원</span>
-      </div>
-      <div class="my-right-div" id="my-right-div4">
-        <img src="/mainPage/assets/img/big1-4.jpg" alt="이미지">
-        <span class="my-top-div">잇메이트 슬라이스 소스 닭가슴살 혼합 150g X 10팩</span>
-        <span class="my-bottom-div">25,900원</span>
-      </div>
-    </div>
-  </div>
-
-<div class="my-container" id="container2" style="display: none;">
-    <div class="my-left-div">
-        <img src="/mainPage/assets/img/big2.jpg">
-        <div class="context">
-            <em class="title">톡터지는 육즙 & 단백질</em>
-            <p class="text">돈육 소시지처럼 부드럽고 육즙 가득해요💦</p>
-        </div>
-    </div>
-    <div class="my-right-divs">
-        <div class="my-right-div" id="my-right-div5">
-            <img src="/mainPage/assets/img/big2-1.jpg" alt="이미지">
-            <span class="my-top-div">잇메이트 닭가슴살 소시지 혼합 100g X 15팩</span>
-            <span class="my-bottom-div">24,000원</span>
-        </div>
-        <div class="my-right-div" id="my-right-div6">
-            <img src="/mainPage/assets/img/big2-2.jpg" alt="이미지">
-            <span class="my-top-div">맛있닭 닭가슴살 소시지 훈제맛 100g X 10팩</span>
-            <span class="my-bottom-div">19,500원</span>
-        </div>
-        <div class="my-right-div" id="my-right-div7">
-            <img src="/mainPage/assets/img/big2-3.jpg" alt="이미지">
-            <span class="my-top-div">잇메이트 닭가슴살 소시지 프로 훈제맛 120g X 15팩</span>
-            <span class="my-bottom-div">26,850원</span>
-        </div>
-        <div class="my-right-div" id="my-right-div8">
-            <img src="/mainPage/assets/img/big2-4.jpg" alt="이미지">
-            <span class="my-top-div">랭커 닭가슴살 소시지 혼합 100g X 10팩</span>
-            <span class="my-bottom-div">12,800원</span>
-        </div>
-    </div>
-</div>
-
-<div class="my-container" id="container3" style="display: none;">
-    <div class="my-left-div">
-        <img src="/mainPage/assets/img/big3.jpg">
-        <div class="context">
-            <em class="title">요즘 헬짱들의 장바구니 필수템🛒</em>
-            <p class="text">개별 급속 냉동으로 신선함은 물론 편리성까지!</p>
-        </div>
-    </div>
-    <div class="my-right-divs">
-        <div class="my-right-div" id="my-right-div9">
-            <img src="/mainPage/assets/img/big3-1.jpg" alt="이미지">
-            <span class="my-top-div">랭커 IQF 한입 닭가슴살 100g X 10팩</span>
-            <span class="my-bottom-div">9,500원</span>
-        </div>
-        <div class="my-right-div" id="my-right-div10">
-            <img src="/mainPage/assets/img/big3-2.jpg" alt="이미지">
-            <span class="my-top-div">하림 동물복지 IFF 냉동 생 닭가슴살 800g X 1팩</span>
-            <span class="my-bottom-div">10,000원</span>
-        </div>
-        <div class="my-right-div" id="my-right-div11">
-            <img src="/mainPage/assets/img/big3-3.jpg" alt="이미지">
-            <span class="my-top-div">다향 IGF 닭가슴살 1kg X 1팩</span>
-            <span class="my-bottom-div">8,400원</span>
-        </div>
-        <div class="my-right-div" id="my-right-div12">
-            <img src="/mainPage/assets/img/big3-4.jpg" alt="이미지">
-            <span class="my-top-div">닭스몰 무항상제 1등듭 냉동 생 닭가슴살 400g X 5팩</span>
-            <span class="my-bottom-div">31,900원</span>
-        </div>
-    </div>
-</div>
-
-<div class="my-container" id="container4" style="display: none;">
-    <div class="my-left-div">
-        <img src="/mainPage/assets/img/big4.jpg">
-        <div class="context">
-            <em class="title">식단만 하면 배가 고파 왔다면...?</em>
-            <p class="text">더담은 시리즈로 용량은 물론 영양까지 넉넉하게!</p>
-        </div>
-    </div>
-    <div class="my-right-divs">
-        <div class="my-right-div" id="my-right-div13">
-            <img src="/mainPage/assets/img/big4-1.jpg" alt="이미지">
-            <span class="my-top-div">맛있닭 더담은 닭가슴살 귀리 볶음밥 프로 혼합 275g X 10팩</span>
-            <span class="my-bottom-div">38,900원</span>
-        </div>
-        <div class="my-right-div" id="my-right-div14">
-            <img src="/mainPage/assets/img/big4-2.jpg" alt="이미지">
-            <span class="my-top-div">맛있닭 더담은 닭가슴살 도시락 시즌2 혼합 275g X 5팩</span>
-            <span class="my-bottom-div">26,900원</span>
-        </div>
-        <div class="my-right-div" id="my-right-div15">
-            <img src="/mainPage/assets/img/big4-3.jpg" alt="이미지">
-            <span class="my-top-div">맛있닭 더담은 저염 도시락 혼합 270g X 5팩</span>
-            <span class="my-bottom-div">24,450원</span>
-        </div>
-        <div class="my-right-div" id="my-right-div16">
-            <img src="/mainPage/assets/img/big4-4.jpg" alt="이미지">
-            <span class="my-top-div">맛있닭 더담은 닭가슴살 도시락 혼합 275g X 5팩</span>
-            <span class="my-bottom-div">26,450원</span>
-        </div>
-    </div>
-</div>
-
-<div class="my-container" id="container5" style="display: none;">
-    <div class="my-left-div">
-        <img src="/mainPage/assets/img/big5.jpg">
-        <div class="context">
-            <em class="title">저지방&고단백 계란으로 채우는 영양</em>
-            <p class="text">철저한 관리 중이라면 난백 섭취는 필수!</p>
-        </div>
-    </div>
-    <div class="my-right-divs">
-        <div class="my-right-div" id="my-right-div13">
-            <img src="/mainPage/assets/img/big5-1.jpg" alt="이미지">
-            <span class="my-top-div">알쉐프 냉장 살균난백 1kg X 1팩  </span>
-            <span class="my-bottom-div">10,600원</span>
-        </div>
-        <div class="my-right-div" id="my-right-div14">
-            <img src="/mainPage/assets/img/big5-2.jpg" alt="이미지">
-            <span class="my-top-div">프레쉬홈 구운계란 800g X 1판</span>
-            <span class="my-bottom-div">10,000원</span>
-        </div>
-        <div class="my-right-div" id="my-right-div15">
-            <img src="/mainPage/assets/img/big5-3.jpg" alt="이미지">
-            <span class="my-top-div">프래시라이브 살균난백 1kg X 2팩</span>
-            <span class="my-bottom-div">14,900원</span>
-        </div>
-        <div class="my-right-div" id="my-right-div16">
-            <img src="/mainPage/assets/img/big5-4.jpg" alt="이미지">
-            <span class="my-top-div">닭대리 훈제계란 1.05kg X 1판</span>
-            <span class="my-bottom-div">12,400원</span>
-        </div>
-    </div>
-</div>
-
-<script>
-    let previousButtonId = '';
-
-function changeContainer(containerId, buttonId) {
-    const containers = document.getElementsByClassName('my-container');
-    const buttons = document.getElementsByClassName('theme-recommend-div')[0].getElementsByTagName('button');
-
-    for (let i = 0; i < containers.length; i++) {
-        const container = containers[i];
-        if (container.id === containerId) {
-            container.style.display = 'flex';
-        } else {
-            container.style.display = 'none';
+            const currentButton = document.getElementById(buttonId);
+            currentButton.classList.add('selected-button');
+            previousButtonId = buttonId;
         }
-    }
-
-    if (previousButtonId) {
-        const previousButton = document.getElementById(previousButtonId);
-        previousButton.classList.remove('selected-button');
-    }
-
-    const currentButton = document.getElementById(buttonId);
-    currentButton.classList.add('selected-button');
-    previousButtonId = buttonId;
-}
-</script>
-<!-- <div class="video-list">
-    <div>
-        <ul>
-            <li class="video-lists">
-                <img>
-                <a href="">
-                    <em>
-                        <span>잇메이트 저염 스팀 닭가슴살 오리지널 100g X 15팩</span>
-                    </em>
-                    <span>
-                        <strong>28,350</strong>
-                        "원"
-                    </span>
-                </a>
-                <button>
-                </button>
-            </li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
-    </div>
-</div> -->
-
-
-<div class="orange-members">
-    <img src="https://file.rankingdak.com/image/RANK/BANNER/AR_IMG_1/20230306/IMG1678veR079873142.jpg">
-</div>
-
-<!-- slide test -->
-<!-- MD Pick! -->
-<div class="md-pick">금주의 BEST 신상품✨</div>
-<!-- MD Pick! -->
-
-<!-- img x 4 category -->
-<div id="imageContainer3" class="image-container"></div>
-  <div id="navigationButtons3" class="navigation-buttons">
-    <button id="prevButton3" class="navigation-button-prev">&lt;</button>
-    <button id="nextButton3" class="navigation-button-next">&gt;</button>
-  </div>
-
-  <script>
-    // 이미지 파일 목록
-    const imageFiles3 = [
-      {
-        file : "/mainPage/assets/img/best1.jpg",
-        description : "랭커 훈제 닭가슴살 혼합 100g"
-      },
-      {
-        file : "/mainPage/assets/img/best2.jpg",
-        description : "랭커 IQF 한입 닭가슴살 200g"
-      },
-      {
-        file : "/mainPage/assets/img/best3.jpg",
-        description : "랭커 스팀 소스 닭가슴살 혼합 130g"
-      },
-      {
-        file : "/mainPage/assets/img/best4.jpg",
-        description : "랭커 스팀 닭가슴살 혼합 100g"
-      },
-      {
-        file : "/mainPage/assets/img/best5.jpg",
-        description : "한끼통살 슬라이스 닭가슴살 매콤닭갈비 100g"
-      },
-      {
-        file : "/mainPage/assets/img/best6.jpg",
-        description : "한끼통살 스팀 & 훈제 통살 닭가슴살 오리지널 혼합 100g"
-      },
-      {
-        file : "/mainPage/assets/img/best7.jpg",
-        description : "닥터유PRO 단백질 파우더 딸기 1kg"
-      },
-      {
-        file : "/mainPage/assets/img/best8.jpg",
-        description : "랩노쉬 프로틴 드링크 혼합 350ml"
-      }
-    ];
-
-    let currentIndex3 = 0;
-    const imageContainer3 = document.getElementById("imageContainer3");
-    const prevButton3 = document.getElementById("prevButton3");
-    const nextButton3 = document.getElementById("nextButton3");
-
-    showImages3();
-
-    // 다음 버튼 클릭 이벤트 처리
-    nextButton3.addEventListener("click", () => {
-      currentIndex3 = (currentIndex3 + 1) % imageFiles3.length;
-      showImages3();
-    });
-
-    // 이전 버튼 클릭 이벤트 처리
-    prevButton3.addEventListener("click", () => {
-      currentIndex3 = (currentIndex3 - 1 + imageFiles3.length) % imageFiles3.length;
-      showImages3();
-    });
-
-    // 이미지와 설명 표시 함수
-    function showImages3() {
-      const visibleImages = [];                  /* 화면에서 보여지는 이미지 수 */
-      for (let i = currentIndex3; visibleImages.length < 4; i = (i + 1) % imageFiles3.length) { 
-        visibleImages.push(imageFiles3[i]);
-      }
-
-      imageContainer3.innerHTML = "";
-
-      for (let i = 0; i < visibleImages.length; i++) {
-        const image = visibleImages[i];
-
-        const wrapperElement = document.createElement("div");
-        wrapperElement.className = "image-wrapper";
-        imageContainer3.appendChild(wrapperElement);
-
-        const imageElement = document.createElement("img");
-        imageElement.className = "image";
-        imageElement.src = image.file;
-        wrapperElement.appendChild(imageElement);
-
-        const descriptionElement3 = document.createElement("p");
-        descriptionElement3.className = "description3";
-        descriptionElement3.textContent = image.description;
-        wrapperElement.appendChild(descriptionElement3);
-        
-        
-
-
-        const innerDivElement3 = document.createElement("div");
-      innerDivElement3.textContent = "42%"; // 원하는 내용으로 수정
-      innerDivElement3.style.color = "#ff8001"; // 빨간색으로 스타일 지정
-      innerDivElement3.style.textAlign = "left"; // 왼쪽 정렬 스타일 지정
-      innerDivElement3.style.marginLeft ="-5px";
-      innerDivElement3.style.fontSize = "22px";
-      descriptionElement3.appendChild(innerDivElement3);
-
-          // 추가한 <div> 요소 연결
-    //   const additionalDivElement3 = document.createElement("div");
-    //     additionalDivElement3.textContent = "한 정 특 가!";  // 원하는 내용으로 수정
-    //     additionalDivElement3.style.float ="right";
-    //     additionalDivElement3.style.marginTop="-157px"
-    //     additionalDivElement3.style.marginRight="210px"
-    //     additionalDivElement3.style.fontSize = "20px";
-    //     additionalDivElement3.style.width = "200px";
-    //     descriptionElement3.appendChild(additionalDivElement3);
-      }
-    }
-  </script>
-
-
-
-
-
-<div class="theme-recommend2">인기 카테고리 상품</div>
-<div class="theme-recommend-div2">
-    <button id="button11" onclick="changeContainer1('container6', 'button11')">닭가슴살</button>
-    <button id="button22" onclick="changeContainer1('container7', 'button22')">즉석 간편식</button>
-    <button id="button33" onclick="changeContainer1('container8', 'button33')">도시락·볶음밥</button>
-    <button id="button44" onclick="changeContainer1('container9', 'button44')">샐러드·과일</button>
-    <button id="button55" onclick="changeContainer1('container10', 'button55')">음료·차·프로틴</button>
-</div>
-
-  <div class="my-container2" id="container6">
-    <div class="my-box">
-      <a href="">
-          <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20230626/IMG1687nwV770026184_330_330.jpg" alt="">
-          <em class="fast-box"></em>
-          <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-          <div class="fast-word">랭커 스팀 닭가슴살 청양고추 100g</div>
-      </a>
-      <div class="fast-price">22,400<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 1,240원~1,493원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-            <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20230525/IMG1684omr996137810_330_330.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word" style="margin-bottom: -20px;">[잇메이트] 중량 UP! 든든한 24g 고단백 프로 닭가슴살 소시지</div>
-        </a>
-      <div class="fast-price">22,400<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 1,640원~1,790원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-            <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220325/78c93adea967cb1eda8f517144aed007_330_330.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word">치즈 품은 닭가슴살</div>
-        </a>
-      <div class="fast-price">22,400<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 1,240원~1,493원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-            <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20230524/IMG1684yxt912086633_330_330.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word">잇메이트 슬라이스 소스 닭가슴살 혼합 150g</div>
-        </a>
-      <div class="fast-price">25,900<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 2,290원~2,590원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-            <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20230106/IMG1672nhu966250394_330_330.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word">러브잇 슬라이스 닭가슴살 혼합 100g</div>
-        </a>
-      <div class="fast-price">23,880<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 1,840원~1,990원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-            <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20230608/IMG1686EfG211786712_330_330.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word">러브잇 슬라이스 닭가슴살</div>
-        </a>
-      <div class="fast-price">22,400<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 1,240원~1,493원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-            <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20230612/IMG1686HKp554930214_330_330.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word">소스 닭가슴살 스테이크</div>
-        </a>
-      <div class="fast-price">22,400<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 1,240원~1,493원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-            <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220617/IMG1655GtE450105345_330_330.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word">햇살닭 닭가슴살 소시지꼬치 혼합 70g</div>
-        </a>
-      <div class="fast-price">7,000<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 1,250원~1,400원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-            <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220617/IMG1655GtE450105345_330_330.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word">랭커 스팀 닭가슴살 처양고추 100g</div>
-        </a>
-      <div class="fast-price">22,400<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 1,240원~1,493원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-            <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220818/IMG1660Ysw787453508_330_330.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word">러브잇 매운맛 닭가슴살</div>
-        </a>
-      <div class="fast-price">22,400<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 1,240원~1,493원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-            <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220620/IMG1655kDt712238425_330_330.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word">러브잇 닭가슴살 백숙</div>
-        </a>
-      <div class="fast-price">22,400<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 1,240원~1,493원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-            <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220325/728ab6e6a98b80d360d1ee8b2fa6cae6_330_330.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word">마늘 닭가슴살</div>
-        </a>
-      <div class="fast-price">22,400<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 1,240원~1,493원</div>
-    </div>
-  </div>
-
-  <div class="my-container2" id="container7" style="display: none;">
-    <div class="my-box">
-        <a href="">
-            <img src="/mainPage/assets/img/instant1.jpg" alt="">
-            <em class="fast-box"></em>
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word">맛있닭 닭가슴살 한끼 잡채 혼합 200g</div>
-        </a>
-      <div class="fast-price">19,500<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 3,300원~3,900원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="/mainPage/assets/img/instant2.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word" style="margin-bottom: -20px;">더프래시 닭가슴살 아란치니 혼합 180g</div>
-        </a>
-      <div class="fast-price">23,500<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 4,400원~4,700원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="/mainPage/assets/img/instant3.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word" style="margin-bottom: -20px;">더프래시 닭가슴살 크런치볼 혼합 180g</div>
-        </a>
-      <div class="fast-price">23,500<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 4,400원~4,700원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="/mainPage/assets/img/instant4.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word" style="margin-bottom: -20px;">맛있닭 구워먹는 닭가슴살 탕수육 깐풍기 450g</div>
-        </a>
-      <div class="fast-price">20,700<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 6,300원~6,900원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="/mainPage/assets/img/instant5.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word" style="margin-bottom: -20px;">풀무원 식물성 지구식단 크리스피 두부스틱 400g</div>
-        </a>
-      <div class="fast-price">7,980<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 7,980원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="/mainPage/assets/img/instant6.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word" style="margin-bottom: -20px;">랭킹수산 렌지에 구워먹는 생선구이 혼합 60g~80g</div>
-        </a>
-      <div class="fast-price">24,200<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 4,580원~4,840원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="/mainPage/assets/img/instant7.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word">네이처엠 현미 곤약밥 150g</div>
-        </a>
-      <div class="fast-price">22,200<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 1,900원~2,200원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="/mainPage/assets/img/instant8.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word" style="margin-bottom: -20px;">잇메이트 닭가슴살 크리스피 핫도그 혼합 100g</div>
-        </a>
-      <div class="fast-price">10,400<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 1,220원~2,080원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="/mainPage/assets/img/instant9.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word">아임닭 닭가슴살 치킨팝콘 혼합 100g</div>
-        </a>
-      <div class="fast-price">18,500<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 1,850원~2,000원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="/mainPage/assets/img/instant10.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word">잇메이트 어묵 다이어트 떡볶이 290g</div>
-        </a>
-      <div class="fast-price">24,500<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 4,700원~4,900원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="/mainPage/assets/img/instant11.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word">맛있닭 닭가슴살 한끼 삼계탕 450g</div>
-        </a>
-      <div class="fast-price">30,000<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 5,800원~6,000원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="/mainPage/assets/img/instant12.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word">맛있닭 닭가슴살 한끼 만두 혼합 200g</div>
-        </a>
-      <div class="fast-price">17,600<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 3,080원~3,520원</div>
-    </div>
-  </div>
-  <div class="my-container2" id="container8" style="display: none;">
-    <div class="my-box">
-        <a href="">
-            <img src="/mainPage/assets/img/piknic1.jpg" alt="">
-            <em class="fast-box"></em>
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word" style="margin-bottom: -20px;">잇메이트 닭가슴살 몬스터 볶음밥 이지쿡 혼합 250g</div>
-        </a>
-      <div class="fast-price">32,900<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 2,890원~3,290원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="/mainPage/assets/img/piknic2.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word">랭커 닭가슴살 볶음밥 혼합 200g</div>
-        </a>
-      <div class="fast-price">14,900<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 1,340원~1,490원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="/mainPage/assets/img/piknic3.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word">허닭 닭가슴살 곤약 볶음밥 250g</div>
-        </a>
-      <div class="fast-price">25,000<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 2,500원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="/mainPage/assets/img/piknic4.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word">맛있닭 다이어트 도시락 혼합 210g</div>
-        </a>
-      <div class="fast-price">21,900<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 4,080원~4,380원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="/mainPage/assets/img/piknic5.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word" style="margin-bottom: -20px;">맛있닭 닭가슴살 몬스터 귀리볶음밥 혼합 250g</div>
-        </a>
-      <div class="fast-price">39,480<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 2,890원~3,290원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="/mainPage/assets/img/piknic6.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word" style="margin-bottom: -20px;">아임웰 맛있는 닭가슴살 볶음밥 혼합 200g</div>
-        </a>
-      <div class="fast-price">24,700<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 900원~1,100원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="/mainPage/assets/img/piknic7.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word" style="margin-bottom: -20px;">잇메이트 닭가슴살 현미 볶음밥 혼합 200g</div>
-        </a>
-      <div class="fast-price">26,900<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 2,490원~2,690원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="/mainPage/assets/img/piknic8.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word" style="margin-bottom: -20px;">오빠닭 닭가슴살 곤약볶음밥 혼합 250g</div>
-        </a>
-      <div class="fast-price">25,900<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 2,097원~2,590원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="/mainPage/assets/img/piknic9.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word" style="margin-bottom: -20px;">잇메이트 더블 덮밥 현미베지볶음밥 + 쭈꾸미 & 새우 220g</div>
-        </a>
-      <div class="fast-price">22,800<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 3,500원~3,800원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="/mainPage/assets/img/piknic10.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word" style="margin-bottom: -20px;">맛있닭 닭가슴살 한끼 파우치 곤약, 볶음밥 혼합 200g</div>
-        </a>
-      <div class="fast-price">30,800<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 2,930원~3,080원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="/mainPage/assets/img/piknic11.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word" style="margin-bottom: -20px;">잇메이트 닭가슴살 구운 주먹밥 혼합 100g</div>
-        </a>
-      <div class="fast-price">11,400<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 1,300원~1,900원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="/mainPage/assets/img/piknic12.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word" style="margin-bottom: -20px;">맛있닭 씨푸드 다이어트 도시락 혼합 250g</div>
-        </a>
-      <div class="fast-price">22,900<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 4,180원~4,580원</div>
-    </div>
-  </div>
-  <div class="my-container2" id="container9" style="display: none;">
-    <div class="my-box">
-        <a href="">
-            <img src="/mainPage/assets/img/salad1.jpg" alt="">
-            <em class="fast-box"></em>
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word">프레쉬홈 그린 샐러드 100g</div>
-        </a>
-      <div class="fast-price">9,600<span class="fast-price2">1원</span></div>
-      <div class="fast-price3">1팩당: 2,250원~2,400원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="/mainPage/assets/img/salad2.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word">프레쉬홈 그린 스무디 150g</div>
-        </a>
-      <div class="fast-price">29,800<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 2,693원~2,980원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="/mainPage/assets/img/salad3.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word">프레쉬홈 레드 스무디 150g</div>
-        </a>
-      <div class="fast-price">29,800<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 2,693원~2,980원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="/mainPage/assets/img/salad4.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word">프레쉬홈 이지 샐러드 혼합 90g</div>
-        </a>
-      <div class="fast-price">11,900<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 2,230원~2,380원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="/mainPage/assets/img/salad5.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word">프레쉬홈 풀업 샐러드 혼합 280g</div>
-        </a>
-      <div class="fast-price">23,700<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 7,500원~7,900원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="/mainPage/assets/img/salad6.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word" style="margin-bottom: -20px;">프레쉬홈 토핑 샐러드 혼합 180g ~ 190g</div>
-        </a>
-      <div class="fast-price">24,900<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 4,695원~4,980원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="/mainPage/assets/img/salad7.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word" style="margin-bottom: -20px;">프레시온 야채만 SIZE UP V샐러드 150g</div>
-        </a>
-      <div class="fast-price">17,500<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 4,375원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="/mainPage/assets/img/salad8.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word">1am 알뜰 Daily 스무디 100g</div>
-        </a>
-      <div class="fast-price">11,500<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 2,150원~2,300원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="/mainPage/assets/img/salad9.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word">hy 콜라갠과 함께 먹는 샐러드 223g</div>
-        </a>
-      <div class="fast-price">6,500<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 6,500원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="/mainPage/assets/img/salad10.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word" style="margin-bottom: -20px;">1am 토핑잇 알뜰 샐러드 혼합 170g~195g</div>
-        </a>
-      <div class="fast-price">24,500<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 4,700원~4,900원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="/mainPage/assets/img/salad11.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word" style="margin-bottom: -20px;">샐러드판다 세끼판다 샐러드 3팩 패키지 185g~191g</div>
-        </a>
-      <div class="fast-price">15,700<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 5,233원~5,633원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="/mainPage/assets/img/salad12.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word" style="margin-bottom: -20px;">샐러드판다 세끼판다 샐러드 6팩 패키지 186g~190g</div>
-        </a>
-      <div class="fast-price">32,000<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 5,333원~5,667원</div>
-    </div>
-  </div>
-  <div class="my-container2" id="container10" style="display: none;">
-    <div class="my-box">
-        <a href="">
-            <img src="assets/img/protein1.jpg" alt="">
-            <em class="fast-box"></em>
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word">랭커 WPI 단백질쉐이크 초코 1kg</div>
-        </a>
-      <div class="fast-price">44,900<span class="fast-price2">1원</span></div>
-      <div class="fast-price3">1통당: 44,990원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="assets/img/protein2.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word">1am 블래디톡 ABC 클랜즈주스 100ml</div>
-        </a>
-      <div class="fast-price">29,900<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1개당: 896원~997원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="assets/img/protein3.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word">1am 스파클링 캔 혼합 (0kcal) 210ml</div>
-        </a>
-      <div class="fast-price">9,600<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1개당: 549원~800원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="assets/img/protein4.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word">1am 제로 아이스티 혼합 200g</div>
-        </a>
-      <div class="fast-price">6,500<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1개당: 3,100원~3,250원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="assets/img/protein5.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word">달심 빼빼주스 100ml</div>
-        </a>
-      <div class="fast-price">2,500<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 2,159원~2,500원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="assets/img/protein6.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word">클룹 제로소다 혼합 500ml</div>
-        </a>
-      <div class="fast-price">5,980<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1개당: 1,993원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="assets/img/protein7.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word">띵커바디 오늘핏 쉐이크 카페라떼 40g</div>
-        </a>
-      <div class="fast-price">16,900<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 2,414원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="assets/img/protein8.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word" style="margin-bottom: -20px;">맛있닭 닭가슴살 한끼 쉐이크 혼합 300g</div>
-        </a>
-      <div class="fast-price">27,900<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 4,250원~4,650원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="assets/img/protein9.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word" style="margin-bottom: -20px;">맛있닭 닭가슴살 한끼 쉐이크 혼합 300g</div>
-        </a>
-      <div class="fast-price">27,900<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 4,250원~4,650원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="assets/img/protein10.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word">칼로바이 프로틴 스파클링 240ml</div>
-        </a>
-      <div class="fast-price">39,800<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1캔당: 1,658원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="assets/img/protein11.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word" style="margin-bottom: -20px;">닭스몰 무항생제 1등급 닭가슴살 쉐이크 100g</div>
-        </a>
-      <div class="fast-price">21,000<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1팩당: 17,850원~21,000원</div>
-    </div>
-    <div class="my-box">
-        <a href="">
-          <img src="assets/img/protein12.jpg" alt="">
-            <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
-            <div class="fast-word" style="margin-bottom: -20px;">칼로바이 퍼펙트 파워쉐이크 포대유청 2kg</div>
-        </a>
-      <div class="fast-price">59,900<span class="fast-price2">원</span></div>
-      <div class="fast-price3">1개당: 59,900원</div>
-    </div>
-  </div>
-
-</body>
-<script>
-  let previousButtonId1 = '';
-
-  function changeContainer1(containerId1, buttonId1) {
-  const containers1 = document.getElementsByClassName('my-container2');
-  const buttons1 = document.getElementsByClassName('theme-recommend-div2')[0].getElementsByTagName('button');
-
-  for (let i = 0; i < containers1.length; i++) {
-      const container1 = containers1[i];
-      if (container1.id === containerId1) {
-          container1.style.display = 'flex';
-      } else {
-          container1.style.display = 'none';
-      }
-  }
-
-  if (previousButtonId1) {
-      const previousButton1 = document.getElementById(previousButtonId1);
-      previousButton1.classList.remove('selected-button');
-  }
-
-  const currentButton1 = document.getElementById(buttonId1);
-  currentButton1.classList.add('selected-button');
-  previousButtonId1 = buttonId1;
-}
-</script>
-
-
-
-<!-- header footer 빈 공간 -->
-    <div style="height: 100px; background-color: white;"></div>
-<!-- header footer 빈 공간 -->
-<!-- footer -->
-<footer id="footer" class="footer">
-    <div class="footer-menu">
-        <div class="frame-sm">
-            <ul class="footer-menu-list">
-                <li><a href="/etc/footer/company">회사소개</a></li>
-                <li><a href="/service/notice">공지사항</a></li>
-                <li><a href="/product/storeInquiry">입점 · 제휴 · 광고문의</a></li>
-                <li><a href="/etc/footer/uselaw">이용약관</a></li>
-                <li><a href="/etc/footer/privacy" class="text-black2 text-md">개인정보처리방침</a></li>
-            </ul><!--// footer-menu-list -->
-            <div class="family-select">
-                <button type="button" class="select-btn ui-togglelayer-btn" style="background-color: #f8f8f8;"><span>패밀리사이트</span><i class="ico-arr-toggle"></i></button>
-                <div class="family-list-box ui-togglelayer-box">
-                    <ul>
-                        <li><a href="https://rankingdak.com/" target="_blank"><span>랭킹닭컴</span></a></li>
-                        <li><a href="https://www.ggjmart.com/" target="_blank"><span>개근질마트</span></a></li>
-                        <li><a href="https://www.ggjil.com/" target="_blank"><span>개근질닷컴</span></a></li>
-                        <li><a href="https://pickydiet.co.kr/" target="_blank"><span>피키다이어트</span></a></li>
-                        <li><a href="http://dacook.co.kr/" target="_blank"><span>다이어트전문 레시피 다쿡</span></a></li>
-                        <li><a href="http://www.studiou.co.kr/" target="_blank"><span>바디프로필 전문 스튜디오U</span></a></li>
-                    </ul>
-                </div>
-            </div><!--// family-select -->
-        </div><!--// footer-info-list -->
-    </div><!--// frame-sm -->
-    <div class="footer-info">
-        <strong class="footer-logo"><span class="blind">랭킹닭컴</span></strong>
-        <div class="colum-info">
-            <h5 class="blind">회사 정보</h5>
-            <ul class="footer-biz-info">
-                <li><span class="company-name">(주)푸드나무</span></li>
-                <li>대표 : 김영문</li>
-                <li>주소 : 서울특별시 마포구 월드컵북로 396, 15층(상암동, 누리꿈스퀘어 비지니스타워)</li>
-                <li>사업자등록번호 : 105-87-81968
-                    <span class="biz-information">
-                        <a href="javascript:bizPop();">사업자정보 확인</a>
-                    </span>
+    </script>
+    <!-- <div class="video-list">
+        <div>
+            <ul>
+                <li class="video-lists">
+                    <img>
+                    <a href="">
+                        <em>
+                            <span>잇메이트 저염 스팀 닭가슴살 오리지널 100g X 15팩</span>
+                        </em>
+                        <span>
+                            <strong>28,350</strong>
+                            "원"
+                        </span>
+                    </a>
+                    <button>
+                    </button>
                 </li>
-                <li>통신판매업신고번호 : 제2015-서울마포-1058호</li>
-                <li>개인정보보호책임자 : 박상필</li>
+                <li></li>
+                <li></li>
+                <li></li>
             </ul>
-            <p class="copyright">Copyright©랭킹닭컴 All rights reserved.</p>
-        </div><!--// colum -->
-        <div class="colum-info">
-            <ul class="customer-info">
-                <li class="cscenter">고객센터 <em class="footer-tel">02-6405-8088</em></li>
-                <li>FAX. 02-6351-8088</li>
-                <li>E-mail. admin@foodnamoo.com</li>
-            </ul>
-            <div class="customer-btns">
-                <a href="#" onclick="footerCheckLogin('/service/voc')"><span>고객의 제안</span></a>
-                <a href="#" onclick="footerCheckLogin('/mypage/userCounsel/regCouncel')"><span>1:1 문의</span></a>
-            </div>
-            <ul class="footer-sns-list">
-                <li><a href="https://www.facebook.com/rankingdakcom" title="" target="_blank"><i class="ico-sns-facebook"></i><span class="blind">페이스북</span></a></li>
-                <li><a href="https://www.instagram.com/rankingdak_official" title="" target="_blank"><i class="ico-sns-instagram"></i><span class="blind">인스타그램</span></a></li>
-                <li><a href="https://blog.naver.com/rankingdak" title="" target="_blank"><i class="ico-sns-blog"></i><span class="blind">네이버블로그</span></a></li>
-                <li><a href="https://post.naver.com/my.nhn?memberNo=9267177" title="" target="_blank"><i class="ico-sns-post"></i><span class="blind">네이버포스트</span></a></li>
-                <li><a href="https://pf.kakao.com/_ltFRl" title="" target="_blank"><i class="ico-sns-kakaotalk"></i><span class="blind">카카오톡</span></a></li>
-                <li><a href="https://www.youtube.com/c/rankingdakcom" title="" target="_blank"><i class="ico-sns-youtube"></i><span class="blind">유튜브</span></a></li>
-            </ul>
-        </div><!--// colum -->
-    </div><!--// footer-info -->
-    <div class="footer-bottom">
-        <ul class="service-txt">
-            <li><a href="javascript:ismsPop();"><i class="ico-footer-service01"></i>정보보호 관리체계 ISMS 인증 획득</a></li>
-            <li><a href="javascript:bankPop();"><i class="ico-footer-service02"></i>우리은행 구매 안전 서비스 가입사실 확인</a></li>
-        </ul>
-    </div>
-    </footer>
+        </div>
+    </div> -->
 
-<!-- 팝업창 -->
-            <div id="divpop">
-                <img src="https://file.rankingdak.com/image/RANK/BANNER/AR_OPEN/20230313/IMG1678UlB688986993.png" alt="">
-               <div id="divpop-close"><a href="javascript:closeWin();"><img  src="https://www.rankingdak.com/resources/pc/images/icon/btn_close.png" style="width: 40px;"></a></div>
-            </div>
-<!-- 팝업 JS -->
-                <script language="Javascript"> 
-                function closeWin() {
-                    var divpop = document.getElementById("divpop");
-                    divpop.style.display = "none";
+
+    <div class="orange-members">
+        <img src="https://file.rankingdak.com/image/RANK/BANNER/AR_IMG_1/20230306/IMG1678veR079873142.jpg">
+    </div>
+
+    <!-- slide test -->
+    <!-- MD Pick! -->
+    <div class="md-pick">금주의 BEST 신상품✨</div>
+    <!-- MD Pick! -->
+
+    <!-- img x 4 category -->
+    <div id="imageContainer3" class="image-container"></div>
+    <div id="navigationButtons3" class="navigation-buttons">
+        <button id="prevButton3" class="navigation-button-prev">&lt;</button>
+        <button id="nextButton3" class="navigation-button-next">&gt;</button>
+    </div>
+
+    <script>
+        // 이미지 파일 목록
+        const imageFiles3 = [
+            {
+                file : "/img/mainPage/best1.jpg",
+                description : "랭커 훈제 닭가슴살 혼합 100g"
+            },
+            {
+                file : "/img/mainPage/best2.jpg",
+                description : "랭커 IQF 한입 닭가슴살 200g"
+            },
+            {
+                file : "/img/mainPage/best3.jpg",
+                description : "랭커 스팀 소스 닭가슴살 혼합 130g"
+            },
+            {
+                file : "/img/mainPage/best4.jpg",
+                description : "랭커 스팀 닭가슴살 혼합 100g"
+            },
+            {
+                file : "/img/mainPage/best5.jpg",
+                description : "한끼통살 슬라이스 닭가슴살 매콤닭갈비 100g"
+            },
+            {
+                file : "/img/mainPage/best6.jpg",
+                description : "한끼통살 스팀 & 훈제 통살 닭가슴살 오리지널 혼합 100g"
+            },
+            {
+                file : "/img/mainPage/best7.jpg",
+                description : "닥터유PRO 단백질 파우더 딸기 1kg"
+            },
+            {
+                file : "/img/mainPage/best8.jpg",
+                description : "랩노쉬 프로틴 드링크 혼합 350ml"
+            }
+        ];
+
+        let currentIndex3 = 0;
+        const imageContainer3 = document.getElementById("imageContainer3");
+        const prevButton3 = document.getElementById("prevButton3");
+        const nextButton3 = document.getElementById("nextButton3");
+
+        showImages3();
+
+        // 다음 버튼 클릭 이벤트 처리
+        nextButton3.addEventListener("click", () => {
+            currentIndex3 = (currentIndex3 + 1) % imageFiles3.length;
+            showImages3();
+        });
+
+        // 이전 버튼 클릭 이벤트 처리
+        prevButton3.addEventListener("click", () => {
+            currentIndex3 = (currentIndex3 - 1 + imageFiles3.length) % imageFiles3.length;
+            showImages3();
+        });
+
+        // 이미지와 설명 표시 함수
+        function showImages3() {
+            const visibleImages = [];                  /* 화면에서 보여지는 이미지 수 */
+            for (let i = currentIndex3; visibleImages.length < 4; i = (i + 1) % imageFiles3.length) {
+                visibleImages.push(imageFiles3[i]);
+            }
+
+            imageContainer3.innerHTML = "";
+
+            for (let i = 0; i < visibleImages.length; i++) {
+                const image = visibleImages[i];
+
+                const wrapperElement = document.createElement("div");
+                wrapperElement.className = "image-wrapper";
+                imageContainer3.appendChild(wrapperElement);
+
+                const imageElement = document.createElement("img");
+                imageElement.className = "image";
+                imageElement.src = image.file;
+                wrapperElement.appendChild(imageElement);
+
+                const descriptionElement3 = document.createElement("p");
+                descriptionElement3.className = "description3";
+                descriptionElement3.textContent = image.description;
+                wrapperElement.appendChild(descriptionElement3);
+
+
+
+
+                const innerDivElement3 = document.createElement("div");
+                innerDivElement3.textContent = "42%"; // 원하는 내용으로 수정
+                innerDivElement3.style.color = "#ff8001"; // 빨간색으로 스타일 지정
+                innerDivElement3.style.textAlign = "left"; // 왼쪽 정렬 스타일 지정
+                innerDivElement3.style.marginLeft ="-5px";
+                innerDivElement3.style.fontSize = "22px";
+                descriptionElement3.appendChild(innerDivElement3);
+
+                // 추가한 <div> 요소 연결
+                //   const additionalDivElement3 = document.createElement("div");
+                //     additionalDivElement3.textContent = "한 정 특 가!";  // 원하는 내용으로 수정
+                //     additionalDivElement3.style.float ="right";
+                //     additionalDivElement3.style.marginTop="-157px"
+                //     additionalDivElement3.style.marginRight="210px"
+                //     additionalDivElement3.style.fontSize = "20px";
+                //     additionalDivElement3.style.width = "200px";
+                //     descriptionElement3.appendChild(additionalDivElement3);
+            }
+        }
+    </script>
+
+
+
+    <!--<style>-->
+    <!--    .my-container2 {-->
+    <!--      display: flex;-->
+    <!--      flex-wrap: wrap;-->
+    <!--      width: 1200px;-->
+    <!--      margin: 0 auto;-->
+    <!--      margin-top: 100px;-->
+    <!--    }-->
+    <!--    -->
+    <!--    .my-box {-->
+    <!--      border-radius: 10px;-->
+    <!--      width: 250px;-->
+    <!--      height: 379px;-->
+    <!--      background-color: white;-->
+    <!--      margin: 15px;-->
+    <!--      overflow:hidden;-->
+    <!--      margin-bottom: 10px;-->
+    <!--    }-->
+    <!--    .my-box > img{-->
+    <!--      height: 250px;-->
+    <!--    }-->
+    <!--    .fast-box{-->
+    <!--      background-image: url("https://www.rankingdak.com/resources/pc/images/txt/txt_badge_dlv.png");-->
+    <!--      background-size: 90px;-->
+    <!--    }-->
+    <!--    .fast-word{-->
+    <!--      word-spacing: 1px;-->
+    <!--      font-size: 14px;-->
+    <!--      font-weight: bolder;-->
+    <!--      color: gray;-->
+    <!--    }-->
+    <!--    .fast-price{-->
+    <!--      margin-top: 30px;-->
+    <!--      font-weight: bolder;-->
+    <!--      font-size: 20px;-->
+    <!--    }-->
+    <!--    .fast-price2{-->
+    <!--      font-size: 12px;-->
+    <!--    }-->
+    <!--    .fast-price3{-->
+    <!--      margin-top: 2px;-->
+    <!--      font-size: 12px;-->
+    <!--    }-->
+    <!--</style>-->
+
+    <div class="theme-recommend2">인기 카테고리 상품</div>
+    <div class="theme-recommend-div2">
+        <button id="button11" onclick="changeContainer1('container6', 'button11')">닭가슴살</button>
+        <button id="button22" onclick="changeContainer1('container7', 'button22')">즉석 간편식</button>
+        <button id="button33" onclick="changeContainer1('container8', 'button33')">도시락·볶음밥</button>
+        <button id="button44" onclick="changeContainer1('container9', 'button44')">샐러드·과일</button>
+        <button id="button55" onclick="changeContainer1('container10', 'button55')">음료·차·프로틴</button>
+    </div>
+
+    <div class="my-container2" id="container6">
+        <div class="my-box">
+            <a href="">
+                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20230626/IMG1687nwV770026184_330_330.jpg" alt="">
+                <em class="fast-box"></em>
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word">랭커 스팀 닭가슴살 청양고추 100g</div>
+            </a>
+            <div class="fast-price">22,400<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 1,240원~1,493원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20230525/IMG1684omr996137810_330_330.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word" style="margin-bottom: -20px;">[잇메이트] 중량 UP! 든든한 24g 고단백 프로 닭가슴살 소시지</div>
+            </a>
+            <div class="fast-price">22,400<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 1,640원~1,790원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220325/78c93adea967cb1eda8f517144aed007_330_330.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word">치즈 품은 닭가슴살</div>
+            </a>
+            <div class="fast-price">22,400<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 1,240원~1,493원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20230524/IMG1684yxt912086633_330_330.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word">잇메이트 슬라이스 소스 닭가슴살 혼합 150g</div>
+            </a>
+            <div class="fast-price">25,900<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 2,290원~2,590원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20230106/IMG1672nhu966250394_330_330.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word">러브잇 슬라이스 닭가슴살 혼합 100g</div>
+            </a>
+            <div class="fast-price">23,880<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 1,840원~1,990원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20230608/IMG1686EfG211786712_330_330.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word">러브잇 슬라이스 닭가슴살</div>
+            </a>
+            <div class="fast-price">22,400<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 1,240원~1,493원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20230612/IMG1686HKp554930214_330_330.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word">소스 닭가슴살 스테이크</div>
+            </a>
+            <div class="fast-price">22,400<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 1,240원~1,493원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220617/IMG1655GtE450105345_330_330.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word">햇살닭 닭가슴살 소시지꼬치 혼합 70g</div>
+            </a>
+            <div class="fast-price">7,000<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 1,250원~1,400원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220617/IMG1655GtE450105345_330_330.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word">랭커 스팀 닭가슴살 처양고추 100g</div>
+            </a>
+            <div class="fast-price">22,400<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 1,240원~1,493원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220818/IMG1660Ysw787453508_330_330.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word">러브잇 매운맛 닭가슴살</div>
+            </a>
+            <div class="fast-price">22,400<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 1,240원~1,493원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220620/IMG1655kDt712238425_330_330.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word">러브잇 닭가슴살 백숙</div>
+            </a>
+            <div class="fast-price">22,400<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 1,240원~1,493원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220325/728ab6e6a98b80d360d1ee8b2fa6cae6_330_330.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word">마늘 닭가슴살</div>
+            </a>
+            <div class="fast-price">22,400<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 1,240원~1,493원</div>
+        </div>
+    </div>
+
+    <div class="my-container2" id="container7" style="display: none;">
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/instant1.jpg" alt="">
+                <em class="fast-box"></em>
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word">맛있닭 닭가슴살 한끼 잡채 혼합 200g</div>
+            </a>
+            <div class="fast-price">19,500<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 3,300원~3,900원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/instant2.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word" style="margin-bottom: -20px;">더프래시 닭가슴살 아란치니 혼합 180g</div>
+            </a>
+            <div class="fast-price">23,500<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 4,400원~4,700원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/instant3.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word" style="margin-bottom: -20px;">더프래시 닭가슴살 크런치볼 혼합 180g</div>
+            </a>
+            <div class="fast-price">23,500<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 4,400원~4,700원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/instant4.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word" style="margin-bottom: -20px;">맛있닭 구워먹는 닭가슴살 탕수육 깐풍기 450g</div>
+            </a>
+            <div class="fast-price">20,700<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 6,300원~6,900원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/instant5.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word" style="margin-bottom: -20px;">풀무원 식물성 지구식단 크리스피 두부스틱 400g</div>
+            </a>
+            <div class="fast-price">7,980<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 7,980원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/instant6.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word" style="margin-bottom: -20px;">랭킹수산 렌지에 구워먹는 생선구이 혼합 60g~80g</div>
+            </a>
+            <div class="fast-price">24,200<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 4,580원~4,840원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/instant7.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word">네이처엠 현미 곤약밥 150g</div>
+            </a>
+            <div class="fast-price">22,200<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 1,900원~2,200원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/instant8.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word" style="margin-bottom: -20px;">잇메이트 닭가슴살 크리스피 핫도그 혼합 100g</div>
+            </a>
+            <div class="fast-price">10,400<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 1,220원~2,080원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/instant9.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word">아임닭 닭가슴살 치킨팝콘 혼합 100g</div>
+            </a>
+            <div class="fast-price">18,500<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 1,850원~2,000원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/instant10.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word">잇메이트 어묵 다이어트 떡볶이 290g</div>
+            </a>
+            <div class="fast-price">24,500<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 4,700원~4,900원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/instant11.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word">맛있닭 닭가슴살 한끼 삼계탕 450g</div>
+            </a>
+            <div class="fast-price">30,000<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 5,800원~6,000원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/instant12.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word">맛있닭 닭가슴살 한끼 만두 혼합 200g</div>
+            </a>
+            <div class="fast-price">17,600<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 3,080원~3,520원</div>
+        </div>
+    </div>
+    <div class="my-container2" id="container8" style="display: none;">
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/piknic1.jpg" alt="">
+                <em class="fast-box"></em>
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word" style="margin-bottom: -20px;">잇메이트 닭가슴살 몬스터 볶음밥 이지쿡 혼합 250g</div>
+            </a>
+            <div class="fast-price">32,900<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 2,890원~3,290원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/piknic2.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word">랭커 닭가슴살 볶음밥 혼합 200g</div>
+            </a>
+            <div class="fast-price">14,900<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 1,340원~1,490원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/piknic3.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word">허닭 닭가슴살 곤약 볶음밥 250g</div>
+            </a>
+            <div class="fast-price">25,000<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 2,500원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/piknic4.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word">맛있닭 다이어트 도시락 혼합 210g</div>
+            </a>
+            <div class="fast-price">21,900<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 4,080원~4,380원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/piknic5.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word" style="margin-bottom: -20px;">맛있닭 닭가슴살 몬스터 귀리볶음밥 혼합 250g</div>
+            </a>
+            <div class="fast-price">39,480<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 2,890원~3,290원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/piknic6.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word" style="margin-bottom: -20px;">아임웰 맛있는 닭가슴살 볶음밥 혼합 200g</div>
+            </a>
+            <div class="fast-price">24,700<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 900원~1,100원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/piknic7.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word" style="margin-bottom: -20px;">잇메이트 닭가슴살 현미 볶음밥 혼합 200g</div>
+            </a>
+            <div class="fast-price">26,900<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 2,490원~2,690원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/piknic8.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word" style="margin-bottom: -20px;">오빠닭 닭가슴살 곤약볶음밥 혼합 250g</div>
+            </a>
+            <div class="fast-price">25,900<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 2,097원~2,590원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/piknic9.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word" style="margin-bottom: -20px;">잇메이트 더블 덮밥 현미베지볶음밥 + 쭈꾸미 & 새우 220g</div>
+            </a>
+            <div class="fast-price">22,800<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 3,500원~3,800원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/piknic10.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word" style="margin-bottom: -20px;">맛있닭 닭가슴살 한끼 파우치 곤약, 볶음밥 혼합 200g</div>
+            </a>
+            <div class="fast-price">30,800<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 2,930원~3,080원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/piknic11.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word" style="margin-bottom: -20px;">잇메이트 닭가슴살 구운 주먹밥 혼합 100g</div>
+            </a>
+            <div class="fast-price">11,400<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 1,300원~1,900원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/piknic12.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word" style="margin-bottom: -20px;">맛있닭 씨푸드 다이어트 도시락 혼합 250g</div>
+            </a>
+            <div class="fast-price">22,900<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 4,180원~4,580원</div>
+        </div>
+    </div>
+    <div class="my-container2" id="container9" style="display: none;">
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/salad1.jpg" alt="">
+                <em class="fast-box"></em>
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word">프레쉬홈 그린 샐러드 100g</div>
+            </a>
+            <div class="fast-price">9,600<span class="fast-price2">1원</span></div>
+            <div class="fast-price3">1팩당: 2,250원~2,400원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/salad2.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word">프레쉬홈 그린 스무디 150g</div>
+            </a>
+            <div class="fast-price">29,800<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 2,693원~2,980원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/salad3.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word">프레쉬홈 레드 스무디 150g</div>
+            </a>
+            <div class="fast-price">29,800<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 2,693원~2,980원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/salad4.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word">프레쉬홈 이지 샐러드 혼합 90g</div>
+            </a>
+            <div class="fast-price">11,900<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 2,230원~2,380원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/salad5.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word">프레쉬홈 풀업 샐러드 혼합 280g</div>
+            </a>
+            <div class="fast-price">23,700<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 7,500원~7,900원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/salad6.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word" style="margin-bottom: -20px;">프레쉬홈 토핑 샐러드 혼합 180g ~ 190g</div>
+            </a>
+            <div class="fast-price">24,900<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 4,695원~4,980원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/salad7.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word" style="margin-bottom: -20px;">프레시온 야채만 SIZE UP V샐러드 150g</div>
+            </a>
+            <div class="fast-price">17,500<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 4,375원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/salad8.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word">1am 알뜰 Daily 스무디 100g</div>
+            </a>
+            <div class="fast-price">11,500<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 2,150원~2,300원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/salad9.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word">hy 콜라갠과 함께 먹는 샐러드 223g</div>
+            </a>
+            <div class="fast-price">6,500<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 6,500원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/salad10.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word" style="margin-bottom: -20px;">1am 토핑잇 알뜰 샐러드 혼합 170g~195g</div>
+            </a>
+            <div class="fast-price">24,500<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 4,700원~4,900원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/salad11.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word" style="margin-bottom: -20px;">샐러드판다 세끼판다 샐러드 3팩 패키지 185g~191g</div>
+            </a>
+            <div class="fast-price">15,700<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 5,233원~5,633원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/salad12.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word" style="margin-bottom: -20px;">샐러드판다 세끼판다 샐러드 6팩 패키지 186g~190g</div>
+            </a>
+            <div class="fast-price">32,000<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 5,333원~5,667원</div>
+        </div>
+    </div>
+    <div class="my-container2" id="container10" style="display: none;">
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/protein1.jpg" alt="">
+                <em class="fast-box"></em>
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word">랭커 WPI 단백질쉐이크 초코 1kg</div>
+            </a>
+            <div class="fast-price">44,900<span class="fast-price2">1원</span></div>
+            <div class="fast-price3">1통당: 44,990원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/protein2.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word">1am 블래디톡 ABC 클랜즈주스 100ml</div>
+            </a>
+            <div class="fast-price">29,900<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1개당: 896원~997원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/protein3.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word">1am 스파클링 캔 혼합 (0kcal) 210ml</div>
+            </a>
+            <div class="fast-price">9,600<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1개당: 549원~800원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/protein4.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word">1am 제로 아이스티 혼합 200g</div>
+            </a>
+            <div class="fast-price">6,500<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1개당: 3,100원~3,250원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/protein5.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word">달심 빼빼주스 100ml</div>
+            </a>
+            <div class="fast-price">2,500<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 2,159원~2,500원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/protein6.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word">클룹 제로소다 혼합 500ml</div>
+            </a>
+            <div class="fast-price">5,980<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1개당: 1,993원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/protein7.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word">띵커바디 오늘핏 쉐이크 카페라떼 40g</div>
+            </a>
+            <div class="fast-price">16,900<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 2,414원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/protein8.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word" style="margin-bottom: -20px;">맛있닭 닭가슴살 한끼 쉐이크 혼합 300g</div>
+            </a>
+            <div class="fast-price">27,900<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 4,250원~4,650원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/protein9.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word" style="margin-bottom: -20px;">맛있닭 닭가슴살 한끼 쉐이크 혼합 300g</div>
+            </a>
+            <div class="fast-price">27,900<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 4,250원~4,650원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/protein10.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word">칼로바이 프로틴 스파클링 240ml</div>
+            </a>
+            <div class="fast-price">39,800<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1캔당: 1,658원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/protein11.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word" style="margin-bottom: -20px;">닭스몰 무항생제 1등급 닭가슴살 쉐이크 100g</div>
+            </a>
+            <div class="fast-price">21,000<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1팩당: 17,850원~21,000원</div>
+        </div>
+        <div class="my-box">
+            <a href="">
+                <img src="/img/mainPage/protein12.jpg" alt="">
+                <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
+                <div class="fast-word" style="margin-bottom: -20px;">칼로바이 퍼펙트 파워쉐이크 포대유청 2kg</div>
+            </a>
+            <div class="fast-price">59,900<span class="fast-price2">원</span></div>
+            <div class="fast-price3">1개당: 59,900원</div>
+        </div>
+    </div>
+    <script>
+        let previousButtonId1 = '';
+
+        function changeContainer1(containerId1, buttonId1) {
+            const containers1 = document.getElementsByClassName('my-container2');
+            const buttons1 = document.getElementsByClassName('theme-recommend-div2')[0].getElementsByTagName('button');
+
+            for (let i = 0; i < containers1.length; i++) {
+                const container1 = containers1[i];
+                if (container1.id === containerId1) {
+                    container1.style.display = 'flex';
+                } else {
+                    container1.style.display = 'none';
                 }
-                // setTimeout(closeWin, 10000);
-                </script>
-<!-- 팝업 JS -->
-<!-- 팝업창 -->
-</body>
-<script>
-    /* 누르면 맨위로 올라가는 JS */
-function scrollToTop() {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
-}
-  </script>
+            }
+
+            if (previousButtonId1) {
+                const previousButton1 = document.getElementById(previousButtonId1);
+                previousButton1.classList.remove('selected-button');
+            }
+
+            const currentButton1 = document.getElementById(buttonId1);
+            currentButton1.classList.add('selected-button');
+            previousButtonId1 = buttonId1;
+        }
+    </script>
+
+
+
+
+    <!-- footer -->
+
+    <!-- 팝업창 -->
+    <div id="divpop">
+        <img src="https://file.rankingdak.com/image/RANK/BANNER/AR_OPEN/20230313/IMG1678UlB688986993.png" alt="">
+        <div id="divpop-close"><a href="javascript:closeWin();"><img  src="https://www.rankingdak.com/resources/pc/images/icon/btn_close.png" style="width: 40px;"></a></div>
+    </div>
+    <!-- 팝업 JS -->
+    <script language="Javascript">
+        function closeWin() {
+            var divpop = document.getElementById("divpop");
+            divpop.style.display = "none";
+        }
+        // setTimeout(closeWin, 10000);
+    </script>
+    <!-- 팝업 JS -->
+    <!-- 팝업창 -->
+    <script>
+        /* 누르면 맨위로 올라가는 JS */
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</section>
 </html>

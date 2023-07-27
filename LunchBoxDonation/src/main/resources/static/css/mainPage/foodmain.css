@@ -141,32 +141,33 @@ div.img img {
 }
 
  div.arrow {
-    position: absolute;
-    font-size: 2rem;
-    z-index: 1;
-    width: 25px;
-    height: 7%;
-    top: 328px;
-    margin-left: 754px;
-    margin-right: 755px;
-    border-radius: 29px;
-    text-align: center;
-    cursor: pointer;
-    line-height: 40vh;
-    color: #00000070;
-    background-color: #00000021;
+     position: absolute;
+     font-size: 2rem;
+     z-index: 1;
+     width: 21px;
+     height: 0.7%;
+     top: 349px;
+     margin-top: 11px;
+     margin-left: 755px;
+     margin-right: 848px;
+     border-radius: 29px;
+     text-align: center;
+     cursor: pointer;
+     line-height: 40vh;
+     color: #00000070;
+     background-color: #00000021;
 } 
 
 #arrow-prev{
     background-image: url("https://www.rankingdak.com/resources/pc/images/icon/ico_slide_ctrl.png");
     background-size: 118px;
-    background-position: -4% center;
+    background-position: -3% center;
 }
 
 #arrow-next{
     background-image: url("https://www.rankingdak.com/resources/pc/images/icon/ico_slide_ctrl.png");
     background-size: 118px;
-    background-position: 17% center;
+    background-position: 16% center;
 }
 
 div.next {
@@ -183,10 +184,10 @@ div.next {
 }
 
 div.btns {
-    position: absolute;
     text-align: center;
     bottom: 10px;
     width: 90vw;
+    top: 366px;
 }
 /* slide */
 
@@ -412,7 +413,7 @@ div.btns {
     font-size: 29px;
     font-weight: bolder;
     text-align: center;
-    margin-top: 140px;
+    margin-top: 126px;
     word-spacing: -4px;
 }
 
@@ -492,7 +493,7 @@ div.btns {
 .time-sale{
     position: absolute;
     left: 355px;
-    top: 1360px;
+    top: 1248px;
     width: 300px;
 }
 .time-sale-img{

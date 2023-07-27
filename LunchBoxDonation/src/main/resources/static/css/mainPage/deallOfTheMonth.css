@@ -17,6 +17,7 @@
     margin-left: 1750px;
     height: 400px;
   }
+
 #stickyDiv > a{
     margin-bottom: 30px;
   }
@@ -807,7 +808,7 @@ ol, ul {
     flex-wrap: wrap;
     margin-top: 80px;
     margin-bottom: -81px;
-    margin-left: 356px;
+    margin-left: 431px;
     text-align: center;
     line-height: 41px;
     cursor: pointer;
@@ -846,7 +847,7 @@ ol, ul {
     width: 1200px;
     margin: 0 auto;
     margin-top: 5px;
-    margin-left: 384px;
+    margin-left: 492px;
   }
   
   .my-box {

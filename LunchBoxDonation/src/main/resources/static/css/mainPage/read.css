@@ -1013,7 +1013,7 @@ input[type="radio"] {
     width: 50px;
     height: 50px;
     border-radius: 10px;
-    background-image: url(/mainPage/assets/img/ico-gift-like.png);
+    background-image: url(/img/mainPage/ico-gift-like.png);
     background-position: 44% 46%;
     background-repeat: no-repeat;
     cursor: pointer;
@@ -1061,6 +1061,7 @@ input[type="radio"] {
 
 .review{
     margin-left: -601px;
+    margin-bottom: 73px;
 }
 
 .review > div{
@@ -1084,7 +1085,7 @@ input[type="radio"] {
 }
 
 .review-img{
-    background-image: url(/mainPage/assets/img/review1.jpeg);
+    background-image: url(https://file.rankingdak.com/image/RANK/REVIEW/PD_RV_IMG1/20230609/IMG1686jzU298115662.jpg);
     width: 68px;
     height: 92px;
     background-size: 68px;
@@ -1108,7 +1109,78 @@ input[type="radio"] {
 
 
 
+.donation{
+    margin-bottom: 26px;
+    margin-top: 148px;
+    margin-left: -590px;
+    font-weight: bolder;
+    font-size: 20px;
+    color: black;
+}
 
+.donation{
+    margin-left: -601px;
+    margin-bottom: 73px;
+}
+
+.donation > div{
+    background-color: #f8f8f8;
+    width: 300px;
+    margin-left: 0px;
+    height: 190px;
+}
+
+.donation > div > div{
+    margin-left: 20px;
+}
+
+.donation-star{
+    background-image: url(https://www.rankingdak.com/resources/pc/images/icon/ico_rating.png);
+    width: 35%;
+    height: 23px;
+    margin-top: 23px;
+    overflow: hidden;
+    background-position: 0% 47%;
+}
+
+.donation-img{
+    background-image: url(https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20230316/IMG1678wms948113093_330_330.jpg);
+    width: 68px;
+    height: 92px;
+    background-size: 95px;
+}
+
+.donation-name{
+
+}
+
+.donation-date{
+
+}
+
+.donation-imotion{
+    color: #ff6001;
+}
+
+.donation-content{
+    color: black;
+}
+
+#donations{
+    margin-left: -232px;
+    height: 41px;
+    width: 185px;
+    border-radius: 5px;
+    border: 1.6px solid grey;
+}
+
+
+#donations option {
+    white-space: pre-wrap;
+    word-break: break-all;
+    width: 100px;
+    height: 100px;
+}
 
 
 

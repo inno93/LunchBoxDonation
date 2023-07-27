@@ -1,13 +1,13 @@
-package com.lunchbox.lunchboxdonation.controller.mypage;
-
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
-
-@Controller
-@Slf4j
-public class BenefitController {
+//package com.lunchbox.lunchboxdonation.controller.mypage;
+//
+//import lombok.extern.slf4j.Slf4j;
+//import org.springframework.stereotype.Controller;
+//import org.springframework.web.bind.annotation.RequestMapping;
+//import org.springframework.web.servlet.ModelAndView;
+//
+//@Controller
+//@Slf4j
+//public class BenefitController {
 //    @RequestMapping("mypage")
 //    public ModelAndView benefit_coupon(){
 //        ModelAndView mv = new ModelAndView();
@@ -26,4 +26,4 @@ public class BenefitController {
 //        mv.setViewName("mypage/benefit_voucher");
 //        return mv;
 //    }
-}
+//}

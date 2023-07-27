@@ -1,13 +1,13 @@
-package com.lunchbox.lunchboxdonation.controller.mypage;
-
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
-
-@Controller
-@Slf4j
-public class ActivityController {
+//package com.lunchbox.lunchboxdonation.controller.mypage;
+//
+//import lombok.extern.slf4j.Slf4j;
+//import org.springframework.stereotype.Controller;
+//import org.springframework.web.bind.annotation.RequestMapping;
+//import org.springframework.web.servlet.ModelAndView;
+//
+//@Controller
+//@Slf4j
+//public class ActivityController {
 //    @RequestMapping("mypage")
 //    public ModelAndView activity_brand(){
 //        ModelAndView mv = new ModelAndView();
@@ -44,4 +44,4 @@ public class ActivityController {
 //        mv.setViewName("mypage/activity_review");
 //        return mv;
 //    }
-}
+//}
