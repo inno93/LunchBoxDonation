@@ -27,146 +27,387 @@
       <input type="hidden" name="orangeMembersBenefit" value="N">
       <div>
         <input type="hidden" name="_csrf" value="248e0e73-fdd5-4706-aad8-266bb5b012d6">
-      </div></form><form id="productCouponForm" name="productCouponForm" action="/order/cart" method="post"><input type="hidden" name="vProductcdArr">
-    <div>
-      <input type="hidden" name="_csrf" value="248e0e73-fdd5-4706-aad8-266bb5b012d6">
-    </div></form><div class="cart-list-area" id="delivery-group-1600" data-free-delivery-price="20000" data-v-dlv-group-cd="16" data-v-dlv-charge-cd="00" data-v-express-yn="Y" data-v-paid-delivery-yn="N" data-delivery-type="E">
-
-    <div class="list-head">
-
-      <div class="custom-checkbox">
-        <input type="hidden" name="defaultDeliveryPrice" value="3000">
-        <input type="hidden" name="calcDeliveryPrice" value="3000">
-        <input type="checkbox" id="check-1" class="checkbox checkboxGroup" name="check1600">
-        <label for="check-1"> 랭킹닭컴(냉동)</label>
       </div>
+    </form>
+    <form id="productCouponForm" name="productCouponForm" action="/order/cart" method="post"><input type="hidden"
+                                                                                                    name="vProductcdArr">
+      <div>
+        <input type="hidden" name="_csrf" value="248e0e73-fdd5-4706-aad8-266bb5b012d6">
+      </div>
+    </form>
+    <div class="cart-list-area" id="delivery-group-1600" data-free-delivery-price="20000" data-v-dlv-group-cd="16"
+         data-v-dlv-charge-cd="00" data-v-express-yn="Y" data-v-paid-delivery-yn="N" data-delivery-type="E">
 
+      <div class="list-head">
+        <p style="display: inline-block;"></p>
+        <div class="right-dlv-info">
+          <div class="dlvNotFree" style="">
 
-      <p class="dlv-guide" style="display: inline-block;">
-        20,000원 이상 무료배송
-      </p>
-
-      <div class="right-dlv-info">
-
-        <div class="dlvFree" style="display: none;">
-
-          <em class="imgbadge-dlv-free">
-            <span class="blind">무료배송</span>
-          </em>
-
-        </div>
-
-        <div class="dlvNotFree" style="">
-
-          <p class="txt">
-            <span>배송비</span>
-            <span id="span-dlv-price-1600">3,000</span>원
-          </p>
-
-          <div class="dlv-tipbox-bottom" id="div-more-dlv-group-16-00" style="display: ">
             <p class="txt">
-
-              <a href="/product/dlvGroupList?dlvGroupCd=16"><span class="more-delivery-price">1,500</span>원 더 구매시,
-                <em>무료배송</em><i class="ico-arr-right"></i></a>
+              <span>배송비</span>
+              <span id="span-dlv-price-1600">3,000</span>원
             </p>
-          </div>
-        </div>
 
+            <div class="dlv-tipbox-bottom" id="div-more-dlv-group-16-00" style="display:none">
+              <p class="txt">
+
+                <a href="/product/dlvGroupList?dlvGroupCd=16"><span
+                        class="more-delivery-price">1,500</span>원 더 구매시,
+                  <em>무료배송</em><i class="ico-arr-right"></i></a>
+              </p>
+            </div>
+          </div>
+
+        </div>
       </div>
-    </div>
+      <script>
+        $(document).ready(function () {
+          //상품 checkbox 선택 여부에 따라 금액 조정
+          let checkboxes = $("ul.cart-list input[type='checkbox']");
+          let checkCount = 0;
 
-    <ul class="cart-list">
-      <li id="delivery-product-89781600N" class="delivery-product-89781600NY" data-v-productcd="8978" data-v-uproductcd="8978" data-v-gproductcd="8978" data-v-add-prod-yn="N">
-        <div class="prd-info-area cart-info-area  ">
-          <div class="inner">
-            <div class="column check">
-              <div class="custom-checkbox single">
-                <input type="checkbox" checked="" id="check-product-8978N" class="checkbox deleteUserCartList productCheckbox" name="check1600" data-v-cartid="20230725000017891400" data-v-dlv-group-cd="1600" data-v-productcd="8978" data-v-island-dlv-yn="Y" data-v-uproductcd-cart="8978" data-v-gproductcd="8978" data-v-sitecd="RANK" data-n-min-sale-qty="0" data-n-max-sale-qty="0" data-v-add-prod-yn="N" data-n-sale-limit="0" data-n-user-purchase-count="0" data-v-productnm="맛있닭 닭가슴살 스테이크  갈릭맛 100g" data-n-dlv-charge="0" data-n-qty="1" data-v-paid-delivery-yn="N">
-                <label for="check-product-8978N" class="blind">선택</label>
+          checkboxes.each(function () {
+            $(this).on("click", function () {
+              // 상품금액
+              let totalProductPrice = parseInt($("#totalProductPrice").text().replace(/,/g, ''), 10);
+              //할인금액
+              let totalDiscountPrice = parseInt($("#totalDiscountPrice").text().replace(/,/g, ''), 10);
+              //배송비
+              // let totalDeliveryPrice = parseInt($("#totalDeliveryPrice").text().replace(/,/g, ''), 10);
+              let totalDeliveryPrice = 3000;
+              //다시 체크박스 클릭 시 금액 추가
+              if ($(this).prop("checked")) {
+                //선택 한 data-v-productcd값을 가진 li찾기
+                let liSelect = $('[data-v-productcd="' + $(this).data("v-productcd") + '"]');
+                // ul.price-item 밑의 span.num 값 가져오기 (상품금액)
+                let price = parseInt(liSelect.find('.price-item .num').text().replace(/,/g, ''), 10);
+                //배송비 3000원으로 수정
+                $("#totalDeliveryPrice").text("3,000");
+                //전체 금액에서 선택된 상품의 가격 합산 (상품금액)
+                $("#totalProductPrice").text((totalProductPrice + price).toLocaleString());
+
+                //총 결제금액 (상품금액 - 할인금액 + 배송금액)
+                $(".totalOrderPrice").text((totalProductPrice + price - totalDiscountPrice + totalDeliveryPrice).toLocaleString());
+
+
+              } else {  //체크 해제 시 금액 감소
+                //현재 체크된 체크박스의 개수 가져오기
+                checkCount = checkboxes.filter(":checked").length;
+
+                //선택 한 data-v-productcd값을 가진 li찾기
+                let liSelect = $('[data-v-productcd="' + $(this).data("v-productcd") + '"]');
+                // ul.price-item 밑의 span.num 값 가져오기 (상품금액)
+                let price = parseInt(liSelect.find('.price-item .num').text().replace(/,/g, ''), 10);
+                //전체 금액에서 선택해제한 상품의 가격 차감 (상품 금액)
+                $("#totalProductPrice").text((totalProductPrice - price).toLocaleString());
+
+                //체크된 값이 1개 이상일 때 배송비도 더함
+                if (checkCount > 0) {
+                  //총 결제금액 (상품금액 - 할인금액 + 배송금액)
+                  $(".totalOrderPrice").text((totalProductPrice - price - totalDiscountPrice + totalDeliveryPrice).toLocaleString());
+                  // 선택된 상품이 1개라도 있으면 배송비 적용
+                  $("#totalDeliveryPrice").text("3,000");
+                }else {
+                  // 체크된 값이 1개도 없으므로 배송비 0원으로 초기화
+                  $("#totalDeliveryPrice").text("0");
+                  //총 결제금액도 0원으로 초기화
+                  $(".totalOrderPrice").text("0");
+                }
+              }
+
+            })
+          })
+
+          //전체 선택
+          $("#checkAll").on("click", function(){
+            let isChecked = $(this).prop("checked");
+            checkboxes.prop("checked", isChecked);
+            //전체 선택을 선택했을 때
+            if(isChecked) {
+              //전체 상품의 가격을 각각 가져오기
+              let productPrice = $('.cart-list .price-item .num').map(function() {
+                return $(this).text();
+              }).get();
+
+              //가져온 가격을 연산이 가능하도록 콤마 제거 후 Int형으로 변형
+              let totalPrice = productPrice.reduce(function(acc, curr) {
+                let numValue = parseInt(curr.replace(/,/g, ''), 10);
+                return acc + numValue;
+              }, 0);
+              $("#totalProductPrice").text(totalPrice.toLocaleString());
+              $("#totalDeliveryPrice").text("3,000");
+              $(".totalOrderPrice").text((totalPrice + 3000).toLocaleString());
+
+            }else{ //전체 선택을 선택해제 했을 때
+              checkboxes.prop("checked", false);
+              $("#totalProductPrice").text("0");
+              $("#totalDeliveryPrice").text("0");
+              $(".totalOrderPrice").text("0");
+            }
+          })
+
+          //상품 별 수량 선택
+          $(".btn-qty").on("click", function(){
+            let dataCalculate = $(this).data("calculate");
+            let input = $(this).siblings('.input-qty');
+            let dataProductCd = $(this).data("v-productcd");
+
+
+            //선택 한 data-v-productcd값을 가진 li찾기
+            let liSelect = $('[data-v-productcd="' + dataProductCd + '"]');
+            // ul.price-item 밑의 span.num 값 가져오기 (상품금액)
+            let price = parseInt(liSelect.find('.price-item .num').text().replace(/,/g, ''), 10);
+            // 상품금액
+            let totalProductPrice = parseInt($("#totalProductPrice").text().replace(/,/g, ''), 10);
+            //전체 상품 금액
+            let totalOrderPrice = parseInt($(".totalOrderPrice").text().replace(/,/g, ''), 10);
+            //할인 금액
+            let discountPrice = parseInt($("#discountPrice-"+dataProductCd).text().replace(/,/g, ''), 10);
+            //배송비
+            // let totalDeliveryPrice = parseInt($("#totalDeliveryPrice").text().replace(/,/g, ''), 10);
+            let totalDeliveryPrice = 3000;
+            let value = parseInt(input.val(), 10);
+            let point = $(".point-" + dataProductCd);
+            let cartPrice = $(".cart-price-" + dataProductCd);
+            let cartPriceVal = parseInt(cartPrice.text().replace(/,/g, ''),10);
+            let totalPrice = $("#totalPrice-" + dataProductCd);
+            let totalPriceVal = parseInt(totalPrice.text().replace(/,/g, ''),10);
+
+            //수량 증가
+            if(dataCalculate == "ADD"){
+              value++;
+              input.val(value);
+              // 상품 총액 증가
+              $("#totalProductPrice, .productPrice-"+ dataProductCd).text((totalProductPrice + price).toLocaleString());
+              cartPrice.text((cartPriceVal + price).toLocaleString());
+              //상품 별 총액
+              totalPrice.text((totalPriceVal + price - discountPrice).toLocaleString());
+              // 결제 총액 증가
+              $(".totalOrderPrice").text((totalProductPrice + price + totalDeliveryPrice).toLocaleString());
+              //포인트 조정
+              point.text(((totalPriceVal + price - discountPrice) * 0.01).toLocaleString()+"P")
+
+              //수량 감소
+            }else if(dataCalculate == "SUBTRACT"){
+              if (value > 1) {
+                value--;
+                input.val(value);
+                // 상품 총액 감소
+                $("#totalProductPrice, .productPrice-"+ dataProductCd).text((totalProductPrice - price).toLocaleString());
+                cartPrice.text((cartPriceVal - price).toLocaleString());
+                //상품 별 총액
+                totalPrice.text((totalPriceVal - price - discountPrice).toLocaleString());
+                // 결제 총액 감소
+                $(".totalOrderPrice").text((totalProductPrice - price).toLocaleString());
+                //포인트 조정
+                point.text(((totalPriceVal - price - discountPrice) * 0.01).toLocaleString()+"P")
+              }
+            }
+
+
+          })
+
+        });
+
+      </script>
+
+      <ul class="cart-list">
+        <li id="delivery-product-89781600N" class="delivery-product-89781600NY" data-v-productcd="8978"
+            data-v-uproductcd="8978" data-v-gproductcd="8978" data-v-add-prod-yn="N">
+          <div class="prd-info-area cart-info-area  ">
+            <div class="inner">
+              <div class="column check">
+                <div class="custom-checkbox single">
+                  <input type="checkbox" id="check-product-8978N" checked=""
+                         class="checkbox deleteUserCartList productCheckbox" name="check1600"
+                         data-v-cartid="20230725000017891400" data-v-dlv-group-cd="1600"
+                         data-v-productcd="8978" data-v-island-dlv-yn="Y"
+                         data-v-uproductcd-cart="8978" data-v-gproductcd="8978" data-v-sitecd="RANK"
+                         data-n-min-sale-qty="0" data-n-max-sale-qty="0" data-v-add-prod-yn="N"
+                         data-n-sale-limit="0" data-n-user-purchase-count="0"
+                         data-v-productnm="맛있닭 닭가슴살 스테이크  갈릭맛 100g" data-n-dlv-charge="0"
+                         data-n-qty="1" data-v-paid-delivery-yn="N">
+                  <label for="check-product-8978N" class="blind">선택</label>
+                </div>
               </div>
-            </div>
-            <input type="hidden" class="arrCartid-8978" value="20230725000017891400">
-            <input type="hidden" class="vProductcd-8978" data-v-add-prod-yn="N" data-out-of-stock-status="N" value="8978">
-            <input type="hidden" class="vProductcd-8978-couponPrice couponPrice" value="0" data-v-productcd="8978" data-v-uproductcd-cart="8978">
+              <input type="hidden" class="arrCartid-8978" value="20230725000017891400">
+              <input type="hidden" class="vProductcd-8978" data-v-add-prod-yn="N"
+                     data-out-of-stock-status="N" value="8978">
+              <input type="hidden" class="vProductcd-8978-couponPrice couponPrice" value="0"
+                     data-v-productcd="8978" data-v-uproductcd-cart="8978">
 
-            <div class="column img">
-              <label for="check-product-8978N">
-                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652Vjg147858177_100_100.jpg" alt="상품이미지">
-              </label>
-            </div>
-            <div class="column tit">
-              <p class="tit">
-                <a href="/product/view?productCd=8978" class="productNm">
-                  맛있닭 닭가슴살 스테이크  갈릭맛 100g</a>
-              </p>
-              <p class="desc">10팩</p>
-              <p class="desc">
-              </p>
+              <div class="column img">
+                <label for="check-product-8978N">
+                  <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652Vjg147858177_100_100.jpg"
+                       alt="상품이미지">
+                </label>
+              </div>
+              <div class="column tit">
+                <p class="tit">
+                  <a href="/product/view?productCd=8978" class="productNm">
+                    맛있닭 닭가슴살 스테이크 갈릭맛 100g</a>
+                </p>
+                <p class="desc">10팩</p>
+                <p class="desc">
+                </p>
 
-              <ul class="price-item">
-                <li><span class="num">18,500</span>원</li>
-                <li class="dlv-type"><em class="imgbadge-dlv-exp"><span class="blind">특급배송</span></em></li>
-              </ul>
-            </div>
+                <ul class="price-item">
+                  <li><span class="num">18,500</span>원</li>
+                  <li class="dlv-type"><em class="imgbadge-dlv-exp"><span
+                          class="blind">특급배송</span></em></li>
+                </ul>
+              </div>
 
-            <div class="column qty">
-              <div class="qty-group">
-                <button type="button" class="btn-qty cart" title="" data-v-cartid="20230725000017891400" data-calculate="SUBTRACT" data-out-of-stock-status="N" data-v-dlv-group-cd="1600" data-v-gproductcd="8978" data-v-uproductcd-cart="8978" data-v-productcd="8978" data-v-optionid="20220424000000005291">
-                  <i class="ico-minus-bold"></i><span class="blind">빼기</span>
+              <div class="column qty">
+                <div class="qty-group">
+                  <button type="button" class="btn-qty cart" title=""
+                          data-v-cartid="20230725000017891400" data-calculate="SUBTRACT"
+                          data-out-of-stock-status="N" data-v-dlv-group-cd="1600"
+                          data-v-gproductcd="8978" data-v-uproductcd-cart="8978"
+                          data-v-productcd="8978" data-v-optionid="20220424000000005291">
+                    <i class="ico-minus-bold"></i><span class="blind">빼기</span>
+                  </button>
+                  <input type="text" title="" class="input-qty product-8978"
+                         id="qty-20230725000017891400" value="1" data-max-qty="0" readonly="">
+                  <button type="button" class="btn-qty cart" title=""
+                          data-v-cartid="20230725000017891400" data-calculate="ADD"
+                          data-out-of-stock-status="N" data-v-dlv-group-cd="1600"
+                          data-v-gproductcd="8978" data-v-uproductcd-cart="8978"
+                          data-v-productcd="8978" data-v-optionid="20220424000000005291">
+                    <i class="ico-plus-bold"></i><span class="blind">더하기</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="column price">
+                <input type="hidden" id="cart-orange-save-price-minus-20230725000017891400"
+                       class="nOrangeSavePriceMinus" value="370" data-out-of-stock-status="N">
+                <input type="hidden" id="cart-orange-save-price-20230725000017891400"
+                       class="nOrangeSavePrice" value="18130" data-out-of-stock-status="N">
+                <div class="price-div">
+                                    <span class="num cart-price-8978 brand-cd-1042 partner-cd-16 cart-price-8978"
+                                          id="cart-price-20230725000017891400"
+                                          data-out-of-stock-status="N">18,500</span>원
+                </div>
+              </div>
+
+              <input type="hidden" id="cart-save-point-20230725000017891400" class="nSavePoint" value="0"
+                     data-out-of-stock-status="N">
+              <input type="hidden" id="cart-orange-save-point-20230725000017891400"
+                     class="nOrangeSavePoint" value="0" data-out-of-stock-status="N">
+              <div class="column point point-8978" id="cart-point-20230725000017891400" data-out-of-stock-status="N">
+                185P
+              </div>
+
+              <div class="column btnKit">
+                <button type="button" class="btn-x-sm deleteUserCart" title=""
+                        data-v-cartid="20230725000017891400" data-v-productcd="8978"
+                        data-v-dlv-group-cd="1600" data-v-uproductcd-cart="8978"
+                        data-v-gproductcd="8978">
+                  <i class="ico-x-black"></i><span class="blind">삭제</span>
                 </button>
-                <input type="text" title="" class="input-qty product-8978" id="qty-20230725000017891400" value="1" data-max-qty="0" readonly="">
-                <button type="button" class="btn-qty cart" title="" data-v-cartid="20230725000017891400" data-calculate="ADD" data-out-of-stock-status="N" data-v-dlv-group-cd="1600" data-v-gproductcd="8978" data-v-uproductcd-cart="8978" data-v-productcd="8978" data-v-optionid="20220424000000005291">
-                  <i class="ico-plus-bold"></i><span class="blind">더하기</span>
-                </button>
               </div>
-            </div>
-
-            <div class="column price">
-              <input type="hidden" id="cart-orange-save-price-minus-20230725000017891400" class="nOrangeSavePriceMinus" value="370" data-out-of-stock-status="N">
-              <input type="hidden" id="cart-orange-save-price-20230725000017891400" class="nOrangeSavePrice" value="18130" data-out-of-stock-status="N">
-              <div class="price-div">
-                <span class="num cart-price-8978 brand-cd-1042 partner-cd-16 cart-price-8978" id="cart-price-20230725000017891400" data-out-of-stock-status="N">18,500</span>원
-              </div>
-            </div>
-
-            <input type="hidden" id="cart-save-point-20230725000017891400" class="nSavePoint" value="0" data-out-of-stock-status="N">
-            <input type="hidden" id="cart-orange-save-point-20230725000017891400" class="nOrangeSavePoint" value="0" data-out-of-stock-status="N">
-            <div class="column point" id="cart-point-20230725000017891400" data-out-of-stock-status="N">0P</div>
-
-            <div class="column btnKit">
-              <button type="button" class="btn-x-sm deleteUserCart" title="" data-v-cartid="20230725000017891400" data-v-productcd="8978" data-v-dlv-group-cd="1600" data-v-uproductcd-cart="8978" data-v-gproductcd="8978">
-                <i class="ico-x-black"></i><span class="blind">삭제</span>
-              </button>
             </div>
           </div>
-        </div>
 
-        <div class="bottom-price-box">
+          <div class="bottom-price-box">
 
-          <p class="price-txt">
-            <span class="txt">상품</span>
-            <span class="num productPrice-8978">18,500</span>원
-            - <span class="txt">할인</span>
-            <span class="num discount" id="discountPrice-8978">0</span>원
+            <p class="price-txt">
+              <span class="txt">상품</span>
+              <span class="num productPrice-8978">18,500</span>원
+              - <span class="txt">할인</span>
+              <span class="num discount" id="discountPrice-8978">0</span>원
 
-            = <span class="num-total" data-total-price="" id="totalPrice-8978">18,500</span>원
-          </p>
+              = <span class="num-total" data-total-price="" id="totalPrice-8978">18,500</span>원
+            </p>
 
-        </div>
-      </li>
-    </ul>
-    <script>
-      $(function () {
+          </div>
+        </li>
+        <li id="delivery-product-F0000065921600N" class="delivery-product-F0000065921600NY" data-v-productcd="F000006592" data-v-uproductcd="F000006592" data-v-gproductcd="F000006592" data-v-add-prod-yn="N">
+          <div class="prd-info-area cart-info-area  ">
+            <div class="inner">
+              <div class="column check">
+                <div class="custom-checkbox single">
+                  <input type="checkbox" checked="" id="check-product-F000006592N" class="checkbox deleteUserCartList productCheckbox" name="check1600" data-v-cartid="20230726000017925925" data-v-dlv-group-cd="1600" data-v-productcd="F000006592" data-v-island-dlv-yn="Y" data-v-uproductcd-cart="F000006592" data-v-gproductcd="F000006592" data-v-sitecd="RANK" data-n-min-sale-qty="0" data-n-max-sale-qty="0" data-v-add-prod-yn="N" data-n-sale-limit="0" data-n-user-purchase-count="0" data-v-productnm="[랭커] 부드러운 스팀과 특제소스의 완벽한 조합, 스팀 소스 닭가슴살" data-n-dlv-charge="0" data-n-qty="1" data-v-paid-delivery-yn="N">
+                  <label for="check-product-F000006592N" class="blind">선택</label>
+                </div>
+              </div>
+              <input type="hidden" class="arrCartid-F000006592" value="20230726000017925925">
+              <input type="hidden" class="vProductcd-F000006592" data-v-add-prod-yn="N" data-out-of-stock-status="N" value="F000006592">
+              <input type="hidden" class="vProductcd-F000006592-couponPrice couponPrice" value="0" data-v-productcd="F000006592" data-v-uproductcd-cart="F000006592">
 
-      });
-    </script>
+              <div class="column img">
+                <label for="check-product-F000006592N">
+                  <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20230621/IMG1687lBW329821342_100_100.jpg" alt="상품이미지">
+                </label>
+              </div>
+              <div class="column tit">
+                <p class="tit">
+                  <a href="/product/view?productCd=F000006592" class="productNm">
+                    [랭커] 부드러운 스팀과 특제소스의 완벽한 조합, 스팀 소스 닭가슴살</a>
+                </p>
+                <p class="desc">불고기 10팩</p>
+                <p class="desc">
+                </p>
 
-  </div>
+                <ul class="price-item">
+                  <li><span class="num">17,900</span>원</li>
+                  <li class="dlv-type"><em class="imgbadge-dlv-exp"><span class="blind">특급배송</span></em></li>
+                </ul>
+              </div>
+
+              <div class="column qty">
+                <div class="qty-group">
+                  <button type="button" class="btn-qty cart" title="" data-v-cartid="20230726000017925925" data-calculate="SUBTRACT" data-out-of-stock-status="N" data-v-dlv-group-cd="1600" data-v-gproductcd="F000006592" data-v-uproductcd-cart="F000006592" data-v-productcd="F000006592" data-v-optionid="20230620000000069000">
+                    <i class="ico-minus-bold"></i><span class="blind">빼기</span>
+                  </button>
+                  <input type="text" title="" class="input-qty product-F000006592" id="qty-20230726000017925925" value="1" data-max-qty="0" readonly="">
+                  <button type="button" class="btn-qty cart" title="" data-v-cartid="20230726000017925925" data-calculate="ADD" data-out-of-stock-status="N" data-v-dlv-group-cd="1600" data-v-gproductcd="F000006592" data-v-uproductcd-cart="F000006592" data-v-productcd="F000006592" data-v-optionid="20230620000000069000">
+                    <i class="ico-plus-bold"></i><span class="blind">더하기</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="column price">
+                <input type="hidden" id="cart-orange-save-price-minus-20230726000017925925" class="nOrangeSavePriceMinus" value="350" data-out-of-stock-status="N">
+                <input type="hidden" id="cart-orange-save-price-20230726000017925925" class="nOrangeSavePrice" value="17550" data-out-of-stock-status="N">
+                <div class="price-div">
+                  <span class="num cart-price-F000006592 brand-cd-B000372 partner-cd-16 cart-price-F000006592" id="cart-price-20230726000017925925" data-out-of-stock-status="N">17,900</span>원
+                </div>
+              </div>
+
+              <input type="hidden" id="cart-save-point-20230726000017925925" class="nSavePoint" value="179" data-out-of-stock-status="N">
+              <input type="hidden" id="cart-orange-save-point-20230726000017925925" class="nOrangeSavePoint" value="179" data-out-of-stock-status="N">
+              <div class="column point point-F000006592" id="cart-point-20230726000017925925" data-out-of-stock-status="N">179P</div>
+
+              <div class="column btn">
+                <button type="button" class="btn-x-sm deleteUserCart" title="" data-v-cartid="20230726000017925925" data-v-productcd="F000006592" data-v-dlv-group-cd="1600" data-v-uproductcd-cart="F000006592" data-v-gproductcd="F000006592">
+                  <i class="ico-x-black"></i><span class="blind">삭제</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="bottom-price-box">
+
+            <p class="price-txt">
+              <span class="txt">상품</span>
+              <span class="num productPrice-F000006592">17,900</span>원
+              - <span class="txt">할인</span>
+              <span class="num discount" id="discountPrice-F000006592">0</span>원
+
+              = <span class="num-total" data-total-price="" id="totalPrice-F000006592">17,900</span>원
+            </p>
+
+          </div>
+        </li>
+      </ul>
+    </div>
     <div class="cart-total-box grid-area-span4">
       <div class="colum">
         <dl class="price-info">
           <dt class="tit">상품금액</dt>
-          <dd class="price"><em class="num" id="totalProductPrice">18,500</em>원
+          <dd class="price"><em class="num" id="totalProductPrice">36,400</em>원
           </dd>
         </dl>
       </div>
@@ -186,7 +427,7 @@
         <dl class="price-info">
           <dt class="tit">총 결제금액</dt>
           <dd class="price">
-            <em class="num text-primary totalOrderPrice">21,500</em>원
+            <em class="num text-primary totalOrderPrice">39,400</em>원
           </dd>
         </dl>
       </div>
@@ -194,7 +435,11 @@
 
     <a href="/mypage/orangeMember" style="">
       <div class="orangeMembers-skin-banner text-center">
-        <p><i class="ico-orangeMembers"></i><strong>오렌지멤버스</strong> 가입 시 <em id="obanner-p-text" style="display: none;"><span id="obanner-point">0P</span> 추가적립</em> <em id="obanner-or-text" style="display: none;">or</em> <em id="obanner-d-text"><span id="obanner-price-minus" style="color: rgb(255, 112, 1);">370원</span> 추가할인</em> <i class="ico-arr-right"></i></p>
+        <p><i class="ico-orangeMembers"></i><strong>오렌지멤버스</strong> 가입 시 <em id="obanner-p-text"
+                                                                             style="display: none;"><span
+                id="obanner-point">0P</span> 추가적립</em> <em id="obanner-or-text" style="display: none;">or</em>
+          <em id="obanner-d-text"><span id="obanner-price-minus" style="color: rgb(255, 112, 1);">370원</span>
+            추가할인</em> <i class="ico-arr-right"></i></p>
       </div>
     </a>
     <div class="page-guide-center">
@@ -227,8 +472,10 @@
                   <label for="point"><span>[적립]</span> 선택 시</label>
                 </div>
                 <div class="contents-sub">
-                  <p class="point">적립 예정 <span class="fr on"><span id="totOrangeSalePoint">000</span>P</span></p>
-                  <p class="result-price">총 결제 금액 <span class="fr"><span id="totOrangeSalePoint2">000</span>원</span></p>
+                  <p class="point">적립 예정 <span class="fr on"><span id="totOrangeSalePoint">000</span>P</span>
+                  </p>
+                  <p class="result-price">총 결제 금액 <span class="fr"><span
+                          id="totOrangeSalePoint2">000</span>원</span></p>
                 </div>
               </li>
 
@@ -238,8 +485,10 @@
                   <label for="discount"><span>[할인]</span> 선택 시</label>
                 </div>
                 <div class="contents-sub">
-                  <p class="tobeDiscount">할인 예정 <span class="fr">-<span id="totOrangeSalePrice">000</span>원</span></p>
-                  <p class="result-price">총 결제 금액 <span class="fr"><span id="totOrangeSalePrice2">000</span>원</span></p>
+                  <p class="tobeDiscount">할인 예정 <span class="fr">-<span
+                          id="totOrangeSalePrice">000</span>원</span></p>
+                  <p class="result-price">총 결제 금액 <span class="fr"><span
+                          id="totOrangeSalePrice2">000</span>원</span></p>
                 </div>
               </li>
             </ul>
@@ -252,7 +501,8 @@
             </a>
 
           </div>
-          <button type="button" class="btn-x-md2 ui-close-pop" title="닫기"><i class="ico-x-black"></i><span class="blind">닫기</span></button>
+          <button type="button" class="btn-x-md2 ui-close-pop" title="닫기"><i class="ico-x-black"></i><span
+                  class="blind">닫기</span></button>
         </div><!--// layer-inner -->
       </div><!--// layer-pop  -->
     </div><!--// layer-pop-wrap #main-event -->
@@ -274,37 +524,59 @@
                 </dl><!--// cell -->
                 <dl class="cell">
                   <dt class="tit">할인금액</dt>
-                  <dd class="price text-primary"><span id="nSalePrice" class="resetPrice">0</span>원</dd>
+                  <dd class="price text-primary"><span id="nSalePrice" class="resetPrice">0</span>원
+                  </dd>
                 </dl><!--// cell -->
                 <dl class="cell">
                   <dt class="tit">쿠폰적용가</dt>
-                  <dd class="price text-primary"><span id="calcPrice" class="resetPrice">0</span>원</dd>
+                  <dd class="price text-primary"><span id="calcPrice" class="resetPrice">0</span>원
+                  </dd>
                 </dl><!--// cell -->
               </div><!--// inner -->
             </div><!--// coupon-total-box -->
 
-            <div class="scroll-area ui-custom-scroll mCustomScrollbar _mCS_1 mCS_no_scrollbar"><div id="mCSB_1" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" style="max-height: 360px;" tabindex="0"><div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
-              <div class="pop-subtit-area">
-                <h5 class="pop-sub-title">상품쿠폰</h5>
+            <div class="scroll-area ui-custom-scroll mCustomScrollbar _mCS_1 mCS_no_scrollbar">
+              <div id="mCSB_1" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside"
+                   style="max-height: 360px;" tabindex="0">
+                <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y"
+                     style="position:relative; top:0; left:0;" dir="ltr">
+                  <div class="pop-subtit-area">
+                    <h5 class="pop-sub-title">상품쿠폰</h5>
+                  </div>
+
+                  <div class="coupon-box-list">
+                    <ul id="couponList">
+                    </ul>
+                  </div><!--// coupon-box-list -->
+
+                </div>
+                <div id="mCSB_1_scrollbar_vertical"
+                     class="mCSB_scrollTools mCSB_1_scrollbar mCS-light mCSB_scrollTools_vertical"
+                     style="display: none;">
+                  <div class="mCSB_draggerContainer">
+                    <div id="mCSB_1_dragger_vertical" class="mCSB_dragger"
+                         style="position: absolute; min-height: 0px; top: 0px;">
+                      <div class="mCSB_dragger_bar" style="line-height: 0px;"></div>
+                    </div>
+                    <div class="mCSB_draggerRail"></div>
+                  </div>
+                </div>
               </div>
-
-              <div class="coupon-box-list">
-                <ul id="couponList">
-                </ul>
-              </div><!--// coupon-box-list -->
-
-            </div><div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light mCSB_scrollTools_vertical" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 0px; top: 0px;"><div class="mCSB_dragger_bar" style="line-height: 0px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div></div>
+            </div>
           </div><!--// layer-body -->
 
           <div class="layer-bottom type-shadow">
             <div class="btn-area">
               <!-- [Dev] 20210908 버튼 클래스 수정 btn-basic-lg2, 적용취소 버튼 추가 -->
-              <button type="button" class="btn-basic-lg2 btn-grey3" id="couponApplyCancel"><span>적용취소</span></button>
-              <button type="button" class="btn-basic-lg2 btn-primary" id="useCoupon"><span>쿠폰적용</span></button>
+              <button type="button" class="btn-basic-lg2 btn-grey3" id="couponApplyCancel">
+                <span>적용취소</span></button>
+              <button type="button" class="btn-basic-lg2 btn-primary" id="useCoupon"><span>쿠폰적용</span>
+              </button>
             </div>
           </div>
 
-          <button type="button" class="btn-x-md2 ui-close-pop close" title=""><i class="ico-x-black"></i><span class="blind">닫기</span></button>
+          <button type="button" class="btn-x-md2 ui-close-pop close" title=""><i class="ico-x-black"></i><span
+                  class="blind">닫기</span></button>
         </div><!--// layer-inner -->
       </div><!--// layer-pop  -->
     </div>
@@ -321,7 +593,8 @@
           <strong class="tit">재입고 알림이 신청되었습니다.</strong>
           <p class="txt">재입고 시 알림톡이나 SMS로 알림을 보내드립니다.</p>
           <div class="btn-area">
-            <button type="button" class="btn-basic-md btn-black btn-default ui-close-pop restockBtnClose"><span>확인</span></button>
+            <button type="button" class="btn-basic-md btn-black btn-default ui-close-pop restockBtnClose">
+              <span>확인</span></button>
           </div>
         </div><!--// layer-inner -->
       </div><!--// layer-pop  -->
@@ -332,12 +605,12 @@
   <script>
     let dlvMap;
     $(document).ready(function () {
-      const vDlvGroupCdListTemp = [];
+      let vDlvGroupCdListTemp = [];
       $('.productCheckbox:checked').each(function (i, v) {
         vDlvGroupCdListTemp.push(this.dataset.vDlvGroupCd);
       });
-      //const vDlvGroupCdList = Array.from(new Set(vDlvGroupCdListTemp));
-      const vDlvGroupCdList = getUnique(vDlvGroupCdListTemp);
+      //let vDlvGroupCdList = Array.from(new Set(vDlvGroupCdListTemp));
+      let vDlvGroupCdList = getUnique(vDlvGroupCdListTemp);
 
       $.each(vDlvGroupCdList, function (i, vDlvGroupCd) {
         $('.checkboxGroup[name=check' + vDlvGroupCd + ']').prop('checked', 'checked');
@@ -345,18 +618,18 @@
 
       // wnsgml351 인수인계 추가 - 품절상태 disabled 속성처리된 상품 있는지 확인 후, 전부 다 disabled 처리되면 배송그룹도 disabled 처리
       // disabled 속성 찾기
-      const vDlvGroupCdDisabledTemp = [];
+      let vDlvGroupCdDisabledTemp = [];
       $('.productCheckbox:disabled').each(function (i, v) {
         vDlvGroupCdDisabledTemp.push(this.dataset.vDlvGroupCd);
       });
-      //const vDlvGroupCdDisabledList = Array.from(new Set(vDlvGroupCdDisabledTemp));
-      const vDlvGroupCdDisabledList = getUnique(vDlvGroupCdDisabledTemp);
+      //let vDlvGroupCdDisabledList = Array.from(new Set(vDlvGroupCdDisabledTemp));
+      let vDlvGroupCdDisabledList = getUnique(vDlvGroupCdDisabledTemp);
 
       // 배송그룹 disabled 처리
       $.each(vDlvGroupCdDisabledList, function (i, vDlvGroupCd) {
-        const productLength = $('#delivery-group-' + vDlvGroupCd).find('ul.cart-list li input.productCheckbox').length;
-        const disabledLength = $('#delivery-group-' + vDlvGroupCd).find('ul.cart-list li input.productCheckbox:disabled').length;
-        if(productLength == disabledLength) {
+        let productLength = $('#delivery-group-' + vDlvGroupCd).find('ul.cart-list li input.productCheckbox').length;
+        let disabledLength = $('#delivery-group-' + vDlvGroupCd).find('ul.cart-list li input.productCheckbox:disabled').length;
+        if (productLength == disabledLength) {
           $('.checkboxGroup[name=check' + vDlvGroupCd + ']').attr('disabled', true);
         }
       });
@@ -377,81 +650,80 @@
         tempArr.push(children[i]);
       }
 
-      return tempArr.filter(function(e){
+      return tempArr.filter(function (e) {
         return e != t;
       });
     }
 
-    function radioCheck(target){
+    function radioCheck(target) {
       // li 태그 클릭시 radio 체크 처리 함수
-      let li        = target;
-      let input     = li.querySelector('input[type=radio]');
+      let li = target;
+      let input = li.querySelector('input[type=radio]');
       input.checked = true;
 
       // 폰트 색상 변경
-      let liChild  = li.children;
+      let liChild = li.children;
       let span = liChild[1].querySelector('span.fr');
       span.classList.add('on');
 
       // 폰트 색상 삭제
-      var one           = target;
+      var one = target;
       let siblingTarget = siblings(one);
-      let siblingTag    = siblingTarget[0].children;
-      let oldSpan       = siblingTag[1].querySelector('span');
+      let siblingTag = siblingTarget[0].children;
+      let oldSpan = siblingTag[1].querySelector('span');
       oldSpan.classList.remove("on");
 
       let totPrice = '';
       let orangMemebersBenefit = 'N';
-      if(input.id == 'discount') {
+      if (input.id == 'discount') {
         totPrice = document.getElementById('totOrangeSalePrice2').innerText;
         orangMemebersBenefit = 'discount';
-      } else if(input.id == 'point') {
+      } else if (input.id == 'point') {
         totPrice = document.getElementById('totOrangeSalePoint2').innerText;
         orangMemebersBenefit = 'point';
       }
       document.querySelector('#orangeMemberPop .totalOrderPrice').innerText = totPrice;
-      document.querySelector('input[name="orangeMembersBenefit"]' ).value = orangMemebersBenefit;
+      document.querySelector('input[name="orangeMembersBenefit"]').value = orangMemebersBenefit;
     }
 
     function calculateOrangeMember(e) {
-      const matches = document.querySelectorAll('ul.cart-list li input:checked');
+      let matches = document.querySelectorAll('ul.cart-list li input:checked');
       let orangePoint = 0;
       let orangePrice = 0;
       let orangePriceMinus = 0;
       let couponPrice = 0;
-      matches.forEach(function(iCheck) {
-        const vProductcd = iCheck.dataset.vProductcd;
-        const vGproductcd = iCheck.dataset.vGproductcd;
-        const vDlvGroupCd = iCheck.dataset.vDlvGroupCd;
-        const vAddProdYn = iCheck.dataset.vAddProdYn;
-        const id = vGproductcd + vDlvGroupCd + vAddProdYn;
-
+      matches.forEach(function (iCheck) {
+        let vProductcd = iCheck.dataset.vProductcd;
+        let vGproductcd = iCheck.dataset.vGproductcd;
+        let vDlvGroupCd = iCheck.dataset.vDlvGroupCd;
+        let vAddProdYn = iCheck.dataset.vAddProdYn;
+        let id = vGproductcd + vDlvGroupCd + vAddProdYn;
 
 
         document.querySelectorAll('#delivery-product-' + id + ' .nSavePoint').forEach(function (iSPoint) {
-          const oos = iSPoint.dataset.outOfStockStatus;
-          if(oos == 'N') {
+          let oos = iSPoint.dataset.outOfStockStatus;
+          if (oos == 'N') {
             orangePoint += Number(iSPoint.value);
           }
         });
 
         document.querySelectorAll('#delivery-product-' + id + ' .nOrangeSavePoint').forEach(function (iPoint) {
-          const oos = iPoint.dataset.outOfStockStatus;
-          if(oos == 'N') {
+          let oos = iPoint.dataset.outOfStockStatus;
+          if (oos == 'N') {
             orangePoint += Number(iPoint.value);
           }
         });
 
         document.querySelectorAll('#delivery-product-' + id + ' .nOrangeSavePriceMinus').forEach(function (iPriceMinus) {
-          const oos = iPriceMinus.dataset.outOfStockStatus;
-          if(oos == 'N') {
+          let oos = iPriceMinus.dataset.outOfStockStatus;
+          if (oos == 'N') {
             orangePriceMinus += Number(iPriceMinus.value);
           }
         });
 
         document.querySelectorAll('#delivery-product-' + id + ' .nOrangeSavePrice').forEach(function (iPrice) {
-          const oos = iPrice.dataset.outOfStockStatus;
-          if(oos == 'N') {
+          let oos = iPrice.dataset.outOfStockStatus;
+          if (oos == 'N') {
             orangePrice += Number(iPrice.value);
           }
         });
@@ -475,8 +747,8 @@
       document.getElementById('totOrangeSalePrice2').innerText = SetNumComma(orangePrice);
       document.getElementById('totOrangeSalePoint2').innerText = totalOrderPrice.innerText;
 
-      if(document.getElementById('radioOPoint').style.display == 'none' && document.getElementById('radioODiscount').style.display == 'none') {
-      } else if(document.getElementById('radioOPoint').style.display == 'none') {
+      if (document.getElementById('radioOPoint').style.display == 'none' && document.getElementById('radioODiscount').style.display == 'none') {
+      } else if (document.getElementById('radioOPoint').style.display == 'none') {
         document.querySelector('label[for=discount]').click();
       } else {
         document.querySelector('label[for=point]').click();

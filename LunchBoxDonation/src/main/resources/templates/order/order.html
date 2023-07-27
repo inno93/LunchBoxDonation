@@ -17,130 +17,179 @@
   <script src="https://nsp.pay.naver.com/sdk/js/naverpay.min.js"></script>
   <!-- 스마일페이 -->
   <script src="https://pg.cnspay.co.kr/dlp/scripts/smilepay.js" charset="euc-kr"></script>
-
-
+  <!--  다음 주소 API-->
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script>
-    // ----------------------- 주문페이지 첫 진입시에만 사용
-    let totalProductPrice = 0;  // 주문의 상품금액 합
-    let pointDiscount = 0;
-    let couponDiscount = 0;
-    let orangeDiscount = 0;
-    let expDlvPrice = 0;        // 특급배송그룹 최종 배송비
-    let norDlvPrice = 0;        // 일반배송그룹 최종 배송비
-    let dlvPrice = 0;           // [특급배송|일반배송]탭에서 일반배송 탭으로 진입시 최종 배송비
-    let totalDeliveryPrice = 0; // 주문의 최종 배송비
-    let totalSavePoint = 0;     // 적립예정포인트
-    // -----------------------
-    //판매중이 아닌 상품이 있는 경우
-    var isNoSale = '';
-    //상품 정보가 변경된 경우
-    const isPrdChange = 'false';
-    //최대 구매수량을 초과한 경우
-    var isMaxSaleQty = '';
+    function DaumPostcode() {
+      new daum.Postcode({
+        oncomplete: function(data) {
+          // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-    const isExpressDeliveryProduct = 'true';
+          // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+          // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+          var addr = ''; // 주소 변수
+          var extraAddr = ''; // 참고항목 변수
 
-    const userFreeDeliveryPrice = parseInt('40000'); // 무료특급배송가능상품금액합
-    const userSumExpPrdPrice = parseInt('17900'); // 특급배송가능상품금액합
+          //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+          if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+            addr = data.roadAddress;
+          } else { // 사용자가 지번 주소를 선택했을 경우(J)
+            addr = data.jibunAddress;
+          }
 
-    const cartValidationMessage = ''
+          // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+          if(data.userSelectedType === 'R'){
+            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+            if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+              extraAddr += data.bname;
+            }
+            // 건물명이 있고, 공동주택일 경우 추가한다.
+            if(data.buildingName !== '' && data.apartment === 'Y'){
+              extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+            }
+            // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+            if(extraAddr !== ''){
+              extraAddr = ' (' + extraAddr + ')';
+            }
+            // 조합된 참고항목을 해당 필드에 넣는다.
+            // document.getElementById("sample6_extraAddress").value = extraAddr;
 
-    if (cartValidationMessage) {
-      alert(cartValidationMessage.indexOf("품절") > -1 ? cartValidationMessage + "\n장바구니로 이동합니다." : cartValidationMessage);
-      location.href = "/order/cart";
-    } else if ("Y" == isNoSale) {
-      alert('판매불가 상품이 존재 합니다.');
-      location.href = "/order/cart";
-    } else if (isPrdChange == 'true') {
-      alert('정보 변경 상품이 존재 합니다.');
-      location.href = "/order/cart";
-    } else if ("Y" == isMaxSaleQty) {
-      alert('최대 구매수량 초과한 상품이 존재 합니다.');
-      location.href = "/order/cart";
+          } else {
+            // document.getElementById("sample6_extraAddress").value = '';
+          }
+
+          // 우편번호와 주소 정보를 해당 필드에 넣는다.
+          document.getElementById('receiverZipcode').value = data.zonecode;
+          document.getElementById("receiverAddr").value = addr;
+          // 커서를 상세주소 필드로 이동한다.
+          document.getElementById("receiverAddrDtl").focus();
+        }
+      }).open();
     }
-
-    const holidayFlag = 'false';
-
-    const nonmemberYn = 'N';
-    const addrCheck = parseInt('0');
-    // console.log('addrCheck :', addrCheck);
-    if (0 == addrCheck && nonmemberYn == 'N') {
-      // alert('기본배송지 정보가 없습니다.');
-      // location.href = '/mypage/delivery';
-    }
-
-    const impossibleDelivery = 'N';
-    console.log('impossibleDelivery', impossibleDelivery);
-
-    if (impossibleDelivery == 'Y') {
-      const alertProductnm = '';
-      const msg = '도서산간 배송 불가 상품이 있습니다.\n' + alertProductnm;
-      alert(msg);
-    }
-
-    //네이버페이
-    var oPay = Naver.Pay.create({ //SDK Parameters를 참고 바랍니다.
-      "mode": "production",//development,production
-      "clientId": "RynrdFoIWKW7AabXFJa9",
-      "openType": "popup",//page,popup
-      "payType": "normal"
-    });
-
-    function payEndCheck() {
-      oPay.close();
-    }
-
-    //토스페이먼츠 CLIENTKEY
-    var tossPaymentsClientKey = 'live_ck_aBX7zk2yd8yvGL2oY7B3x9POLqKw';
-    var tossPaymentsClientPcllKey = 'live_ck_dP9BRQmyarYj4mpXBbN8J07KzLNk';
-    var tossPaymentsOri = TossPayments(tossPaymentsClientKey);
-    var tossPaymentsPlcc = TossPayments(tossPaymentsClientPcllKey);
-    var tossPayments = TossPayments(tossPaymentsClientKey);
-
-    // wnsgml351 인수인계 추가 - 페이코 키 설정
-    // 페이코 CLIENTKEY
-    var paycoPaymentsClientKey = 'live_ck_7XZYkKL4MrjNRZJ9eA1r0zJwlEWR';
-    var paycoPayments = TossPayments(paycoPaymentsClientKey);
-
-    //우편번호검색
-    function openJusoPop(textPosition) {
-      daumJusoPop(textPosition);
-    }
-
-    function numberOnly(event) {
-      event = event || window.event;
-      var keyID = (event.which) ? event.which : event.keyCode;
-      if ((keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39)
-        return;
-      else
-        return false;
-    }
-
-    function removeChar(event) {
-      event = event || window.event;
-      var keyID = (event.which) ? event.which : event.keyCode;
-      if (keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39)
-        return;
-      else
-        event.target.value = event.target.value.replace(/[^0-9]/g, "");
-    }
-
-    const holidayLi = [];
-    holidayLi.push('<li id="holidayLi">');
-    holidayLi.push('    <div class="inner-flex">');
-    holidayLi.push('        <div class="left-item1">주말/공휴일 택배수령</div>');
-    holidayLi.push('            <div class="custom-radio holidayLi1">');
-    holidayLi.push('                <input type="radio" id="holidayDeliveryY" class="radio" name="holidayDlvFlag" value="Y" checked><label for="holidayDeliveryY">가능해요</label>');
-    holidayLi.push('            </div>');
-    holidayLi.push('            <div class="custom-radio">');
-    holidayLi.push('                <input type="radio" id="holidayDeliveryN" class="radio" name="holidayDlvFlag" value="N"><label for="holidayDeliveryN">불가능해요</label>');
-    holidayLi.push('            </div>');
-    holidayLi.push('        </div>');
-    holidayLi.push('    </div>');
-    holidayLi.push('    <p class="bl-text-type2">휴일 택배수령 불가 시, 평일에 받으실 수 있도록 월요일에 출고됩니다.<br>(단, 샐러드는 제작 상품으로 화요일에 출고됩니다.)</p>');
-    holidayLi.push('</li>');
-
   </script>
+  <!--  <script>-->
+  <!--    // -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; 주문페이지 첫 진입시에만 사용-->
+  <!--    let totalProductPrice = 0;  // 주문의 상품금액 합-->
+  <!--    let pointDiscount = 0;-->
+  <!--    let couponDiscount = 0;-->
+  <!--    let orangeDiscount = 0;-->
+  <!--    let expDlvPrice = 0;        // 특급배송그룹 최종 배송비-->
+  <!--    let norDlvPrice = 0;        // 일반배송그룹 최종 배송비-->
+  <!--    let dlvPrice = 0;           // [특급배송|일반배송]탭에서 일반배송 탭으로 진입시 최종 배송비-->
+  <!--    let totalDeliveryPrice = 0; // 주문의 최종 배송비-->
+  <!--    let totalSavePoint = 0;     // 적립예정포인트-->
+  <!--    // -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+  <!--    //판매중이 아닌 상품이 있는 경우-->
+  <!--    var isNoSale = '';-->
+  <!--    //상품 정보가 변경된 경우-->
+  <!--    const isPrdChange = 'false';-->
+  <!--    //최대 구매수량을 초과한 경우-->
+  <!--    var isMaxSaleQty = '';-->
+
+  <!--    const isExpressDeliveryProduct = 'true';-->
+
+  <!--    const userFreeDeliveryPrice = parseInt('40000'); // 무료특급배송가능상품금액합-->
+  <!--    const userSumExpPrdPrice = parseInt('17900'); // 특급배송가능상품금액합-->
+
+  <!--    const cartValidationMessage = ''-->
+
+  <!--    if (cartValidationMessage) {-->
+  <!--      alert(cartValidationMessage.indexOf("품절") > -1 ? cartValidationMessage + "\n장바구니로 이동합니다." : cartValidationMessage);-->
+  <!--      location.href = "/order/cart";-->
+  <!--    } else if ("Y" == isNoSale) {-->
+  <!--      alert('판매불가 상품이 존재 합니다.');-->
+  <!--      location.href = "/order/cart";-->
+  <!--    } else if (isPrdChange == 'true') {-->
+  <!--      alert('정보 변경 상품이 존재 합니다.');-->
+  <!--      location.href = "/order/cart";-->
+  <!--    } else if ("Y" == isMaxSaleQty) {-->
+  <!--      alert('최대 구매수량 초과한 상품이 존재 합니다.');-->
+  <!--      location.href = "/order/cart";-->
+  <!--    }-->
+
+  <!--    const holidayFlag = 'false';-->
+
+  <!--    const nonmemberYn = 'N';-->
+  <!--    const addrCheck = parseInt('0');-->
+  <!--    // console.log('addrCheck :', addrCheck);-->
+  <!--    if (0 == addrCheck && nonmemberYn == 'N') {-->
+  <!--      // alert('기본배송지 정보가 없습니다.');-->
+  <!--      // location.href = '/mypage/delivery';-->
+  <!--    }-->
+
+  <!--    const impossibleDelivery = 'N';-->
+  <!--    console.log('impossibleDelivery', impossibleDelivery);-->
+
+  <!--    if (impossibleDelivery == 'Y') {-->
+  <!--      const alertProductnm = '';-->
+  <!--      const msg = '도서산간 배송 불가 상품이 있습니다.\n' + alertProductnm;-->
+  <!--      alert(msg);-->
+  <!--    }-->
+
+  <!--    //네이버페이-->
+  <!--    var oPay = Naver.Pay.create({ //SDK Parameters를 참고 바랍니다.-->
+  <!--      "mode": "production",//development,production-->
+  <!--      "clientId": "RynrdFoIWKW7AabXFJa9",-->
+  <!--      "openType": "popup",//page,popup-->
+  <!--      "payType": "normal"-->
+  <!--    });-->
+
+  <!--    function payEndCheck() {-->
+  <!--      oPay.close();-->
+  <!--    }-->
+
+  <!--    //토스페이먼츠 CLIENTKEY-->
+  <!--    var tossPaymentsClientKey = 'live_ck_aBX7zk2yd8yvGL2oY7B3x9POLqKw';-->
+  <!--    var tossPaymentsClientPcllKey = 'live_ck_dP9BRQmyarYj4mpXBbN8J07KzLNk';-->
+  <!--    var tossPaymentsOri = TossPayments(tossPaymentsClientKey);-->
+  <!--    var tossPaymentsPlcc = TossPayments(tossPaymentsClientPcllKey);-->
+  <!--    var tossPayments = TossPayments(tossPaymentsClientKey);-->
+
+  <!--    // wnsgml351 인수인계 추가 - 페이코 키 설정-->
+  <!--    // 페이코 CLIENTKEY-->
+  <!--    var paycoPaymentsClientKey = 'live_ck_7XZYkKL4MrjNRZJ9eA1r0zJwlEWR';-->
+  <!--    var paycoPayments = TossPayments(paycoPaymentsClientKey);-->
+
+  <!--    //우편번호검색-->
+  <!--    function openJusoPop(textPosition) {-->
+  <!--      daumJusoPop(textPosition);-->
+  <!--    }-->
+
+  <!--    function numberOnly(event) {-->
+  <!--      event = event || window.event;-->
+  <!--      var keyID = (event.which) ? event.which : event.keyCode;-->
+  <!--      if ((keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39)-->
+  <!--        return;-->
+  <!--      else-->
+  <!--        return false;-->
+  <!--    }-->
+
+  <!--    function removeChar(event) {-->
+  <!--      event = event || window.event;-->
+  <!--      var keyID = (event.which) ? event.which : event.keyCode;-->
+  <!--      if (keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39)-->
+  <!--        return;-->
+  <!--      else-->
+  <!--        event.target.value = event.target.value.replace(/[^0-9]/g, "");-->
+  <!--    }-->
+
+  <!--    const holidayLi = [];-->
+  <!--    holidayLi.push('<li id="holidayLi">');-->
+  <!--    holidayLi.push('    <div class="inner-flex">');-->
+  <!--    holidayLi.push('        <div class="left-item1">주말/공휴일 택배수령</div>');-->
+  <!--    holidayLi.push('            <div class="custom-radio holidayLi1">');-->
+  <!--    holidayLi.push('                <input type="radio" id="holidayDeliveryY" class="radio" name="holidayDlvFlag" value="Y" checked><label for="holidayDeliveryY">가능해요</label>');-->
+  <!--    holidayLi.push('            </div>');-->
+  <!--    holidayLi.push('            <div class="custom-radio">');-->
+  <!--    holidayLi.push('                <input type="radio" id="holidayDeliveryN" class="radio" name="holidayDlvFlag" value="N"><label for="holidayDeliveryN">불가능해요</label>');-->
+  <!--    holidayLi.push('            </div>');-->
+  <!--    holidayLi.push('        </div>');-->
+  <!--    holidayLi.push('    </div>');-->
+  <!--    holidayLi.push('    <p class="bl-text-type2">휴일 택배수령 불가 시, 평일에 받으실 수 있도록 월요일에 출고됩니다.<br>(단, 샐러드는 제작 상품으로 화요일에 출고됩니다.)</p>');-->
+  <!--    holidayLi.push('</li>');-->
+
+  <!--  </script>-->
 
   <iframe id="hiddenIframe" name="hiddenIframe" src="" width="0" height="0" scrolling="no" frameborder="0" style="position: fixed; width: 100%; height: 100%; top: 0px; left: 0px; z-index: 9999999; transform: translateZ(0px); background: none; margin: 0px; padding: 0px; display:none"></iframe>
 
@@ -228,11 +277,11 @@
                       <div class="input-group-cell w160"><input type="text" id="receiverZipcode" name="receiverPost" title="" class="input-text" placeholder="우편번호" value="" readonly=""></div>
                       <div class="input-group-cell"><input type="text" id="receiverAddr" name="receiverAddr" title="" class="input-text" placeholder="기본주소" value="" readonly=""></div>
                       <span class="input-group-btn">
-                                                    <a href="#" class="btn-ex-white" onclick="fnPostFind(event)"><span>우편번호 찾기</span></a>
+                                                    <a href="#" class="btn-ex-white" onclick="DaumPostcode()"><span>우편번호 찾기</span></a>
                                                 </span>
                     </div>
                   </div>
-                  <input type="text" name="receiverAddrDtl" title="" class="input-text w-full removeEmoji" placeholder="상세주소" value="">
+                  <input type="text" name="receiverAddrDtl" id="receiverAddrDtl" title="" class="input-text w-full removeEmoji" placeholder="상세주소" value="">
                 </td>
               </tr>
               <tr>
@@ -392,217 +441,217 @@
                     </a>
                   </div>
                 </li>
-                <script>
-                  $(function () {
-                    const dlvGrpCd = '1600';
-                    const dlvChargeCd = '00';
-                    const sumCurrDlvGrpPrdPrice = parseInt('17900');
-                    const nFreeDlvPrice = parseInt('20000');
-                    //const nDlvPrice = parseInt('3000');
-                    const nDlvPrice = parseInt('3000');
-                    const nIslandDlvPrice = parseInt('0');
-                    const ndlvMinPrice = parseInt('20000');
-                    const deliveryGuidedVExpressYn = 'Y';
-                    const vPaidDeliveryYn = 'N'
-                    // console.log('배송그룹코드:', dlvGrpCd);
-                    // console.log('배송그룹 배송비:', nDlvPrice);
-                    // console.log('배송그룹 도서산간 배송비:', nIslandDlvPrice);
-                    // console.log('배송그룹 상품 금액 합:', sumCurrDlvGrpPrdPrice);
-                    // console.log('무료배송금액:', nFreeDlvPrice);
-                    // console.log('신배송무료배송금액:', ndlvMinPrice);
-                    let result;
-                    // console.log('dlvChargeCd =', dlvChargeCd);
-                    if (dlvChargeCd == '00' && sumCurrDlvGrpPrdPrice >= nFreeDlvPrice && vPaidDeliveryYn != 'Y') {
-                      result = 0;
-                    } else {
-                      result = nDlvPrice;
-                    }
-                    if (deliveryGuidedVExpressYn == 'Y' && ndlvMinPrice < sumCurrDlvGrpPrdPrice) {
-                      result = 0;
-                    }
+                <!--                <script>-->
+                <!--                  $(function () {-->
+                <!--                    const dlvGrpCd = '1600';-->
+                <!--                    const dlvChargeCd = '00';-->
+                <!--                    const sumCurrDlvGrpPrdPrice = parseInt('17900');-->
+                <!--                    const nFreeDlvPrice = parseInt('20000');-->
+                <!--                    //const nDlvPrice = parseInt('3000');-->
+                <!--                    const nDlvPrice = parseInt('3000');-->
+                <!--                    const nIslandDlvPrice = parseInt('0');-->
+                <!--                    const ndlvMinPrice = parseInt('20000');-->
+                <!--                    const deliveryGuidedVExpressYn = 'Y';-->
+                <!--                    const vPaidDeliveryYn = 'N'-->
+                <!--                    // console.log('배송그룹코드:', dlvGrpCd);-->
+                <!--                    // console.log('배송그룹 배송비:', nDlvPrice);-->
+                <!--                    // console.log('배송그룹 도서산간 배송비:', nIslandDlvPrice);-->
+                <!--                    // console.log('배송그룹 상품 금액 합:', sumCurrDlvGrpPrdPrice);-->
+                <!--                    // console.log('무료배송금액:', nFreeDlvPrice);-->
+                <!--                    // console.log('신배송무료배송금액:', ndlvMinPrice);-->
+                <!--                    let result;-->
+                <!--                    // console.log('dlvChargeCd =', dlvChargeCd);-->
+                <!--                    if (dlvChargeCd == '00' && sumCurrDlvGrpPrdPrice >= nFreeDlvPrice && vPaidDeliveryYn != 'Y') {-->
+                <!--                      result = 0;-->
+                <!--                    } else {-->
+                <!--                      result = nDlvPrice;-->
+                <!--                    }-->
+                <!--                    if (deliveryGuidedVExpressYn == 'Y' && ndlvMinPrice < sumCurrDlvGrpPrdPrice) {-->
+                <!--                      result = 0;-->
+                <!--                    }-->
 
-                    totalDeliveryPrice += result + nIslandDlvPrice;
-                    // console.log('배송비:', result, ', 주문 배송비 합:', totalDeliveryPrice);
-                    totalProductPrice += sumCurrDlvGrpPrdPrice;
-                    // console.log('=> 주문결제 금액 > 상품금액 합', totalProductPrice);
+                <!--                    totalDeliveryPrice += result + nIslandDlvPrice;-->
+                <!--                    // console.log('배송비:', result, ', 주문 배송비 합:', totalDeliveryPrice);-->
+                <!--                    totalProductPrice += sumCurrDlvGrpPrdPrice;-->
+                <!--                    // console.log('=> 주문결제 금액 > 상품금액 합', totalProductPrice);-->
 
-                    /* 배송비무료 안내 문구 추가 */
-                    if (result > 0) {
-                      const deliveryGuidedDlvPriceText = SetNumComma((result + nIslandDlvPrice)) + '원';
-                      var deliveryGuidedMoreFreePriceText = '';
+                <!--                    /* 배송비무료 안내 문구 추가 */-->
+                <!--                    if (result > 0) {-->
+                <!--                      const deliveryGuidedDlvPriceText = SetNumComma((result + nIslandDlvPrice)) + '원';-->
+                <!--                      var deliveryGuidedMoreFreePriceText = '';-->
 
-                      if (deliveryGuidedVExpressYn == 'Y') {
-                        deliveryGuidedMoreFreePriceText = '<p class="txt right-item">' + SetNumComma((ndlvMinPrice - sumCurrDlvGrpPrdPrice)) + '원 더 구매시 무료배송</p>';
-                      } else {
-                        if (dlvChargeCd == '00' && vPaidDeliveryYn != 'Y') {
-                          if ( (nFreeDlvPrice - sumCurrDlvGrpPrdPrice)>0 ){
-                            deliveryGuidedMoreFreePriceText = '<p class="txt right-item">' + SetNumComma((nFreeDlvPrice - sumCurrDlvGrpPrdPrice)) + '원 더 구매시 무료배송</p>';
-                          }
-                        }
-                      }
+                <!--                      if (deliveryGuidedVExpressYn == 'Y') {-->
+                <!--                        deliveryGuidedMoreFreePriceText = '<p class="txt right-item">' + SetNumComma((ndlvMinPrice - sumCurrDlvGrpPrdPrice)) + '원 더 구매시 무료배송</p>';-->
+                <!--                      } else {-->
+                <!--                        if (dlvChargeCd == '00' && vPaidDeliveryYn != 'Y') {-->
+                <!--                          if ( (nFreeDlvPrice - sumCurrDlvGrpPrdPrice)>0 ){-->
+                <!--                            deliveryGuidedMoreFreePriceText = '<p class="txt right-item">' + SetNumComma((nFreeDlvPrice - sumCurrDlvGrpPrdPrice)) + '원 더 구매시 무료배송</p>';-->
+                <!--                          }-->
+                <!--                        }-->
+                <!--                      }-->
 
-                      $("#delivery-guide-" + dlvGrpCd).html(
-                              '<div class="type02-inner"><p class="txt left-item">배송비 <strong>' + deliveryGuidedDlvPriceText + '</strong></p>' + deliveryGuidedMoreFreePriceText + '</div>'
-                      );
+                <!--                      $("#delivery-guide-" + dlvGrpCd).html(-->
+                <!--                              '<div class="type02-inner"><p class="txt left-item">배송비 <strong>' + deliveryGuidedDlvPriceText + '</strong></p>' + deliveryGuidedMoreFreePriceText + '</div>'-->
+                <!--                      );-->
 
-                    } else {
-                      $("#delivery-guide-" + dlvGrpCd).html(
-                              '<div class="type02-inner"><p class="txt">무료배송</p></div>'
-                      );
-                    }
-                  });
-                </script>
+                <!--                    } else {-->
+                <!--                      $("#delivery-guide-" + dlvGrpCd).html(-->
+                <!--                              '<div class="type02-inner"><p class="txt">무료배송</p></div>'-->
+                <!--                      );-->
+                <!--                    }-->
+                <!--                  });-->
+                <!--                </script>-->
 
               </ul>
-              <script>
-                $(function () {
-                  $('ul.cart-list').each(function (i, v) {
-                    if ($(this).find('li').length < 1) {
-                      $(this).remove();
-                    }
-                  });
+              <!--              <script>-->
+              <!--                $(function () {-->
+              <!--                  $('ul.cart-list').each(function (i, v) {-->
+              <!--                    if ($(this).find('li').length < 1) {-->
+              <!--                      $(this).remove();-->
+              <!--                    }-->
+              <!--                  });-->
 
-                  const addIslandDlvPrice = parseInt('0');
+              <!--                  const addIslandDlvPrice = parseInt('0');-->
 
-                  let dlvPriceText = SetNumComma(totalDeliveryPrice) + '원';
+              <!--                  let dlvPriceText = SetNumComma(totalDeliveryPrice) + '원';-->
 
-                  if (0 < addIslandDlvPrice) {
-                    dlvPriceText += ' (도서산간 배송비 포함)';
-                  }
+              <!--                  if (0 < addIslandDlvPrice) {-->
+              <!--                    dlvPriceText += ' (도서산간 배송비 포함)';-->
+              <!--                  }-->
 
-                  if (totalDeliveryPrice == 0) {
-                    dlvPriceText = '무료배송'
-                  }
-                  $('#dlvPrice').text(dlvPriceText);
+              <!--                  if (totalDeliveryPrice == 0) {-->
+              <!--                    dlvPriceText = '무료배송'-->
+              <!--                  }-->
+              <!--                  $('#dlvPrice').text(dlvPriceText);-->
 
-                  totalDeliveryPrice = parseInt('0') + parseInt('3000');
-                  // 배송비
-                  $('#txt_tot_dlv_price').text(SetNumComma(totalDeliveryPrice));
-                  $('input[name=tot_dlv_price]').val(totalDeliveryPrice);
+              <!--                  totalDeliveryPrice = parseInt('0') + parseInt('3000');-->
+              <!--                  // 배송비-->
+              <!--                  $('#txt_tot_dlv_price').text(SetNumComma(totalDeliveryPrice));-->
+              <!--                  $('input[name=tot_dlv_price]').val(totalDeliveryPrice);-->
 
-                  $('.discountType').hide();
+              <!--                  $('.discountType').hide();-->
 
-                  const orangeBenefit = $('input[name="orangeMembersBenefit"]').val();
-                  $('div.orangeMember-Info').hide();
+              <!--                  const orangeBenefit = $('input[name="orangeMembersBenefit"]').val();-->
+              <!--                  $('div.orangeMember-Info').hide();-->
 
-                  // 주문결제 금액 - 상품금액 합
-                  // console.log('===> 주문결제 금액 - 상품금액 합', totalProductPrice);
-                  $('#txt_tot_price').text(SetNumComma('17900'));
-                  $('input[name=tot_price]').val(totalProductPrice);
+              <!--                  // 주문결제 금액 - 상품금액 합-->
+              <!--                  // console.log('===> 주문결제 금액 - 상품금액 합', totalProductPrice);-->
+              <!--                  $('#txt_tot_price').text(SetNumComma('17900'));-->
+              <!--                  $('input[name=tot_price]').val(totalProductPrice);-->
 
-                  // 포인트할인
-                  // pointDiscount
-                  pointDiscount = parseInt('0');
-                  // console.log('포인트할인 : ', pointDiscount);
-                  $('#txt_use_point').text(SetNumComma(pointDiscount * -1));
-                  if (pointDiscount > 0) {
-                    $('#pointDiscount').show();
-                  }
+              <!--                  // 포인트할인-->
+              <!--                  // pointDiscount-->
+              <!--                  pointDiscount = parseInt('0');-->
+              <!--                  // console.log('포인트할인 : ', pointDiscount);-->
+              <!--                  $('#txt_use_point').text(SetNumComma(pointDiscount * -1));-->
+              <!--                  if (pointDiscount > 0) {-->
+              <!--                    $('#pointDiscount').show();-->
+              <!--                  }-->
 
-                  // 상품쿠폰할인
-                  couponDiscount = parseInt('0');
-                  $('#txt_sale_coupon').text(SetNumComma(couponDiscount * -1));
-                  // console.log('상품쿠폰할인 : ', couponDiscount);
-                  if (couponDiscount > 0) {
-                    $('#productCouponDiscount').show();
-                  }
+              <!--                  // 상품쿠폰할인-->
+              <!--                  couponDiscount = parseInt('0');-->
+              <!--                  $('#txt_sale_coupon').text(SetNumComma(couponDiscount * -1));-->
+              <!--                  // console.log('상품쿠폰할인 : ', couponDiscount);-->
+              <!--                  if (couponDiscount > 0) {-->
+              <!--                    $('#productCouponDiscount').show();-->
+              <!--                  }-->
 
-                  // 오렌지멤버할인
-                  // orangeDiscount
-                  orangeDiscount = parseInt('0');
-                  orangeDiscountShow = parseInt('350');
-                  if(orangeDiscountShow <= 0 ) {
-                    $('#orangeMembersSale').parent().hide();
-                  } else {
-                    $('#orangeMembersSale').parent().show();
-                  }
-                  $('#obanner-price-minus').text(SetNumComma(orangeDiscountShow)+'원');
-                  // console.log('오렌지멤버할인 : ', orangeDiscount);
-                  if( orangeBenefit === 'discount' ) {
-                    $('#txt_sale_grade').text(SetNumComma(orangeDiscount * -1));
-                    if (orangeDiscount > 0) {
-                      $('#orangeDiscount').show();
-                    }
-                  }
-                  // $('#deliveryCouponDiscount').show();
-                  // $('#orderCouponDiscount').show();
+              <!--                  // 오렌지멤버할인-->
+              <!--                  // orangeDiscount-->
+              <!--                  orangeDiscount = parseInt('0');-->
+              <!--                  orangeDiscountShow = parseInt('350');-->
+              <!--                  if(orangeDiscountShow <= 0 ) {-->
+              <!--                    $('#orangeMembersSale').parent().hide();-->
+              <!--                  } else {-->
+              <!--                    $('#orangeMembersSale').parent().show();-->
+              <!--                  }-->
+              <!--                  $('#obanner-price-minus').text(SetNumComma(orangeDiscountShow)+'원');-->
+              <!--                  // console.log('오렌지멤버할인 : ', orangeDiscount);-->
+              <!--                  if( orangeBenefit === 'discount' ) {-->
+              <!--                    $('#txt_sale_grade').text(SetNumComma(orangeDiscount * -1));-->
+              <!--                    if (orangeDiscount > 0) {-->
+              <!--                      $('#orangeDiscount').show();-->
+              <!--                    }-->
+              <!--                  }-->
+              <!--                  // $('#deliveryCouponDiscount').show();-->
+              <!--                  // $('#orderCouponDiscount').show();-->
 
-                  // 총 할인금액
-                  //const totalDiscountPrice = pointDiscount + couponDiscount + orangeDiscount;
-                  let totalDiscountPrice = 0;
-                  if( orangeBenefit === 'discount' ) {
-                    totalDiscountPrice = pointDiscount + couponDiscount + orangeDiscount;
-                  } else {
-                    totalDiscountPrice = pointDiscount + couponDiscount;
-                  }
-                  $('#totalDiscountPrice').text(SetNumComma(totalDiscountPrice * -1));
+              <!--                  // 총 할인금액-->
+              <!--                  //const totalDiscountPrice = pointDiscount + couponDiscount + orangeDiscount;-->
+              <!--                  let totalDiscountPrice = 0;-->
+              <!--                  if( orangeBenefit === 'discount' ) {-->
+              <!--                    totalDiscountPrice = pointDiscount + couponDiscount + orangeDiscount;-->
+              <!--                  } else {-->
+              <!--                    totalDiscountPrice = pointDiscount + couponDiscount;-->
+              <!--                  }-->
+              <!--                  $('#totalDiscountPrice').text(SetNumComma(totalDiscountPrice * -1));-->
 
-                  //총 결제금액
-                  const totalPgPrice = totalProductPrice - (pointDiscount + couponDiscount + orangeDiscount) + totalDeliveryPrice ;
-                  $('#txt_tot_pg_price, #txt_btn_payment').text(SetNumComma(totalPgPrice));
-                  $('input[name=tot_pg_price]').val(totalPgPrice);
-                  // console.log('총 결제금액:', $('input[name=tot_pg_price]').val());
+              <!--                  //총 결제금액-->
+              <!--                  const totalPgPrice = totalProductPrice - (pointDiscount + couponDiscount + orangeDiscount) + totalDeliveryPrice ;-->
+              <!--                  $('#txt_tot_pg_price, #txt_btn_payment').text(SetNumComma(totalPgPrice));-->
+              <!--                  $('input[name=tot_pg_price]').val(totalPgPrice);-->
+              <!--                  // console.log('총 결제금액:', $('input[name=tot_pg_price]').val());-->
 
-                  totalSavePoint = parseInt('179.0');
-                  // console.log('적립포인트 : ', totalSavePoint);
+              <!--                  totalSavePoint = parseInt('179.0');-->
+              <!--                  // console.log('적립포인트 : ', totalSavePoint);-->
 
-                  // 적립예정포인트
-                  $('#totalSavePoint').text(SetNumComma(totalSavePoint));
+              <!--                  // 적립예정포인트-->
+              <!--                  $('#totalSavePoint').text(SetNumComma(totalSavePoint));-->
 
-                  const isOrangeMember = 'N';
-                  // console.log('isOrangeMember', isOrangeMember);
-                  if (isOrangeMember == 'Y') {
+              <!--                  const isOrangeMember = 'N';-->
+              <!--                  // console.log('isOrangeMember', isOrangeMember);-->
+              <!--                  if (isOrangeMember == 'Y') {-->
 
-                    //const orangeSavePoint = '0';
-                    // console.log('orangeSavePoint', orangeSavePoint);
-                    //$('#totalSavePoint').text(SetNumComma(totalSavePoint + parseInt(orangeSavePoint)));
+              <!--                    //const orangeSavePoint = '0';-->
+              <!--                    // console.log('orangeSavePoint', orangeSavePoint);-->
+              <!--                    //$('#totalSavePoint').text(SetNumComma(totalSavePoint + parseInt(orangeSavePoint)));-->
 
-                  }
-                  const orangeSavePoint = '0';
-                  const orangeSavePointShow = '537';
-                  if(orangeSavePointShow <= 0 ) {
-                    $('#orangeMembersPoint').parent().hide();
-                  } else {
-                    $('#orangeMembersPoint').parent().show();
-                  }
-                  $('#obanner-point').text(SetNumComma(parseInt(orangeSavePointShow))+'P');
-                  $('#totalSavePointOrange').text(SetNumComma(parseInt(orangeSavePoint)));
-                  $('#totalSavePointTot').text(SetNumComma(totalSavePoint + parseInt(orangeSavePoint)));
+              <!--                  }-->
+              <!--                  const orangeSavePoint = '0';-->
+              <!--                  const orangeSavePointShow = '537';-->
+              <!--                  if(orangeSavePointShow <= 0 ) {-->
+              <!--                    $('#orangeMembersPoint').parent().hide();-->
+              <!--                  } else {-->
+              <!--                    $('#orangeMembersPoint').parent().show();-->
+              <!--                  }-->
+              <!--                  $('#obanner-point').text(SetNumComma(parseInt(orangeSavePointShow))+'P');-->
+              <!--                  $('#totalSavePointOrange').text(SetNumComma(parseInt(orangeSavePoint)));-->
+              <!--                  $('#totalSavePointTot').text(SetNumComma(totalSavePoint + parseInt(orangeSavePoint)));-->
 
-                  if(orangeBenefit === 'point'){
-                    $('#totalSavePointTot').text(SetNumComma(totalSavePoint + parseInt(orangeSavePoint)));
-                  } else {
-                    $('#totalSavePointTot').text(SetNumComma(totalSavePoint));
-                    $('#totalSavePointOrange').closest('li').hide();
-                    $('#totalSavePoint').closest('li').hide();
-                  }
+              <!--                  if(orangeBenefit === 'point'){-->
+              <!--                    $('#totalSavePointTot').text(SetNumComma(totalSavePoint + parseInt(orangeSavePoint)));-->
+              <!--                  } else {-->
+              <!--                    $('#totalSavePointTot').text(SetNumComma(totalSavePoint));-->
+              <!--                    $('#totalSavePointOrange').closest('li').hide();-->
+              <!--                    $('#totalSavePoint').closest('li').hide();-->
+              <!--                  }-->
 
-                  if (0 < $('.coldAddLi').length) {
-                    $('.coldAddLi:not(:first)').remove();
-                  }
-                  $('div.orangeMembers-skin-banner').parent().hide();
-                  if(orangeSavePointShow > 0 && orangeDiscountShow > 0) {
-                    $('div.orangeMembers-skin-banner').parent().show();
-                    $('#obanner-d-text').show();
-                    $('#obanner-or-text').show();
-                    $('#obanner-p-text').show();
-                    $('div.orangeMember-Info').show();
+              <!--                  if (0 < $('.coldAddLi').length) {-->
+              <!--                    $('.coldAddLi:not(:first)').remove();-->
+              <!--                  }-->
+              <!--                  $('div.orangeMembers-skin-banner').parent().hide();-->
+              <!--                  if(orangeSavePointShow > 0 && orangeDiscountShow > 0) {-->
+              <!--                    $('div.orangeMembers-skin-banner').parent().show();-->
+              <!--                    $('#obanner-d-text').show();-->
+              <!--                    $('#obanner-or-text').show();-->
+              <!--                    $('#obanner-p-text').show();-->
+              <!--                    $('div.orangeMember-Info').show();-->
 
-                    $("#obanner-price-minus").css("color","#cccccc");
+              <!--                    $("#obanner-price-minus").css("color","#cccccc");-->
 
-                  } else if(orangeSavePointShow > 0){
-                    $('div.orangeMembers-skin-banner').parent().show();
-                    $('#obanner-d-text').hide();
-                    $('#obanner-or-text').hide();
-                    $('#obanner-p-text').show();
-                  } else if(orangeDiscountShow > 0) {
-                    $('div.orangeMembers-skin-banner').parent().show();
-                    $('#obanner-d-text').show();
-                    $('#obanner-or-text').hide();
-                    $('#obanner-p-text').hide();
-                  }
-                });
-              </script>
+              <!--                  } else if(orangeSavePointShow > 0){-->
+              <!--                    $('div.orangeMembers-skin-banner').parent().show();-->
+              <!--                    $('#obanner-d-text').hide();-->
+              <!--                    $('#obanner-or-text').hide();-->
+              <!--                    $('#obanner-p-text').show();-->
+              <!--                  } else if(orangeDiscountShow > 0) {-->
+              <!--                    $('div.orangeMembers-skin-banner').parent().show();-->
+              <!--                    $('#obanner-d-text').show();-->
+              <!--                    $('#obanner-or-text').hide();-->
+              <!--                    $('#obanner-p-text').hide();-->
+              <!--                  }-->
+              <!--                });-->
+              <!--              </script>-->
             </div>
 
           </div><!-- 배송요청사항 -->
@@ -814,111 +863,112 @@
           </div><!--// lineless-table -->
         </div>
         <!--// order-info -->
-        <script type="text/javascript">
+        <!--        <script type="text/javascript">-->
 
-          $(document).ready(function () {
-            $(".cpn_select_btn").on('click', function (event) {
-              let couponCnt = fnOnlyNumber($('#userCouponCount').text()).number;
-              if (couponCnt > 0) {
-                if (!$(this).hasClass('ui-open-pop')) {
-                  $(this).addClass("ui-open-pop");
-                  layerPop();
-                  getUserOrderPrice();
-                  $(this).click();
-                  $(this).removeClass("ui-open-pop");
-                }
-              } else {
-                alert("사용할 수 있는 쿠폰이 없습니다.");
-              }
-            });
+        <!--          $(document).ready(function () {-->
+        <!--            $(".cpn_select_btn").on('click', function (event) {-->
+        <!--              let couponCnt = fnOnlyNumber($('#userCouponCount').text()).number;-->
+        <!--              if (couponCnt > 0) {-->
+        <!--                if (!$(this).hasClass('ui-open-pop')) {-->
+        <!--                  $(this).addClass("ui-open-pop");-->
+        <!--                  layerPop();-->
+        <!--                  getUserOrderPrice();-->
+        <!--                  $(this).click();-->
+        <!--                  $(this).removeClass("ui-open-pop");-->
+        <!--                }-->
+        <!--              } else {-->
+        <!--                alert("사용할 수 있는 쿠폰이 없습니다.");-->
+        <!--              }-->
+        <!--            });-->
 
-            $('.ui-point-input').keyup(function (e) {
-              if (!$(this).val()) {
-                $(this).siblings('.input-group-btn').find('.btn-input-del').hide();
-              } else if ($(this).val()) {
-                $(this).siblings('.input-group-btn').find('.btn-input-del').show();
-              }
-            });
+        <!--            $('.ui-point-input').keyup(function (e) {-->
+        <!--              if (!$(this).val()) {-->
+        <!--                $(this).siblings('.input-group-btn').find('.btn-input-del').hide();-->
+        <!--              } else if ($(this).val()) {-->
+        <!--                $(this).siblings('.input-group-btn').find('.btn-input-del').show();-->
+        <!--              }-->
+        <!--            });-->
 
-            $('.btn-input-del').on('click', function (e) {
-              $(this).parent('.input-group-btn').prev('.ui-point-input').val(0);
-              $(this).hide();
-              fnUsePoint('');
-            });
+        <!--            $('.btn-input-del').on('click', function (e) {-->
+        <!--              $(this).parent('.input-group-btn').prev('.ui-point-input').val(0);-->
+        <!--              $(this).hide();-->
+        <!--              fnUsePoint('');-->
+        <!--            });-->
 
-          });
+        <!--          });-->
 
-          //포인트 사용
-          function fnUsePoint(type) {
-            $('.btn-input-del').show();
-            const currentPoint = fnOnlyNumber($("#currentPoint").val()).number;
-            if (currentPoint == 0) {
-              return;
-            }
+        <!--          //포인트 사용-->
+        <!--          function fnUsePoint(type) {-->
+        <!--            $('.btn-input-del').show();-->
+        <!--            const currentPoint = fnOnlyNumber($("#currentPoint").val()).number;-->
+        <!--            if (currentPoint == 0) {-->
+        <!--              return;-->
+        <!--            }-->
 
-            $("#textUsePoint").val($("#textUsePoint").val().replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'));
+        <!--            $("#textUsePoint").val($("#textUsePoint").val().replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'));-->
 
-            let usePointTemp = fnOnlyNumber($("#textUsePoint").val()).number;
+        <!--            let usePointTemp = fnOnlyNumber($("#textUsePoint").val()).number;-->
 
-            const txtTotPrice = fnOnlyNumber($('#txt_tot_price').text()).number;
-            const txtSaleCoupon = Math.abs(fnOnlyNumber($('#txt_sale_coupon').text()).number);
-            const txtSaleOrderCoupon = Math.abs(fnOnlyNumber($('#txt_sale_order_coupon').text()).number);
-            const txtSaleDlvCoupon = Math.abs(fnOnlyNumber($('#txt_sale_dlv_coupon').text()).number);
-            let txtSaleGrade = Math.abs(fnOnlyNumber($('#txt_sale_grade').text()).number);
-            const txtTotDlvPrice = fnOnlyNumber($('#txt_tot_dlv_price').text()).number;
-            const totalGiftPrice = Math.abs(fnOnlyNumber($('#totalGiftPrice').text()).number);
+        <!--            const txtTotPrice = fnOnlyNumber($('#txt_tot_price').text()).number;-->
+        <!--            const txtSaleCoupon = Math.abs(fnOnlyNumber($('#txt_sale_coupon').text()).number);-->
+        <!--            const txtSaleOrderCoupon = Math.abs(fnOnlyNumber($('#txt_sale_order_coupon').text()).number);-->
+        <!--            const txtSaleDlvCoupon = Math.abs(fnOnlyNumber($('#txt_sale_dlv_coupon').text()).number);-->
+        <!--            let txtSaleGrade = Math.abs(fnOnlyNumber($('#txt_sale_grade').text()).number);-->
+        <!--            const txtTotDlvPrice = fnOnlyNumber($('#txt_tot_dlv_price').text()).number;-->
+        <!--            const totalGiftPrice = Math.abs(fnOnlyNumber($('#totalGiftPrice').text()).number);-->
 
-            const sYn = $('input[name="orangeMembersP"]:checked').val();
-            if(sYn === 'point') {
-              txtSaleGrade = 0;
-            }
+        <!--            const sYn = $('input[name="orangeMembersP"]:checked').val();-->
+        <!--            if(sYn === 'point') {-->
+        <!--              txtSaleGrade = 0;-->
+        <!--            }-->
 
-            const totPgPrice = txtTotPrice - txtSaleCoupon - txtSaleOrderCoupon - txtSaleDlvCoupon - txtSaleGrade - totalGiftPrice + txtTotDlvPrice;
+        <!--            const totPgPrice = txtTotPrice - txtSaleCoupon - txtSaleOrderCoupon - txtSaleDlvCoupon - txtSaleGrade - totalGiftPrice + txtTotDlvPrice;-->
 
-            if (type == 'all') {
-              usePointTemp = currentPoint;
-              if (totPgPrice < usePointTemp) {
-                usePointTemp = totPgPrice;
-              }
-            }
+        <!--            if (type == 'all') {-->
+        <!--              usePointTemp = currentPoint;-->
+        <!--              if (totPgPrice < usePointTemp) {-->
+        <!--                usePointTemp = totPgPrice;-->
+        <!--              }-->
+        <!--            }-->
 
-            if (0 < usePointTemp && usePointTemp < 2000) {
-              alert('적립금은 2000P 부터 사용 가능합니다.');
-              $("#usePoint").val(0);
-              $("#textUsePoint").val(0);
-              getUserOrderPrice();
-              return;
-            }
+        <!--            if (0 < usePointTemp && usePointTemp < 2000) {-->
+        <!--              alert('적립금은 2000P 부터 사용 가능합니다.');-->
+        <!--              $("#usePoint").val(0);-->
+        <!--              $("#textUsePoint").val(0);-->
+        <!--              getUserOrderPrice();-->
+        <!--              return;-->
+        <!--            }-->
 
 
-            let usePoint = Math.floor(usePointTemp / 10) * 10;
+        <!--            let usePoint = Math.floor(usePointTemp / 10) * 10;-->
 
-            if (usePoint <= 0) {
-              usePoint = 0;
-            }
+        <!--            if (usePoint <= 0) {-->
+        <!--              usePoint = 0;-->
+        <!--            }-->
 
-            if (totPgPrice < usePoint) {
+        <!--            if (totPgPrice < usePoint) {-->
 
-              usePoint = totPgPrice;
+        <!--              usePoint = totPgPrice;-->
 
-              if (currentPoint < usePoint) {
-                usePoint = currentPoint;
-                usePoint = Math.floor(usePoint / 10) * 10;
-              }
-            }
+        <!--              if (currentPoint < usePoint) {-->
+        <!--                usePoint = currentPoint;-->
+        <!--                usePoint = Math.floor(usePoint / 10) * 10;-->
+        <!--              }-->
+        <!--            }-->
 
-            if (0 < usePoint && usePoint < 2000) {
-              alert('적립금은 2000P 부터 사용 가능합니다.');
-              $("#usePoint, #textUsePoint").val(0);
-              getUserOrderPrice();
-              return;
-            }
+        <!--            if (0 < usePoint && usePoint < 2000) {-->
+        <!--              alert('적립금은 2000P 부터 사용 가능합니다.');-->
+        <!--              $("#usePoint, #textUsePoint").val(0);-->
+        <!--              getUserOrderPrice();-->
+        <!--              return;-->
+        <!--            }-->
 
-            $("#usePoint").val(usePoint);
-            getUserOrderPrice();
-          }
+        <!--            $("#usePoint").val(usePoint);-->
+        <!--            getUserOrderPrice();-->
+        <!--          }-->
 
-        </script><div class="order-info payment-gift-card ">
+        <!--        </script>-->
+        <div class="order-info payment-gift-card ">
           <div class="list-head" style="padding:30px 0;">
             <h3>랭킹닭컴 상품권 사용 <button type="button" class="btn-icon-mark ui-open-pop" data-layer="#giftPayInfoText"><i class="ico-excl"></i><span class="blind">안내</span></button></h3>
           </div>
@@ -1064,215 +1114,215 @@
           </div>
         </div>
 
-        <script>
+        <!--        <script>-->
 
-          $('.ui-gift-input').keyup(function (e) {
-            if (!$(this).val()) {
-              $(this).siblings('.input-group-btn').find('.btn-input-del2').hide();
-            } else if ($(this).val()) {
-              $(this).siblings('.input-group-btn').find('.btn-input-del2').show();
-            }
-          });
+        <!--          $('.ui-gift-input').keyup(function (e) {-->
+        <!--            if (!$(this).val()) {-->
+        <!--              $(this).siblings('.input-group-btn').find('.btn-input-del2').hide();-->
+        <!--            } else if ($(this).val()) {-->
+        <!--              $(this).siblings('.input-group-btn').find('.btn-input-del2').show();-->
+        <!--            }-->
+        <!--          });-->
 
-          $('.btn-input-del2').on('click', function (e) {
-            $(this).parent('.input-group-btn').prev('.ui-gift-input').val(0);
-            $(this).hide();
-            fnUseGiftPrice();
-          });
+        <!--          $('.btn-input-del2').on('click', function (e) {-->
+        <!--            $(this).parent('.input-group-btn').prev('.ui-gift-input').val(0);-->
+        <!--            $(this).hide();-->
+        <!--            fnUseGiftPrice();-->
+        <!--          });-->
 
-          // 상품권 등록 버튼 event
-          const regGiftBtn = document.getElementById("reg-gift-btn");
-          regGiftBtn.addEventListener("click", function() {
-            let giftCardPin = $("#regGiftCard").val();
-            if (isEmptyExt(giftCardPin)) {
-              alert("상품권 코드를 입력해주세요.");
-              return false;
-            }
-            $(".loading-area").css("display","block");
-            $("body").css("overflow","hidden");
-            $("#regGiftCard").val('');
-            getCurrentGiftPrice(giftCardPin, '');
-          });
+        <!--          // 상품권 등록 버튼 event-->
+        <!--          const regGiftBtn = document.getElementById("reg-gift-btn");-->
+        <!--          regGiftBtn.addEventListener("click", function() {-->
+        <!--            let giftCardPin = $("#regGiftCard").val();-->
+        <!--            if (isEmptyExt(giftCardPin)) {-->
+        <!--              alert("상품권 코드를 입력해주세요.");-->
+        <!--              return false;-->
+        <!--            }-->
+        <!--            $(".loading-area").css("display","block");-->
+        <!--            $("body").css("overflow","hidden");-->
+        <!--            $("#regGiftCard").val('');-->
+        <!--            getCurrentGiftPrice(giftCardPin, '');-->
+        <!--          });-->
 
-          $('.check-gift-btn').on('click', function () {
-            $(".loading-area").css("display","block");
-            $("body").css("overflow","hidden");
-            getCurrentGiftPrice('', $(this).data('type'));
-          });
+        <!--          $('.check-gift-btn').on('click', function () {-->
+        <!--            $(".loading-area").css("display","block");-->
+        <!--            $("body").css("overflow","hidden");-->
+        <!--            getCurrentGiftPrice('', $(this).data('type'));-->
+        <!--          });-->
 
-          // 상품권 등록 및 잔액 조회
-          function getCurrentGiftPrice(cardPin, type) {
-            cmAjax({
-              url: "/order/order/checkGiftCardAjax"
-              , type: "POST"
-              , data: {"regGiftCard":cardPin, "regType":type}
-              , dataType : "json"
-              , success: function (data) {
-                $(".loading-area").css("display","none");
-                $("body").css("overflow","");
-                if (data.status == "succ") {
-                  setCurrentGiftPrice(parseInt(data.object.currentGiftPrice));
-                }
+        <!--          // 상품권 등록 및 잔액 조회-->
+        <!--          function getCurrentGiftPrice(cardPin, type) {-->
+        <!--            cmAjax({-->
+        <!--              url: "/order/order/checkGiftCardAjax"-->
+        <!--              , type: "POST"-->
+        <!--              , data: {"regGiftCard":cardPin, "regType":type}-->
+        <!--              , dataType : "json"-->
+        <!--              , success: function (data) {-->
+        <!--                $(".loading-area").css("display","none");-->
+        <!--                $("body").css("overflow","");-->
+        <!--                if (data.status == "succ") {-->
+        <!--                  setCurrentGiftPrice(parseInt(data.object.currentGiftPrice));-->
+        <!--                }-->
 
-                if (!isEmptyExt(cardPin) || data.status != "succ") {
-                  confirms(data.message, null, "okay", null);
-                }
+        <!--                if (!isEmptyExt(cardPin) || data.status != "succ") {-->
+        <!--                  confirms(data.message, null, "okay", null);-->
+        <!--                }-->
 
-                $("#currentGiftPriceDis").removeClass("hide");
-              }
-            });
-          }
+        <!--                $("#currentGiftPriceDis").removeClass("hide");-->
+        <!--              }-->
+        <!--            });-->
+        <!--          }-->
 
-          // 상품권 사용 가능 금액 셋팅
-          function setCurrentGiftPrice(currentGiftPrice) {
-            if(isNaN(currentGiftPrice)) {
-              currentGiftPrice = 0;
-            }
+        <!--          // 상품권 사용 가능 금액 셋팅-->
+        <!--          function setCurrentGiftPrice(currentGiftPrice) {-->
+        <!--            if(isNaN(currentGiftPrice)) {-->
+        <!--              currentGiftPrice = 0;-->
+        <!--            }-->
 
-            $("#currentGiftPrice").val(currentGiftPrice);
-            $(".current-giftprice-text").text(SetNumComma(currentGiftPrice));
+        <!--            $("#currentGiftPrice").val(currentGiftPrice);-->
+        <!--            $(".current-giftprice-text").text(SetNumComma(currentGiftPrice));-->
 
-            $("#useGiftPrice").val(0);
-            $("#textUseGiftPrice").val(0);
+        <!--            $("#useGiftPrice").val(0);-->
+        <!--            $("#textUseGiftPrice").val(0);-->
 
-            fnUseGiftPrice();
-          }
+        <!--            fnUseGiftPrice();-->
+        <!--          }-->
 
-          $("#textUseGiftPrice").keydown(function(){
-            // 엔터 키 반영시 함수 적용 요청
-            if (window.event.keyCode == 13) {
-              // 엔터키가 눌렸을 때
-              fnUseGiftPrice();
-            }
-          })
-
-
-          //기프트 카드 사용
-          function fnUseGiftPrice(type) {
-            $('.btn-input-del2').show();
-
-            let currentGiftPrice = fnOnlyNumber($("#currentGiftPrice").val()).number;
-
-            $("#textUseGiftPrice").val($("#textUseGiftPrice").val().replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'));
-            let useGiftTemp = fnOnlyNumber($("#textUseGiftPrice").val()).number;
+        <!--          $("#textUseGiftPrice").keydown(function(){-->
+        <!--            // 엔터 키 반영시 함수 적용 요청-->
+        <!--            if (window.event.keyCode == 13) {-->
+        <!--              // 엔터키가 눌렸을 때-->
+        <!--              fnUseGiftPrice();-->
+        <!--            }-->
+        <!--          })-->
 
 
-            if (currentGiftPrice == 0) {
-              $("#textUseGiftPrice").val(0);
-              if (useGiftTemp > 0 && typeof (type) === 'undefined') {
-                alert('상품권 잔액이 확인되지 않습니다. 상품권을 등록 혹은 잔액조회를 해주세요.');
-                return;
-              }
-            }
+        <!--          //기프트 카드 사용-->
+        <!--          function fnUseGiftPrice(type) {-->
+        <!--            $('.btn-input-del2').show();-->
 
-            const txtUsePoint = Math.abs(fnOnlyNumber($('#txt_use_point').text()).number);
-            const txtSaleCoupon = Math.abs(fnOnlyNumber($('#txt_sale_coupon').text()).number);
-            const txtSaleOrderCoupon = Math.abs(fnOnlyNumber($('#txt_sale_order_coupon').text()).number);
-            const txtSaleDlvCoupon = Math.abs(fnOnlyNumber($('#txt_sale_dlv_coupon').text()).number);
+        <!--            let currentGiftPrice = fnOnlyNumber($("#currentGiftPrice").val()).number;-->
 
-            const txtTotPrice = fnOnlyNumber($('#txt_tot_price').text()).number;
-            const txtTotDlvPrice = fnOnlyNumber($('#txt_tot_dlv_price').text()).number;
-
-            let txtSaleGrade = Math.abs(fnOnlyNumber($('#txt_sale_grade').text()).number);
-
-            const sYn = $('input[name="orangeMembersP"]:checked').val();
-            if(sYn === 'point') {
-              txtSaleGrade = 0;
-            }
-
-            const totPgPrice = (txtTotPrice + txtTotDlvPrice) - (txtUsePoint + txtSaleCoupon + txtSaleOrderCoupon + txtSaleDlvCoupon + txtSaleGrade);
-
-            if (type == 'all') {
-              useGiftTemp = currentGiftPrice;
-              if (totPgPrice < useGiftTemp) {
-                useGiftTemp = totPgPrice;
-              }
-              checkPassbook();
-            }
-
-            if (0 < useGiftTemp && useGiftTemp < 10) {
-              alert('기프트카드(상품권)는 10원 단위로 사용 가능합니다.');
-              $("#useGiftPrice").val(0);
-              $("#textUseGiftPrice").val(0);
-              getUserOrderPrice();
-              return;
-            }
-
-            let useGiftPrice = Math.floor(useGiftTemp / 10) * 10;
-
-            if (useGiftPrice <= 0) {
-              useGiftPrice = 0;
-            }
-
-            if (totPgPrice < useGiftPrice) {
-              useGiftPrice = totPgPrice;
-            }
-
-            if (currentGiftPrice < useGiftPrice) {
-              useGiftPrice = currentGiftPrice;
-              useGiftPrice = Math.floor(useGiftPrice / 10) * 10;
-            }
-
-            if (0 < useGiftPrice && useGiftPrice < 10) {
-              alert('기프트카드(상품권)는 10원 단위로 사용 가능합니다.');
-              $("#useGiftPrice, #textUseGiftPrice").val(0);
-              getUserOrderPrice();
-              return;
-            }
-
-            $("#useGiftPrice").val(useGiftPrice);
-            getUserOrderPrice();
-            checkPassbook();
-
-          }
-
-          // 현금영수증 발행
-          $('.cash-re-rd2').on('change', function () {
-            var checked = $('#cash-receipt3').prop("checked");
-            if (checked) {
-              $(this).parents('.cash-re-con').siblings('.ui-select-receipt-wrap').removeClass('hide');
-            } else if (!checked) {
-              $(this).parents('.cash-re-con').siblings('.ui-select-receipt-wrap').addClass('hide');
-            }
-          });
-
-          function checkPassbook(){
-            if($("#useGiftPrice").val() >= 10 || $("#textUseGiftPrice").val() >= 10){
-              if($("#radio-grid-5").is(":checked")){
-                $("#radio-grid-4").click();
-                $("#radio-grid-5").attr("disabled", "disabled");
-                $("#radio-grid-5").closest('li').css("background-color","#F8F8F8");
-                $("label[for='radio-grid-5'] em.txt").css("color","#999999")
-                $("label[for='radio-grid-5'] em.txt i").attr("class","ico-pay-vbank-disabled");
-                $(".payment-gift-card .payment-added-guide.cash-receipt-guide").css("display","block");
-              }
-              $("#radio-grid-5").removeAttr("checked");
-              $("#radio-grid-5").attr("disabled", "disabled");
-              $("#radio-grid-5").closest('li').css("background-color","#F8F8F8");
-              $("label[for='radio-grid-5'] em.txt").css("color","#999999")
-              $("label[for='radio-grid-5'] em.txt i").attr("class","ico-pay-vbank-disabled");
-              $(".payment-gift-card .payment-added-guide.cash-receipt-guide").css("display","block");
-            }else{
-              $("#radio-grid-5").removeAttr("disabled");
-              $("#radio-grid-5").closest('li').css("background-color","#FFFFFF");
-              $("label[for='radio-grid-5'] em.txt").css("color","#333333")
-              $("label[for='radio-grid-5'] em.txt i").attr("class","ico-pay-vbank");
-              $(".payment-gift-card .payment-added-guide.cash-receipt-guide").css("display","none");
-
-            }
-          }
-          $(".gift-open-pop").click(()=>{
-            $("#giftPaySearch").css("display","block");
-          })
+        <!--            $("#textUseGiftPrice").val($("#textUseGiftPrice").val().replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'));-->
+        <!--            let useGiftTemp = fnOnlyNumber($("#textUseGiftPrice").val()).number;-->
 
 
-          const fb = document.querySelector(".close-pop2");
-          fb.addEventListener("click",(e)=>{
-            if(e.isTrusted){
-              $("#giftPaySearch").css("display","none");
-            }
-          });
-        </script>
+        <!--            if (currentGiftPrice == 0) {-->
+        <!--              $("#textUseGiftPrice").val(0);-->
+        <!--              if (useGiftTemp > 0 && typeof (type) === 'undefined') {-->
+        <!--                alert('상품권 잔액이 확인되지 않습니다. 상품권을 등록 혹은 잔액조회를 해주세요.');-->
+        <!--                return;-->
+        <!--              }-->
+        <!--            }-->
+
+        <!--            const txtUsePoint = Math.abs(fnOnlyNumber($('#txt_use_point').text()).number);-->
+        <!--            const txtSaleCoupon = Math.abs(fnOnlyNumber($('#txt_sale_coupon').text()).number);-->
+        <!--            const txtSaleOrderCoupon = Math.abs(fnOnlyNumber($('#txt_sale_order_coupon').text()).number);-->
+        <!--            const txtSaleDlvCoupon = Math.abs(fnOnlyNumber($('#txt_sale_dlv_coupon').text()).number);-->
+
+        <!--            const txtTotPrice = fnOnlyNumber($('#txt_tot_price').text()).number;-->
+        <!--            const txtTotDlvPrice = fnOnlyNumber($('#txt_tot_dlv_price').text()).number;-->
+
+        <!--            let txtSaleGrade = Math.abs(fnOnlyNumber($('#txt_sale_grade').text()).number);-->
+
+        <!--            const sYn = $('input[name="orangeMembersP"]:checked').val();-->
+        <!--            if(sYn === 'point') {-->
+        <!--              txtSaleGrade = 0;-->
+        <!--            }-->
+
+        <!--            const totPgPrice = (txtTotPrice + txtTotDlvPrice) - (txtUsePoint + txtSaleCoupon + txtSaleOrderCoupon + txtSaleDlvCoupon + txtSaleGrade);-->
+
+        <!--            if (type == 'all') {-->
+        <!--              useGiftTemp = currentGiftPrice;-->
+        <!--              if (totPgPrice < useGiftTemp) {-->
+        <!--                useGiftTemp = totPgPrice;-->
+        <!--              }-->
+        <!--              checkPassbook();-->
+        <!--            }-->
+
+        <!--            if (0 < useGiftTemp && useGiftTemp < 10) {-->
+        <!--              alert('기프트카드(상품권)는 10원 단위로 사용 가능합니다.');-->
+        <!--              $("#useGiftPrice").val(0);-->
+        <!--              $("#textUseGiftPrice").val(0);-->
+        <!--              getUserOrderPrice();-->
+        <!--              return;-->
+        <!--            }-->
+
+        <!--            let useGiftPrice = Math.floor(useGiftTemp / 10) * 10;-->
+
+        <!--            if (useGiftPrice <= 0) {-->
+        <!--              useGiftPrice = 0;-->
+        <!--            }-->
+
+        <!--            if (totPgPrice < useGiftPrice) {-->
+        <!--              useGiftPrice = totPgPrice;-->
+        <!--            }-->
+
+        <!--            if (currentGiftPrice < useGiftPrice) {-->
+        <!--              useGiftPrice = currentGiftPrice;-->
+        <!--              useGiftPrice = Math.floor(useGiftPrice / 10) * 10;-->
+        <!--            }-->
+
+        <!--            if (0 < useGiftPrice && useGiftPrice < 10) {-->
+        <!--              alert('기프트카드(상품권)는 10원 단위로 사용 가능합니다.');-->
+        <!--              $("#useGiftPrice, #textUseGiftPrice").val(0);-->
+        <!--              getUserOrderPrice();-->
+        <!--              return;-->
+        <!--            }-->
+
+        <!--            $("#useGiftPrice").val(useGiftPrice);-->
+        <!--            getUserOrderPrice();-->
+        <!--            checkPassbook();-->
+
+        <!--          }-->
+
+        <!--          // 현금영수증 발행-->
+        <!--          $('.cash-re-rd2').on('change', function () {-->
+        <!--            var checked = $('#cash-receipt3').prop("checked");-->
+        <!--            if (checked) {-->
+        <!--              $(this).parents('.cash-re-con').siblings('.ui-select-receipt-wrap').removeClass('hide');-->
+        <!--            } else if (!checked) {-->
+        <!--              $(this).parents('.cash-re-con').siblings('.ui-select-receipt-wrap').addClass('hide');-->
+        <!--            }-->
+        <!--          });-->
+
+        <!--          function checkPassbook(){-->
+        <!--            if($("#useGiftPrice").val() >= 10 || $("#textUseGiftPrice").val() >= 10){-->
+        <!--              if($("#radio-grid-5").is(":checked")){-->
+        <!--                $("#radio-grid-4").click();-->
+        <!--                $("#radio-grid-5").attr("disabled", "disabled");-->
+        <!--                $("#radio-grid-5").closest('li').css("background-color","#F8F8F8");-->
+        <!--                $("label[for='radio-grid-5'] em.txt").css("color","#999999")-->
+        <!--                $("label[for='radio-grid-5'] em.txt i").attr("class","ico-pay-vbank-disabled");-->
+        <!--                $(".payment-gift-card .payment-added-guide.cash-receipt-guide").css("display","block");-->
+        <!--              }-->
+        <!--              $("#radio-grid-5").removeAttr("checked");-->
+        <!--              $("#radio-grid-5").attr("disabled", "disabled");-->
+        <!--              $("#radio-grid-5").closest('li').css("background-color","#F8F8F8");-->
+        <!--              $("label[for='radio-grid-5'] em.txt").css("color","#999999")-->
+        <!--              $("label[for='radio-grid-5'] em.txt i").attr("class","ico-pay-vbank-disabled");-->
+        <!--              $(".payment-gift-card .payment-added-guide.cash-receipt-guide").css("display","block");-->
+        <!--            }else{-->
+        <!--              $("#radio-grid-5").removeAttr("disabled");-->
+        <!--              $("#radio-grid-5").closest('li').css("background-color","#FFFFFF");-->
+        <!--              $("label[for='radio-grid-5'] em.txt").css("color","#333333")-->
+        <!--              $("label[for='radio-grid-5'] em.txt i").attr("class","ico-pay-vbank");-->
+        <!--              $(".payment-gift-card .payment-added-guide.cash-receipt-guide").css("display","none");-->
+
+        <!--            }-->
+        <!--          }-->
+        <!--          $(".gift-open-pop").click(()=>{-->
+        <!--            $("#giftPaySearch").css("display","block");-->
+        <!--          })-->
+
+
+        <!--          const fb = document.querySelector(".close-pop2");-->
+        <!--          fb.addEventListener("click",(e)=>{-->
+        <!--            if(e.isTrusted){-->
+        <!--              $("#giftPaySearch").css("display","none");-->
+        <!--            }-->
+        <!--          });-->
+        <!--        </script>-->
         <div class="order-info">
           <div class="list-head">
             <h3 class="title-list">결제방법</h3>
@@ -1703,311 +1753,312 @@
           </div>
         </div>
         <!--// order-info -->
-        <script type="text/javascript">
-          $(document).ready(function () {
+        <!--        <script type="text/javascript">-->
+        <!--          $(document).ready(function () {-->
 
-            //현금영수증 - 휴대폰번호
-            $("#div_cash_type ul li[data-name='1']").click(function(){
-              $("#cash-reg-num").attr('maxlength',11);
-            });
-
-            //현금영수증 - 사업자번호
-            $("#div_cash_type ul li[data-name='2']").click(function(){
-              $("#cash-reg-num").attr('maxlength',10);
-            });
+        <!--            //현금영수증 - 휴대폰번호-->
+        <!--            $("#div_cash_type ul li[data-name='1']").click(function(){-->
+        <!--              $("#cash-reg-num").attr('maxlength',11);-->
+        <!--            });-->
+
+        <!--            //현금영수증 - 사업자번호-->
+        <!--            $("#div_cash_type ul li[data-name='2']").click(function(){-->
+        <!--              $("#cash-reg-num").attr('maxlength',10);-->
+        <!--            });-->
 
-            // 랭킹페이 등록 카드정보 조회
-            fnGetRankPayInfo();
+        <!--            // 랭킹페이 등록 카드정보 조회-->
+        <!--            fnGetRankPayInfo();-->
 
-            // 랭킹페이 카드 삭제 클릭 이벤트
-            $('#rank_pay_card_remove').click(function(){
+        <!--            // 랭킹페이 카드 삭제 클릭 이벤트-->
+        <!--            $('#rank_pay_card_remove').click(function(){-->
 
-              if(confirm("등록된 결제정보를 삭제할 경우 나이스페이 결제 시 재 등록을 진행합니다.")){
+        <!--              if(confirm("등록된 결제정보를 삭제할 경우 나이스페이 결제 시 재 등록을 진행합니다.")){-->
 
-                fnRemoveRankPayInfo();
+        <!--                fnRemoveRankPayInfo();-->
 
-              }
+        <!--              }-->
 
-            });
+        <!--            });-->
 
-            // 랭킹페이 카드 승인테스트 클릭 이벤트
-            $('#rank_pay_card_approve').click(function(){
+        <!--            // 랭킹페이 카드 승인테스트 클릭 이벤트-->
+        <!--            $('#rank_pay_card_approve').click(function(){-->
 
-              fnTestRankPayApprove($(this).val());
+        <!--              fnTestRankPayApprove($(this).val());-->
 
-            });
+        <!--            });-->
 
-            $('.payCardSelect').on('click', function(e) {
-              e.preventDefault();
+        <!--            $('.payCardSelect').on('click', function(e) {-->
+        <!--              e.preventDefault();-->
 
-              // 신용카드코드
-              const payCardCd = $(this).data('code');
+        <!--              // 신용카드코드-->
+        <!--              const payCardCd = $(this).data('code');-->
 
-              // console.log("payCardCode " + payCardCode);
-              cmAjax({
-                url: '/order/order/getDpEtcGuideInfoAjax'
-                , type: 'POST'
-                , data: {
-                  etcType     : '200',
-                  payCardCd   : payCardCd
-                }
-                , dataType: "json"
-                , success: function (data) {
+        <!--              // console.log("payCardCode " + payCardCode);-->
+        <!--              cmAjax({-->
+        <!--                url: '/order/order/getDpEtcGuideInfoAjax'-->
+        <!--                , type: 'POST'-->
+        <!--                , data: {-->
+        <!--                  etcType     : '200',-->
+        <!--                  payCardCd   : payCardCd-->
+        <!--                }-->
+        <!--                , dataType: "json"-->
+        <!--                , success: function (data) {-->
 
-                  if(data.object) {
-                    $('#paymentDetailInfo').html(data.object.VDesc);
-                    $('#paymentDetailInfo').parents('.payment-detail').addClass('active');
-                  } else {
-                    $('#paymentDetailInfo').html('');
-                  }
+        <!--                  if(data.object) {-->
+        <!--                    $('#paymentDetailInfo').html(data.object.VDesc);-->
+        <!--                    $('#paymentDetailInfo').parents('.payment-detail').addClass('active');-->
+        <!--                  } else {-->
+        <!--                    $('#paymentDetailInfo').html('');-->
+        <!--                  }-->
 
-                }
-                , error: function (e) {
-                  console.log(e);
-                }
-              });
+        <!--                }-->
+        <!--                , error: function (e) {-->
+        <!--                  console.log(e);-->
+        <!--                }-->
+        <!--              });-->
 
-              $('#div_pay_card').data('value','');
-              $('#div_card_inst .select-list ul').html('');
+        <!--              $('#div_pay_card').data('value','');-->
+        <!--              $('#div_card_inst .select-list ul').html('');-->
 
-              const payCardName = $(this).parent().data('name');
-              if(!$(this).parent().hasClass('first')) {
-                getInterestFreeCardsAjax('div_card_inst', payCardCd, payCardName);
-              }
+        <!--              const payCardName = $(this).parent().data('name');-->
+        <!--              if(!$(this).parent().hasClass('first')) {-->
+        <!--                getInterestFreeCardsAjax('div_card_inst', payCardCd, payCardName);-->
+        <!--              }-->
 
-              if (payCardName == '국민' && $('input[name=isOrangeMember]').val() != 'Y'
-                      && $('.payment-detail-wrap input[name=pgType]').val() != 'A1') {
-                $('#kbUseCardPoint').parents('span').removeClass('hide');
-              } else {
-                $('#kbUseCardPoint').parents('span').addClass('hide');
-              }
-            });
+        <!--              if (payCardName == '국민' && $('input[name=isOrangeMember]').val() != 'Y'-->
+        <!--                      && $('.payment-detail-wrap input[name=pgType]').val() != 'A1') {-->
+        <!--                $('#kbUseCardPoint').parents('span').removeClass('hide');-->
+        <!--              } else {-->
+        <!--                $('#kbUseCardPoint').parents('span').addClass('hide');-->
+        <!--              }-->
+        <!--            });-->
 
-            if($('#radio-grid-4').prop('checked')){
-              $('#div_pay_card .select-list li').each(function() {
-                if($(this).data('name') == ''){
-                  $(this).find('a').click();
-                }
-              });
-            }
+        <!--            if($('#radio-grid-4').prop('checked')){-->
+        <!--              $('#div_pay_card .select-list li').each(function() {-->
+        <!--                if($(this).data('name') == ''){-->
+        <!--                  $(this).find('a').click();-->
+        <!--                }-->
+        <!--              });-->
+        <!--            }-->
 
 
-            getInterestFreeCardsAjax('div_pay_kbrankcard', '02', '국민');
+        <!--            getInterestFreeCardsAjax('div_pay_kbrankcard', '02', '국민');-->
 
 
-            if ($('input[name=isOrangeMember]').val() == 'Y' || $('.payment-detail-wrap input[name=pgType]').val() == 'A1') {
-              $('#kbUseCardPoint').parents('span').addClass('hide');
-              $('#kbRankUseCardPoint').parents('span').addClass('hide');
-            }
-          });
+        <!--            if ($('input[name=isOrangeMember]').val() == 'Y' || $('.payment-detail-wrap input[name=pgType]').val() == 'A1') {-->
+        <!--              $('#kbUseCardPoint').parents('span').addClass('hide');-->
+        <!--              $('#kbRankUseCardPoint').parents('span').addClass('hide');-->
+        <!--            }-->
+        <!--          });-->
 
-          // 랭킹페이 등록 카드정보 조회
-          function fnGetRankPayInfo(payFlag) {
+        <!--          // 랭킹페이 등록 카드정보 조회-->
+        <!--          function fnGetRankPayInfo(payFlag) {-->
 
-            cmAjax({
-              url: '/order/rankPay/cardInfo'
-              , type: 'POST'
-              , data: {}
-              , dataType: "json"
-              , success: function (data) {
-                if("succ" == data.status){
+        <!--            cmAjax({-->
+        <!--              url: '/order/rankPay/cardInfo'-->
+        <!--              , type: 'POST'-->
+        <!--              , data: {}-->
+        <!--              , dataType: "json"-->
+        <!--              , success: function (data) {-->
+        <!--                if("succ" == data.status){-->
 
-                  if(data.object != undefined){
+        <!--                  if(data.object != undefined){-->
 
-                    var cardNm = data.object.VCardName;
+        <!--                    var cardNm = data.object.VCardName;-->
 
-                    var ordF = document.getElementsByName("ordFrm");
-                    $(ordF).find('input[name=rankPayBid]').val(data.object.VId);
+        <!--                    var ordF = document.getElementsByName("ordFrm");-->
+        <!--                    $(ordF).find('input[name=rankPayBid]').val(data.object.VId);-->
 
-                    $('#rank_pay_cad_nm').text(cardNm.replace('[', '').replace(']', '') + '카드');
-                    $('#rank_pay_card_img').attr('alt', cardNm);
+        <!--                    $('#rank_pay_cad_nm').text(cardNm.replace('[', '').replace(']', '') + '카드');-->
+        <!--                    $('#rank_pay_card_img').attr('alt', cardNm);-->
 
-                    switch(cardNm) { //변경될 카드이미지 가져오기
+        <!--                    switch(cardNm) { //변경될 카드이미지 가져오기-->
 
-                      case "[KB국민]" :
-                        $('#rank_pay_card_img').attr('src', 'https://file.rankingdak.com/bank/card/kb_card.jpg');
-                        break;
+        <!--                      case "[KB국민]" :-->
+        <!--                        $('#rank_pay_card_img').attr('src', 'https://file.rankingdak.com/bank/card/kb_card.jpg');-->
+        <!--                        break;-->
 
-                      case "[NH채움]" :
-                        $('#rank_pay_card_img').attr('src', 'https://file.rankingdak.com/bank/card/nh_card.jpg');
-                        break;
+        <!--                      case "[NH채움]" :-->
+        <!--                        $('#rank_pay_card_img').attr('src', 'https://file.rankingdak.com/bank/card/nh_card.jpg');-->
+        <!--                        break;-->
 
-                      case "[광주]" :
-                        $('#rank_pay_card_img').attr('src', 'https://file.rankingdak.com/bank/card/kj_card.jpg');
-                        break;
+        <!--                      case "[광주]" :-->
+        <!--                        $('#rank_pay_card_img').attr('src', 'https://file.rankingdak.com/bank/card/kj_card.jpg');-->
+        <!--                        break;-->
 
-                      case "[롯데]" :
-                        $('#rank_pay_card_img').attr('src', 'https://file.rankingdak.com/bank/card/lotte_card.jpg');
-                        break;
+        <!--                      case "[롯데]" :-->
+        <!--                        $('#rank_pay_card_img').attr('src', 'https://file.rankingdak.com/bank/card/lotte_card.jpg');-->
+        <!--                        break;-->
 
-                      case "[비씨]" :
-                        $('#rank_pay_card_img').attr('src', 'https://file.rankingdak.com/bank/card/bc_card.jpg');
-                        break;
+        <!--                      case "[비씨]" :-->
+        <!--                        $('#rank_pay_card_img').attr('src', 'https://file.rankingdak.com/bank/card/bc_card.jpg');-->
+        <!--                        break;-->
 
-                      case "[삼성]" :
-                        $('#rank_pay_card_img').attr('src', 'https://file.rankingdak.com/bank/card/samsung_card.jpg');
-                        break;
+        <!--                      case "[삼성]" :-->
+        <!--                        $('#rank_pay_card_img').attr('src', 'https://file.rankingdak.com/bank/card/samsung_card.jpg');-->
+        <!--                        break;-->
 
-                      case "[수협]" :
-                        $('#rank_pay_card_img').attr('src', 'https://file.rankingdak.com/bank/card/sh_card.jpg');
-                        break;
+        <!--                      case "[수협]" :-->
+        <!--                        $('#rank_pay_card_img').attr('src', 'https://file.rankingdak.com/bank/card/sh_card.jpg');-->
+        <!--                        break;-->
 
-                      case "[신한]" :
-                        $('#rank_pay_card_img').attr('src', 'https://file.rankingdak.com/bank/card/shinhan_card.jpg');
-                        break;
+        <!--                      case "[신한]" :-->
+        <!--                        $('#rank_pay_card_img').attr('src', 'https://file.rankingdak.com/bank/card/shinhan_card.jpg');-->
+        <!--                        break;-->
 
-                      case "[씨티]" :
-                        $('#rank_pay_card_img').attr('src', 'https://file.rankingdak.com/bank/card/citi_card.jpg');
-                        break;
+        <!--                      case "[씨티]" :-->
+        <!--                        $('#rank_pay_card_img').attr('src', 'https://file.rankingdak.com/bank/card/citi_card.jpg');-->
+        <!--                        break;-->
 
-                      case "[전북]" :
-                        $('#rank_pay_card_img').attr('src', 'https://file.rankingdak.com/bank/card/jb_card.jpg');
-                        break;
+        <!--                      case "[전북]" :-->
+        <!--                        $('#rank_pay_card_img').attr('src', 'https://file.rankingdak.com/bank/card/jb_card.jpg');-->
+        <!--                        break;-->
 
-                      case "[제주]" :
-                        $('#rank_pay_card_img').attr('src', 'https://file.rankingdak.com/bank/card/jeju_card.jpg');
-                        break;
+        <!--                      case "[제주]" :-->
+        <!--                        $('#rank_pay_card_img').attr('src', 'https://file.rankingdak.com/bank/card/jeju_card.jpg');-->
+        <!--                        break;-->
 
-                      case "[현대]" :
-                        $('#rank_pay_card_img').attr('src', 'https://file.rankingdak.com/bank/card/hyundaicard.jpg');
-                        break;
+        <!--                      case "[현대]" :-->
+        <!--                        $('#rank_pay_card_img').attr('src', 'https://file.rankingdak.com/bank/card/hyundaicard.jpg');-->
+        <!--                        break;-->
 
-                      case "[하나]" :
-                        $('#rank_pay_card_img').attr('src', 'https://file.rankingdak.com/bank/card/hana_card.jpg');
-                        break;
-                      case "[하나(외환)]":
-                        $('#rank_pay_card_img').attr('src', 'https://file.rankingdak.com/bank/card/hana_card.jpg');
-                        break;
-
-                      default:
-
-                        $('#rank_pay_card_img').attr('src', '');
-                        break;
-                    }
-
-                    $('#rank_pay_card').find('.payment-box').eq(0).hide();
-                    $('#rank_pay_card').find('.payment-box').eq(1).show();
-                    $('#rank_pay_card_approve').val(data.object.VBid);
-
-                    // 카드 등록후 결제 정보 생성
-                    if(payFlag){
-                      fnCheckOrder();
-                    }
-
-                  } else {
-
-                    var ordF = document.getElementsByName("ordFrm");
-                    $(ordF).find('input[name=rankPayBid]').val('');
-
-                    $('#rank_pay_card').find('.payment-box').eq(0).show();
-                    $('#rank_pay_card').find('.payment-box').eq(1).hide();
-
-                  }
-
-
-
-                }
-              }
-              , error: function (e) {
-                console.log(e);
-              }
-            });
-          }
-
-          // 랭킹페이 등록 카드정보 삭제
-          function fnRemoveRankPayInfo() {
-
-            // console.log("fnRemoveRankPayInfo");
-            cmAjax({
-              url: '/order/rankPay/removeCard'
-              , type: 'POST'
-              , data: {}
-              , dataType: "json"
-              , success: function (data) {
-
-                if ("succ" == data.status) {
-
-                  alert('정상 처리되었습니다.');
-                  fnGetRankPayInfo();
-
-                } else {
-
-                  alert(data.message);
-
-                }
-              }
-              , error: function (e) {
-                console.log(e);
-              }
-            });
-          }
-
-          // 랭킹페이 등록 승인 테스트
-          function fnTestRankPayApprove(bid) {
-
-            // console.log("fnTestRankPayApprove");
-
-            cmAjax({
-              url: '/order/rankPay/apporve'
-              , type: 'POST'
-              , data: {
-                'vBid': bid
-              }
-              , dataType: "json"
-              , success: function (data) {
-
-              }
-              , error: function (e) {
-                console.log(e);
-              }
-            });
-          }
-
-          function numberOnly(event) {
-            event = event || window.event;
-            var keyID = (event.which) ? event.which : event.keyCode;
-            if ((keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39)
-              return;
-            else
-              return false;
-          }
-
-          function removeChar(event) {
-            event = event || window.event;
-            var keyID = (event.which) ? event.which : event.keyCode;
-            if (keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39)
-              return;
-            else
-              event.target.value = event.target.value.replace(/[^0-9]/g, "");
-          }
-
-          function getInterestFreeCardsAjax(instSelName, payCardCd, payCardName) {
-            const totPgPrice = $('input[name=tot_pg_price]').val();
-
-            cmAjax({
-              url: '/order/order/getInterestFreeCardsAjax'
-              , type: 'POST'
-              , data: {
-                payCardCd: payCardCd,
-                payCardName: payCardName,
-                totPgPrice: totPgPrice
-              }
-              , dataType: "json"
-              , success: function (data) {
-                const monthData = data.object;
-                let monthHtml = '';
-                for (let idx in monthData) {
-                  monthHtml += '<li data-name="' + monthData[idx].code + '"><a href="#none" onclick="return false;"><span>' + monthData[idx].name + '</span></a></li>';
-                }
-                $('#'+instSelName+' .select-list ul').html(monthHtml);
-              }
-              , error: function (e) {
-                console.log(e);
-              }
-            });
-          }
-
-        </script><div class="side-fix-area">
+        <!--                      case "[하나]" :-->
+        <!--                        $('#rank_pay_card_img').attr('src', 'https://file.rankingdak.com/bank/card/hana_card.jpg');-->
+        <!--                        break;-->
+        <!--                      case "[하나(외환)]":-->
+        <!--                        $('#rank_pay_card_img').attr('src', 'https://file.rankingdak.com/bank/card/hana_card.jpg');-->
+        <!--                        break;-->
+
+        <!--                      default:-->
+
+        <!--                        $('#rank_pay_card_img').attr('src', '');-->
+        <!--                        break;-->
+        <!--                    }-->
+
+        <!--                    $('#rank_pay_card').find('.payment-box').eq(0).hide();-->
+        <!--                    $('#rank_pay_card').find('.payment-box').eq(1).show();-->
+        <!--                    $('#rank_pay_card_approve').val(data.object.VBid);-->
+
+        <!--                    // 카드 등록후 결제 정보 생성-->
+        <!--                    if(payFlag){-->
+        <!--                      fnCheckOrder();-->
+        <!--                    }-->
+
+        <!--                  } else {-->
+
+        <!--                    var ordF = document.getElementsByName("ordFrm");-->
+        <!--                    $(ordF).find('input[name=rankPayBid]').val('');-->
+
+        <!--                    $('#rank_pay_card').find('.payment-box').eq(0).show();-->
+        <!--                    $('#rank_pay_card').find('.payment-box').eq(1).hide();-->
+
+        <!--                  }-->
+
+
+
+        <!--                }-->
+        <!--              }-->
+        <!--              , error: function (e) {-->
+        <!--                console.log(e);-->
+        <!--              }-->
+        <!--            });-->
+        <!--          }-->
+
+        <!--          // 랭킹페이 등록 카드정보 삭제-->
+        <!--          function fnRemoveRankPayInfo() {-->
+
+        <!--            // console.log("fnRemoveRankPayInfo");-->
+        <!--            cmAjax({-->
+        <!--              url: '/order/rankPay/removeCard'-->
+        <!--              , type: 'POST'-->
+        <!--              , data: {}-->
+        <!--              , dataType: "json"-->
+        <!--              , success: function (data) {-->
+
+        <!--                if ("succ" == data.status) {-->
+
+        <!--                  alert('정상 처리되었습니다.');-->
+        <!--                  fnGetRankPayInfo();-->
+
+        <!--                } else {-->
+
+        <!--                  alert(data.message);-->
+
+        <!--                }-->
+        <!--              }-->
+        <!--              , error: function (e) {-->
+        <!--                console.log(e);-->
+        <!--              }-->
+        <!--            });-->
+        <!--          }-->
+
+        <!--          // 랭킹페이 등록 승인 테스트-->
+        <!--          function fnTestRankPayApprove(bid) {-->
+
+        <!--            // console.log("fnTestRankPayApprove");-->
+
+        <!--            cmAjax({-->
+        <!--              url: '/order/rankPay/apporve'-->
+        <!--              , type: 'POST'-->
+        <!--              , data: {-->
+        <!--                'vBid': bid-->
+        <!--              }-->
+        <!--              , dataType: "json"-->
+        <!--              , success: function (data) {-->
+
+        <!--              }-->
+        <!--              , error: function (e) {-->
+        <!--                console.log(e);-->
+        <!--              }-->
+        <!--            });-->
+        <!--          }-->
+
+        <!--          function numberOnly(event) {-->
+        <!--            event = event || window.event;-->
+        <!--            var keyID = (event.which) ? event.which : event.keyCode;-->
+        <!--            if ((keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39)-->
+        <!--              return;-->
+        <!--            else-->
+        <!--              return false;-->
+        <!--          }-->
+
+        <!--          function removeChar(event) {-->
+        <!--            event = event || window.event;-->
+        <!--            var keyID = (event.which) ? event.which : event.keyCode;-->
+        <!--            if (keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39)-->
+        <!--              return;-->
+        <!--            else-->
+        <!--              event.target.value = event.target.value.replace(/[^0-9]/g, "");-->
+        <!--          }-->
+
+        <!--          function getInterestFreeCardsAjax(instSelName, payCardCd, payCardName) {-->
+        <!--            const totPgPrice = $('input[name=tot_pg_price]').val();-->
+
+        <!--            cmAjax({-->
+        <!--              url: '/order/order/getInterestFreeCardsAjax'-->
+        <!--              , type: 'POST'-->
+        <!--              , data: {-->
+        <!--                payCardCd: payCardCd,-->
+        <!--                payCardName: payCardName,-->
+        <!--                totPgPrice: totPgPrice-->
+        <!--              }-->
+        <!--              , dataType: "json"-->
+        <!--              , success: function (data) {-->
+        <!--                const monthData = data.object;-->
+        <!--                let monthHtml = '';-->
+        <!--                for (let idx in monthData) {-->
+        <!--                  monthHtml += '<li data-name="' + monthData[idx].code + '"><a href="#none" onclick="return false;"><span>' + monthData[idx].name + '</span></a></li>';-->
+        <!--                }-->
+        <!--                $('#'+instSelName+' .select-list ul').html(monthHtml);-->
+        <!--              }-->
+        <!--              , error: function (e) {-->
+        <!--                console.log(e);-->
+        <!--              }-->
+        <!--            });-->
+        <!--          }-->
+
+        <!--        </script>-->
+        <div class="side-fix-area">
           <div class="payment-info-box ui-box-fix">
             <h3 class="tit">주문결제 금액</h3>
             <div class="order-price">
@@ -2034,7 +2085,7 @@
                     <li id="orangeDiscount" class="discountType" style="display: none;"><span class="tit">오렌지멤버스 할인</span><span class="txt"><span id="txt_sale_grade" class="resetOrderPaySide"></span>원</span></li>
                   </ul>
                 </li>
-                <li style="display: " class="gift-li">
+                <li style="display:'none'" class="gift-li">
                   <div class="list-inner">
                     <span class="tit">상품권</span>
                     <p class="price"><strong class="num resetOrderPaySide" id="totalGiftPrice">0</strong> 원</p>
@@ -2605,7 +2656,7 @@
               <br>
               위탁업무 내용 :　휴대폰 결제 처리<br>
               <br>
-              ​​​​​​</div>
+              ??????</div>
           </div>
         </div>
         <button type="button" class="btn-x-md2 ui-close-pop" title=""><i class="ico-x-black"></i><span class="blind">닫기</span></button> <!-- [Dev] 20210908 버튼 클래스 수정 -->
@@ -2686,34 +2737,34 @@
   </div><!--// layer-pop-wrap #main-event -->
 
   <!-- ========== 팝업 영역 ========== -->
-  <script>
+  <!--  <script>-->
 
-    /* wnsgml351 인수인계 추가 - 아코디언 퍼블 적용 */
-    /*결제대행서비스 이용 동의 팝업 아코디언 */
-    function privacy_agree_accordion() {
-      $(".agree-accordion").click(function(){
-        if($(this).hasClass("on")){
-          $(this).removeClass("on");
-          $(this).find("i").removeClass("ico-arr-up");
-          $(this).find("i").addClass("ico-arr-down");
-          $(this).next().slideUp(100);
-        }else{
-          $(".agree-accordion").removeClass("on");
-          $(".agree-accordion").next().slideUp(100);
-          $(this).addClass("on");
-          $(".agree-accordion i").removeClass("ico-arr-up");
-          $(".agree-accordion i").addClass("ico-arr-down");
-          $(this).find("i").addClass("ico-arr-up");
-          $(this).next().slideDown(100);
-        }
-      });
-    }
-    $(function () {
-      privacy_agree_accordion();
-    })
-    /*//결제대행서비스 이용 동의 팝업 아코디언 */
+  <!--    /* wnsgml351 인수인계 추가 - 아코디언 퍼블 적용 */-->
+  <!--    /*결제대행서비스 이용 동의 팝업 아코디언 */-->
+  <!--    function privacy_agree_accordion() {-->
+  <!--      $(".agree-accordion").click(function(){-->
+  <!--        if($(this).hasClass("on")){-->
+  <!--          $(this).removeClass("on");-->
+  <!--          $(this).find("i").removeClass("ico-arr-up");-->
+  <!--          $(this).find("i").addClass("ico-arr-down");-->
+  <!--          $(this).next().slideUp(100);-->
+  <!--        }else{-->
+  <!--          $(".agree-accordion").removeClass("on");-->
+  <!--          $(".agree-accordion").next().slideUp(100);-->
+  <!--          $(this).addClass("on");-->
+  <!--          $(".agree-accordion i").removeClass("ico-arr-up");-->
+  <!--          $(".agree-accordion i").addClass("ico-arr-down");-->
+  <!--          $(this).find("i").addClass("ico-arr-up");-->
+  <!--          $(this).next().slideDown(100);-->
+  <!--        }-->
+  <!--      });-->
+  <!--    }-->
+  <!--    $(function () {-->
+  <!--      privacy_agree_accordion();-->
+  <!--    })-->
+  <!--    /*//결제대행서비스 이용 동의 팝업 아코디언 */-->
 
-  </script>
+  <!--  </script>-->
   <!-- 토스페이먼츠 -->
   <!-- 신용카드 무이자할부 안내 팝업 -->
   <div class="layer-wrap" id="popup-muijaImg" style="display:none">
@@ -2761,128 +2812,129 @@
   </div>
   <!--// layer-pop-wrap #popup-cold-add -->
 
-  <script type="text/javascript">
+  <!--  <script type="text/javascript">-->
 
-    $(document).on('click', '.deleteColdAdd', function (e) {
-      const coldAddDivId = this.dataset.id;
-      // console.log('coldAddDivId:', coldAddDivId);
-      $('#' + coldAddDivId).remove();
+  <!--    $(document).on('click', '.deleteColdAdd', function (e) {-->
+  <!--      const coldAddDivId = this.dataset.id;-->
+  <!--      // console.log('coldAddDivId:', coldAddDivId);-->
+  <!--      $('#' + coldAddDivId).remove();-->
 
-      const coldCd = this.dataset.coldCd;
-      $('input[name=arrAddColdProdcd]').val('');
-      $('input[name=arrAddColdProdcd]:not(:first)').remove();
-      // wnsgml351 인수인계 추가 - 보냉제 더 담기 버튼 노출
-      // 보냉제 더 담기 노출
-      $('#cold-add-li-' + coldCd).show();
+  <!--      const coldCd = this.dataset.coldCd;-->
+  <!--      $('input[name=arrAddColdProdcd]').val('');-->
+  <!--      $('input[name=arrAddColdProdcd]:not(:first)').remove();-->
+  <!--      // wnsgml351 인수인계 추가 - 보냉제 더 담기 버튼 노출-->
+  <!--      // 보냉제 더 담기 노출-->
+  <!--      $('#cold-add-li-' + coldCd).show();-->
 
-      getUserOrderPrice();
-    })
+  <!--      getUserOrderPrice();-->
+  <!--    })-->
 
-    //보냉제 추가 선택
-    function fnSelectAddCold() {
-      const icepack = $('#check-icepack').val();
-      const icepackPrice = fnOnlyNumber($('#add_icepack_price').text()).number;
-      const dryice = $('#check-dryice').val();
-      const dryicePrice = fnOnlyNumber($('#add_dryice_price').text()).number;
-      const coldAddLiCd = $('#coldAddLiCd').val();
-      const icePackImgUrl = $('#check-icepack').data('prod-imgurl');
-      const dryIceImgUrl = $('#check-dryice').data('prod-imgurl');
+  <!--    //보냉제 추가 선택-->
+  <!--    function fnSelectAddCold() {-->
+  <!--      const icepack = $('#check-icepack').val();-->
+  <!--      const icepackPrice = fnOnlyNumber($('#add_icepack_price').text()).number;-->
+  <!--      const dryice = $('#check-dryice').val();-->
+  <!--      const dryicePrice = fnOnlyNumber($('#add_dryice_price').text()).number;-->
+  <!--      const coldAddLiCd = $('#coldAddLiCd').val();-->
+  <!--      const icePackImgUrl = $('#check-icepack').data('prod-imgurl');-->
+  <!--      const dryIceImgUrl = $('#check-dryice').data('prod-imgurl');-->
 
 
-      $('#popup-cold-add .ui-close-pop').click();
-      const data = {
-        icepack: icepack,
-        icepackPrice: icepackPrice,
-        dryice: dryice,
-        dryicePrice: dryicePrice,
-        coldAddLiCd: coldAddLiCd,
-        icePackImgUrl: icePackImgUrl,
-        dryIceImgUrl: dryIceImgUrl
-      }
-      setColdAddDiv(data);
-    }
+  <!--      $('#popup-cold-add .ui-close-pop').click();-->
+  <!--      const data = {-->
+  <!--        icepack: icepack,-->
+  <!--        icepackPrice: icepackPrice,-->
+  <!--        dryice: dryice,-->
+  <!--        dryicePrice: dryicePrice,-->
+  <!--        coldAddLiCd: coldAddLiCd,-->
+  <!--        icePackImgUrl: icePackImgUrl,-->
+  <!--        dryIceImgUrl: dryIceImgUrl-->
+  <!--      }-->
+  <!--      setColdAddDiv(data);-->
+  <!--    }-->
 
-    function setColdAddDiv(data) {
-      console.log(data);
-      // console.log('length : ' + $('#coldAddDiv' + data.coldAddLiCd).length);
-      const html = [];
-      if ($('#coldAddDivIce' + data.coldAddLiCd).length === 0 && $('#check-icepack').is(':checked')) {
+  <!--    function setColdAddDiv(data) {-->
+  <!--      console.log(data);-->
+  <!--      // console.log('length : ' + $('#coldAddDiv' + data.coldAddLiCd).length);-->
+  <!--      const html = [];-->
+  <!--      if ($('#coldAddDivIce' + data.coldAddLiCd).length === 0 && $('#check-icepack').is(':checked')) {-->
 
-        let vMstDlv = 'N';
-        if( data.coldAddLiCd != '' && (data.coldAddLiCd).indexOf('MDG') == 0) {
-          vMstDlv = 'Y';
-        }
+  <!--        let vMstDlv = 'N';-->
+  <!--        if( data.coldAddLiCd != '' && (data.coldAddLiCd).indexOf('MDG') == 0) {-->
+  <!--          vMstDlv = 'Y';-->
+  <!--        }-->
 
-        const icepackInput = '<input type="hidden" name="arrAddColdProdcd" class="coldAddDiv' + data.coldAddLiCd + '" value="' + data.icepack + '|' + vMstDlv + '"  />';
-        // console.log('icepack add');
-        $('#ordFrm').append(icepackInput);
+  <!--        const icepackInput = '<input type="hidden" name="arrAddColdProdcd" class="coldAddDiv' + data.coldAddLiCd + '" value="' + data.icepack + '|' + vMstDlv + '"  />';-->
+  <!--        // console.log('icepack add');-->
+  <!--        $('#ordFrm').append(icepackInput);-->
 
-        html.push('<div class="prd-info-area option-line" id="coldAddDivIce' + data.coldAddLiCd + '">');
-        html.push('    <div class="inner">');
-        html.push('        <div class="column img"><a href="javascript:void(0);"><img src="' + data.icePackImgUrl + '" alt="아이스팩"></a></div>');
-        html.push('        <div class="column tit">');
-        html.push('            <p class="tit">아이스팩</p>');
-        html.push('            <ul class="price-item">');
-        html.push('                <li><span class="num">' + data.icepackPrice + '</span>원</li>');
-        html.push('                <li><span class="num">1</span>개</li>');
-        html.push('            </ul>');
-        html.push('        </div>');
-        html.push('        <div class="column qty">');
-        html.push('            <button type="button" class="btn-option btn-default-ex2 deleteColdAdd" data-cold-cd="' + data.coldAddLiCd + '" data-id="coldAddDivIce' + data.coldAddLiCd + '"><span>삭제</span></button>');
-        html.push('        </div>');
-        html.push('        <div class="column price w70">');
-        html.push('            <div class="price-div">');
-        html.push('                <span class="num">' + data.icepackPrice + '</span>원');
-        html.push('            </div>');
-        html.push('        </div>');
-        html.push('    </div>');
-        html.push('</div>');
-      }
+  <!--        html.push('<div class="prd-info-area option-line" id="coldAddDivIce' + data.coldAddLiCd + '">');-->
+  <!--        html.push('    <div class="inner">');-->
+  <!--        html.push('        <div class="column img"><a href="javascript:void(0);"><img src="' + data.icePackImgUrl + '" alt="아이스팩"></a></div>');-->
+  <!--        html.push('        <div class="column tit">');-->
+  <!--        html.push('            <p class="tit">아이스팩</p>');-->
+  <!--        html.push('            <ul class="price-item">');-->
+  <!--        html.push('                <li><span class="num">' + data.icepackPrice + '</span>원</li>');-->
+  <!--        html.push('                <li><span class="num">1</span>개</li>');-->
+  <!--        html.push('            </ul>');-->
+  <!--        html.push('        </div>');-->
+  <!--        html.push('        <div class="column qty">');-->
+  <!--        html.push('            <button type="button" class="btn-option btn-default-ex2 deleteColdAdd" data-cold-cd="' + data.coldAddLiCd + '" data-id="coldAddDivIce' + data.coldAddLiCd + '"><span>삭제</span></button>');-->
+  <!--        html.push('        </div>');-->
+  <!--        html.push('        <div class="column price w70">');-->
+  <!--        html.push('            <div class="price-div">');-->
+  <!--        html.push('                <span class="num">' + data.icepackPrice + '</span>원');-->
+  <!--        html.push('            </div>');-->
+  <!--        html.push('        </div>');-->
+  <!--        html.push('    </div>');-->
+  <!--        html.push('</div>');-->
+  <!--      }-->
 
-      if ($('#coldAddDivDry' + data.coldAddLiCd).length === 0 && $('#check-dryice').is(':checked')) {
-        let vMstDlv = 'N';
-        if( data.coldAddLiCd != '' && (data.coldAddLiCd).indexOf('MDG') == 0) {
-          vMstDlv = 'Y';
-        }
-        const dryiceInput = '<input type="hidden" name="arrAddColdProdcd" class="coldAddDiv' + data.coldAddLiCd + '" value="' + data.dryice + '|' + vMstDlv + '"/>';
-        // console.log('dryice add');
-        $('#ordFrm').append(dryiceInput);
+  <!--      if ($('#coldAddDivDry' + data.coldAddLiCd).length === 0 && $('#check-dryice').is(':checked')) {-->
+  <!--        let vMstDlv = 'N';-->
+  <!--        if( data.coldAddLiCd != '' && (data.coldAddLiCd).indexOf('MDG') == 0) {-->
+  <!--          vMstDlv = 'Y';-->
+  <!--        }-->
+  <!--        const dryiceInput = '<input type="hidden" name="arrAddColdProdcd" class="coldAddDiv' + data.coldAddLiCd + '" value="' + data.dryice + '|' + vMstDlv + '"/>';-->
+  <!--        // console.log('dryice add');-->
+  <!--        $('#ordFrm').append(dryiceInput);-->
 
-        html.push('<div class="prd-info-area option-line" id="coldAddDivDry' + data.coldAddLiCd + '">');
-        html.push('    <div class="inner">');
-        html.push('        <div class="column img"><a href="javascript:void(0);"><img src="' + data.dryIceImgUrl + '" alt="드라이아이스"></a></div>');
-        html.push('        <div class="column tit">');
-        html.push('            <p class="tit">드라이아이스</p>');
-        html.push('            <ul class="price-item">');
-        html.push('                <li><span class="num">' + data.dryicePrice + '</span>원</li>');
-        html.push('                <li><span class="num">1</span>개</li>');
-        html.push('            </ul>');
-        html.push('        </div>');
-        html.push('        <div class="column qty">');
-        html.push('            <button type="button" class="btn-option btn-default-ex2 deleteColdAdd" data-cold-cd="' + data.coldAddLiCd + '" data-id="coldAddDivDry' + data.coldAddLiCd + '"><span>삭제</span></button>');
-        html.push('        </div>');
-        html.push('        <div class="column price w70">');
-        html.push('            <div class="price-div">');
-        html.push('                <span class="num">' + data.dryicePrice + '</span>원');
-        html.push('            </div>');
-        html.push('        </div>');
-        html.push('    </div>');
-        html.push('</div>');
-      }
+  <!--        html.push('<div class="prd-info-area option-line" id="coldAddDivDry' + data.coldAddLiCd + '">');-->
+  <!--        html.push('    <div class="inner">');-->
+  <!--        html.push('        <div class="column img"><a href="javascript:void(0);"><img src="' + data.dryIceImgUrl + '" alt="드라이아이스"></a></div>');-->
+  <!--        html.push('        <div class="column tit">');-->
+  <!--        html.push('            <p class="tit">드라이아이스</p>');-->
+  <!--        html.push('            <ul class="price-item">');-->
+  <!--        html.push('                <li><span class="num">' + data.dryicePrice + '</span>원</li>');-->
+  <!--        html.push('                <li><span class="num">1</span>개</li>');-->
+  <!--        html.push('            </ul>');-->
+  <!--        html.push('        </div>');-->
+  <!--        html.push('        <div class="column qty">');-->
+  <!--        html.push('            <button type="button" class="btn-option btn-default-ex2 deleteColdAdd" data-cold-cd="' + data.coldAddLiCd + '" data-id="coldAddDivDry' + data.coldAddLiCd + '"><span>삭제</span></button>');-->
+  <!--        html.push('        </div>');-->
+  <!--        html.push('        <div class="column price w70">');-->
+  <!--        html.push('            <div class="price-div">');-->
+  <!--        html.push('                <span class="num">' + data.dryicePrice + '</span>원');-->
+  <!--        html.push('            </div>');-->
+  <!--        html.push('        </div>');-->
+  <!--        html.push('    </div>');-->
+  <!--        html.push('</div>');-->
+  <!--      }-->
 
-      $('#cold-add-li-' + data.coldAddLiCd).prev('li').append(html.join('\n'));
+  <!--      $('#cold-add-li-' + data.coldAddLiCd).prev('li').append(html.join('\n'));-->
 
-      // 보냉제 더 담기 미노출
-      const isIcepackChecked = $('#div-cold-add-icepack').css('display') == 'block' && $('#check-icepack').is(':checked');
-      const isDryiceChecked = $('#div-cold-add-dryice').css('display') == 'block' && $('#check-dryice').is(':checked');
-      if (isIcepackChecked || isDryiceChecked) {
-        $('#cold-add-li-' + data.coldAddLiCd).hide();
-      }
-      $('#usePoint, #textUsePoint').val(0);
-      getUserOrderPrice();
-    }
+  <!--      // 보냉제 더 담기 미노출-->
+  <!--      const isIcepackChecked = $('#div-cold-add-icepack').css('display') == 'block' && $('#check-icepack').is(':checked');-->
+  <!--      const isDryiceChecked = $('#div-cold-add-dryice').css('display') == 'block' && $('#check-dryice').is(':checked');-->
+  <!--      if (isIcepackChecked || isDryiceChecked) {-->
+  <!--        $('#cold-add-li-' + data.coldAddLiCd).hide();-->
+  <!--      }-->
+  <!--      $('#usePoint, #textUsePoint').val(0);-->
+  <!--      getUserOrderPrice();-->
+  <!--    }-->
 
-  </script><!-- 쿠폰 선택 팝업 -->
+  <!--  </script>-->
+  <!-- 쿠폰 선택 팝업 -->
   <div class="layer-wrap onload" id="popup-coupon" style="display:none;">
     <div class="layer-pop couponselect-pop-area">
       <div class="layer-inner">
@@ -2924,168 +2976,169 @@
     </div>
   </div>
 
-  <script type="text/javascript">
+  <!--  <script type="text/javascript">-->
 
-    $(document)
-            .on('click', 'input[name=orderCoupon]', calcDiscount)
-            .on('click', 'input[name=deliveryCoupon]', calcDiscountDelivery)
-            .on('click', '#couponApply', couponApply)
-            .on('click', '#couponApplyCancel', couponApplyCancel);
+  <!--    $(document)-->
+  <!--            .on('click', 'input[name=orderCoupon]', calcDiscount)-->
+  <!--            .on('click', 'input[name=deliveryCoupon]', calcDiscountDelivery)-->
+  <!--            .on('click', '#couponApply', couponApply)-->
+  <!--            .on('click', '#couponApplyCancel', couponApplyCancel);-->
 
-    //장바구니 쿠폰 선택
-    function fnSelectCartCoupon() {
-      var couponid = $('input[name=cartCoupon]:checked').val();
-      if (couponid != undefined && couponid != '') {
-        $('input[name=cartCouponid]').val(couponid);
-        getUserOrderPrice();
-      }
-      $('#popup-coupon .ui-close-pop').click();
-    }
+  <!--    //장바구니 쿠폰 선택-->
+  <!--    function fnSelectCartCoupon() {-->
+  <!--      var couponid = $('input[name=cartCoupon]:checked').val();-->
+  <!--      if (couponid != undefined && couponid != '') {-->
+  <!--        $('input[name=cartCouponid]').val(couponid);-->
+  <!--        getUserOrderPrice();-->
+  <!--      }-->
+  <!--      $('#popup-coupon .ui-close-pop').click();-->
+  <!--    }-->
 
-    function checkCouponDiscount(obj) {
-      // console.log(obj);
-      const vCouponCd = obj.vCouponCd;
-      $('#vCouponCd').val(vCouponCd);
+  <!--    function checkCouponDiscount(obj) {-->
+  <!--      // console.log(obj);-->
+  <!--      const vCouponCd = obj.vCouponCd;-->
+  <!--      $('#vCouponCd').val(vCouponCd);-->
 
-      const nMaxSaleAmt = parseInt(obj.nMaxSaleAmt);
+  <!--      const nMaxSaleAmt = parseInt(obj.nMaxSaleAmt);-->
 
-      if (obj.vSaleType == '200' && nMaxSaleAmt == 0) {
-        // alert('[dev]\n정률 쿠폰인데 최대할인금액 값이 없습니다.\n해당 쿠폰을 새로 등록해주세요.\n쿠폰코드 : ' + vCouponCd);
-        $('input[name=orderCoupon]:first').click();
-        return;
-      }
+  <!--      if (obj.vSaleType == '200' && nMaxSaleAmt == 0) {-->
+  <!--        // alert('[dev]\n정률 쿠폰인데 최대할인금액 값이 없습니다.\n해당 쿠폰을 새로 등록해주세요.\n쿠폰코드 : ' + vCouponCd);-->
+  <!--        $('input[name=orderCoupon]:first').click();-->
+  <!--        return;-->
+  <!--      }-->
 
-      let dlvType = $('.dlvTab:checked').data('dlvType');
-      if (isEmpty(dlvType)) {
-        dlvType = 'NOR';
-      }
-      $('#dlvType').val(dlvType);
+  <!--      let dlvType = $('.dlvTab:checked').data('dlvType');-->
+  <!--      if (isEmpty(dlvType)) {-->
+  <!--        dlvType = 'NOR';-->
+  <!--      }-->
+  <!--      $('#dlvType').val(dlvType);-->
 
-      cmAjax({
-        url: "/order/order/getCouponAppliedPriceAjax"
-        , type: "post"
-        , data: $("form[name='ordFrm']").serialize()
-        , dataType: "json"
-        , success: function (data) {
-          // console.log(data);
-          if (obj.vSaleType != 'N' && !data.isUsableCoupon) {
-            alert(data.reason);
-            $('input[name=orderCoupon]:first').click();
-          }
-          $('#popup-coupon .discountPrice').text(SetNumComma(data.discount));
-          $('#popup-coupon .calcPrice').text(SetNumComma(fnOnlyNumber($('#popup-coupon .productPrice').text()).number - data.discount));
-        }
-        , error: function (e) {
-          console.log(JSON.stringify(e));
-        }
-      });
+  <!--      cmAjax({-->
+  <!--        url: "/order/order/getCouponAppliedPriceAjax"-->
+  <!--        , type: "post"-->
+  <!--        , data: $("form[name='ordFrm']").serialize()-->
+  <!--        , dataType: "json"-->
+  <!--        , success: function (data) {-->
+  <!--          // console.log(data);-->
+  <!--          if (obj.vSaleType != 'N' && !data.isUsableCoupon) {-->
+  <!--            alert(data.reason);-->
+  <!--            $('input[name=orderCoupon]:first').click();-->
+  <!--          }-->
+  <!--          $('#popup-coupon .discountPrice').text(SetNumComma(data.discount));-->
+  <!--          $('#popup-coupon .calcPrice').text(SetNumComma(fnOnlyNumber($('#popup-coupon .productPrice').text()).number - data.discount));-->
+  <!--        }-->
+  <!--        , error: function (e) {-->
+  <!--          console.log(JSON.stringify(e));-->
+  <!--        }-->
+  <!--      });-->
 
-    }
+  <!--    }-->
 
-    function calcDiscount(e) {
-      const obj = this.dataset;
-      obj.vOwnid = $(this).val();
-      const orderCouponOwnid = obj.vOwnid;
-      const orderCouponCd = obj.vCouponCd
-      $('input[name=orderCouponOwnid]').val(orderCouponOwnid);
-      $('input[name=orderCouponCd]').val(orderCouponCd);
-      checkCouponDiscount(obj);
-    }
+  <!--    function calcDiscount(e) {-->
+  <!--      const obj = this.dataset;-->
+  <!--      obj.vOwnid = $(this).val();-->
+  <!--      const orderCouponOwnid = obj.vOwnid;-->
+  <!--      const orderCouponCd = obj.vCouponCd-->
+  <!--      $('input[name=orderCouponOwnid]').val(orderCouponOwnid);-->
+  <!--      $('input[name=orderCouponCd]').val(orderCouponCd);-->
+  <!--      checkCouponDiscount(obj);-->
+  <!--    }-->
 
-    function calcDiscountDelivery(e) {
-      const obj = this.dataset;
-      // console.log(obj);
-      const deliveryCouponOwnid = $(this).val();
-      const deliveryCouponCd = $(this).data('vCouponCd');
-      $('input[name=deliveryCouponOwnid]').val(deliveryCouponOwnid);
-      $('input[name=deliveryCouponCd]').val(deliveryCouponCd);
-      const id = $(this).attr('id');
-      if (id == 'delivery-coupon-first') {
-        $('input[name=deliveryCouponOwnid]').val('');
-        $('input[name=deliveryCouponCd]').val('');
-      }
+  <!--    function calcDiscountDelivery(e) {-->
+  <!--      const obj = this.dataset;-->
+  <!--      // console.log(obj);-->
+  <!--      const deliveryCouponOwnid = $(this).val();-->
+  <!--      const deliveryCouponCd = $(this).data('vCouponCd');-->
+  <!--      $('input[name=deliveryCouponOwnid]').val(deliveryCouponOwnid);-->
+  <!--      $('input[name=deliveryCouponCd]').val(deliveryCouponCd);-->
+  <!--      const id = $(this).attr('id');-->
+  <!--      if (id == 'delivery-coupon-first') {-->
+  <!--        $('input[name=deliveryCouponOwnid]').val('');-->
+  <!--        $('input[name=deliveryCouponCd]').val('');-->
+  <!--      }-->
 
-      const vCouponCd = obj.vCouponCd;
-      $('#vCouponCd').val(vCouponCd);
+  <!--      const vCouponCd = obj.vCouponCd;-->
+  <!--      $('#vCouponCd').val(vCouponCd);-->
 
-      const nMaxSaleAmt = parseInt(obj.nMaxSaleAmt);
+  <!--      const nMaxSaleAmt = parseInt(obj.nMaxSaleAmt);-->
 
-      if (obj.vSaleType == '200' && nMaxSaleAmt == 0) {
-        //alert('[dev]\n정률 쿠폰인데 최대할인금액 값이 없습니다.\n해당 쿠폰을 새로 등록해주세요.\n쿠폰코드 : ' + vCouponCd);
-        $('input[name=orderCoupon]:first').click();
-        return;
-      }
+  <!--      if (obj.vSaleType == '200' && nMaxSaleAmt == 0) {-->
+  <!--        //alert('[dev]\n정률 쿠폰인데 최대할인금액 값이 없습니다.\n해당 쿠폰을 새로 등록해주세요.\n쿠폰코드 : ' + vCouponCd);-->
+  <!--        $('input[name=orderCoupon]:first').click();-->
+  <!--        return;-->
+  <!--      }-->
 
-      let dlvType = $('.dlvTab:checked').data('dlvType');
-      if (isEmpty(dlvType)) {
-        dlvType = 'NOR';
-      }
-      $('#dlvType').val(dlvType);
+  <!--      let dlvType = $('.dlvTab:checked').data('dlvType');-->
+  <!--      if (isEmpty(dlvType)) {-->
+  <!--        dlvType = 'NOR';-->
+  <!--      }-->
+  <!--      $('#dlvType').val(dlvType);-->
 
-      cmAjax({
-        url: "/order/order/checkDeliveryCouponApplyAjax"
-        , type: "post"
-        , data: $("form[name='ordFrm']").serialize()
-        , dataType: "json"
-        , success: function (data) {
-          // console.log(data);
-          if (obj.vSaleType != 'N' && !data.isUsableCoupon) {
-            alert(data.reason);
-            $('input[name=deliveryCoupon]:first').click();
-          }
-          // $('#popup-coupon .discountPrice').text(SetNumComma(data.discount));
-          // $('#popup-coupon .calcPrice').text(SetNumComma(fnOnlyNumber($('#popup-coupon .productPrice').text()).number - data.discount));
-        }
-        , error: function (e) {
-          console.log(JSON.stringify(e));
-        }
-      });
-    }
+  <!--      cmAjax({-->
+  <!--        url: "/order/order/checkDeliveryCouponApplyAjax"-->
+  <!--        , type: "post"-->
+  <!--        , data: $("form[name='ordFrm']").serialize()-->
+  <!--        , dataType: "json"-->
+  <!--        , success: function (data) {-->
+  <!--          // console.log(data);-->
+  <!--          if (obj.vSaleType != 'N' && !data.isUsableCoupon) {-->
+  <!--            alert(data.reason);-->
+  <!--            $('input[name=deliveryCoupon]:first').click();-->
+  <!--          }-->
+  <!--          // $('#popup-coupon .discountPrice').text(SetNumComma(data.discount));-->
+  <!--          // $('#popup-coupon .calcPrice').text(SetNumComma(fnOnlyNumber($('#popup-coupon .productPrice').text()).number - data.discount));-->
+  <!--        }-->
+  <!--        , error: function (e) {-->
+  <!--          console.log(JSON.stringify(e));-->
+  <!--        }-->
+  <!--      });-->
+  <!--    }-->
 
-    function couponApply(e) {
-      let dlvType = $('.dlvTab:checked').data('dlvType');
-      if (isEmpty(dlvType)) {
-        dlvType = 'NOR';
-      }
-      $('#dlvType').val(dlvType);
-      $("#usePoint, #textUsePoint").val(0);
-      cmAjax({
-        url: "/order/order/getUserOrderInfoAjax"
-        , type: "post"
-        , data: $("form[name='ordFrm']").serialize()
-        , dataType: "json"
-        , success: function (data) {
+  <!--    function couponApply(e) {-->
+  <!--      let dlvType = $('.dlvTab:checked').data('dlvType');-->
+  <!--      if (isEmpty(dlvType)) {-->
+  <!--        dlvType = 'NOR';-->
+  <!--      }-->
+  <!--      $('#dlvType').val(dlvType);-->
+  <!--      $("#usePoint, #textUsePoint").val(0);-->
+  <!--      cmAjax({-->
+  <!--        url: "/order/order/getUserOrderInfoAjax"-->
+  <!--        , type: "post"-->
+  <!--        , data: $("form[name='ordFrm']").serialize()-->
+  <!--        , dataType: "json"-->
+  <!--        , success: function (data) {-->
 
-          const orderCouponOwnid = $('input[name=orderCoupon]:checked').val();
-          const orderCouponCd = $('input[name=orderCoupon]:checked').data('vCouponCd');
-          $('input[name=orderCouponOwnid]').val(orderCouponOwnid);
-          $('input[name=orderCouponCd]').val(orderCouponCd);
+  <!--          const orderCouponOwnid = $('input[name=orderCoupon]:checked').val();-->
+  <!--          const orderCouponCd = $('input[name=orderCoupon]:checked').data('vCouponCd');-->
+  <!--          $('input[name=orderCouponOwnid]').val(orderCouponOwnid);-->
+  <!--          $('input[name=orderCouponCd]').val(orderCouponCd);-->
 
-          const deliveryCouponOwnid = $('input[name=deliveryCoupon]:checked').val();
-          const deliveryCouponCd = $('input[name=deliveryCoupon]:checked').data('vCouponCd');
-          $('input[name=deliveryCouponOwnid]').val(deliveryCouponOwnid);
-          $('input[name=deliveryCouponCd]').val(deliveryCouponCd);
+  <!--          const deliveryCouponOwnid = $('input[name=deliveryCoupon]:checked').val();-->
+  <!--          const deliveryCouponCd = $('input[name=deliveryCoupon]:checked').data('vCouponCd');-->
+  <!--          $('input[name=deliveryCouponOwnid]').val(deliveryCouponOwnid);-->
+  <!--          $('input[name=deliveryCouponCd]').val(deliveryCouponCd);-->
 
-          $('#popup-coupon .ui-close-pop').click();
-          getUserOrderPrice();
+  <!--          $('#popup-coupon .ui-close-pop').click();-->
+  <!--          getUserOrderPrice();-->
 
-        }
-        , error: function (e) {
-          console.log(JSON.stringify(e));
-        }
-      });
-    }
+  <!--        }-->
+  <!--        , error: function (e) {-->
+  <!--          console.log(JSON.stringify(e));-->
+  <!--        }-->
+  <!--      });-->
+  <!--    }-->
 
-    function couponApplyCancel(e) {
-      $('input[name=orderCouponOwnid]').val('');
-      $('input[name=orderCouponCd]').val('');
-      $('input[name=deliveryCouponOwnid]').val('');
-      $('input[name=deliveryCouponCd]').val('');
-      $('#popup-coupon .ui-close-pop').click();
-      $("#usePoint, #textUsePoint").val(0);
-      getUserOrderPrice();
-    }
-  </script><div id="userDeliveryListPop" class="searchPop"></div>
+  <!--    function couponApplyCancel(e) {-->
+  <!--      $('input[name=orderCouponOwnid]').val('');-->
+  <!--      $('input[name=orderCouponCd]').val('');-->
+  <!--      $('input[name=deliveryCouponOwnid]').val('');-->
+  <!--      $('input[name=deliveryCouponCd]').val('');-->
+  <!--      $('#popup-coupon .ui-close-pop').click();-->
+  <!--      $("#usePoint, #textUsePoint").val(0);-->
+  <!--      getUserOrderPrice();-->
+  <!--    }-->
+  <!--  </script>-->
+  <div id="userDeliveryListPop" class="searchPop"></div>
 
 
   <!-- 비회원일때 -->
@@ -3467,509 +3520,510 @@
   </div>
   <!--// layer-pop-wrap #popup-tosspay -->
 
-  <script type="text/javascript">
-
-    $(document).ready(function () {
+  <!--  <script type="text/javascript">-->
+
+  <!--    $(document).ready(function () {-->
 
-      /*
-        $('.layer-wrap').on('stylechanged', function(){
-
-            alert(11111);
-
-            if($(this).css('display') != 'none' && $(this).css('display') != 'block'){
-
-                var scrollValue = $('body').scrollTop();
-                $('body').css({'overflow':'hidden'}).scrollTop(scrollValue);
-
-            } else {
+  <!--      /*-->
+  <!--        $('.layer-wrap').on('stylechanged', function(){-->
+
+  <!--            alert(11111);-->
+
+  <!--            if($(this).css('display') != 'none' && $(this).css('display') != 'block'){-->
+
+  <!--                var scrollValue = $('body').scrollTop();-->
+  <!--                $('body').css({'overflow':'hidden'}).scrollTop(scrollValue);-->
+
+  <!--            } else {-->
 
-                $('body').removeAttr('style');
-            }
-        });
-        */
+  <!--                $('body').removeAttr('style');-->
+  <!--            }-->
+  <!--        });-->
+  <!--        */-->
 
-      // 공동현관 출입, 배송요청사항 직접입력 선택시
-      var selectValue = $('.select-box').find('.select-list').find('li').children('a')
+  <!--      // 공동현관 출입, 배송요청사항 직접입력 선택시-->
+  <!--      var selectValue = $('.select-box').find('.select-list').find('li').children('a')-->
 
-      selectValue.on('click', function (e) {
+  <!--      selectValue.on('click', function (e) {-->
 
-        var selectLi = $(this).parents('li').hasClass('ui-direct-select');
+  <!--        var selectLi = $(this).parents('li').hasClass('ui-direct-select');-->
 
-        if (selectLi) {
-          var directID = $(this).attr("href");
-          //$(directID).removeClass("hide").siblings().addClass("hide");
-          $(directID).removeClass("hide").siblings('.ui-direct-input').addClass("hide"); // [Dev] 20210524 수정
-          e.preventDefault();
-        } else if (!selectLi) {
-          $(this).parents('.select-box').siblings('.ui-direct-input').addClass("hide");
-        }
-      });
+  <!--        if (selectLi) {-->
+  <!--          var directID = $(this).attr("href");-->
+  <!--          //$(directID).removeClass("hide").siblings().addClass("hide");-->
+  <!--          $(directID).removeClass("hide").siblings('.ui-direct-input').addClass("hide"); // [Dev] 20210524 수정-->
+  <!--          e.preventDefault();-->
+  <!--        } else if (!selectLi) {-->
+  <!--          $(this).parents('.select-box').siblings('.ui-direct-input').addClass("hide");-->
+  <!--        }-->
+  <!--      });-->
 
-      // 현금영수증 발행
-      $('.cash-re-rd').on('change', function () {
-        var checked = $('#cash-receipt1').prop("checked");
-        if (checked) {
-          $(this).parents('.cash-re-con').siblings('.ui-select-receipt-wrap').removeClass('hide');
-        } else if (!checked) {
-          $(this).parents('.cash-re-con').siblings('.ui-select-receipt-wrap').addClass('hide');
-        }
-      });
+  <!--      // 현금영수증 발행-->
+  <!--      $('.cash-re-rd').on('change', function () {-->
+  <!--        var checked = $('#cash-receipt1').prop("checked");-->
+  <!--        if (checked) {-->
+  <!--          $(this).parents('.cash-re-con').siblings('.ui-select-receipt-wrap').removeClass('hide');-->
+  <!--        } else if (!checked) {-->
+  <!--          $(this).parents('.cash-re-con').siblings('.ui-select-receipt-wrap').addClass('hide');-->
+  <!--        }-->
+  <!--      });-->
 
-      //현금영수증 정보 변경
-      $(document).on("click", "#cash-change-btn", function() {
-        $(this).parents('.ui-select-receipt-wrap').find('.cash-r-s-con').addClass('hide');
-        $(this).parents('.ui-select-receipt-wrap').find('.ui-select-receipt').removeClass('hide');
-      });
+  <!--      //현금영수증 정보 변경-->
+  <!--      $(document).on("click", "#cash-change-btn", function() {-->
+  <!--        $(this).parents('.ui-select-receipt-wrap').find('.cash-r-s-con').addClass('hide');-->
+  <!--        $(this).parents('.ui-select-receipt-wrap').find('.ui-select-receipt').removeClass('hide');-->
+  <!--      });-->
 
-      // 결제방법 선택
-      var uiRadioBtn = $('.radio-box-grid'),
-              uiCont = $('.payment-detail-wrap').children('.payment-detail');
+  <!--      // 결제방법 선택-->
+  <!--      var uiRadioBtn = $('.radio-box-grid'),-->
+  <!--              uiCont = $('.payment-detail-wrap').children('.payment-detail');-->
 
-      uiRadioBtn.on('click', function () {
-        $('.payment-detail-wrap .active').removeClass('active');
-        uiCont.eq(uiRadioBtn.index(this)).addClass('active');
-      });
+  <!--      uiRadioBtn.on('click', function () {-->
+  <!--        $('.payment-detail-wrap .active').removeClass('active');-->
+  <!--        uiCont.eq(uiRadioBtn.index(this)).addClass('active');-->
+  <!--      });-->
 
-      $(document).on("click", ".rp-accordion", function(e){
-        e.preventDefault();
-        if($(this).hasClass("on")){
-          $(this).removeClass("on");
-          $(".rp-accordion i").removeClass("ico-arr-up");
-          $(this).find("i").addClass("ico-arr-down");
-          $(this).parent().next().slideUp(100);
-        }else{
-          $(".rp-accordion").removeClass("on");
-          $(".rp-accordion").parent().next().slideUp(100);
-          $(this).addClass("on");
-          $(".rp-accordion i").removeClass("ico-arr-up");
-          $(".rp-accordion i").addClass("ico-arr-down");
-          $(this).find("i").removeClass("ico-arr-down");
-          $(this).find("i").addClass("ico-arr-up");
-          $(this).parent().next().slideDown(100);
-        }
-      });
+  <!--      $(document).on("click", ".rp-accordion", function(e){-->
+  <!--        e.preventDefault();-->
+  <!--        if($(this).hasClass("on")){-->
+  <!--          $(this).removeClass("on");-->
+  <!--          $(".rp-accordion i").removeClass("ico-arr-up");-->
+  <!--          $(this).find("i").addClass("ico-arr-down");-->
+  <!--          $(this).parent().next().slideUp(100);-->
+  <!--        }else{-->
+  <!--          $(".rp-accordion").removeClass("on");-->
+  <!--          $(".rp-accordion").parent().next().slideUp(100);-->
+  <!--          $(this).addClass("on");-->
+  <!--          $(".rp-accordion i").removeClass("ico-arr-up");-->
+  <!--          $(".rp-accordion i").addClass("ico-arr-down");-->
+  <!--          $(this).find("i").removeClass("ico-arr-down");-->
+  <!--          $(this).find("i").addClass("ico-arr-up");-->
+  <!--          $(this).parent().next().slideDown(100);-->
+  <!--        }-->
+  <!--      });-->
 
 
-      $('.closeRankingPayPop').unbind('click').on('click', function () {
+  <!--      $('.closeRankingPayPop').unbind('click').on('click', function () {-->
 
-        $('body').removeAttr('style');
-
-        if($('#popup-rankpay').css('display') != 'none'){
-
-          $('#popup-rankpay').hide();
-          $('.rpNum').val('');
-          $('#rpChkAll').prop("checked",false);
-          $(".rpChk").prop("checked",false);
-
-        } else {
-
-          $("#popup-rankFinal").hide();
-
-        }
-
-      });
-
-      $("#rpChkAll").click(function(){
-        if($("#rpChkAll").prop("checked")) {
-          $(".rpChk").prop("checked",true);
-        } else {
-          $(".rpChk").prop("checked",false);
-        }
-      });
-
-      $("#btnBill").click(function(){
-
-        if(rpVaildation()){
-
-          fnSaveRankingPayBill();
-
-        }
-
-      });
-
-      // 랭킹페이 결제클릭
-      $('#rank_pay_appr_proc').click(function(){
-
-        if($('#rnkPayPw1').val().trim() == ''){
-          alert('비밀번호를 입력하세요.');
-          $('#rnkPayPw1').focus();
-          return false;
-        }
-
-        if($('#rnkPayPw2').is(':visible')){
-
-          if($('#rnkPayPw2').val().trim() == ''){
-            alert('비밀번호확인을 입력하세요.');
-            $('#rnkPayPw2').focus();
-            return false;
-          }
-
-          if($('#rnkPayPw1').val() != $('#rnkPayPw2').val()){
-
-            alert('비밀번호를 확인하세요.');
-            $('#rnkPayPw2').focus();
-            return false;
-          }
-
-        }
-
-        fnRankPayApprProc();
-
-
-      });
-    });
-
-    function rankingPayPopup() {
-      // console.log("rankingPayPopup start");
-      fnCheckOrder();
-    }
-
-    function rpVaildation() {
-
-      // console.log("rpVaildation Ajax Start");
-
-      var rpCn1 = $("#rpCn1");
-      var rpCn2 = $("#rpCn2");
-      var rpCn3 = $("#rpCn3");
-      var rpCn4 = $("#rpCn4");
-      var rpVd = $("#rpVd");
-      var rpBd = $("#rpBd");
-      var rpPw = $("#rpPw");
-
-      if (rpCn1.val().length != 4 || !isDigit(rpCn1.val())) {
-        alert("카드번호를 확인 하세요.");
-        rpCn1.focus();
-        return false;
-      }
-      if(rpCn2.val().length != 4 || !isDigit(rpCn2.val())){
-        alert("카드번호를 확인 하세요.");
-        rpCn2.focus();
-        return false;
-      }
-      if(rpCn3.val().length != 4 || !isDigit(rpCn3.val())){
-        alert("카드번호를 확인 하세요.");
-        rpCn3.focus();
-        return false;
-      }
-      if((rpCn4.val().length != 3 && rpCn4.val().length != 4) || !isDigit(rpCn4.val())){
-        alert("카드번호를 확인 하세요.");
-        rpCn4.focus();
-        return false;
-      }
-      if(rpVd.val().length != 4 || !isDigit(rpVd.val())){
-        alert("유효년월을 확인 하세요.");
-        rpVd.focus();
-        return false;
-      }
-      if(rpBd.val().length < 6 || !isDigit(rpBd.val())){
-        alert("생년월일을 확인 하세요.");
-        rpBd.focus();
-        return false;
-      }
-      if(rpPw.val().length != 2 || !isDigit(rpPw.val())){
-        alert("비밀번호를 확인 하세요.");
-        rpPw.focus();
-        return false;
-      }
-
-      if(!$('#rpChk1').is(':checked')){
-        alert("전자금융거래 이용약관 동의에 동의를 해 주세요.");
-        return false;
-
-      }
-      if(!$('#rpChk2').is(':checked')){
-        alert("개인정보 수집 및 이용 동의에 동의를 해 주세요.");
-        return false;
-      }
-      if(!$('#rpChk3').is(':checked')){
-        alert("개인정보 제 3자 제공약관 동의에 동의를 해 주세요.");
-        return false;
-      }
-      /*
-        if($('.rpChk:checked').length < 3){
-            alert("이용약관에 동의 하세요.");
-            return false;
-        }
-         */
-
-      return true;
-    }
-
-    function maxNumChk(obj) {
-      // console.log("obj >> ",obj);
-      if (obj.value.length > obj.maxLength) {
-        // console.log("max >> ",obj.maxLength);
-        obj.value = obj.value.slice(0, obj.maxLength);
-      }
-    }
-
-    // 랭킹페이 카드 등록
-    function fnSaveRankingPayBill() {
-      // console.log("saveRanking");
-      var frm = $('#rpFrm');
-      // console.log("frm >> ",frm);
-      cmAjax({
-        url: '/order/rankPay/saveCard'
-        , type: 'POST'
-        , data: frm.serialize()
-        , dataType: "json"
-        , success: function (data) {
-
-
-          // console.log("data >> ",data);
-          // console.log("billVo >> ",data.billVo);
-          if ("succ" == data.status) {
-
-            // 결제화면 랭킹페이 등록카드 정보 설정처리
-            //$('#popup-rankpay').hide();
-            fnGetRankPayInfo(true);
-
-            /*
-                    console.log("saveCard Test");
-                    $('#popup-rankpay').hide();
-                    $('.rpNum').val('');
-                    $('#rpChkAll').prop("checked",false);
-                    $(".rpChk").prop("checked",false);
-
-                    $("#popup-rankFinal").show();
-                     */
-
-          } else {
-
-            alert(data.message);
-          }
-        }
-        , error: function (e) {
-          console.log(e);
-        }
-      });
-    }
-
-    // 랭킹페이 결제 정보 설정
-    function fnSetRankPayApprInfo(){
-
-
-      var frm = $('#rpFnFrm');
-      var cardNm = $(frm).find('input[name=rankPayCardNm]').val();
-      var passYn = $(frm).find('input[name=rankPayPassyn]').val();
-
-      if(passYn == 'Y'){
-        // 비밀번호가 등록된경우
-        $('#rnkPayPw2').hide();
-        $('#rank_pay_final_pwd_1').text('비밀번호입력');  // 비밀번호 등록 텍스트
-        $('#rank_pay_final_pwd_2').text('※ 카드 등록 시 설정한 비밀번호를 입력해주세요.');  //
-        $('#rank_pay_final_img1').hide();
-        $('#rank_pay_final_img2').show();
-
-      } else {
-        // 비밀번호가 등록되지 않은경우
-        $('#rnkPayPw2').show();
-        $('#rank_pay_final_pwd_1').text('비밀번호등록');  // 비밀번호 등록 텍스트
-        $('#rank_pay_final_pwd_2').text('※ 결제 시 사용할 비밀번호를 입력해주세요.');  //
-        $('#rank_pay_final_img1').show();
-        $('#rank_pay_final_img2').hide();
-
-      }
-
-      $('#rank_pay_cardquota li').eq(0).find('a').trigger('click');
-
-      if($(frm).find('input[name=rankPayCardCl]').val() == '1') {
-
-        $('#rank_pay_cardquota_sel').addClass('off');
-
-        //$('#rank_pay_cardquota_layer').hide();
-
-        /*
-            $('#rank_pay_cardquota').find('li').each(function(){
-
-                if($(this).index() != 0) {
-                    $(this).hide();
-                }
-
-            });
-            */
-      } else {
-
-        if(parseInt($(frm).find('input[name=amt]').val()) < 50000){
-
-          $('#rank_pay_cardquota_sel').addClass('off');
-          //$('#rank_pay_cardquota_layer').hide();
-          /*
-                $('#rank_pay_cardquota').find('li').each(function(){
-
-                    if($(this).index() != 0) {
-                       $(this).hide();
-                    }
-
-                });
-                */
-        } else {
-
-          $('#rank_pay_cardquota_sel').removeClass('off');
-          //$('#rank_pay_cardquota_layer').removeAttr('style');
-          /*
-                $('#rank_pay_cardquota').find('li').each(function(){
-
-                    $(this).show();
-
-                });
-                 */
-
-        }
-      }
-
-
-      switch(cardNm) { //변경될 카드이미지 가져오기
-
-        case "[KB국민]" :
-          $('#ranpay_card_img').attr('src', 'https://file.rankingdak.com/bank/card_logo/kb.png');
-          break;
-
-        case "[NH채움]" :
-          $('#ranpay_card_img').attr('src', 'https://file.rankingdak.com/bank/card_logo/nh.png');
-          break;
-
-        case "[광주]" :
-          $('#ranpay_card_img').attr('src', 'https://file.rankingdak.com/bank/card_logo/kjcard.png');
-          break;
-
-        case "[롯데]" :
-          $('#ranpay_card_img').attr('src', 'https://file.rankingdak.com/bank/card_logo/lotte.png');
-          break;
-
-        case "[비씨]" :
-          $('#ranpay_card_img').attr('src', 'https://file.rankingdak.com/bank/card_logo/bc.png');
-          break;
-
-        case "[삼성]" :
-          $('#ranpay_card_img').attr('src', 'https://file.rankingdak.com/bank/card_logo/samsung.png');
-          break;
-
-        case "[수협]" :
-          $('#ranpay_card_img').attr('src', 'https://file.rankingdak.com/bank/card_logo/sh.png');
-          break;
-
-        case "[신한]" :
-          $('#ranpay_card_img').attr('src', 'https://file.rankingdak.com/bank/card_logo/shinhan.png');
-          break;
-
-        case "[씨티]" :
-          $('#ranpay_card_img').attr('src', 'https://file.rankingdak.com/bank/card_logo/citi.png');
-          break;
-
-        case "[전북]" :
-          $('#ranpay_card_img').attr('src', 'https://file.rankingdak.com/bank/card_logo/jbcard.png');
-          break;
-
-        case "[제주]" :
-          $('#ranpay_card_img').attr('src', 'https://file.rankingdak.com/bank/card_logo/jeju.png');
-          break;
-
-        case "[현대]" :
-          $('#ranpay_card_img').attr('src', 'https://file.rankingdak.com/bank/card_logo/hyundai.png');
-          break;
-
-        case "[하나]" :
-          $('#ranpay_card_img').attr('src', 'https://file.rankingdak.com/bank/card_logo/hana.png');
-          break;
-        case "[하나(외환)]":
-          $('#ranpay_card_img').attr('src', 'https://file.rankingdak.com/bank/card_logo/hana.png');
-          break;
-
-        default:
-
-          $('#ranpay_card_img').attr('src', '');
-          break;
-      }
-
-      $('#popup-rankFinal').show();
-    }
-
-    // 랭킹페이 결제
-    function fnRankPayApprProc() {
-
-      if(confirm('결제 진행합니다.')){
-
-        console.log("fnRankPayApprProc");
-        var frm = $('#rpFnFrm');
-        const cartType = $('#rpFnFrm input[name=cartType]').val();
-        var selIdx = 0;
-        var cardQuota = "00";
-
-        $('#rank_pay_cardquota li').each(function () {
-
-          if ($(this).find('a').hasClass("selected")) {
-            selIdx = $(this).index();
-            return;
-          }
-
-        });
-
-        if (selIdx > 0) {
-          cardQuota = "0" + (selIdx + 1);
-        }
-
-        $(frm).find('input[name=cardQuota]').val(cardQuota);
-        console.log(frm.serialize());
-
-        cmAjax({
-          url: '/order/rankPay/apporve'
-          , type: 'POST'
-          , data: frm.serialize()
-          , dataType: "json"
-          , success: function (data) {
-            console.log(data);
-            if ("succ" == data.status) {
-
-              if(!isEmpty(data.message)) {
-                alert(data.message);
-              } else {
-                alert('결제가 완료 되었습니다.');
-              }
-
-              let finishUrl = '/order/order/finish';
-              if (!isEmpty(cartType) && cartType == '03') {
-                finishUrl = '/order/gift/finish';
-              }
-
-              location.href = finishUrl + '?vOrdercd=' + data.object.orderCd + "&isOrangeMember=" + data.object.isOrangeMember + "&cartType=" + cartType;
-
-            } else if ("fail" == data.status) {
-
-              alert(data.message);
-
-            } else {
-
-              alert('결제 오류가 발생했습니다.');
-              $("#popup-rankFinal").hide();
-              $('body').removeAttr('style');
-
-            }
-          }
-          , error: function (e) {
-            console.log(e);
-          }
-        });
-      }
-
-
-    }
-  </script><div class="layer-wrap" id="popup-dlv-noti" style="display:none">
-  <div class="layer-pop dlv-noti-pop">
-    <div class="layer-inner">
-      <i class="ico-img-dlvtit"></i>
-      <p class="txt">입력하신 배송지는 특급배송 지역이 아닙니다.<br> 일반배송으로 발송됩니다.</p>
-      <div class="btn-area">
-        <button type="button" class="btn-basic-md btn-black btn-default ui-close-pop closePop">
-          <span>확인</span>
+  <!--        $('body').removeAttr('style');-->
+
+  <!--        if($('#popup-rankpay').css('display') != 'none'){-->
+
+  <!--          $('#popup-rankpay').hide();-->
+  <!--          $('.rpNum').val('');-->
+  <!--          $('#rpChkAll').prop("checked",false);-->
+  <!--          $(".rpChk").prop("checked",false);-->
+
+  <!--        } else {-->
+
+  <!--          $("#popup-rankFinal").hide();-->
+
+  <!--        }-->
+
+  <!--      });-->
+
+  <!--      $("#rpChkAll").click(function(){-->
+  <!--        if($("#rpChkAll").prop("checked")) {-->
+  <!--          $(".rpChk").prop("checked",true);-->
+  <!--        } else {-->
+  <!--          $(".rpChk").prop("checked",false);-->
+  <!--        }-->
+  <!--      });-->
+
+  <!--      $("#btnBill").click(function(){-->
+
+  <!--        if(rpVaildation()){-->
+
+  <!--          fnSaveRankingPayBill();-->
+
+  <!--        }-->
+
+  <!--      });-->
+
+  <!--      // 랭킹페이 결제클릭-->
+  <!--      $('#rank_pay_appr_proc').click(function(){-->
+
+  <!--        if($('#rnkPayPw1').val().trim() == ''){-->
+  <!--          alert('비밀번호를 입력하세요.');-->
+  <!--          $('#rnkPayPw1').focus();-->
+  <!--          return false;-->
+  <!--        }-->
+
+  <!--        if($('#rnkPayPw2').is(':visible')){-->
+
+  <!--          if($('#rnkPayPw2').val().trim() == ''){-->
+  <!--            alert('비밀번호확인을 입력하세요.');-->
+  <!--            $('#rnkPayPw2').focus();-->
+  <!--            return false;-->
+  <!--          }-->
+
+  <!--          if($('#rnkPayPw1').val() != $('#rnkPayPw2').val()){-->
+
+  <!--            alert('비밀번호를 확인하세요.');-->
+  <!--            $('#rnkPayPw2').focus();-->
+  <!--            return false;-->
+  <!--          }-->
+
+  <!--        }-->
+
+  <!--        fnRankPayApprProc();-->
+
+
+  <!--      });-->
+  <!--    });-->
+
+  <!--    function rankingPayPopup() {-->
+  <!--      // console.log("rankingPayPopup start");-->
+  <!--      fnCheckOrder();-->
+  <!--    }-->
+
+  <!--    function rpVaildation() {-->
+
+  <!--      // console.log("rpVaildation Ajax Start");-->
+
+  <!--      var rpCn1 = $("#rpCn1");-->
+  <!--      var rpCn2 = $("#rpCn2");-->
+  <!--      var rpCn3 = $("#rpCn3");-->
+  <!--      var rpCn4 = $("#rpCn4");-->
+  <!--      var rpVd = $("#rpVd");-->
+  <!--      var rpBd = $("#rpBd");-->
+  <!--      var rpPw = $("#rpPw");-->
+
+  <!--      if (rpCn1.val().length != 4 || !isDigit(rpCn1.val())) {-->
+  <!--        alert("카드번호를 확인 하세요.");-->
+  <!--        rpCn1.focus();-->
+  <!--        return false;-->
+  <!--      }-->
+  <!--      if(rpCn2.val().length != 4 || !isDigit(rpCn2.val())){-->
+  <!--        alert("카드번호를 확인 하세요.");-->
+  <!--        rpCn2.focus();-->
+  <!--        return false;-->
+  <!--      }-->
+  <!--      if(rpCn3.val().length != 4 || !isDigit(rpCn3.val())){-->
+  <!--        alert("카드번호를 확인 하세요.");-->
+  <!--        rpCn3.focus();-->
+  <!--        return false;-->
+  <!--      }-->
+  <!--      if((rpCn4.val().length != 3 && rpCn4.val().length != 4) || !isDigit(rpCn4.val())){-->
+  <!--        alert("카드번호를 확인 하세요.");-->
+  <!--        rpCn4.focus();-->
+  <!--        return false;-->
+  <!--      }-->
+  <!--      if(rpVd.val().length != 4 || !isDigit(rpVd.val())){-->
+  <!--        alert("유효년월을 확인 하세요.");-->
+  <!--        rpVd.focus();-->
+  <!--        return false;-->
+  <!--      }-->
+  <!--      if(rpBd.val().length < 6 || !isDigit(rpBd.val())){-->
+  <!--        alert("생년월일을 확인 하세요.");-->
+  <!--        rpBd.focus();-->
+  <!--        return false;-->
+  <!--      }-->
+  <!--      if(rpPw.val().length != 2 || !isDigit(rpPw.val())){-->
+  <!--        alert("비밀번호를 확인 하세요.");-->
+  <!--        rpPw.focus();-->
+  <!--        return false;-->
+  <!--      }-->
+
+  <!--      if(!$('#rpChk1').is(':checked')){-->
+  <!--        alert("전자금융거래 이용약관 동의에 동의를 해 주세요.");-->
+  <!--        return false;-->
+
+  <!--      }-->
+  <!--      if(!$('#rpChk2').is(':checked')){-->
+  <!--        alert("개인정보 수집 및 이용 동의에 동의를 해 주세요.");-->
+  <!--        return false;-->
+  <!--      }-->
+  <!--      if(!$('#rpChk3').is(':checked')){-->
+  <!--        alert("개인정보 제 3자 제공약관 동의에 동의를 해 주세요.");-->
+  <!--        return false;-->
+  <!--      }-->
+  <!--      /*-->
+  <!--        if($('.rpChk:checked').length < 3){-->
+  <!--            alert("이용약관에 동의 하세요.");-->
+  <!--            return false;-->
+  <!--        }-->
+  <!--         */-->
+
+  <!--      return true;-->
+  <!--    }-->
+
+  <!--    function maxNumChk(obj) {-->
+  <!--      // console.log("obj >> ",obj);-->
+  <!--      if (obj.value.length > obj.maxLength) {-->
+  <!--        // console.log("max >> ",obj.maxLength);-->
+  <!--        obj.value = obj.value.slice(0, obj.maxLength);-->
+  <!--      }-->
+  <!--    }-->
+
+  <!--    // 랭킹페이 카드 등록-->
+  <!--    function fnSaveRankingPayBill() {-->
+  <!--      // console.log("saveRanking");-->
+  <!--      var frm = $('#rpFrm');-->
+  <!--      // console.log("frm >> ",frm);-->
+  <!--      cmAjax({-->
+  <!--        url: '/order/rankPay/saveCard'-->
+  <!--        , type: 'POST'-->
+  <!--        , data: frm.serialize()-->
+  <!--        , dataType: "json"-->
+  <!--        , success: function (data) {-->
+
+
+  <!--          // console.log("data >> ",data);-->
+  <!--          // console.log("billVo >> ",data.billVo);-->
+  <!--          if ("succ" == data.status) {-->
+
+  <!--            // 결제화면 랭킹페이 등록카드 정보 설정처리-->
+  <!--            //$('#popup-rankpay').hide();-->
+  <!--            fnGetRankPayInfo(true);-->
+
+  <!--            /*-->
+  <!--                    console.log("saveCard Test");-->
+  <!--                    $('#popup-rankpay').hide();-->
+  <!--                    $('.rpNum').val('');-->
+  <!--                    $('#rpChkAll').prop("checked",false);-->
+  <!--                    $(".rpChk").prop("checked",false);-->
+
+  <!--                    $("#popup-rankFinal").show();-->
+  <!--                     */-->
+
+  <!--          } else {-->
+
+  <!--            alert(data.message);-->
+  <!--          }-->
+  <!--        }-->
+  <!--        , error: function (e) {-->
+  <!--          console.log(e);-->
+  <!--        }-->
+  <!--      });-->
+  <!--    }-->
+
+  <!--    // 랭킹페이 결제 정보 설정-->
+  <!--    function fnSetRankPayApprInfo(){-->
+
+
+  <!--      var frm = $('#rpFnFrm');-->
+  <!--      var cardNm = $(frm).find('input[name=rankPayCardNm]').val();-->
+  <!--      var passYn = $(frm).find('input[name=rankPayPassyn]').val();-->
+
+  <!--      if(passYn == 'Y'){-->
+  <!--        // 비밀번호가 등록된경우-->
+  <!--        $('#rnkPayPw2').hide();-->
+  <!--        $('#rank_pay_final_pwd_1').text('비밀번호입력');  // 비밀번호 등록 텍스트-->
+  <!--        $('#rank_pay_final_pwd_2').text('※ 카드 등록 시 설정한 비밀번호를 입력해주세요.');  //-->
+  <!--        $('#rank_pay_final_img1').hide();-->
+  <!--        $('#rank_pay_final_img2').show();-->
+
+  <!--      } else {-->
+  <!--        // 비밀번호가 등록되지 않은경우-->
+  <!--        $('#rnkPayPw2').show();-->
+  <!--        $('#rank_pay_final_pwd_1').text('비밀번호등록');  // 비밀번호 등록 텍스트-->
+  <!--        $('#rank_pay_final_pwd_2').text('※ 결제 시 사용할 비밀번호를 입력해주세요.');  //-->
+  <!--        $('#rank_pay_final_img1').show();-->
+  <!--        $('#rank_pay_final_img2').hide();-->
+
+  <!--      }-->
+
+  <!--      $('#rank_pay_cardquota li').eq(0).find('a').trigger('click');-->
+
+  <!--      if($(frm).find('input[name=rankPayCardCl]').val() == '1') {-->
+
+  <!--        $('#rank_pay_cardquota_sel').addClass('off');-->
+
+  <!--        //$('#rank_pay_cardquota_layer').hide();-->
+
+  <!--        /*-->
+  <!--            $('#rank_pay_cardquota').find('li').each(function(){-->
+
+  <!--                if($(this).index() != 0) {-->
+  <!--                    $(this).hide();-->
+  <!--                }-->
+
+  <!--            });-->
+  <!--            */-->
+  <!--      } else {-->
+
+  <!--        if(parseInt($(frm).find('input[name=amt]').val()) < 50000){-->
+
+  <!--          $('#rank_pay_cardquota_sel').addClass('off');-->
+  <!--          //$('#rank_pay_cardquota_layer').hide();-->
+  <!--          /*-->
+  <!--                $('#rank_pay_cardquota').find('li').each(function(){-->
+
+  <!--                    if($(this).index() != 0) {-->
+  <!--                       $(this).hide();-->
+  <!--                    }-->
+
+  <!--                });-->
+  <!--                */-->
+  <!--        } else {-->
+
+  <!--          $('#rank_pay_cardquota_sel').removeClass('off');-->
+  <!--          //$('#rank_pay_cardquota_layer').removeAttr('style');-->
+  <!--          /*-->
+  <!--                $('#rank_pay_cardquota').find('li').each(function(){-->
+
+  <!--                    $(this).show();-->
+
+  <!--                });-->
+  <!--                 */-->
+
+  <!--        }-->
+  <!--      }-->
+
+
+  <!--      switch(cardNm) { //변경될 카드이미지 가져오기-->
+
+  <!--        case "[KB국민]" :-->
+  <!--          $('#ranpay_card_img').attr('src', 'https://file.rankingdak.com/bank/card_logo/kb.png');-->
+  <!--          break;-->
+
+  <!--        case "[NH채움]" :-->
+  <!--          $('#ranpay_card_img').attr('src', 'https://file.rankingdak.com/bank/card_logo/nh.png');-->
+  <!--          break;-->
+
+  <!--        case "[광주]" :-->
+  <!--          $('#ranpay_card_img').attr('src', 'https://file.rankingdak.com/bank/card_logo/kjcard.png');-->
+  <!--          break;-->
+
+  <!--        case "[롯데]" :-->
+  <!--          $('#ranpay_card_img').attr('src', 'https://file.rankingdak.com/bank/card_logo/lotte.png');-->
+  <!--          break;-->
+
+  <!--        case "[비씨]" :-->
+  <!--          $('#ranpay_card_img').attr('src', 'https://file.rankingdak.com/bank/card_logo/bc.png');-->
+  <!--          break;-->
+
+  <!--        case "[삼성]" :-->
+  <!--          $('#ranpay_card_img').attr('src', 'https://file.rankingdak.com/bank/card_logo/samsung.png');-->
+  <!--          break;-->
+
+  <!--        case "[수협]" :-->
+  <!--          $('#ranpay_card_img').attr('src', 'https://file.rankingdak.com/bank/card_logo/sh.png');-->
+  <!--          break;-->
+
+  <!--        case "[신한]" :-->
+  <!--          $('#ranpay_card_img').attr('src', 'https://file.rankingdak.com/bank/card_logo/shinhan.png');-->
+  <!--          break;-->
+
+  <!--        case "[씨티]" :-->
+  <!--          $('#ranpay_card_img').attr('src', 'https://file.rankingdak.com/bank/card_logo/citi.png');-->
+  <!--          break;-->
+
+  <!--        case "[전북]" :-->
+  <!--          $('#ranpay_card_img').attr('src', 'https://file.rankingdak.com/bank/card_logo/jbcard.png');-->
+  <!--          break;-->
+
+  <!--        case "[제주]" :-->
+  <!--          $('#ranpay_card_img').attr('src', 'https://file.rankingdak.com/bank/card_logo/jeju.png');-->
+  <!--          break;-->
+
+  <!--        case "[현대]" :-->
+  <!--          $('#ranpay_card_img').attr('src', 'https://file.rankingdak.com/bank/card_logo/hyundai.png');-->
+  <!--          break;-->
+
+  <!--        case "[하나]" :-->
+  <!--          $('#ranpay_card_img').attr('src', 'https://file.rankingdak.com/bank/card_logo/hana.png');-->
+  <!--          break;-->
+  <!--        case "[하나(외환)]":-->
+  <!--          $('#ranpay_card_img').attr('src', 'https://file.rankingdak.com/bank/card_logo/hana.png');-->
+  <!--          break;-->
+
+  <!--        default:-->
+
+  <!--          $('#ranpay_card_img').attr('src', '');-->
+  <!--          break;-->
+  <!--      }-->
+
+  <!--      $('#popup-rankFinal').show();-->
+  <!--    }-->
+
+  <!--    // 랭킹페이 결제-->
+  <!--    function fnRankPayApprProc() {-->
+
+  <!--      if(confirm('결제 진행합니다.')){-->
+
+  <!--        console.log("fnRankPayApprProc");-->
+  <!--        var frm = $('#rpFnFrm');-->
+  <!--        const cartType = $('#rpFnFrm input[name=cartType]').val();-->
+  <!--        var selIdx = 0;-->
+  <!--        var cardQuota = "00";-->
+
+  <!--        $('#rank_pay_cardquota li').each(function () {-->
+
+  <!--          if ($(this).find('a').hasClass("selected")) {-->
+  <!--            selIdx = $(this).index();-->
+  <!--            return;-->
+  <!--          }-->
+
+  <!--        });-->
+
+  <!--        if (selIdx > 0) {-->
+  <!--          cardQuota = "0" + (selIdx + 1);-->
+  <!--        }-->
+
+  <!--        $(frm).find('input[name=cardQuota]').val(cardQuota);-->
+  <!--        console.log(frm.serialize());-->
+
+  <!--        cmAjax({-->
+  <!--          url: '/order/rankPay/apporve'-->
+  <!--          , type: 'POST'-->
+  <!--          , data: frm.serialize()-->
+  <!--          , dataType: "json"-->
+  <!--          , success: function (data) {-->
+  <!--            console.log(data);-->
+  <!--            if ("succ" == data.status) {-->
+
+  <!--              if(!isEmpty(data.message)) {-->
+  <!--                alert(data.message);-->
+  <!--              } else {-->
+  <!--                alert('결제가 완료 되었습니다.');-->
+  <!--              }-->
+
+  <!--              let finishUrl = '/order/order/finish';-->
+  <!--              if (!isEmpty(cartType) && cartType == '03') {-->
+  <!--                finishUrl = '/order/gift/finish';-->
+  <!--              }-->
+
+  <!--              location.href = finishUrl + '?vOrdercd=' + data.object.orderCd + "&isOrangeMember=" + data.object.isOrangeMember + "&cartType=" + cartType;-->
+
+  <!--            } else if ("fail" == data.status) {-->
+
+  <!--              alert(data.message);-->
+
+  <!--            } else {-->
+
+  <!--              alert('결제 오류가 발생했습니다.');-->
+  <!--              $("#popup-rankFinal").hide();-->
+  <!--              $('body').removeAttr('style');-->
+
+  <!--            }-->
+  <!--          }-->
+  <!--          , error: function (e) {-->
+  <!--            console.log(e);-->
+  <!--          }-->
+  <!--        });-->
+  <!--      }-->
+
+
+  <!--    }-->
+  <!--  </script>-->
+  <div class="layer-wrap" id="popup-dlv-noti" style="display:none">
+    <div class="layer-pop dlv-noti-pop">
+      <div class="layer-inner">
+        <i class="ico-img-dlvtit"></i>
+        <p class="txt">입력하신 배송지는 특급배송 지역이 아닙니다.<br> 일반배송으로 발송됩니다.</p>
+        <div class="btn-area">
+          <button type="button" class="btn-basic-md btn-black btn-default ui-close-pop closePop">
+            <span>확인</span>
+          </button>
+        </div>
+        <button type="button" class="btn-x-sm ui-close-pop closePop" title="">
+          <i class="ico-x-grey"></i><span class="blind">닫기</span>
         </button>
-      </div>
-      <button type="button" class="btn-x-sm ui-close-pop closePop" title="">
-        <i class="ico-x-grey"></i><span class="blind">닫기</span>
-      </button>
-    </div><!--// layer-inner -->
-  </div><!--// layer-pop  -->
-</div>
+      </div><!--// layer-inner -->
+    </div><!--// layer-pop  -->
+  </div>
   <!--// layer-pop-wrap #popup-dlv-noti -->
   <!-- 나이스페이먼츠 결제 FROM -->
   <form id="nicePayFrm" name="nicePayFrm" action="/order/pg/nicePg/payResult" method="post"><input type="hidden" name="PayMethod"> <!-- 결제수단 -->
@@ -4028,408 +4082,409 @@
     <input type="hidden" name="_csrf" value="248e0e73-fdd5-4706-aad8-266bb5b012d6">
   </div></form><script src="/resources/pc/js/order/order.js?ver=20230627"></script>
 
-  <script>
-
-    //공동현관 출입방법
-    $("input:radio[name=epx-m-chk]").click(function(){
-      var epx = $("input[name=epx-m-chk]:checked").val();
-
-      if(epx == "01"){
-        $(".epx-m-chk-con .custom-radio.s-li > p").hide();
-        $(".epx-m-chk-con .custom-radio.s-li.s-li1 > p").show();
-        $(".ex-delivery-memo-info .epx-m-chk-m").hide();
-        $(".ex-delivery-memo-info .epx-m-chk-m.epx-m-chk1-m").show();
-      }else if(epx == "00"){
-        $(".epx-m-chk-con .custom-radio.s-li > p").hide();
-        $(".ex-delivery-memo-info .epx-m-chk-m").hide();
-        $(".ex-delivery-memo-info .epx-m-chk-m.epx-m-chk2-m").show();
-      }else if(epx == "04"){
-        $(".epx-m-chk-con .custom-radio.s-li > p").hide();
-        $(".ex-delivery-memo-info .epx-m-chk-m").hide();
-        $(".ex-delivery-memo-info .epx-m-chk-m.epx-m-chk3-m").show();
-      }else if(epx == "05"){
-        $(".epx-m-chk-con .custom-radio.s-li > p").hide();
-        $(".epx-m-chk-con .custom-radio.s-li.s-li4 > p").show();
-        $(".ex-delivery-memo-info .epx-m-chk-m").hide();
-        $(".ex-delivery-memo-info .epx-m-chk-m.epx-m-chk4-m").show();
-      }
-    });
-
-    $(document).ready(function () {
-
-      // 우편번호찾기 팝업 닫기
-      $(document).on('click', '.btnClose', fnPostClose);
-
-      // 주문자 정보와 동일 체크박스 클릭
-      $(document).on('change', '#sameOrderInfoChk', fnSameOrderInfo);
-
-      fnDoorAccessMethodSetting('','','');
-
-      $('input[name=dayDawnChk]').on('click', function () {
-        const dayDawnChk = $(this).val();
-        let html = [];
-        html.push('<i class="ico-bl-alarm"></i> ');
-
-        if (dayDawnChk == 'DAY') {
-          html.push($('#dayEndText').val());
-          if($('#dlvAlarmDiv').data('alarm') == 'Y') {
-            $('#dlvAlarmDiv').attr("style", "display:none;");
-            $('#ex-nc2').click();
-          }
-        } else {
-          html.push($('#dawnEndText').val());
-          if($('#dlvAlarmDiv').data('alarm') == 'Y') {
-            $('#dlvAlarmDiv').attr("style", "display:block;");
-            $('#ex-nc1').click();
-          }
-        }
-
-        $('.dlv-time').html(html);
-
-      });
-
-
-    }).on('change keyup paste input', '.removeEmoji', removeEmojis);
-
-    //공동현관 출입방법 설정 - 저장되어 있으면
-    function fnDoorAccessMethodSetting(damc, damm, saveyn) {
-      $('input[name=expDlvCommentText]').val('');
-      $('input[name=expDlvCommentCd]').val('');
-      $('input[name=doorAccessMethodSaveYn]').prop('checked', false);
-      $('input[name^=expressMemo]').each(function () {
-        $(this).val('');
-      });
-      $('input[name=epx-m-chk]:first').click();
-
-      if (saveyn === 'Y') {
-        $('input[name=doorAccessMethodSaveYn]').prop('checked', true);
-        $('input[name=epx-m-chk]').each(function () {
-          if ($(this).val() == damc) {
-            $('input[name=expressMemo' + damc + ']').val(damm);
-            $(this).click();
-          }
-        });
-      }
-    }
-
-    // 비회원 우편번호 찾기
-    function fnPostFind(e) {
-      e.preventDefault();
-
-      $("form[name='postSearchForm'] input[name=nowPageNo]").val('1');
-
-      const param = $("form[name='postSearchForm']");
-
-      $('#jusoDiv').load('/display/juso/getAddrApi', param.serialize());
-    }
-
-    // 주소검색
-    function openPostSearchForm(nowPageNo) {
-      var totalPageCnt = $("#postSearchForm input[name=totalPageCnt]").val();
-      if((parseInt(nowPageNo) > 0)&&!(totalPageCnt > 0 && parseInt(nowPageNo) > totalPageCnt)){
-        $("#postSearchForm input[name=nowPageNo]").val(nowPageNo);
-        const param = $("#postSearchForm");
-        $('#jusoDiv').load('/display/juso/getAddrApi', param.serialize());
-      }
-    }
-
-    // 우편번호찾기 팝업 닫기
-    function fnPostClose() {
-      $('#jusoDiv').html('');
-    }
-
-    // 비회원 배송지 정보 - 주소 설정
-    function postReturn(data) {
-      let vAddr = '';
-      if (data.addrType == 'jibunAddr') {
-        vAddr = data.jibunAddr;
-      } else {
-        vAddr = data.roadAddr;
-      }
-
-      // 상품코드
-      let vProductcdArr = [];
-      $('input.vProductCd').each(function (item) {
-        if (!vProductcdArr.includes($(this).val())) {
-          vProductcdArr.push($(this).val());
-        }
-      });
-
-      $('input[name=receiverPost]').val(data.zipno);
-      $('input[name=receiverAddr]').val(vAddr);
-
-      // ajax 호출 - 배송지 도서산간지역 확인,일반배송/특급배송 지역 확인
-      cmAjax({
-        url: '/order/order/isCheckDelivery'
-        , type: 'POST'
-        , data: {
-          vPostcd: data.zipno,
-          vProductcdArr: vProductcdArr,
-          vAddr: vAddr
-        }
-        , dataType: "json"
-        , success: function (data) {
-
-          if (data.status == 'succ') {
-            $('input[name=vExdlvArea]').val(data.vExdlvArea);
-            // 특급배송 여부 가능
-            $('#isExpressDeliveryAddrNonMember').val('Y');
-
-            $('.norDeliveryInfo').hide();
-            // wnsgml351 인수인계 추가 - 배송지가 특급배송인 경우 배송방법 선택 보여주기
-            if ($('#deliveryTabType').val() == "Y" || $('#deliveryTabType').val() == "O"){
-              $('#dlvDlvTypeChk').show();
-            }else if ($('#deliveryTabType').val() == "E"){
-              $('#express-dlv-guide-box').show();
-            }
-
-            // wnsgml351 특급배송되는 상품들의 합이 5만원으로 체크해야됨
-            // 배송방법 선택
-            // 금액이 5만원 미만이면 일반배송으로 선택
-            // 금액이 5만원 이상이면 특급배송으로 선택
-            if (userSumExpPrdPrice < userFreeDeliveryPrice) {
-              $('.dlvTab[value="N"]').trigger('click');
-            } else {
-              $('.dlvTab[value="Y"]').trigger('click');
-            }
-
-            const todayDlvYn = data.vTodayDlvYn;
-            const dawnDlvYn = data.vDawnDlvYn;
-
-            if(todayDlvYn == 'N' && dawnDlvYn == 'Y') {
-              $('#special1').prop("disabled",true);
-              $('label[for="special1"] span').addClass('text-throu');
-              $('#special2').prop("disabled",false);
-              //$('#special2').prop("checked",true);
-              $('#special2').click();
-
-              $('#special1').parent().parent().css("display","none");
-              $('label[for="special2"]').css("width","708px");
-            }else{
-              const iac = $('#iac').val();
-              const ied = $('#ied').val();
-
-              $('#special1').parent().parent().css("display","block");
-              $('label[for="special2"]').css("width","350px");
-
-              $('#special1').prop("disabled",false);
-              $('#special2').prop("disabled",false);
-              $('label[for="special1"] span').removeClass('text-throu');
-
-              if(iac == '10') {
-                //$('#special1').prop("checked",true);
-                $('#special1').click();
-              } else {
-                //$('#special2').prop("checked",true);
-                $('#special2').click();
-              }
-
-              if(ied == 'Y') {
-                $('#special1').prop("disabled",true);
-                $('label[for="special1"] span').addClass('text-throu');
-              }
-            }
-
-          } else {
-
-            if (data.isNormalDlv == 'Y') {
-
-              // wnsgml351 인수인계 추가 - 배송지가 일반배송인 경우 배송방법 선택 숨김처리
-
-              // 일반배송인 경우
-              $('#dlvDlvTypeChk').hide();
-
-              if ($('#deliveryTabType').val() != "N"){
-                if ($('#deliveryTabType').val() == "E"){
-                  $('.norDeliveryInfo').hide();
-                  $('#express-dlv-guide-box').show();
-                }else{
-                  $('.norDeliveryInfo').show();
-                }
-              }else{
-                $('.norDeliveryInfo').hide();
-              }
+<!--  <script>-->
+
+<!--    //공동현관 출입방법-->
+<!--    $("input:radio[name=epx-m-chk]").click(function(){-->
+<!--      var epx = $("input[name=epx-m-chk]:checked").val();-->
+
+<!--      if(epx == "01"){-->
+<!--        $(".epx-m-chk-con .custom-radio.s-li > p").hide();-->
+<!--        $(".epx-m-chk-con .custom-radio.s-li.s-li1 > p").show();-->
+<!--        $(".ex-delivery-memo-info .epx-m-chk-m").hide();-->
+<!--        $(".ex-delivery-memo-info .epx-m-chk-m.epx-m-chk1-m").show();-->
+<!--      }else if(epx == "00"){-->
+<!--        $(".epx-m-chk-con .custom-radio.s-li > p").hide();-->
+<!--        $(".ex-delivery-memo-info .epx-m-chk-m").hide();-->
+<!--        $(".ex-delivery-memo-info .epx-m-chk-m.epx-m-chk2-m").show();-->
+<!--      }else if(epx == "04"){-->
+<!--        $(".epx-m-chk-con .custom-radio.s-li > p").hide();-->
+<!--        $(".ex-delivery-memo-info .epx-m-chk-m").hide();-->
+<!--        $(".ex-delivery-memo-info .epx-m-chk-m.epx-m-chk3-m").show();-->
+<!--      }else if(epx == "05"){-->
+<!--        $(".epx-m-chk-con .custom-radio.s-li > p").hide();-->
+<!--        $(".epx-m-chk-con .custom-radio.s-li.s-li4 > p").show();-->
+<!--        $(".ex-delivery-memo-info .epx-m-chk-m").hide();-->
+<!--        $(".ex-delivery-memo-info .epx-m-chk-m.epx-m-chk4-m").show();-->
+<!--      }-->
+<!--    });-->
+
+<!--    $(document).ready(function () {-->
+
+<!--      // 우편번호찾기 팝업 닫기-->
+<!--      $(document).on('click', '.btnClose', fnPostClose);-->
+
+<!--      // 주문자 정보와 동일 체크박스 클릭-->
+<!--      $(document).on('change', '#sameOrderInfoChk', fnSameOrderInfo);-->
+
+<!--      fnDoorAccessMethodSetting('','','');-->
+
+<!--      $('input[name=dayDawnChk]').on('click', function () {-->
+<!--        const dayDawnChk = $(this).val();-->
+<!--        let html = [];-->
+<!--        html.push('<i class="ico-bl-alarm"></i> ');-->
+
+<!--        if (dayDawnChk == 'DAY') {-->
+<!--          html.push($('#dayEndText').val());-->
+<!--          if($('#dlvAlarmDiv').data('alarm') == 'Y') {-->
+<!--            $('#dlvAlarmDiv').attr("style", "display:none;");-->
+<!--            $('#ex-nc2').click();-->
+<!--          }-->
+<!--        } else {-->
+<!--          html.push($('#dawnEndText').val());-->
+<!--          if($('#dlvAlarmDiv').data('alarm') == 'Y') {-->
+<!--            $('#dlvAlarmDiv').attr("style", "display:block;");-->
+<!--            $('#ex-nc1').click();-->
+<!--          }-->
+<!--        }-->
+
+<!--        $('.dlv-time').html(html);-->
+
+<!--      });-->
+
+
+<!--    }).on('change keyup paste input', '.removeEmoji', removeEmojis);-->
+
+<!--    //공동현관 출입방법 설정 - 저장되어 있으면-->
+<!--    function fnDoorAccessMethodSetting(damc, damm, saveyn) {-->
+<!--      $('input[name=expDlvCommentText]').val('');-->
+<!--      $('input[name=expDlvCommentCd]').val('');-->
+<!--      $('input[name=doorAccessMethodSaveYn]').prop('checked', false);-->
+<!--      $('input[name^=expressMemo]').each(function () {-->
+<!--        $(this).val('');-->
+<!--      });-->
+<!--      $('input[name=epx-m-chk]:first').click();-->
+
+<!--      if (saveyn === 'Y') {-->
+<!--        $('input[name=doorAccessMethodSaveYn]').prop('checked', true);-->
+<!--        $('input[name=epx-m-chk]').each(function () {-->
+<!--          if ($(this).val() == damc) {-->
+<!--            $('input[name=expressMemo' + damc + ']').val(damm);-->
+<!--            $(this).click();-->
+<!--          }-->
+<!--        });-->
+<!--      }-->
+<!--    }-->
+
+<!--    // 비회원 우편번호 찾기-->
+<!--    function fnPostFind(e) {-->
+<!--      e.preventDefault();-->
+
+<!--      $("form[name='postSearchForm'] input[name=nowPageNo]").val('1');-->
+
+<!--      const param = $("form[name='postSearchForm']");-->
+
+<!--      $('#jusoDiv').load('/display/juso/getAddrApi', param.serialize());-->
+<!--    }-->
+
+<!--    // 주소검색-->
+<!--    function openPostSearchForm(nowPageNo) {-->
+<!--      var totalPageCnt = $("#postSearchForm input[name=totalPageCnt]").val();-->
+<!--      if((parseInt(nowPageNo) > 0)&&!(totalPageCnt > 0 && parseInt(nowPageNo) > totalPageCnt)){-->
+<!--        $("#postSearchForm input[name=nowPageNo]").val(nowPageNo);-->
+<!--        const param = $("#postSearchForm");-->
+<!--        $('#jusoDiv').load('/display/juso/getAddrApi', param.serialize());-->
+<!--      }-->
+<!--    }-->
+
+<!--    // 우편번호찾기 팝업 닫기-->
+<!--    function fnPostClose() {-->
+<!--      $('#jusoDiv').html('');-->
+<!--    }-->
+
+<!--    // 비회원 배송지 정보 - 주소 설정-->
+<!--    function postReturn(data) {-->
+<!--      let vAddr = '';-->
+<!--      if (data.addrType == 'jibunAddr') {-->
+<!--        vAddr = data.jibunAddr;-->
+<!--      } else {-->
+<!--        vAddr = data.roadAddr;-->
+<!--      }-->
+
+<!--      // 상품코드-->
+<!--      let vProductcdArr = [];-->
+<!--      $('input.vProductCd').each(function (item) {-->
+<!--        if (!vProductcdArr.includes($(this).val())) {-->
+<!--          vProductcdArr.push($(this).val());-->
+<!--        }-->
+<!--      });-->
+
+<!--      $('input[name=receiverPost]').val(data.zipno);-->
+<!--      $('input[name=receiverAddr]').val(vAddr);-->
+
+<!--      // ajax 호출 - 배송지 도서산간지역 확인,일반배송/특급배송 지역 확인-->
+<!--      cmAjax({-->
+<!--        url: '/order/order/isCheckDelivery'-->
+<!--        , type: 'POST'-->
+<!--        , data: {-->
+<!--          vPostcd: data.zipno,-->
+<!--          vProductcdArr: vProductcdArr,-->
+<!--          vAddr: vAddr-->
+<!--        }-->
+<!--        , dataType: "json"-->
+<!--        , success: function (data) {-->
+
+<!--          if (data.status == 'succ') {-->
+<!--            $('input[name=vExdlvArea]').val(data.vExdlvArea);-->
+<!--            // 특급배송 여부 가능-->
+<!--            $('#isExpressDeliveryAddrNonMember').val('Y');-->
+
+<!--            $('.norDeliveryInfo').hide();-->
+<!--            // wnsgml351 인수인계 추가 - 배송지가 특급배송인 경우 배송방법 선택 보여주기-->
+<!--            if ($('#deliveryTabType').val() == "Y" || $('#deliveryTabType').val() == "O"){-->
+<!--              $('#dlvDlvTypeChk').show();-->
+<!--            }else if ($('#deliveryTabType').val() == "E"){-->
+<!--              $('#express-dlv-guide-box').show();-->
+<!--            }-->
+
+<!--            // wnsgml351 특급배송되는 상품들의 합이 5만원으로 체크해야됨-->
+<!--            // 배송방법 선택-->
+<!--            // 금액이 5만원 미만이면 일반배송으로 선택-->
+<!--            // 금액이 5만원 이상이면 특급배송으로 선택-->
+<!--            if (userSumExpPrdPrice < userFreeDeliveryPrice) {-->
+<!--              $('.dlvTab[value="N"]').trigger('click');-->
+<!--            } else {-->
+<!--              $('.dlvTab[value="Y"]').trigger('click');-->
+<!--            }-->
+
+<!--            const todayDlvYn = data.vTodayDlvYn;-->
+<!--            const dawnDlvYn = data.vDawnDlvYn;-->
+
+<!--            if(todayDlvYn == 'N' && dawnDlvYn == 'Y') {-->
+<!--              $('#special1').prop("disabled",true);-->
+<!--              $('label[for="special1"] span').addClass('text-throu');-->
+<!--              $('#special2').prop("disabled",false);-->
+<!--              //$('#special2').prop("checked",true);-->
+<!--              $('#special2').click();-->
+
+<!--              $('#special1').parent().parent().css("display","none");-->
+<!--              $('label[for="special2"]').css("width","708px");-->
+<!--            }else{-->
+<!--              const iac = $('#iac').val();-->
+<!--              const ied = $('#ied').val();-->
+
+<!--              $('#special1').parent().parent().css("display","block");-->
+<!--              $('label[for="special2"]').css("width","350px");-->
+
+<!--              $('#special1').prop("disabled",false);-->
+<!--              $('#special2').prop("disabled",false);-->
+<!--              $('label[for="special1"] span').removeClass('text-throu');-->
+
+<!--              if(iac == '10') {-->
+<!--                //$('#special1').prop("checked",true);-->
+<!--                $('#special1').click();-->
+<!--              } else {-->
+<!--                //$('#special2').prop("checked",true);-->
+<!--                $('#special2').click();-->
+<!--              }-->
+
+<!--              if(ied == 'Y') {-->
+<!--                $('#special1').prop("disabled",true);-->
+<!--                $('label[for="special1"] span').addClass('text-throu');-->
+<!--              }-->
+<!--            }-->
+
+<!--          } else {-->
+
+<!--            if (data.isNormalDlv == 'Y') {-->
+
+<!--              // wnsgml351 인수인계 추가 - 배송지가 일반배송인 경우 배송방법 선택 숨김처리-->
+
+<!--              // 일반배송인 경우-->
+<!--              $('#dlvDlvTypeChk').hide();-->
+
+<!--              if ($('#deliveryTabType').val() != "N"){-->
+<!--                if ($('#deliveryTabType').val() == "E"){-->
+<!--                  $('.norDeliveryInfo').hide();-->
+<!--                  $('#express-dlv-guide-box').show();-->
+<!--                }else{-->
+<!--                  $('.norDeliveryInfo').show();-->
+<!--                }-->
+<!--              }else{-->
+<!--                $('.norDeliveryInfo').hide();-->
+<!--              }-->
 
-              $('#express-dlv-guide-box').hide();
+<!--              $('#express-dlv-guide-box').hide();-->
 
 
-              // 특급배송 여부
-              $('#isExpressDeliveryAddrNonMember').val('N');
+<!--              // 특급배송 여부-->
+<!--              $('#isExpressDeliveryAddrNonMember').val('N');-->
 
-              // 배송방법 선택 - 일반배송으로 변경
-              $('.dlvTab[value="N"]').click();
+<!--              // 배송방법 선택 - 일반배송으로 변경-->
+<!--              $('.dlvTab[value="N"]').click();-->
 
-            } else {
-              alert(data.msg);
-            }
+<!--            } else {-->
+<!--              alert(data.msg);-->
+<!--            }-->
 
-          }
+<!--          }-->
 
-        }
-        , error: function (e) {
-          console.log(e);
-        }
-      });
+<!--        }-->
+<!--        , error: function (e) {-->
+<!--          console.log(e);-->
+<!--        }-->
+<!--      });-->
 
-      fnPostClose();
+<!--      fnPostClose();-->
 
-    }
+<!--    }-->
 
-    // wnsmgl351 인수인계 추가
-    // 비회원 배송지정보 - 주문자 정보와 동일 체크박스 선택
-    function fnSameOrderInfo() {
+<!--    // wnsmgl351 인수인계 추가-->
+<!--    // 비회원 배송지정보 - 주문자 정보와 동일 체크박스 선택-->
+<!--    function fnSameOrderInfo() {-->
 
-      // 주문자정보 이름
-      const orderName = $('input[name=orderName]').val();
-      $('input[name=receiverName]').val(orderName);
+<!--      // 주문자정보 이름-->
+<!--      const orderName = $('input[name=orderName]').val();-->
+<!--      $('input[name=receiverName]').val(orderName);-->
 
 
-      if ($("#orderCell1").length == 0) {
+<!--      if ($("#orderCell1").length == 0) {-->
 
-        const orderCell = $('input[name=orderCell]').val();
+<!--        const orderCell = $('input[name=orderCell]').val();-->
 
-        const orderCell1 = orderCell.substring(0, 3);
-        $('#receiverCell1').find('a.select-value span').text(orderCell1);
-        $('#receiverCell1').find('li').removeClass('selected');
-        $('#receiverCell1').find('li[data-name="' + orderCell1 + '"] a').addClass('selected');
+<!--        const orderCell1 = orderCell.substring(0, 3);-->
+<!--        $('#receiverCell1').find('a.select-value span').text(orderCell1);-->
+<!--        $('#receiverCell1').find('li').removeClass('selected');-->
+<!--        $('#receiverCell1').find('li[data-name="' + orderCell1 + '"] a').addClass('selected');-->
 
-        const orderCell2 = orderCell.substring(3, 11);
-        $('input[name=receiverCell2]').val(orderCell2);
+<!--        const orderCell2 = orderCell.substring(3, 11);-->
+<!--        $('input[name=receiverCell2]').val(orderCell2);-->
 
-      } else {
-        // 주문자 정보 휴대전화1
-        const orderCell1 = $('#orderCell1').data('value');
-        $('#receiverCell1').find('a.select-value span').text(orderCell1);
-        $('#receiverCell1').find('li').removeClass('selected');
-        $('#receiverCell1').find('li[data-name="' + orderCell1 + '"] a').addClass('selected');
+<!--      } else {-->
+<!--        // 주문자 정보 휴대전화1-->
+<!--        const orderCell1 = $('#orderCell1').data('value');-->
+<!--        $('#receiverCell1').find('a.select-value span').text(orderCell1);-->
+<!--        $('#receiverCell1').find('li').removeClass('selected');-->
+<!--        $('#receiverCell1').find('li[data-name="' + orderCell1 + '"] a').addClass('selected');-->
 
-        // 주문자 정보 휴대전화2
-        const orderCell2 = $('input[name=orderCell2]').val();
-        $('input[name=receiverCell2]').val(orderCell2);
+<!--        // 주문자 정보 휴대전화2-->
+<!--        const orderCell2 = $('input[name=orderCell2]').val();-->
+<!--        $('input[name=receiverCell2]').val(orderCell2);-->
 
-      }
+<!--      }-->
 
 
-    }
+<!--    }-->
 
-    // 스마일페이 관련 script
+<!--    // 스마일페이 관련 script-->
 
-    //인증 후 SmilePay 결제창을 호출
-    //가맹점 인증 후 호출.
-    function smilepay(txnId) {
+<!--    //인증 후 SmilePay 결제창을 호출-->
+<!--    //가맹점 인증 후 호출.-->
+<!--    function smilepay(txnId) {-->
 
-      smilepay_L.destroy();
-      //스마일페이 결제창을 호출하는 부분
-      smilepay_L.callPopup(txnId, smilepay_callback, 'v6.0');
+<!--      smilepay_L.destroy();-->
+<!--      //스마일페이 결제창을 호출하는 부분-->
+<!--      smilepay_L.callPopup(txnId, smilepay_callback, 'v6.0');-->
 
-    }
+<!--    }-->
 
-    //smilepay 결제버튼 완료 후 호출되는 콜백.
-    var smilepay_callback = function (returnUrl, message) {
+<!--    //smilepay 결제버튼 완료 후 호출되는 콜백.-->
+<!--    var smilepay_callback = function (returnUrl, message) {-->
 
-      console.log("smilepay_callback : return_url-" + returnUrl + ", msg-" + message);
-      $('#hiddenIframe').hide();
+<!--      console.log("smilepay_callback : return_url-" + returnUrl + ", msg-" + message);-->
+<!--      $('#hiddenIframe').hide();-->
 
 
-      //$('#hiddenIframe', parent.document).hide();
-      //결제창 닫기
-      smilepay_L.destroy();
+<!--      //$('#hiddenIframe', parent.document).hide();-->
+<!--      //결제창 닫기-->
+<!--      smilepay_L.destroy();-->
 
-      if (returnUrl != null && returnUrl != undefined) {
+<!--      if (returnUrl != null && returnUrl != undefined) {-->
 
-        //alert(returnUrl);
-        location.href = returnUrl;
+<!--        //alert(returnUrl);-->
+<!--        location.href = returnUrl;-->
 
-      } else {
+<!--      } else {-->
 
-        if (message == undefined) {
+<!--        if (message == undefined) {-->
 
-          alert('결제가 취소되었습니다.');
+<!--          alert('결제가 취소되었습니다.');-->
 
-        } else if (message == 'SOLDOUT') {
+<!--        } else if (message == 'SOLDOUT') {-->
 
-          alert('재고가 없습니다.');
-          location.href = '/order/cart';
+<!--          alert('재고가 없습니다.');-->
+<!--          location.href = '/order/cart';-->
 
-        } else {
+<!--        } else {-->
 
-          alert(message);
+<!--          alert(message);-->
 
-        }
+<!--        }-->
 
-      }
+<!--      }-->
 
-    }
-    // 스마일페이 관련 script
+<!--    }-->
+<!--    // 스마일페이 관련 script-->
 
 
 
 
-    function nicepaySubmit() {
+<!--    function nicepaySubmit() {-->
 
-      cmAjax({
-        url: "/order/pg/nicePg/payResult"
-        , type: "post"
-        , data: $("form[name='nicePayFrm']").serialize()
-        , dataType: "json"
-        , success: function (data) {
+<!--      cmAjax({-->
+<!--        url: "/order/pg/nicePg/payResult"-->
+<!--        , type: "post"-->
+<!--        , data: $("form[name='nicePayFrm']").serialize()-->
+<!--        , dataType: "json"-->
+<!--        , success: function (data) {-->
 
-          console.log(data);
+<!--          console.log(data);-->
 
-          if (data.status == "succ") {
+<!--          if (data.status == "succ") {-->
 
-            let finishUrl = '/order/order/finish';
-            const cartType = $("form[name='nicePayFrm'] input[name='cartType']").val();
-            if (!isEmpty(cartType) && cartType == '03') {
-              finishUrl = '/order/gift/finish';
-            }
+<!--            let finishUrl = '/order/order/finish';-->
+<!--            const cartType = $("form[name='nicePayFrm'] input[name='cartType']").val();-->
+<!--            if (!isEmpty(cartType) && cartType == '03') {-->
+<!--              finishUrl = '/order/gift/finish';-->
+<!--            }-->
 
-            location.href = finishUrl + '?vOrdercd=' + data.object.Moid + "&isOrangeMember=" + data.object.isOrangeMember + "&cartType=" + cartType;
-          } else {
+<!--            location.href = finishUrl + '?vOrdercd=' + data.object.Moid + "&isOrangeMember=" + data.object.isOrangeMember + "&cartType=" + cartType;-->
+<!--          } else {-->
 
-            alert('결제 오류가 발생했습니다.');
-            $('#hiddenIframe').hide();
-            $('body').removeAttr('style');
+<!--            alert('결제 오류가 발생했습니다.');-->
+<!--            $('#hiddenIframe').hide();-->
+<!--            $('body').removeAttr('style');-->
 
-          }
+<!--          }-->
 
-        }
-        , error: function (e) {
-          console.log(JSON.stringify(e));
-          alert('결제 오류가 발생했습니다.');
-          $('#hiddenIframe').hide();
-          $('body').removeAttr('style');
+<!--        }-->
+<!--        , error: function (e) {-->
+<!--          console.log(JSON.stringify(e));-->
+<!--          alert('결제 오류가 발생했습니다.');-->
+<!--          $('#hiddenIframe').hide();-->
+<!--          $('body').removeAttr('style');-->
 
-        }
-      });
+<!--        }-->
+<!--      });-->
 
-    }
+<!--    }-->
 
-    // payletter 결제 팝업오픈
-    function fncPayletterPopupOpne(online_url){
+<!--    // payletter 결제 팝업오픈-->
+<!--    function fncPayletterPopupOpne(online_url){-->
 
-      return window.open(online_url, "popUpWin", "width=500px, height=676px, status=yes, scrollbars=no,resizable=yes, menubar=no");
+<!--      return window.open(online_url, "popUpWin", "width=500px, height=676px, status=yes, scrollbars=no,resizable=yes, menubar=no");-->
 
-    }
+<!--    }-->
 
-    // 오류메세지 처리
-    function fncPayletterClose(errMsg){
+<!--    // 오류메세지 처리-->
+<!--    function fncPayletterClose(errMsg){-->
 
-      alert(errMsg);
-      location.href = '/order/cart'
+<!--      alert(errMsg);-->
+<!--      location.href = '/order/cart'-->
 
-    }
+<!--    }-->
 
-    function fnOrangeBenefit() {
-      const type = document.querySelector('input[name="orangeMembersP"]:checked').value;
-      if(type === 'sale'){
-        document.querySelector('input[name="orangeMembersBenefit"]').value = 'discount';
-      } else if(type === 'point') {
-        document.querySelector('input[name="orangeMembersBenefit"]').value = 'point';
-      }
+<!--    function fnOrangeBenefit() {-->
+<!--      const type = document.querySelector('input[name="orangeMembersP"]:checked').value;-->
+<!--      if(type === 'sale'){-->
+<!--        document.querySelector('input[name="orangeMembersBenefit"]').value = 'discount';-->
+<!--      } else if(type === 'point') {-->
+<!--        document.querySelector('input[name="orangeMembersBenefit"]').value = 'point';-->
+<!--      }-->
 
-      getUserOrderPrice();
-    }
+<!--      getUserOrderPrice();-->
+<!--    }-->
 
-  </script></section>
+<!--  </script>-->
+</section>
 </html>
