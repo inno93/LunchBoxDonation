@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="kor" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>관리자 페이지</title>
+  <link rel="stylesheet" href="../../css/style.css" type="text/css"/>
+  <style>
+    .button-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .button-container button {
+      margin-right: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .button-container button.register {
+      background-color: #ced4da;
+      color: #333;
+    }
+  </style>
+</head>
+<body class="body-container">
+<nav class="topnav navbar-dark bg-dark">
+  <div class="logo-container">
+    <!-- 클릭 시 관리자 메인페이지 이동-->
+    <a class="top-logo" href="#">관리자페이지</a>
+  </div>
+</nav>
+<div id="sideNav">
+  <div id="sideNav_nav">
+    <nav class="sb-sidenav sb-sidenav-dark">
+      <div class="sb-sidenav-menu">
+        <div class="nav">
+          <div class="menu-title">관리</div>
+          <a class="nav-link" href="#">
+            회원 목록
+        </a>
+        <a class="nav-link" href="#">
+            후원 관리
+        </a>
+        <a class="nav-link" href="#">
+            도시락 목록
+        </a>
+        <a class="nav-link" href="#">
+            쿠폰 목록
+        </a>
+        <a class="nav-link" href="#">
+            주문 내역
+        </a>
+        <a class="nav-link" href="#">
+            문의 목록
+        </a>
+        <a class="nav-link" href="#">
+            1:1 문의
+        </a>
+        <a class="nav-link" href="#">
+            공지사항 관리
+        </a>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div id="main_content">
+    <main>
+      <div class="main_padding">
+        <div class="header_container">
+          <h1 class="main-header">공지사항 등록</h1>
+        </div>
+        <form method="post" id="writeForm">
+          <div class="card main-margin">
+            <table border="1" width="500">
+              <tr>
+                <th colspan="7">
+                  공지사항 등록
+                </th>
+              </tr>
+              <tr>
+                <td style="width: 15%">제목</td>
+                <td colspan="7">
+                  <input type="text" placeholder="제목을 입력하세요." maxlength="20" style="width: 100%">
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="7">
+                  <input type="file" style="width: 100%">
+                </td>
+              </tr>
+              
+              <tr>
+                <td colspan="7" height="400">
+                  <textarea placeholder="내용을 입력하세요." style="width: 100%; height: 100%; resize: none; outline: none;"></textarea>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="7" class="button-container">
+                  <button type="submit" class="register">등록하기</button>
+                  <button type="button" class="cancel">취소하기</button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </form>
+
+      </div>
+    </main>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+<script src="assets/demo/chart-area-demo.js"></script>
+<script src="assets/demo/chart-bar-demo.js"></script>
+</body>
+</html>

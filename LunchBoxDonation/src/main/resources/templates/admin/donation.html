@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>관리자 페이지</title>
+    <link rel="stylesheet" href="../../css/style.css" type="text/css"/>
+</head>
+
+
+<body class="body-container">
+    <nav class="topnav navbar-dark bg-dark">
+        <div class="logo-container">
+            <!-- 클릭 시 관리자 메인페이지 이동-->
+            <a class="top-logo" href="#">관리자페이지</a>
+        </div>
+    </nav>
+
+<div id="sideNav">
+    <div id="sideNav_nav">
+        <nav class="sb-sidenav sb-sidenav-dark">
+            <div id="sideNav">
+                <div id="sideNav_nav">
+                    <nav class="sb-sidenav sb-sidenav-dark">
+                        <div class="sb-sidenav-menu">
+                            <div class="nav">
+                                <div class="menu-title">관리</div>
+                                <a class="nav-link" href="#">
+                                    회원 목록
+                                </a>
+                                <a class="nav-link" href="#">
+                                    후원 관리
+                                </a>
+                                <a class="nav-link" href="#">
+                                    도시락 목록
+                                </a>
+                                <a class="nav-link" href="#">
+                                    쿠폰 목록
+                                </a>
+                                <a class="nav-link" href="#">
+                                    주문 내역
+                                </a>
+                                <a class="nav-link" href="#">
+                                    문의 목록
+                                </a>
+                                <a class="nav-link" href="#">
+                                    1:1 문의
+                                </a>
+                                <a class="nav-link" href="#">
+                                    공지사항 관리
+                                </a>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+        </nav>
+    </div>
+
+    <div id="main_content">
+        <main>
+            <div class="main_padding">
+                <h1 class="main-header">후원 관리</h1>
+                <div class="card main-margin">
+                    <div class="container">
+                        <div class="move">
+                            <form method="post" >
+                                <select class="inner2" id="comCd" name="comCd">
+                                    <option>후원자</option>
+                                    <option>후원물품</option>
+                                    <option>후원금액</option>
+                                    <option>후원일자</option>
+                                </select>
+                                <div class="inner">
+                                    <input type="search" id = "test">
+                                    <img src="/src/main/resources/img/icon_search.svg">
+                                    <div class="searching">
+                                        <i class="fas fa-search"></i>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                       
+                        <table id = user_table class="type09">
+                            <thead>
+                            <tr>
+                                <th class="no">번호</th>
+                                <th>후원물품</th>
+                                <th>후원자</th>
+                                <th>후원금액</th>
+                                <th>후원일자</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="no">1</td>
+                                    <td>떡갈비 도시락</td>
+                                    <td>권재언</td>
+                                    <td>22,000 원</td>
+                                    <td >2023-07-01</td>
+                                </tr>
+                                <tr>
+                                    <td class="no">2</td>
+                                    <td>치킨 도시락</td>
+                                    <td>이재원</td>
+                                    <td>22,000 원</td>
+                                    <td >2023-06-30</td>
+                                </tr>
+                                <tr>
+                                    <td class="no">3</td>
+                                    <td>연어 도시락</td>
+                                    <td>표창영</td>
+                                    <td>22,000 원</td>
+                                    <td >2023-06-29</td>
+                                </tr>
+                                <tr>
+                                    <td class="no">4</td>
+                                    <td>고등어 도시락</td>
+                                    <td>황인호</td>
+                                    <td>22,000 원</td>
+                                    <td >2023-06-29</td>
+                                </tr>
+                                <tr>
+                                    <td class="no">5</td>
+                                    <td>김치 도시락</td>
+                                    <td>조은솔</td>
+                                    <td>22,000 원</td>
+                                    <td >2023-06-29</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </table>
+                    </div>
+                </div>
+                <div class="page_wrap">
+                    <div class="page_nation"  style="text-align: center">
+                        <a class="changePage">
+                            <code><</code>
+                        </a>
+                        <a class="changePage">1</a>
+                        <a class="changePage">2</a>
+                        <a class="changePage">3</a>
+                        <a class="changePage">
+                            <code>></code>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <br>
+    </div>
+</div>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+</script>
+</body>
+</html>
