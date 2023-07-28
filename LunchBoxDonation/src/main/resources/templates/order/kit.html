@@ -172,14 +172,18 @@
             let cartPriceVal = parseInt(cartPrice.text().replace(/,/g, ''),10);
             let totalPrice = $("#totalPrice-" + dataProductCd);
             let totalPriceVal = parseInt(totalPrice.text().replace(/,/g, ''),10);
+            let productPrice = $(".productPrice-" +dataProductCd);
+            let productPriceVal = parseInt(productPrice.text().replace(/,/g, ''),10);
+
 
             //수량 증가
             if(dataCalculate == "ADD"){
               value++;
               input.val(value);
               // 상품 총액 증가
-              $("#totalProductPrice, .productPrice-"+ dataProductCd).text((totalProductPrice + price).toLocaleString());
+              $("#totalProductPrice").text((totalProductPrice + price).toLocaleString());
               cartPrice.text((cartPriceVal + price).toLocaleString());
+              productPrice.text((productPriceVal + price).toLocaleString());
               //상품 별 총액
               totalPrice.text((totalPriceVal + price - discountPrice).toLocaleString());
               // 결제 총액 증가
@@ -193,8 +197,9 @@
                 value--;
                 input.val(value);
                 // 상품 총액 감소
-                $("#totalProductPrice, .productPrice-"+ dataProductCd).text((totalProductPrice - price).toLocaleString());
+                $("#totalProductPrice").text((totalProductPrice - price).toLocaleString());
                 cartPrice.text((cartPriceVal - price).toLocaleString());
+                productPrice.text((productPriceVal - price).toLocaleString());
                 //상품 별 총액
                 totalPrice.text((totalPriceVal - price - discountPrice).toLocaleString());
                 // 결제 총액 감소
