@@ -2,11 +2,6 @@
 server:
   port: 10010
 
-#log
-output:
-  ansi:
-    enabled: always
-
 
 #jdbc
 spring:
@@ -16,37 +11,34 @@ spring:
     username: hr
     password: hr
 
-  web:
-    resources:
-      static-locations: classpath:/static/
-
   jpa:
     defer-datasource-initialization: true
     open-in-view: false
+    #  jpa
+#    hibernate:
+#      ddl-auto: create
+#
+#    #jpa format
+#    properties:
+#      hibernate:
+#        format_sql: true
+#    show-sql: true
 
   devtools:
     livereload:
       enabled: true
 
-  #    mvc:
-  #      static-path-pattern: /static/**
+  web:
+    resources:
+      static-locations: classpath:/static/
 
+  thymeleaf:
+    prefix: classpath:templates/
+    suffix: .html
+    cache: false
+    check-template-location: true
 
-
-
-    thymeleaf:
-      prefix: classpath:templates/
-      suffix: .html
-      cache: false
-      check-template-location: true
-
-  #jpa
-  #  jpa:
-  #    hibernate:
-  #      ddl-auto: create
-  #
-  #    #jpa format
-  #    properties:
-  #      hibernate:
-  #        format_sql: true
-  #    show-sql: true
+  #log
+  output:
+    ansi:
+      enabled: always

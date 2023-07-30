@@ -1,5 +1,6 @@
 package com.lunchbox.lunchboxdonation.entity.Review;
 
+import com.lunchbox.lunchboxdonation.entity.Lunchbox.Lunchbox;
 import com.lunchbox.lunchboxdonation.entity.Member;
 import lombok.*;
 
@@ -19,12 +20,15 @@ public class Review {
     //    멤버 연관 관계
     // 다대일 관계: 여러 개의 리뷰는 하나의 멤버와 연관될 수 있음
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id") // 이 부분은 외래키(Foreign Key) 컬럼의 이름을 지정.
+    @JoinColumn(name = "MEMBER_ID") // 이 부분은 외래키(Foreign Key) 컬럼의 이름을 지정.
     private Member member;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "LUNCHBOX_ID")
+    private Lunchbox lunchbox;
 
     @Builder
     public Review(Long id, String reviewContent) {
-
         this.id = id;
         this.reviewContent = reviewContent;
     }
