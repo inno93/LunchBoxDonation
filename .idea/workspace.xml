@@ -20,8 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8800162a-b0cc-47d4-9bd2-31af1b648486" name="Default Changelist" comment="인텔리제이 테스트">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Member.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -117,6 +115,7 @@
       <workItem from="1690641019825" duration="348000" />
       <workItem from="1690641455615" duration="177000" />
       <workItem from="1690641681565" duration="1068000" />
+      <workItem from="1690686842419" duration="245000" />
     </task>
     <task id="LOCAL-00001" summary="인텔리제이 테스트">
       <created>1687531010021</created>
