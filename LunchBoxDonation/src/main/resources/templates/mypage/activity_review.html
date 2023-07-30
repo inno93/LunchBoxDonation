@@ -1,21 +1,15 @@
 <!doctype html>
-<html lang="ko" xml:lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+<th:block layout:fragment="css">
+  <link rel="stylesheet" href="/css/myPage/css/common.css">
+  <link rel="stylesheet" href="/css/myPage/css/content.css">
+  <link rel="stylesheet" href="/css/myPage/css/regular.css">
+</th:block>
 
-  <link rel="stylesheet" href="/static/css/myPage/css/common.css">
-  <link rel="stylesheet" href="/static/css/myPage/css/content.css">
-  <link rel="stylesheet" href="/static/css/myPage/css/regular.css">
-
-  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-  <script src="../header-footer/header-footer.js"></script>
-  <title>Document</title>
-</head>
-<body>
-<section id="contents" class="container">
+<section layout:fragment="content">
 
   <div class="content-wrap">
     <div class="frame-full head-mypage">
@@ -602,5 +596,3 @@
   </div><!--// content-wrap -->
 
 </section>
-</body>
-</html>
