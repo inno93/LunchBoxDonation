@@ -1,60 +1,10 @@
 <!DOCTYPE html>
-<html lang="kor">
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>관리자 페이지</title>
-    <link rel="stylesheet" href="/css/admin/style.css" type="text/css"/>
-</head>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/adminDefaultLayout}">
 
-<body class="body-container">
-    <nav class="topnav navbar-dark bg-dark">
-        <div class="logo-container">
-            <!-- 클릭 시 관리자 메인페이지 이동-->
-            <a class="top-logo" href="#">관리자페이지</a>
-        </div>
-    </nav>
-
-<div id="sideNav">
-    <div id="sideNav_nav">
-        <nav class="sb-sidenav sb-sidenav-dark">
-            <div id="sideNav">
-                <div id="sideNav_nav">
-                    <nav class="sb-sidenav sb-sidenav-dark">
-                        <div class="sb-sidenav-menu">
-                            <div class="nav">
-                                <div class="menu-title">관리</div>
-                                <a class="nav-link" href="#">
-                                    회원 목록
-                                </a>
-                                <a class="nav-link" href="#">
-                                    후원 관리
-                                </a>
-                                <a class="nav-link" href="#">
-                                    도시락 목록
-                                </a>
-                                <a class="nav-link" href="#">
-                                    쿠폰 목록
-                                </a>
-                                <a class="nav-link" href="#">
-                                    주문 내역
-                                </a>
-                                <a class="nav-link" href="#">
-                                  문의 목록
-                              </a>
-                                <a class="nav-link" href="#">
-                                    1:1 문의
-                                </a>
-                                <a class="nav-link" href="#">
-                                    공지사항 관리
-                                </a>
-                            </div>
-                        </div>
-                    </nav>
-                </div>
-        </nav>
-    </div>
+<section layout:fragment="adminContent">
     <div id="main_content">
         <main>
             <div class="main_padding">
@@ -63,7 +13,7 @@
                 <div class="card main-margin">
                     <div class="container">
                         <div class="move">
-                            <form method="post" >
+                            <form method="post">
                                 <select class="inner2" id="comCd" name="comCd">
                                     <option>유형</option>
                                     <option>문의내용</option>
@@ -72,7 +22,7 @@
                                     <option>처리상태</option>
                                 </select>
                                 <div class="inner">
-                                    <input type="search"  id = "test">
+                                    <input type="search" id="test">
                                     <img src="/img/admin/icon_search.svg">
                                     <div class="searching">
                                         <i class="fas fa-search"></i>
@@ -80,8 +30,8 @@
                                 </div>
                             </form>
                         </div>
-                       
-                        <table id = user_table class="type09">
+
+                        <table id=user_table class="type09">
                             <thead>
                             <tr>
                                 <th class="no">번호</th>
@@ -93,45 +43,45 @@
                             </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="no">1</td>
-                                    <td>배송문의</td>
-                                    <td>문의글의 내용이 들어갑니다</td>
-                                    <td>user1</td>
-                                    <td >2023-07-01</td>
-                                    <td >답변완료</td>
-                                </tr>
-                                <tr>
-                                    <td class="no">2</td>
-                                    <td>상품문의</td>
-                                    <td>문의글의 내용이 들어갑니다</td>
-                                    <td>user2</td>
-                                    <td >2023-06-30</td>
-                                    <td >답변완료</td>
-                                </tr>
-                                <tr>
-                                    <td class="no">3</td>
-                                    <td>배송문의</td>
-                                    <td>문의글의 내용이 들어갑니다</td>
-                                    <td>user3</td>
-                                    <td >2023-06-29</td>
-                                    <td >답변중</td>
-                                </tr>
-                                <tr>
-                                    <td class="no">4</td>
-                                    <td>상품문의</td>
-                                    <td>문의글의 내용이 들어갑니다</td>
-                                    <td>user4</td>
-                                    <td >2023-06-29</td>
-                                    <td >답변중</td>
-                                </tr>
+                            <tr>
+                                <td class="no">1</td>
+                                <td>배송문의</td>
+                                <td>문의글의 내용이 들어갑니다</td>
+                                <td>user1</td>
+                                <td>2023-07-01</td>
+                                <td>답변완료</td>
+                            </tr>
+                            <tr>
+                                <td class="no">2</td>
+                                <td>상품문의</td>
+                                <td>문의글의 내용이 들어갑니다</td>
+                                <td>user2</td>
+                                <td>2023-06-30</td>
+                                <td>답변완료</td>
+                            </tr>
+                            <tr>
+                                <td class="no">3</td>
+                                <td>배송문의</td>
+                                <td>문의글의 내용이 들어갑니다</td>
+                                <td>user3</td>
+                                <td>2023-06-29</td>
+                                <td>답변중</td>
+                            </tr>
+                            <tr>
+                                <td class="no">4</td>
+                                <td>상품문의</td>
+                                <td>문의글의 내용이 들어갑니다</td>
+                                <td>user4</td>
+                                <td>2023-06-29</td>
+                                <td>답변중</td>
+                            </tr>
                             </tbody>
                         </table>
                         </table>
                     </div>
                 </div>
                 <div class="page_wrap">
-                    <div class="page_nation"  style="text-align: center">
+                    <div class="page_nation" style="text-align: center">
                         <a class="changePage">
                             <code><</code>
                         </a>
@@ -147,8 +97,6 @@
         </main>
         <br>
     </div>
-</div>
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-</script>
-</body>
+</section>
+
 </html>

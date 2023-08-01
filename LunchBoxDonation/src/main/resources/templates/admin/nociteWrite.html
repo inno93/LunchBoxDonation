@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/adminDefaultLayout}">
+
+<section layout:fragment="adminContent">
+    <div id="main_content">
+        <main>
+            <div class="main_padding">
+                <div class="header_container">
+                    <h1 class="main-header">공지사항 등록</h1>
+                </div>
+                <form method="post" id="writeForm">
+                    <div class="card main-margin">
+                        <table border="1" width="500">
+                            <tr>
+                                <th colspan="7">
+                                    공지사항 등록
+                                </th>
+                            </tr>
+                            <tr>
+                                <td style="width: 15%">제목</td>
+                                <td colspan="7">
+                                    <input type="text" placeholder="제목을 입력하세요." maxlength="20" style="width: 100%">
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="7">
+                                    <input type="file" style="width: 100%">
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="7" height="400">
+                                    <textarea placeholder="내용을 입력하세요."
+                                              style="width: 100%; height: 100%; resize: none; outline: none;"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" class="button-container">
+                                    <button type="submit" class="register">등록하기</button>
+                                    <button type="button" class="cancel">취소하기</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+</section>
+</html>

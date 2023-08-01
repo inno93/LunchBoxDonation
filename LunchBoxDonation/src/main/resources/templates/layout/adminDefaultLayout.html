@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+    <head>
+        <meta charset="UTF-8" />
+        <title>관리자페이지</title>
+
+        <!-- config fragment 사용 -->
+        <th:block th:replace="layout/adminConfig :: adminConfigFragment" ></th:block>
+    </head>
+
+    <body class="body-container">
+        <nav class="topnav navbar-dark bg-dark">
+            <div class="logo-container">
+                <!-- 클릭 시 관리자 메인페이지 이동-->
+                <a class="top-logo" href="#">관리자페이지</a>
+            </div>
+        </nav>
+        <div id="sideNav">
+            <th:block th:replace="admin/sidrNav :: sideNavFragment"></th:block>
+
+            <!--
+                content fragment 사용
+                현재 layout을 사용하는 content fragment의 내용을 삽입한다.
+            -->
+            <th:block layout:fragment="adminContent"></th:block>
+        </div>
+    </body>
+
+</html>

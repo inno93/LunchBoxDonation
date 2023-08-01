@@ -218,7 +218,7 @@ th {
     }
     .sb-sidenav-dark .sb-sidenav-menu .nav-link:hover {
       color: #fff;
-    }\adm_todayList.html
+    }
     .sb-sidenav-dark .sb-sidenav-menu .nav-link.active {
       color: #fff;
     }
@@ -784,5 +784,155 @@ th {
     margin-top: 30px;
   }
 
+.button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.button-container button {
+  margin-right: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button-container button.register {
+  background-color: #ced4da;
+  color: #333;
+}
+
+.help_content_bx .content_bx_st {
+  position: relative;
+  padding: 27px 40px 0 25px;
+}
+
+.help_content_bx .content_bx_st .tit {
+  display: block;
+  color: #28313d;
+  font-weight: 700;
+  font-size: 20px;
+}
+.help_content_bx .content_bx_st .sub_copy {
+  margin: 3px 0 40px;
+  color: #777;
+  font-size: 14px;
+}
+
+.help_content_bx .content_bx_st .sub_copy02 {
+  color: #4e545d;
+  font-size: 12px;
+}
+
+.help_tbl_common {
+  border-top: 1px solid #949da9;
+}
+
+.help_tbl_common table {
+  width: 100%;
+  line-height: 1.4;
+}
 
 
+.help_tbl_style03 th {
+  padding: 14px 5px 15px 19px;
+}
+
+.help_tbl_common th {
+  color: #28313d;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+
+.help_tbl_common td, .help_tbl_common th {
+  border-bottom: 1px solid #ebebeb;
+  vertical-align: middle;
+}
+
+.help_tbl_common td {
+  color: #354052;
+  font-size: 14px;
+}
+
+.help_tbl_common td, .left_layer_popup .help_tbl_common th {
+  padding: 14px 5px 15px;
+  border-bottom: 1px solid #ebebeb;
+  color: #666;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.help_tbl_style01 td, .help_tbl_style01 th {
+  padding: 13px 0px 13px 8px;
+  text-align: left;
+  word-break: break-all;
+}
+
+.help_tbl_common .tbl_content_bx {
+  min-height: 100px;
+  padding: 20px 0;
+  line-height: 1.8;
+  word-break: break-all;
+  font-size: 9pt;
+  font-family: '맑은 고딕',malgungothic,굴림;
+}
+.help_answer_star_new {
+  margin-top: 27px;
+}
+
+.help_answer_star_new .star_wrap {
+  position: relative;
+  height: auto;
+  margin: 9px 0 30px;
+}
+.clfix:after, .clfix:before {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+.help_answer_star_new .txt_input_bx {
+  float: left;
+}
+.help_answer_star_new .txt_input_bx textarea {
+  width: 1440px;
+  height: 70px;
+  padding: 10px;
+  color: #888;
+  font-size: 14px;
+  font-family: ng;
+}
+
+.help_answer_star_new .btn_appraisal {
+  float: left;
+}
+.clfix:after {
+  clear: both;
+}
+
+.clfix:after, .clfix:before {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+
+.help_tbl_common .tbl_content_bx {
+  min-height: 100px;
+  padding: 20px 0;
+  line-height: 1.8;
+  word-break: break-all;
+  font-size: 9pt;
+  font-family: '맑은 고딕',malgungothic,굴림;
+}
+
+.answer{
+  width: 1000px;
+  height: 100px;
+  border: 1px solid #ddd;
+}
+.answerbtn{
+  margin-top: 10px;
+  margin-right: 15px;
+  padding: 5px 15px;
+  float: right;
+}

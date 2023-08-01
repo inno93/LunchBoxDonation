@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<th:block th:fragment="sideNavFragment">
+
+        <div id="sideNav_nav">
+            <nav class="sb-sidenav sb-sidenav-dark">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="menu-title">관리</div>
+                        <a class="nav-link" href="#">
+                            회원 목록
+                        </a>
+                        <a class="nav-link" href="#">
+                            후원 관리
+                        </a>
+                        <a class="nav-link" href="#">
+                            도시락 목록
+                        </a>
+                        <a class="nav-link" href="#">
+                            쿠폰 목록
+                        </a>
+                        <a class="nav-link" href="#">
+                            주문 내역
+                        </a>
+                        <a class="nav-link" href="#">
+                            문의 목록
+                        </a>
+                        <a class="nav-link" href="#">
+                            1:1 문의
+                        </a>
+                        <a class="nav-link" href="#">
+                            공지사항 관리
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+</th:block>
+</body>
+</html>
+

@@ -8,14 +8,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @Slf4j
 @RequestMapping("admin")
-public class BoLunchBoxController {
+public class BoInquiryController {
 
-    //    후원
-    @GetMapping("donation")
-    public void donation(){
+    //    1:1문의 상세보기
+    @GetMapping("inquiryDetail")
+    public void inquiryDetail(){
 
     }
-    // 도시락
-    // 기부
-    // 이달의 특가
+
+    //    1:1문의 목록
+    @GetMapping("inquiryList")
+    public void inquiryList(){
+
+    }
 }
