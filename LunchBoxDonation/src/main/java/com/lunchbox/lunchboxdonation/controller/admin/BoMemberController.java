@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class BoMemberController {
 
     //    회원 목록
-    @GetMapping("userList")
-    public void user(){
+    @GetMapping("memberList")
+    public void memberList(){
 
     }
 

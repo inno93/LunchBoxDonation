@@ -10,12 +10,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("admin")
 public class BoLunchBoxController {
 
-    //    후원
+    //    기부
     @GetMapping("donation")
     public void donation(){
 
     }
     // 도시락
-    // 기부
+    //목록
+    @GetMapping("lunchboxList")
+    public void lunchBoxList(){}
+//    등록
+    @GetMapping("lunchboxWrite")
+    public void lunchBoxWrite(){
+
+    }
+//    상세 보기
+    @GetMapping("lunchboxDetail")
+    public void lunchBoxDetail(){
+
+    }
+
     // 이달의 특가
 }

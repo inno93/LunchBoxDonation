@@ -936,3 +936,12 @@ th {
   padding: 5px 15px;
   float: right;
 }
+
+.lunchboxList{
+  width : 110px;
+  height: 110px;
+}
+.lunchboxDetail{
+  width : 500px;
+  height: 500px;
+}

@@ -14,4 +14,14 @@ public class BoNoticeController {
     @GetMapping("nociteWrite")
     public void nociteWrite(){}
 
+//    공지사항 목록
+    @GetMapping("noticeList")
+    public void noticeList(){
+
+    }
+//    공지사항 상세보기
+    @GetMapping("noticeDetail")
+    public void noticeDetail(){
+
+    }
 }
