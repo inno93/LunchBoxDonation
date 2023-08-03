@@ -19,14 +19,14 @@ public class Lunchbox extends Timestamp {
 
     private String lunchboxTitle;
     private String lunchboxThumbNailingIMG;
-    private int price;
+    private Integer price;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "REVIEW_ID")
-    private List<Review> review;
+//    @OneToMany(fetch = FetchType.LAZY) 단 방향(review DTO에서 넣어 줌)
+//    @JoinColumn(name = "REVIEW_ID")
+//    private List<Review> review;
 
     @Builder
-    public Lunchbox(String lunchboxTitle, String lunchboxThumbNailingIMG, int price) {
+    public Lunchbox(String lunchboxTitle, String lunchboxThumbNailingIMG, Integer price) {
         this.lunchboxTitle = lunchboxTitle;
         this.lunchboxThumbNailingIMG = lunchboxThumbNailingIMG;
         this.price = price;

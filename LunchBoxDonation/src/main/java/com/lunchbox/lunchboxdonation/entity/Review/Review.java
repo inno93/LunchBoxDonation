@@ -1,7 +1,7 @@
 package com.lunchbox.lunchboxdonation.entity.Review;
 
 import com.lunchbox.lunchboxdonation.entity.Lunchbox.Lunchbox;
-import com.lunchbox.lunchboxdonation.entity.Member;
+import com.lunchbox.lunchboxdonation.entity.member.Member;
 import lombok.*;
 
 import javax.persistence.*;
@@ -15,6 +15,7 @@ public class Review {
     @GeneratedValue
     private Long id;
 
+    @Column(nullable = false)
     private String reviewContent;
 
     //    멤버 연관 관계

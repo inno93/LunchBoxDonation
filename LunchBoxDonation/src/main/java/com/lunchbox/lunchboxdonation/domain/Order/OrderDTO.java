@@ -7,8 +7,8 @@ import java.time.LocalDateTime;
 @Getter
 public class OrderDTO {
 
-    private int Order_price;
-    private int Order_quantity;
-    private LocalDateTime Order_date;
+    private int OrderPrice;
+    private int OrderQuantity;
+    private LocalDateTime OrderDate;
 
 }
