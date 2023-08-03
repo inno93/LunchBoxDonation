@@ -20,7 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8800162a-b0cc-47d4-9bd2-31af1b648486" name="Default Changelist" comment="인텔리제이 테스트">
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Member.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/domain/Order/OrderDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Order/Order.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Order/OrderItems.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,9 +38,22 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$/LunchBoxDonation">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="LunchBoxDonation" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="LunchBoxDonation" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
@@ -49,6 +65,7 @@
       <list>
         <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -71,10 +88,29 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../workspace/jpa_day03/intermediate" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.LunchBoxDonationApplication (1)">
+    <configuration name="LunchBoxDonationApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="com.luchbox.LunchBoxDonation.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.lunchbox.lunchboxdonation.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.lunchbox.lunchboxdonation.LunchBoxDonationApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="LunchBoxDonationApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="LunchBoxDonation.LunchBoxDonation.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.lunchbox.lunchboxdonation.LunchBoxDonationApplication" />
@@ -82,6 +118,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.LunchBoxDonationApplication (1)" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -116,6 +157,8 @@
       <workItem from="1690641455615" duration="177000" />
       <workItem from="1690641681565" duration="1068000" />
       <workItem from="1690686842419" duration="245000" />
+      <workItem from="1691062890970" duration="261000" />
+      <workItem from="1691063232473" duration="3021000" />
     </task>
     <task id="LOCAL-00001" summary="인텔리제이 테스트">
       <created>1687531010021</created>
@@ -147,46 +190,62 @@
     <option name="LAST_COMMIT_MESSAGE" value="인텔리제이 테스트" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="395" y="87" key="#Inspections" timestamp="1691063412291">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="395" y="87" key="#Inspections/0.0.1536.816@0.0.1536.816" timestamp="1691063412291" />
+    <state x="415" y="2" key="#LunchBoxDonationApplication" timestamp="1691063775718">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="415" y="2" key="#LunchBoxDonationApplication/0.0.1536.816@0.0.1536.816" timestamp="1691063775718" />
     <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1690357146968">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1690357146968" />
-    <state x="592" y="216" key="FileChooserDialogImpl" timestamp="1690641633937">
+    <state x="592" y="216" key="FileChooserDialogImpl" timestamp="1691066587739">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="592" y="216" key="FileChooserDialogImpl/0.0.1536.816@0.0.1536.816" timestamp="1690641633937" />
+    <state x="592" y="216" key="FileChooserDialogImpl/0.0.1536.816@0.0.1536.816" timestamp="1691066587739" />
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.5.1920.1040@0.0.1920.1040" timestamp="1689691639644" />
-    <state width="1493" height="201" key="GridCell.Tab.0.bottom" timestamp="1690450975557">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="78" key="GridCell.Tab.0.bottom" timestamp="1691066587759">
+      <screen x="0" y="0" width="1536" height="816" />
     </state>
+    <state width="1493" height="78" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1691066587759" />
     <state width="1493" height="201" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1690450975557" />
-    <state width="1493" height="201" key="GridCell.Tab.0.center" timestamp="1690450975557">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="78" key="GridCell.Tab.0.center" timestamp="1691066587759">
+      <screen x="0" y="0" width="1536" height="816" />
     </state>
+    <state width="1493" height="78" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1691066587759" />
     <state width="1493" height="201" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1690450975557" />
-    <state width="1493" height="201" key="GridCell.Tab.0.left" timestamp="1690450975557">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="78" key="GridCell.Tab.0.left" timestamp="1691066587759">
+      <screen x="0" y="0" width="1536" height="816" />
     </state>
+    <state width="1493" height="78" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1691066587759" />
     <state width="1493" height="201" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1690450975557" />
-    <state width="1493" height="201" key="GridCell.Tab.0.right" timestamp="1690450975557">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="78" key="GridCell.Tab.0.right" timestamp="1691066587759">
+      <screen x="0" y="0" width="1536" height="816" />
     </state>
+    <state width="1493" height="78" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1691066587759" />
     <state width="1493" height="201" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1690450975557" />
-    <state width="1493" height="201" key="GridCell.Tab.1.bottom" timestamp="1690450975558">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="78" key="GridCell.Tab.1.bottom" timestamp="1691066587759">
+      <screen x="0" y="0" width="1536" height="816" />
     </state>
+    <state width="1493" height="78" key="GridCell.Tab.1.bottom/0.0.1536.816@0.0.1536.816" timestamp="1691066587759" />
     <state width="1493" height="201" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1690450975558" />
-    <state width="1493" height="201" key="GridCell.Tab.1.center" timestamp="1690450975557">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="78" key="GridCell.Tab.1.center" timestamp="1691066587759">
+      <screen x="0" y="0" width="1536" height="816" />
     </state>
+    <state width="1493" height="78" key="GridCell.Tab.1.center/0.0.1536.816@0.0.1536.816" timestamp="1691066587759" />
     <state width="1493" height="201" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1690450975557" />
-    <state width="1493" height="201" key="GridCell.Tab.1.left" timestamp="1690450975557">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="78" key="GridCell.Tab.1.left" timestamp="1691066587759">
+      <screen x="0" y="0" width="1536" height="816" />
     </state>
+    <state width="1493" height="78" key="GridCell.Tab.1.left/0.0.1536.816@0.0.1536.816" timestamp="1691066587759" />
     <state width="1493" height="201" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1690450975557" />
-    <state width="1493" height="201" key="GridCell.Tab.1.right" timestamp="1690450975558">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="78" key="GridCell.Tab.1.right" timestamp="1691066587759">
+      <screen x="0" y="0" width="1536" height="816" />
     </state>
+    <state width="1493" height="78" key="GridCell.Tab.1.right/0.0.1536.816@0.0.1536.816" timestamp="1691066587759" />
     <state width="1493" height="201" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1690450975558" />
     <state x="277" y="57" key="SettingsEditor" timestamp="1690357813573">
       <screen x="0" y="0" width="1536" height="824" />
