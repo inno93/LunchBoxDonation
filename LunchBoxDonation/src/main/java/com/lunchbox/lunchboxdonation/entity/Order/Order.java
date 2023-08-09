@@ -1,7 +1,7 @@
 package com.lunchbox.lunchboxdonation.entity.Order;
 
 import com.lunchbox.lunchboxdonation.domain.Order.OrderDTO;
-import com.lunchbox.lunchboxdonation.entity.Lunchbox.Lunchbox;
+import com.lunchbox.lunchboxdonation.entity.Lunchbox.LunchBox;
 import com.lunchbox.lunchboxdonation.entity.member.Member;
 import lombok.Builder;
 import lombok.Getter;
@@ -34,7 +34,7 @@ public class Order {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "LUNCHBOX_ID")
-    private Lunchbox lunchbox;
+    private LunchBox lunchbox;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderAddress> orderAddresses = new ArrayList<>();

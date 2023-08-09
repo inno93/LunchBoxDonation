@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @Table(name = "TBL_LUNCHBOX")
-public class Lunchbox extends Timestamp {
+public class LunchBox extends Timestamp {
     @Id @GeneratedValue
     private Long id;
 
@@ -26,7 +26,7 @@ public class Lunchbox extends Timestamp {
 //    private List<Review> review;
 
     @Builder
-    public Lunchbox(String lunchboxTitle, String lunchboxThumbNailingIMG, Integer price) {
+    public LunchBox(String lunchboxTitle, String lunchboxThumbNailingIMG, Integer price) {
         this.lunchboxTitle = lunchboxTitle;
         this.lunchboxThumbNailingIMG = lunchboxThumbNailingIMG;
         this.price = price;

@@ -1,6 +1,6 @@
 package com.lunchbox.lunchboxdonation.entity.Review;
 
-import com.lunchbox.lunchboxdonation.entity.Lunchbox.Lunchbox;
+import com.lunchbox.lunchboxdonation.entity.Lunchbox.LunchBox;
 import com.lunchbox.lunchboxdonation.entity.member.Member;
 import lombok.*;
 
@@ -26,7 +26,7 @@ public class Review {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "LUNCHBOX_ID")
-    private Lunchbox lunchbox;
+    private LunchBox lunchbox;
 
     @Builder
     public Review(Long id, String reviewContent) {
