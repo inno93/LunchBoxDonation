@@ -18,6 +18,9 @@ public class Timestamp {
     private LocalDate createdAt;
 
     @LastModifiedDate
+    private LocalDateTime updateTime;
+
+    @LastModifiedDate
     private LocalDateTime modifiedAt;
 
 }

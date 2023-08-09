@@ -1,5 +1,7 @@
 package com.lunchbox.lunchboxdonation.entity.Order;
 
+import com.lunchbox.lunchboxdonation.domain.OrderAddressDTO;
+import com.lunchbox.lunchboxdonation.entity.Timestamp;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +16,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Table(name = "TBL_ORDER_ITEMS")
 
-public class OrderAddress {
+public class OrderAddress extends Timestamp {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,20 +32,28 @@ public class OrderAddress {
     private String addr;
     private String addrDtl;
     private Integer postNum;
+    @Column(nullable = false)
     private LocalDateTime modDate;
 
     @Column(nullable = false, updatable = false)
-    private LocalDateTime regDate;
+    private LocalDateTime regDates;
 
     @Builder
-    private OrderAddress(String orderName, String orderPhone, String addr, String addrDtl, Integer postNum){
+    private OrderAddress(OrderAddressDTO orderAddressDTO){
         this.orderName = orderName;
         this.orderPhone = orderPhone;
         this.addr = addr;
         this.addrDtl = addrDtl;
         this.postNum = postNum;
+        getCreatedAt();
+        getUpdateTime();
     }
 
+    public static OrderAddress of(OrderAddressDTO orderAddressDTO){
+        return OrderAddress.builder()
+                .orderAddressDTO(orderAddressDTO)
+                .build();
+    }
 //
 //    public void setModDate(LocalDateTime modDate){this.modDate = modDate;}
 //

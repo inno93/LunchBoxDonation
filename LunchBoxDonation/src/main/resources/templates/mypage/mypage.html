@@ -4,9 +4,9 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/default_layout}">
 <th:block layout:fragment="css">
-  <link rel="stylesheet" href="/css/myPage/css/common.css">
-  <link rel="stylesheet" href="/css/myPage/css/content.css">
-  <link rel="stylesheet" href="/css/myPage/css/regular.css">
+  <link rel="stylesheet" th:href="@{/css/myPage/css/common.css}">
+  <link rel="stylesheet" th:href="@{/css/myPage/css/content.css}">
+  <link rel="stylesheet" th:href="@{/css/myPage/css/regular.css}">
 </th:block>
 
 <section layout:fragment="content">
@@ -63,7 +63,7 @@
             <div class="layer-body">
               <div class="layer-usertag-inn">
                 <div class="layer-usertag-img">
-                  <img id="researchImg" src="/resources/pc/images/img/usertag-simpler.jpg" alt="간편식 러버">
+                  <img id="researchImg" th:src="@{/css/myPage/images/usertag-simpler.jpg}" alt="간편식 러버">
                 </div>
                 <div class="layer-usertag-desc-group">
                   <dl class="layer-usertag-defi">
@@ -100,7 +100,7 @@
           let tagResult = '';
           let resultObj = {
             '01':{
-              img:'/resources/pc/images/img/usertag-newbie.jpg',
+              img:'/css/myPage/images/usertag-newbie.jpg',
               text1:'"여기는 뭐가 맛있어?"',
               text2:'환영해요! 닭가슴살의 세계에 이제 막 입문했네요!',
               text3:'내 입맛에 딱 맞는 닭가슴살 찾고 있다면, 홈화면의 [1팩 담기]에서 여러 상품을 한 팩 씩 골라보세요! ',
@@ -108,7 +108,7 @@
               type: '01'
             },
             '02':{
-              img:'/resources/pc/images/img/usertag-smart.jpg',
+              img:'/css/myPage/images/usertag-smart.jpg',
               text1:'"어? 이거 맛있을까?"',
               text2:'이 구역의 맛잘알! 하지만 그냥 사진 않죠. 할인 혜택과 후기까지 꼼꼼히 살피고 신중하게 구매해요. ',
               text3:'홈화면에서 [이달의 특가]를 확인하세요! 매달 새로운 맛과 혜택으로 찾아갑니다!',
@@ -116,7 +116,7 @@
               type: '02'
             },
             '03':{
-              img:'/resources/pc/images/img/usertag-maint.jpg',
+              img:'/css/myPage/images/usertag-maint.jpg',
               text1:'"다이어트는 꾸준히 해야죠~"',
               text2:'타이트하기 보단 꾸준히 실천할 수 있는 식단을 선호해요. 맛있으면서도 단백질, 당류 등 성분은 꼭 체크하는 진짜 다이어터! ',
               text3:'맛도 성분도 한 번에 비교하려면 최근 본 상품에서 [비교담기] 서비스를 이용해보세요!',
@@ -124,7 +124,7 @@
               type: '03'
             },
             '04':{
-              img:'/resources/pc/images/img/usertag-mania.jpg',
+              img:'/css/myPage/images/usertag-mania.jpg',
               text1:'"먹다보면 다~ 맛있어"',
               text2:'다이어트에서 효율을 아주 중시해요. 때로 지겹더라도 끈기있는 실천이 다이어트의 지름길이라고 생각해요.',
               text3:'[오렌지멤버스]에 가입하고, 살 때마다 추가할인&적립 받아요!',
@@ -132,7 +132,7 @@
               type: '04'
             },
             '05':{
-              img:'/resources/pc/images/img/usertag-frenz.jpg',
+              img:'/css/myPage/images/usertag-frenz.jpg',
               text1:'"저는 그냥 랭닭에서 사요"',
               text2:'식단은 이미 일상이에요. 오랜 경험으로 믿고 먹는, 믿고 추천하는 제품들이 있어요.',
               text3:'꾸준히 먹는 제품은 [정기구매] 서비스를 통해서 추가할인 받아보세요!',
@@ -140,7 +140,7 @@
               type: '05'
             },
             '06':{
-              img:'/resources/pc/images/img/usertag-standard.jpg',
+              img:'/css/myPage/images/usertag-standard.jpg',
               text1:'"저는 그냥 정석대로 먹는 편?"',
               text2:'대회, 바디프로필 등 명확한 목표를 갖고 식단을 하고 있어요. 건강기능식품부터 다이어트 간식까지 다이어트 제품에 대해서는 빠삭해요!',
               text3:'식단은 하루라도 놓칠 수 없어! [특급배송]으로 빠르게 받아 완벽한 식단 텐션을 유지하세요!',
@@ -148,7 +148,7 @@
               type: '06'
             },
             '07':{
-              img:'/resources/pc/images/img/usertag-simpler.jpg',
+              img:'/css/myPage/images/usertag-simpler.jpg',
               text1:'"밥보다 시간!"',
               text2:'혹시 도시락 찾으러 오셨어요? 편하고 빠른 식사를 선호해요.',
               text3:'홈화면 [랭킹]메뉴의 [별별랭킹] 카테고리에서 상황에 맞는 다양한 꿀조합을 소개 받아요!',
@@ -197,7 +197,7 @@
             let userTagType = '';
             for (const key in resultObj) {
               if (key === userTagType) {
-                tagResult = resultObj[key];
+                tagResult = resultObj[key]
                 break;
               };
             };
@@ -415,8 +415,25 @@
           <!-- [Dev] 20220315 추가 : 오렌지멤버스 만료임박할때 노출 -->
           <div class="order-list-slide">
             <!-- [Dev] 20210909 추가 : 주문내역 없을 경우 -->
-            <div class="no-data-type1">
+            <div class="no-data-type1" th:if="${recentOrderAddresses.isEmpty()}">
               <p class="message">최근 3개월 내에 주문내역이 없습니다.  </p>
+            </div>
+            <div th:unless="${recentOrderAddresses.isEmpty()}" class = "order-data">
+              <ul>
+                <li th:each="orderAddress : ${recentOrderAddresses.content}">
+                  <p th:text="${orderAddress.orderName}"></p>
+                </li>
+              </ul>
+            </div>
+            <div th:if="${recentOrderAddresses.totalPages > 1}">
+              <div class="pagination">
+                <ul>
+                  <li th:each="page : ${#numbers.sequence(0, recentOrderAddresses.totalPages - 1)}">
+                    <a th:href="@{/?page=${page}}" th:classappend="${page == recentOrderAddresses.number ? 'active' : ''}"
+                       th:text="${page + 1}"></a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div><!--// order-list-area -->
 
@@ -433,7 +450,7 @@
           </div><!--// list-title-area -->
 
           <div class="grid-list-wrap">
-            <div class="no-data-type1">
+            <div class="no-data-type2">
               <p class="message">최근 본 상품이 없습니다. </p>
             </div>
           </div><!--// grid-list-wrap -->
@@ -445,8 +462,13 @@
                 <a href="/mypage/wish/list" class="btn-link-txt2"><span>전체보기</span><i class="ico-arr-right"></i></a>
               </div><!--// list-title-area -->
               <div class="order-list-area">
-                <div class="no-data-type1">
+                <div th:if="${likesList.isEmpty()}" class="no-data-type3">
                   <p class="message">찜한 상품이 없습니다. </p>
+                </div>
+                <div th:unless="${likesList.isEmpty()}">
+                  <ul>
+                    <li th:each="like : ${likesList}"></li>
+                  </ul>
                 </div>
               </div><!--// order-list-area -->
             </div><!--// colum -->
@@ -458,8 +480,17 @@
               </div><!--// list-title-area -->
               <div class="order-list-area">
                 <!-- [Dev] 20210909 추가 : 상품후기 없을 경우 -->
-                <div class="no-data-type1">
+                <div th:if="${reviews.empty}" class="no-data-type4">
                   <p class="message">작성 가능한 후기가 없습니다.</p>
+                </div>
+                <div th:unless="${reviews.empty}">
+                  <ul>
+                    <li th:each="review : ${reviews}">
+                      <p th:text="${review.reviewContent}"></p>
+                      <p>작성자 : <span th:text="${review.member.name}"></span></p>
+                      <p>상품명 : <span th:text="${review.lunchbox.name}"></span></p>
+                    </li>
+                  </ul>
                 </div>
               </div><!--// order-list-area -->
             </div><!--// colum -->
@@ -472,7 +503,7 @@
 
           <div class="board-list">
             <!-- [Dev] 20210909 추가 : 문의하신 사항 없을 경우 -->
-            <div class="no-data-type1">
+            <div class="no-data-type5">
               <p class="message">문의하신 사항이 없습니다.</p>
             </div>
           </div><!--// board-list -->
@@ -825,8 +856,8 @@
           }
         }
       </script>
-      <script src="/static/js/myPage/cart.js"></script>
-      <script src="/static/js/myPage/restore_cart.js"></script>
+      <script th:src="@{/js/myPage/cart.js}"></script>
+      <script th:src="@{/js/myPage/restore_cart.js}"></script>
     </div><!--// frame-sm -->
   </div><!--// content-wrap -->
 
