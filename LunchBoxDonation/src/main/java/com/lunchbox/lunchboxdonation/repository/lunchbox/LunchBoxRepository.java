@@ -1,4 +1,7 @@
 package com.lunchbox.lunchboxdonation.repository.lunchbox;
 
-public interface LunchBoxRepository {
+import com.lunchbox.lunchboxdonation.entity.Lunchbox.LunchBox;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface LunchBoxRepository extends JpaRepository<LunchBox, Long>, LunchBoxQueryDSL {
 }
