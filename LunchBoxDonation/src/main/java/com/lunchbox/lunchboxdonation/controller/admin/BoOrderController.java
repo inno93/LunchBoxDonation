@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @Slf4j
-@RequestMapping("admin")
+@RequestMapping("admin/order")
 public class BoOrderController {
 
     // 주문 목록

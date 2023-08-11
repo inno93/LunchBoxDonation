@@ -718,6 +718,8 @@ th {
   .move{
     position: relative;
     left: 20%;
+    display: flex;
+    flex-direction: column;
   }
   .name{
     width: 20%;
@@ -944,4 +946,18 @@ th {
 .lunchboxDetail{
   width : 500px;
   height: 500px;
+}
+
+.move a.register {
+  position: relative;
+  width: 10%;
+  height: 40px;
+  margin: 20px auto;
+  border: 1px solid #369;
+  border-radius: 20px;
+  float: left;
+  font-size: 15px;
+  text-align: center;
+  padding-top: 9px;
+  left: 170px;
 }

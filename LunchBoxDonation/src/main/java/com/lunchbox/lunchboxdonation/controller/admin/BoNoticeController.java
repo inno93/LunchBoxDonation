@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @Slf4j
-@RequestMapping("admin")
+@RequestMapping("admin/notice")
 public class BoNoticeController {
 
 //      공지사항 등록

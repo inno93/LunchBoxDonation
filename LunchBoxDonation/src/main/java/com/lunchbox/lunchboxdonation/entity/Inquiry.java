@@ -1,10 +1,8 @@
 package com.lunchbox.lunchboxdonation.entity;
 
+import com.lunchbox.lunchboxdonation.entity.member.Member;
 import groovyjarjarantlr4.v4.runtime.misc.NotNull;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -12,6 +10,7 @@ import java.util.Date;
 @Entity
 @Getter @Setter @ToString
 @Table(name="TBL_INQUIRY")
+@NoArgsConstructor
 public class Inquiry {
 
     @Id

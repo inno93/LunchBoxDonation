@@ -7,7 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @Slf4j
-@RequestMapping("admin")
+@RequestMapping("admin/coupon")
 public class BoCouponController {
 
     // 쿠폰

@@ -5,12 +5,13 @@ import com.lunchbox.lunchboxdonation.entity.Timestamp;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Getter
+@Getter @Setter
 @NoArgsConstructor
 @Table(name = "TBL_LUNCHBOX")
 public class LunchBox extends Timestamp {
