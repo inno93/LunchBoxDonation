@@ -1,4 +1,4 @@
-package com.lunchbox.lunchboxdonation.repository;
+package com.lunchbox.lunchboxdonation.repository.orderaddress;
 
 import com.lunchbox.lunchboxdonation.entity.Order.OrderAddress;
 import org.springframework.data.domain.Page;

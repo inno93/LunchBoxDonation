@@ -46,7 +46,11 @@ public enum Error {
     DUPLICATED_EMAIL("409", "이미 존재하는 이메일입니다."),
     DUPLICATED_NICKNAME("409", "이미 존재하는 닉네임입니다."),
     DUPLICATED_BUSINESS("409","중복된 사업자 입니다."),
-    DUPLICATED_CHATROOM("409","이미 존제하는 채팅방 입니다.");
+    DUPLICATED_CHATROOM("409","이미 존제하는 채팅방 입니다."),
+
+    // 쿠폰
+    NO_COUPON_AVAILABLE("404","사용 가능한 쿠폰이 없습니다."),
+    DUPLICATE_COUPON("404","쿠폰이 중복입니다.");
 
     private final String status;
     private final String message;

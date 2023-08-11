@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.UUID;
 
 @Entity
 @Getter
@@ -29,7 +31,7 @@ public class Coupon extends Timestamp {
         this.coupon = couponrequestDTO.getCoupon();
         this.price = couponrequestDTO.getPrice();
         this.startTime = couponrequestDTO.getStartTime();
-        this.endTime = couponrequestDTO.getEndTime();
+        this.endTime = this.startTime.plus(3, ChronoUnit.MONTHS);
     }
 
     public static Coupon of(CouponRequestDTO couponrequestDTO){
@@ -37,4 +39,11 @@ public class Coupon extends Timestamp {
                 .couponrequestDTO(couponrequestDTO)
                 .build();
     }
+
+//    쿠폰 생성기
+    private String generateUniqueCouponNumber(){
+        String uuid = UUID.randomUUID().toString().replace("-", "");
+        return uuid.substring(0,8);
+    }
+
 }

@@ -1,9 +1,11 @@
-package com.lunchbox.lunchboxdonation.service;
+package com.lunchbox.lunchboxdonation.service.mypage;
 
 import com.lunchbox.lunchboxdonation.entity.Likes;
 import com.lunchbox.lunchboxdonation.entity.Order.OrderAddress;
 import com.lunchbox.lunchboxdonation.entity.Review.Review;
-import com.lunchbox.lunchboxdonation.repository.*;
+import com.lunchbox.lunchboxdonation.repository.likes.LikesRepository;
+import com.lunchbox.lunchboxdonation.repository.orderaddress.OrderAddressRepository;
+import com.lunchbox.lunchboxdonation.repository.review.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;

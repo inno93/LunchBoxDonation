@@ -1,4 +1,4 @@
-package com.lunchbox.lunchboxdonation.repository;
+package com.lunchbox.lunchboxdonation.repository.review;
 
 import com.lunchbox.lunchboxdonation.entity.Review.Review;
 import org.springframework.data.jpa.repository.JpaRepository;
