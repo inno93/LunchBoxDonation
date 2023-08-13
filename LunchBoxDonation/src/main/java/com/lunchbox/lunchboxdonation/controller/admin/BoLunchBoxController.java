@@ -3,15 +3,19 @@ package com.lunchbox.lunchboxdonation.controller.admin;
 import com.lunchbox.lunchboxdonation.config.FileUtils;
 import com.lunchbox.lunchboxdonation.domain.lunchbox.LunchBoxDTO;
 import com.lunchbox.lunchboxdonation.entity.Lunchbox.LunchBox;
+import com.lunchbox.lunchboxdonation.entity.Lunchbox.LunchBoxSearch;
 import com.lunchbox.lunchboxdonation.service.lunchbox.LunchBoxService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.IOException;
 
 @Controller
 @Slf4j
@@ -19,6 +23,7 @@ import java.io.IOException;
 @RequestMapping("admin/lunchbox")
 public class BoLunchBoxController {
     private final LunchBoxService lunchBoxService;
+    private final FileUtils fileUtils;
 
     //    기부
     @GetMapping("donation")
@@ -28,7 +33,16 @@ public class BoLunchBoxController {
     // 도시락
     //목록
     @GetMapping("lunchboxList")
-    public void lunchBoxList(){}
+    public ModelAndView lunchBoxList(@PageableDefault(size = 10, page = 0) Pageable pageable, LunchBoxSearch lunchBoxSearch){
+        ModelAndView mv = new ModelAndView();
+
+        Page<LunchBoxDTO> lunchBoxList = lunchBoxService.lunchBoxList(pageable, lunchBoxSearch);
+
+
+        mv.addObject("lunchBoxList", lunchBoxList);
+
+        return mv;
+    }
 //    등록 페이지 이동
     @GetMapping("lunchboxWrite")
     public void lunchBoxWrite(){}
@@ -39,7 +53,7 @@ public class BoLunchBoxController {
         if(!file.isEmpty()){
             try{
                 //파일 처리
-                String filename = FileUtils.uploadFile(file, "/img/admin/lunchbox/");
+                String filename = fileUtils.uploadFile(file, "admin/lunchbox/");
                 lunchBoxDTO.setLunchboxThumbNailingIMG(filename);
             }catch(Exception e){
                 e.printStackTrace();

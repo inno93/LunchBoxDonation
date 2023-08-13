@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+
 @Component
 @Data
 @NoArgsConstructor
@@ -16,12 +18,14 @@ public class LunchBoxDTO {
     private String lunchboxTitle;
     private String lunchboxThumbNailingIMG;
     private Integer price;
+    private LocalDate createdAt;
 
     @Builder
-    public LunchBoxDTO(Long id, String lunchboxTitle, String lunchboxThumbNailingIMG, Integer price) {
+    public LunchBoxDTO(Long id, String lunchboxTitle, String lunchboxThumbNailingIMG, Integer price, LocalDate createdAt) {
         this.id = id;
         this.lunchboxTitle = lunchboxTitle;
         this.lunchboxThumbNailingIMG = lunchboxThumbNailingIMG;
         this.price = price;
+        this.createdAt = createdAt;
     }
 }
