@@ -1,6 +1,6 @@
 package com.lunchbox.lunchboxdonation.controller.mypage;
 
-import com.lunchbox.lunchboxdonation.entity.Likes;
+import com.lunchbox.lunchboxdonation.entity.special.Likes;
 import com.lunchbox.lunchboxdonation.entity.Order.OrderAddress;
 import com.lunchbox.lunchboxdonation.entity.Review.Review;
 import com.lunchbox.lunchboxdonation.service.mypage.MypageService;

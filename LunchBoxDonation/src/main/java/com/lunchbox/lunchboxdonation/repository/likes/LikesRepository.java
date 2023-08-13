@@ -1,6 +1,6 @@
 package com.lunchbox.lunchboxdonation.repository.likes;
 
-import com.lunchbox.lunchboxdonation.entity.Likes;
+import com.lunchbox.lunchboxdonation.entity.special.Likes;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

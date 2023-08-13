@@ -1,4 +1,4 @@
-package com.lunchbox.lunchboxdonation.entity;
+package com.lunchbox.lunchboxdonation.entity.special;
 
 import com.lunchbox.lunchboxdonation.entity.Order.Order;
 import com.lunchbox.lunchboxdonation.entity.member.Member;
