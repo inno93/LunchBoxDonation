@@ -20,7 +20,7 @@ import java.util.List;
 @Table(name = "TBL_ORDER")
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
 
     @Column(nullable = false)

@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 public class OrderAddress extends Timestamp {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)

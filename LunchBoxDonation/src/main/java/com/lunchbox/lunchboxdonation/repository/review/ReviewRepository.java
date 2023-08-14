@@ -11,4 +11,7 @@ import java.util.List;
 public interface ReviewRepository extends JpaRepository<Review,Long> {
     @Query("select r from Review r join  r.member join fetch r.lunchbox")
     List<Review> findAllReviews();
+
+    @Query("SELECT r FROM Review r WHERE r.lunchbox.id = :lunchboxId")
+    List<Review> findByLunchboxId(Long lunchboxId);
 }

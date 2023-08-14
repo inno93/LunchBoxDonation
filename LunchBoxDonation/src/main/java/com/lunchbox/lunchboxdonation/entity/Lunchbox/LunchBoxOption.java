@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Table(name="TBL_LUNCHBOXOPTION")
 public class LunchBoxOption {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
 
     @Column(nullable = false)
