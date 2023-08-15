@@ -19,10 +19,10 @@ spring:
 #      ddl-auto: create
 #
 #    #jpa format
-#    properties:
-#      hibernate:
-#        format_sql: true
-#    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
 
   devtools:
     livereload:
@@ -48,4 +48,9 @@ spring:
       max-file-size: 50MB
       max-request-size: 50MB
 
+<<<<<<< Updated upstream
 file.uploadDir: C:/LunchBoxDonation
+=======
+file:
+ uploadDir: C:/LunchBoxDonation
+>>>>>>> Stashed changes

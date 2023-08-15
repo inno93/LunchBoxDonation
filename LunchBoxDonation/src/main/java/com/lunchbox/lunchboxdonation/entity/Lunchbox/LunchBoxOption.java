@@ -27,6 +27,11 @@ public class LunchBoxOption {
     private LocalDateTime modDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
+<<<<<<< Updated upstream
     @JoinColumn(name = "LUNCHBOX_ID", nullable = false)
     private Lunchbox lunchbox;
+=======
+    @JoinColumn(name = "lunchBox_id", nullable = false)
+    private LunchBox lunchbox;
+>>>>>>> Stashed changes
 }

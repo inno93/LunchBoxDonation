@@ -935,4 +935,33 @@ th {
   margin-right: 15px;
   padding: 5px 15px;
   float: right;
+<<<<<<< Updated upstream
+=======
+}
+
+.lunchboxList{
+  width : 110px;
+  height: 110px;
+}
+.lunchboxDetail{
+  width : 500px;
+  height: 500px;
+}
+
+.move a.register {
+  position: relative;
+  width: 10%;
+  height: 40px;
+  margin: 20px auto;
+  border: 1px solid #369;
+  border-radius: 20px;
+  float: left;
+  font-size: 15px;
+  text-align: center;
+  padding-top: 9px;
+  left: 170px;
+}
+.bold-text{
+  font-weight: bold;
+>>>>>>> Stashed changes
 }
