@@ -34,7 +34,6 @@ public class LunchBoxQueryDSLImpl implements LunchBoxQueryDSL {
         if(lunchboxTitleContains != null){
             builder.or(lunchboxTitleContains);
         }
-
         final List<LunchBoxDTO> lunchBoxs = query.select(
                 Projections.fields(
                         LunchBoxDTO.class,

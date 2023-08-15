@@ -12,5 +12,4 @@ public interface LunchBoxQueryDSL {
     
     //목록
     public Page<LunchBoxDTO> lunchBoxList(Pageable pageable, LunchBoxSearch lunchBoxSearch);
-
 }

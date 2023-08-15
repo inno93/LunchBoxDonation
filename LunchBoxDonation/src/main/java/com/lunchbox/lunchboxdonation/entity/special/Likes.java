@@ -1,7 +1,6 @@
 package com.lunchbox.lunchboxdonation.entity.special;
 
 import com.lunchbox.lunchboxdonation.entity.Order.Order;
-import com.lunchbox.lunchboxdonation.entity.Timestamp;
 import com.lunchbox.lunchboxdonation.entity.member.Member;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -13,7 +12,7 @@ import javax.persistence.*;
 @Getter
 @Entity
 @NoArgsConstructor
-public class Likes extends Timestamp {
+public class Likes {
     @Id @GeneratedValue
     @EqualsAndHashCode.Include
     private Long id;

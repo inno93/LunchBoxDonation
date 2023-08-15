@@ -5,15 +5,16 @@ import com.lunchbox.lunchboxdonation.entity.Timestamp;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Getter
+@Getter @Setter
 @NoArgsConstructor
 @Table(name = "TBL_LUNCHBOX")
-public class Lunchbox extends Timestamp {
+public class LunchBox extends Timestamp {
     @Id @GeneratedValue
     private Long id;
 
@@ -29,7 +30,7 @@ public class Lunchbox extends Timestamp {
     private List<LunchBoxOption> lunchBoxOptions;
 
     @Builder
-    public Lunchbox(String lunchboxTitle, String lunchboxThumbNailingIMG, Integer price) {
+    public LunchBox(String lunchboxTitle, String lunchboxThumbNailingIMG, Integer price) {
         this.lunchboxTitle = lunchboxTitle;
         this.lunchboxThumbNailingIMG = lunchboxThumbNailingIMG;
         this.price = price;

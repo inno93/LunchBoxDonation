@@ -718,6 +718,8 @@ th {
   .move{
     position: relative;
     left: 20%;
+    display: flex;
+    flex-direction: column;
   }
   .name{
     width: 20%;
@@ -935,8 +937,6 @@ th {
   margin-right: 15px;
   padding: 5px 15px;
   float: right;
-<<<<<<< Updated upstream
-=======
 }
 
 .lunchboxList{
@@ -960,8 +960,9 @@ th {
   text-align: center;
   padding-top: 9px;
   left: 170px;
+
 }
 .bold-text{
   font-weight: bold;
->>>>>>> Stashed changes
+
 }

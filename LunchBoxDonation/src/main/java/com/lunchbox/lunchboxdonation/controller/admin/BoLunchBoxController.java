@@ -1,15 +1,13 @@
 package com.lunchbox.lunchboxdonation.controller.admin;
 
+import com.lunchbox.lunchboxdonation.config.FileUtils;
+import com.lunchbox.lunchboxdonation.domain.lunchbox.LunchBoxDTO;
+import com.lunchbox.lunchboxdonation.entity.Lunchbox.LunchBox;
+import com.lunchbox.lunchboxdonation.entity.Lunchbox.LunchBoxSearch;
+import com.lunchbox.lunchboxdonation.service.lunchbox.LunchBoxService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-<<<<<<< Updated upstream
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller
-@Slf4j
-@RequestMapping("admin")
-=======
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -30,23 +28,18 @@ import java.io.InputStream;
 @RequiredArgsConstructor
 @RequestMapping("admin/lunchbox")
 @ResponseBody
->>>>>>> Stashed changes
-public class BoLunchBoxController {
 
-<<<<<<< Updated upstream
-    //    후원
-=======
+public class BoLunchBoxController {
+    private final LunchBoxService lunchBoxService;
+    private final FileUtils fileUtils;
+
+
 //        기부
->>>>>>> Stashed changes
+
     @GetMapping("donation")
     public void donation() {
 
     }
-<<<<<<< Updated upstream
-    // 도시락
-    // 기부
-    // 이달의 특가
-=======
 
 //     도시락
 //    목록
@@ -109,5 +102,4 @@ public class BoLunchBoxController {
     }
 
 //     이달의 특가
->>>>>>> Stashed changes
 }

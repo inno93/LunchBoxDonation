@@ -20,10 +20,71 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8800162a-b0cc-47d4-9bd2-31af1b648486" name="Default Changelist" comment="인텔리제이 테스트">
-      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/domain/Order/OrderDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Order/Order.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Order/OrderItems.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/config/QueryDSLConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/review/ReviewController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/domain/lunchbox/LunchBoxDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Lunchbox/LunchBoxSearch.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/repository/lunchbox/LunchBoxRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/service/Review/ReviewService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/service/Review/ReviewServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/static/img/admin/lunchbox/07479c5f-d79b-42f9-a933-5b9bea1c59d4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/static/img/admin/lunchbox/0ece3bef-49b7-42e6-8cc4-6b6e2c8abaeb.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/static/img/admin/lunchbox/6565938e-b127-47af-8553-e08279fd3bbb.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/static/img/admin/lunchbox/test1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/static/img/admin/lunchbox/test2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/static/img/admin/lunchbox/test3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/static/img/admin/lunchbox/test4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/coupon/couponDetail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/coupon/couponList.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/coupon/couponWrite.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/lunchbox/lunchboxWrite.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/notice/noticeDetail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/notice/noticeList.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/order/orderList.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/LunchBoxDonationApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/LunchBoxDonationApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/config/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/config/FileUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/config/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/admin/BoCouponController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/admin/BoCouponController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/admin/BoInquiryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/admin/BoInquiryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/admin/BoLunchBoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/admin/BoLunchBoxController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/admin/BoMemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/admin/BoMemberController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/admin/BoNoticeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/admin/BoNoticeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/admin/BoOrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/admin/BoOrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/lunchBox/LunchBoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/lunchBox/LunchBoxController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Donation.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/special/Donation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Inquiry.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/special/Inquiry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Lunchbox/LunchBoxOption.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Lunchbox/LunchBoxOption.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Lunchbox/Lunchbox.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Lunchbox/LunchBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Order/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Order/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Order/OrderAddress.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Order/OrderAddress.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Review/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Review/Review.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/member/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/member/Member.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/monthBargin/BarginFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/monthBargin/BarginFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/notice/Notice.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/notice/Notice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/notice/NoticeFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/notice/NoticeFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/point/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/point/Point.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/special/Likes.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/special/Likes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/repository/likes/LikesRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/repository/likes/LikesRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/repository/lunchbox/LunchBoxQueryDSL.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/repository/lunchbox/LunchBoxQueryDSL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/repository/lunchbox/LunchBoxQueryDSLImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/repository/lunchbox/LunchBoxQueryDSLImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/repository/review/ReviewRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/repository/review/ReviewRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/service/lunchbox/LunchBoxService.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/service/lunchbox/LunchBoxService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/service/lunchbox/LunchBoxServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/service/lunchbox/LunchBoxServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/service/mypage/MypageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/service/mypage/MypageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/static/css/admin/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/static/css/admin/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/donation.html" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/donation/donation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/inquiryDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/inquiry/inquiryDetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/inquiryList.html" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/inquiry/inquiryList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/lunchbox/lunchboxDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/lunchbox/lunchboxDetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/lunchbox/lunchboxList.html" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/lunchbox/lunchboxList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/nociteWrite.html" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/notice/nociteWrite.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/sidrNav.html" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/sidrNav.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/userList.html" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/member/memberList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/mainPage/read.html" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/mainPage/read.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/mypage/mypage.html" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/mypage/mypage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/test/java/com/lunchbox/lunchboxdonation/lunchbox/LunchBoxTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/test/java/com/lunchbox/lunchboxdonation/lunchbox/LunchBoxTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +134,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="2Rbu3yViJlT1RqRNWxv3uObjdiv" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
