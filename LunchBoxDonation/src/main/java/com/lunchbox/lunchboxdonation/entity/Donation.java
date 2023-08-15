@@ -1,7 +1,6 @@
-package com.lunchbox.lunchboxdonation.entity.special;
+package com.lunchbox.lunchboxdonation.entity;
 
-import com.lunchbox.lunchboxdonation.entity.Lunchbox.LunchBox;
-import com.lunchbox.lunchboxdonation.entity.member.Member;
+import com.lunchbox.lunchboxdonation.entity.Lunchbox.Lunchbox;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -25,7 +24,7 @@ public class Donation {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "LUNCHBOX_ID")
-    private LunchBox lunchbox;
+    private Lunchbox lunchbox;
 
     @Column(nullable = false)
     private Integer count;

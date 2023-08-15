@@ -2,13 +2,15 @@ package com.lunchbox.lunchboxdonation.entity.notice;
 
 import com.lunchbox.lunchboxdonation.entity.coupon.Coupon;
 import groovyjarjarantlr4.v4.runtime.misc.NotNull;
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Entity
 @Getter @Setter @ToString
-@NoArgsConstructor
 @Table(name="TBL_NOTICE_FILE")
 public class NoticeFile {
     @Id

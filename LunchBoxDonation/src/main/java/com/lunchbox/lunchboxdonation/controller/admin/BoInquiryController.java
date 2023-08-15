@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @Slf4j
-@RequestMapping("admin/inquiry")
+@RequestMapping("admin")
 public class BoInquiryController {
 
     //    1:1문의 상세보기

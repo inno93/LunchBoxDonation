@@ -1,5 +1,6 @@
 package com.lunchbox.lunchboxdonation.service.mypage;
 
+
 import com.lunchbox.lunchboxdonation.entity.special.Likes;
 import com.lunchbox.lunchboxdonation.entity.Order.OrderAddress;
 import com.lunchbox.lunchboxdonation.entity.Review.Review;
@@ -11,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,13 +40,15 @@ public class MypageService {
 
 //  찜하기 내역
     public List<Likes> getAllLikes(){
-        return likesRepository.findAllLikes();
+        Pageable pageable = PageRequest.of(0, 3, Sort.by(Sort.Direction.DESC, "createdAt"));
+        return likesRepository.findAllLikes(pageable);
     }
 
 
 //  리뷰 내역
     public List<Review> getAllReview(){
-        return reviewRepository.findAllReviews();
+        Pageable pageable = PageRequest.of(0, 3, Sort.by(Sort.Direction.DESC, "createdAt"));
+        return reviewRepository.findAllReviews(pageable);
     }
 
 

@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("mainPage")
 public class LunchBoxController {
 
-//    @GetMapping("read")
-//    public void read(){
-//
-//    }
+    @GetMapping("read")
+    public void read(){
+
+    }
 }

@@ -1,5 +1,6 @@
 package com.lunchbox.lunchboxdonation.entity.Lunchbox;
 
+import com.lunchbox.lunchboxdonation.entity.member.Member;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,7 +17,7 @@ import java.time.LocalDateTime;
 @Table(name="TBL_LUNCHBOXOPTION")
 public class LunchBoxOption {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
@@ -27,5 +28,5 @@ public class LunchBoxOption {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "LUNCHBOX_ID", nullable = false)
-    private LunchBox lunchbox;
+    private Lunchbox lunchbox;
 }

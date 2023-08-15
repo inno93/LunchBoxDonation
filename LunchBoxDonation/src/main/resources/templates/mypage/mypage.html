@@ -94,218 +94,115 @@
         </div><!--// layer-pop  -->
       </div><!--// layer-pop-wrap #popupSample-02 -->
 
-      <script>
-
-        $(document).ready(function () {
+      <script th:inline="javascript">
+        document.addEventListener("DOMContentLoaded", function() {
           let tagResult = '';
           let resultObj = {
-            '01':{
-              img:'/css/myPage/images/usertag-newbie.jpg',
-              text1:'"여기는 뭐가 맛있어?"',
-              text2:'환영해요! 닭가슴살의 세계에 이제 막 입문했네요!',
-              text3:'내 입맛에 딱 맞는 닭가슴살 찾고 있다면, 홈화면의 [1팩 담기]에서 여러 상품을 한 팩 씩 골라보세요! ',
+            '01': {
+              img: '/css/myPage/images/usertag-newbie.jpg',
+              text1: '"여기는 뭐가 맛있어?"',
+              text2: '환영해요! 닭가슴살의 세계에 이제 막 입문했네요!',
+              text3: '내 입맛에 딱 맞는 닭가슴살 찾고 있다면, 홈화면의 [1팩 담기]에서 여러 상품을 한 팩 씩 골라보세요! ',
               tag: '',
               type: '01'
             },
-            '02':{
-              img:'/css/myPage/images/usertag-smart.jpg',
-              text1:'"어? 이거 맛있을까?"',
-              text2:'이 구역의 맛잘알! 하지만 그냥 사진 않죠. 할인 혜택과 후기까지 꼼꼼히 살피고 신중하게 구매해요. ',
-              text3:'홈화면에서 [이달의 특가]를 확인하세요! 매달 새로운 맛과 혜택으로 찾아갑니다!',
+            '02': {
+              img: '/css/myPage/images/usertag-smart.jpg',
+              text1: '"어? 이거 맛있을까?"',
+              text2: '이 구역의 맛잘알! 하지만 그냥 사진 않죠. 할인 혜택과 후기까지 꼼꼼히 살피고 신중하게 구매해요. ',
+              text3: '홈화면에서 [이달의 특가]를 확인하세요! 매달 새로운 맛과 혜택으로 찾아갑니다!',
               tag: '',
               type: '02'
             },
-            '03':{
-              img:'/css/myPage/images/usertag-maint.jpg',
-              text1:'"다이어트는 꾸준히 해야죠~"',
-              text2:'타이트하기 보단 꾸준히 실천할 수 있는 식단을 선호해요. 맛있으면서도 단백질, 당류 등 성분은 꼭 체크하는 진짜 다이어터! ',
-              text3:'맛도 성분도 한 번에 비교하려면 최근 본 상품에서 [비교담기] 서비스를 이용해보세요!',
+            '03': {
+              img: '/css/myPage/images/usertag-maint.jpg',
+              text1: '"다이어트는 꾸준히 해야죠~"',
+              text2: '타이트하기 보단 꾸준히 실천할 수 있는 식단을 선호해요. 맛있으면서도 단백질, 당류 등 성분은 꼭 체크하는 진짜 다이어터! ',
+              text3: '맛도 성분도 한 번에 비교하려면 최근 본 상품에서 [비교담기] 서비스를 이용해보세요!',
               tag: '',
               type: '03'
             },
-            '04':{
-              img:'/css/myPage/images/usertag-mania.jpg',
-              text1:'"먹다보면 다~ 맛있어"',
-              text2:'다이어트에서 효율을 아주 중시해요. 때로 지겹더라도 끈기있는 실천이 다이어트의 지름길이라고 생각해요.',
-              text3:'[오렌지멤버스]에 가입하고, 살 때마다 추가할인&적립 받아요!',
+            '04': {
+              img: '/css/myPage/images/usertag-mania.jpg',
+              text1: '"먹다보면 다~ 맛있어"',
+              text2: '다이어트에서 효율을 아주 중시해요. 때로 지겹더라도 끈기있는 실천이 다이어트의 지름길이라고 생각해요.',
+              text3: '[오렌지멤버스]에 가입하고, 살 때마다 추가할인&적립 받아요!',
               tag: '',
               type: '04'
             },
-            '05':{
-              img:'/css/myPage/images/usertag-frenz.jpg',
-              text1:'"저는 그냥 랭닭에서 사요"',
-              text2:'식단은 이미 일상이에요. 오랜 경험으로 믿고 먹는, 믿고 추천하는 제품들이 있어요.',
-              text3:'꾸준히 먹는 제품은 [정기구매] 서비스를 통해서 추가할인 받아보세요!',
+            '05': {
+              img: '/css/myPage/images/usertag-frenz.jpg',
+              text1: '"저는 그냥 랭닭에서 사요"',
+              text2: '식단은 이미 일상이에요. 오랜 경험으로 믿고 먹는, 믿고 추천하는 제품들이 있어요.',
+              text3: '꾸준히 먹는 제품은 [정기구매] 서비스를 통해서 추가할인 받아보세요!',
               tag: '',
               type: '05'
             },
-            '06':{
-              img:'/css/myPage/images/usertag-standard.jpg',
-              text1:'"저는 그냥 정석대로 먹는 편?"',
-              text2:'대회, 바디프로필 등 명확한 목표를 갖고 식단을 하고 있어요. 건강기능식품부터 다이어트 간식까지 다이어트 제품에 대해서는 빠삭해요!',
-              text3:'식단은 하루라도 놓칠 수 없어! [특급배송]으로 빠르게 받아 완벽한 식단 텐션을 유지하세요!',
+            '06': {
+              img: '/css/myPage/images/usertag-standard.jpg',
+              text1: '"저는 그냥 정석대로 먹는 편?"',
+              text2: '대회, 바디프로필 등 명확한 목표를 갖고 식단을 하고 있어요. 건강기능식품부터 다이어트 간식까지 다이어트 제품에 대해서는 빠삭해요!',
+              text3: '식단은 하루라도 놓칠 수 없어! [특급배송]으로 빠르게 받아 완벽한 식단 텐션을 유지하세요!',
               tag: '',
               type: '06'
             },
-            '07':{
-              img:'/css/myPage/images/usertag-simpler.jpg',
-              text1:'"밥보다 시간!"',
-              text2:'혹시 도시락 찾으러 오셨어요? 편하고 빠른 식사를 선호해요.',
-              text3:'홈화면 [랭킹]메뉴의 [별별랭킹] 카테고리에서 상황에 맞는 다양한 꿀조합을 소개 받아요!',
+            '07': {
+              img: '/css/myPage/images/usertag-simpler.jpg',
+              text1: '"밥보다 시간!"',
+              text2: '혹시 도시락 찾으러 오셨어요? 편하고 빠른 식사를 선호해요.',
+              text3: '홈화면 [랭킹]메뉴의 [별별랭킹] 카테고리에서 상황에 맞는 다양한 꿀조합을 소개 받아요!',
               tag: '',
               type: '07'
             },
           };
 
-          let userTagExhibitionList = '[{v_exhibition_cd=EX202306230000000247, n_sort=7, v_exhibition_nm=간편식 러버, v_ex_name=07, n_num=1}, {v_exhibition_cd=EX202306230000000245, n_sort=6, v_exhibition_nm=스마트 다이어터, v_ex_name=02, n_num=2}, {v_exhibition_cd=EX202306220000000241, n_sort=5, v_exhibition_nm=닭가슴살 뉴비, v_ex_name=01, n_num=3}, {v_exhibition_cd=EX202306230000000242, n_sort=4, v_exhibition_nm=랭닭 프렌즈, v_ex_name=05, n_num=4}, {v_exhibition_cd=EX202306230000000243, n_sort=3, v_exhibition_nm=유지어터, v_ex_name=03, n_num=5}, {v_exhibition_cd=EX202306230000000244, n_sort=2, v_exhibition_nm=헬스 매니아, v_ex_name=04, n_num=6}, {v_exhibition_cd=EX202306230000000246, n_sort=1, v_exhibition_nm=다이어트의 정석, v_ex_name=06, n_num=7}]';
-          if(isEmpty(userTagExhibitionList) == false){
-            for (const key in resultObj) {
+        let userTagExhibitionList = JSON.parse('[{v_exhibition_cd=EX202306230000000247, n_sort=7, v_exhibition_nm=간편식 러버, v_ex_name=07, n_num=1}, {v_exhibition_cd=EX202306230000000245, n_sort=6, v_exhibition_nm=스마트 다이어터, v_ex_name=02, n_num=2}, {v_exhibition_cd=EX202306220000000241, n_sort=5, v_exhibition_nm=닭가슴살 뉴비, v_ex_name=01, n_num=3}, {v_exhibition_cd=EX202306230000000242, n_sort=4, v_exhibition_nm=랭닭 프렌즈, v_ex_name=05, n_num=4}, {v_exhibition_cd=EX202306230000000243, n_sort=3, v_exhibition_nm=유지어터, v_ex_name=03, n_num=5}, {v_exhibition_cd=EX202306230000000244, n_sort=2, v_exhibition_nm=헬스 매니아, v_ex_name=04, n_num=6}, {v_exhibition_cd=EX202306230000000246, n_sort=1, v_exhibition_nm=다이어트의 정석, v_ex_name=06, n_num=7}]');
 
-              if ("07" === resultObj[key].type) {
-                resultObj[key]['tag'] = "#special-div"+1;
-              }
-
-              if ("02" === resultObj[key].type) {
-                resultObj[key]['tag'] = "#special-div"+2;
-              }
-
-              if ("01" === resultObj[key].type) {
-                resultObj[key]['tag'] = "#special-div"+3;
-              }
-
-              if ("05" === resultObj[key].type) {
-                resultObj[key]['tag'] = "#special-div"+4;
-              }
-
-              if ("03" === resultObj[key].type) {
-                resultObj[key]['tag'] = "#special-div"+5;
-              }
-
-              if ("04" === resultObj[key].type) {
-                resultObj[key]['tag'] = "#special-div"+6;
-              }
-
-              if ("06" === resultObj[key].type) {
-                resultObj[key]['tag'] = "#special-div"+7;
-              }
-
+        if (userTagExhibitionList.length > 0) {
+          for (const key in resultObj) {
+            if (userTagExhibitionList[0].v_ex_name === resultObj[key].type) {
+              resultObj[key]['tag'] = "#special-div" + userTagExhibitionList[0].n_num;
             }
           }
+        }
 
-          let userTag = '';
-          if(isEmpty(userTag) == false){
-            let userTagType = '';
-            for (const key in resultObj) {
-              if (key === userTagType) {
-                tagResult = resultObj[key]
-                break;
-              };
-            };
-            $('#researchImg').attr('src',tagResult.img);
-            $('#researchTxt1').text(tagResult.text1);
-            $('#researchTxt2').text(tagResult.text2);
-            $('#researchTxt3').text(tagResult.text3);
-            $('#researchTag').attr('href',"/promotion/exhibit/userTagList"+tagResult.tag);
-          }
+          document.addEventListener("DOMContentLoaded", function() {
+            let tagResult = null; // tagResult 초기값을 null로 설정
+            let userTag = ''; // userTag 변수 초기화
 
-          const benefitsAlertMsg = '';
-          //혜택 쿠폰 alert 메시지
-          if(isEmpty(benefitsAlertMsg) == false){
-            alert(benefitsAlertMsg);
-          }
+            const benefitsAlertMsg = ''; // benefitsAlertMsg 초기화
+
+            // userTagExhibitionList 처리
+            if (userTagExhibitionList.length > 0) {
+              const userTagType = userTagExhibitionList[0].v_ex_name;
+              tagResult = resultObj[userTagType]; // userTagType에 맞는 데이터를 tagResult에 할당
+              userTag = userTagType; // userTag 변수에 userTagType 할당
+            }
+
+            // tagResult 데이터를 UI에 적용하는 부분
+            if (tagResult) {
+              $('#researchImg').attr('src', tagResult.img);
+              $('#researchTxt1').text(tagResult.text1);
+              $('#researchTxt2').text(tagResult.text2);
+              $('#researchTxt3').text(tagResult.text3);
+              $('#researchTag').attr('href', "/promotion/exhibit/userTagList" + tagResult.tag);
+            }
+
+            // 혜택 쿠폰 alert 메시지
+            if (benefitsAlertMsg) {
+              alert(benefitsAlertMsg);
+            }
+
+            // 포인트 알림창 표시
+            if (get_cookie("closePoint") !== "done") {
+              pointAlert();
+            }
+          });
+
         });
 
-        $(document).ready(function(){
-          if(get_cookie("closePoint") != "done"){
-            pointAlert();
-          }
-        })
-        function pointAlert(){
-          setTimeout(()=>{
-            if($(window).scrollTop() > 150){
-              $("#pointAlert").css("position","fixed");
-              $("#pointAlert").animate({"top":"70px"})
-            }
-            else if($(".all-depth-cate").css("display") != "block"){
-              $("#pointAlert").animate({"top":"15px"})
-            }
-
-            $(window).on('load scroll', function() {
-              if ($('#pointAlert').length > 0 && $('#pointAlert').css("display") == "block") { pointAlertScroll();}
-            });
-            setTimeout(()=>{
-              $("#pointAlert").animate(
-                      {"top":"-100px"},
-                      1000,
-                      function(){
-                        $("#pointAlert").remove();
-                      });
-            },5000)
-          },1000)
-        }
-
-        var lastScrollTop = 0;
-        function pointAlertScroll(){
-          var winS = $(window).scrollTop();
-          var gnbw = $('.gnb-wrap'),
-                  gnbPosition = gnbw.position();
-          var $header= $('.header'),
-                  $headerP = $header.offset().top,
-                  $headerH = $header.height();
-
-          if(winS > lastScrollTop) { //downscroll
-
-            if( winS > gnbPosition.top){
-              // fix 생김
-              $("#pointAlert").css({"position":"fixed"});
-            } else {
-              // fix 지움
-              $("#pointAlert").css({"position":"absolute"})
-            }
-          } else { //upscroll
-
-            if( winS < $headerP + $headerH){
-              // fix 지움
-              $("#pointAlert").css({"position":"absolute"})
-              if($("#pointAlert").css("top") == "70px"){
-                $("#pointAlert").css("top","15px");
-              }
-            } else{
-              // fix 생김
-              $("#pointAlert").css({"position":"fixed"});
-              if($("#pointAlert").css("top") == "15px"){
-                $("#pointAlert").css("top","70px");
-              }
-            }
-          }
-          lastScrollTop = winS;
-        }
-
-
-
-        function closePoint(cookieNm, expiredays) {
-          setCookiePointAlert( cookieNm, "done" , expiredays);
-          $("#pointAlert").animate({"top":"-100px"});
-        }
-
-        function setCookiePointAlert( name, value, expiredays ) {
-          var todayDate = new Date();
-          todayDate = new Date(parseInt(todayDate.getTime() / 86400000) * 86400000 + 54000000);
-          if ( todayDate > new Date() )
-          {
-            expiredays = expiredays - 1;
-          }
-          todayDate.setDate( todayDate.getDate() + expiredays );
-          document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";"
-        }
-        function get_cookie(name) {
-          var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
-          return value? value[2] : null;
-        }
-
-
-
-      </script></div>
+      </script>
+    </div>
     <div class="frame-sm">
       <div class="frame-left">
         <div class="aside-menu-wrap">
@@ -367,44 +264,46 @@
           </div>
         </div><!--// aside-menu-wrap -->
       </div>
+      <script th:inline="javascript">
+        function setCurrnetMenuCss() {
+          const pathUrl = [[${#httpServletRequest.requestURI}]];
+          const menuList = document.querySelectorAll('.menu-list li');
 
-      <script type="text/javascript">
-        $(document).ready(function () {
-          /*setCurrnetMenuCss();*/
-
-          $(".goVipView").click(function (e) {
-            e.preventDefault();
-            cmAjax({
-              url : "/mypage/vip/checkTargetAjax"
-              , type : "POST"
-              , dataType : "json"
-              , success : function (data) {
-
-                if (data.status == "succ") {
-                  if(data.message == "Y") {
-                    document.location.href = "/mypage/vip/list";
-                    return;
-                  } else {
-                    alert(data.message);
-                    return false;
-                  }
-                } else {
-                  return false;
-                }
-              }
-            });
-          });
-        });
-
-        function setCurrnetMenuCss(){
-          const pathUrl = window.location.pathname;
-          $('.menu-list').find('li').removeClass('current');
-          $('.menu-list').find('a').each(function (){
-            if(pathUrl.indexOf($(this).attr('href')) > -1){
-              $(this).parent('li').addClass('current')
+          menuList.forEach(function (menuItem) {
+            const link = menuItem.querySelector('a');
+            if (pathUrl.indexOf(link.getAttribute('href')) > -1) {
+              menuItem.classList.add('current');
             }
           });
         }
+
+        /* 도큐먼트 로드 시 실행되는 스크립트 */
+        document.addEventListener("DOMContentLoaded", function() {
+          /* 현재 메뉴에 CSS 클래스 적용 */
+          setCurrnetMenuCss();
+
+          /* goVipView 클래스 클릭 이벤트 핸들러 */
+          const goVipView = document.querySelector(".goVipView");
+          if (goVipView) {
+            goVipView.addEventListener("click", function (e) {
+              e.preventDefault();
+              cmAjax({
+                url: "/mypage/vip/checkTargetAjax",
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                  if (data.status === "succ") {
+                    if (data.message === "Y") {
+                      document.location.href = "/mypage/vip/list";
+                    } else {
+                      alert(data.message);
+                    }
+                  }
+                }
+              });
+            });
+          }
+        });
       </script>
       <div class="frame-right">
         <div class="frame-cnt-inner">
@@ -446,7 +345,7 @@
           <!--// 적립 가능 포인트 없을 경우 노출 -->
           <div class="list-title-area">
             <h3 class="title-list">최근 본 상품</h3>
-            <a href="/mypage/recentProduct/list" class="btn-link-txt2"><span>전체보기</span><i class="ico-arr-right"></i></a>
+            <a href="/activity_recently" class="btn-link-txt2"><span>전체보기</span><i class="ico-arr-right"></i></a>
           </div><!--// list-title-area -->
 
           <div class="grid-list-wrap">
@@ -459,7 +358,7 @@
             <div class="colum">
               <div class="list-title-area">
                 <h3 class="title-list">찜한상품</h3>
-                <a href="/mypage/wish/list" class="btn-link-txt2"><span>전체보기</span><i class="ico-arr-right"></i></a>
+                <a href="/activity_likes" class="btn-link-txt2"><span>전체보기</span><i class="ico-arr-right"></i></a>
               </div><!--// list-title-area -->
               <div class="order-list-area">
                 <div th:if="${likesList.isEmpty()}" class="no-data-type3">
@@ -476,14 +375,14 @@
               <!-- [Dev] 20210909 수정 : 포인트 > 상품후기 -->
               <div class="list-title-area">
                 <h3 class="title-list">상품후기</h3>
-                <a href="/mypage/prodReview/list" class="btn-link-txt2"><span>전체보기</span><i class="ico-arr-right"></i></a>
+                <a href="/activity_review" class="btn-link-txt2"><span>전체보기</span><i class="ico-arr-right"></i></a>
               </div><!--// list-title-area -->
               <div class="order-list-area">
                 <!-- [Dev] 20210909 추가 : 상품후기 없을 경우 -->
-                <div th:if="${reviews.empty}" class="no-data-type4">
+                <div th:if="${reviews.isEmpty()}" class="no-data-type4">
                   <p class="message">작성 가능한 후기가 없습니다.</p>
                 </div>
-                <div th:unless="${reviews.empty}">
+                <div th:unless="${reviews.isEmpty()}">
                   <ul>
                     <li th:each="review : ${reviews}">
                       <p th:text="${review.reviewContent}"></p>
@@ -541,35 +440,37 @@
         <div>
           <input type="hidden" name="_csrf" value="cbe10549-11c2-4091-994d-0c82c6378385">
         </div></form><div class="layer-wrap" id="modal-my-delivery" style="display: none"></div>
-      <script type="text/javascript">
-        $('.member-ext').on('click',function(){
+      <script th:inline="javascript">
+        /* member-ext 클래스를 가진 요소 클릭 이벤트 핸들러 */
+        $('.member-ext').on('click', function(){
           $('.member-ext').hide();
         });
 
-        var shippingModifyPop = function (e) {
+        /* shippingModifyPop 함수 Thymeleaf 스크립트로 변경 */
+        var shippingModifyPop = function(e) {
           e.preventDefault();
 
-          var $this = $(this);
-
-          var vOrderCd = $this.parent().find("input[name='vOrderCd']").val();
+          var vOrderCd = $(e.target).parent().find("input[name='vOrderCd']").val();
 
           var $form = $("form[name='deliveryPop']");
           $form.find("input[name='vOrderCd']").val(vOrderCd);
 
-          $("#modal-my-delivery").load("/mypage/orderlist/shippingModifyPop", $form.serialize(), function () {
+          $("#modal-my-delivery").load("/mypage/orderlist/shippingModifyPop", $form.serialize(), function() {
             $(this).show();
             selectBox();
           });
         }
 
-        function fnGoProdReviewDetail(obj){
+        /* fnGoProdReviewDetail 함수 Thymeleaf 스크립트로 변경 */
+        function fnGoProdReviewDetail(obj) {
           var prodCd = $(obj).attr("data-prodCd");
           var orderCd = $(obj).attr("data-orderCd");
           var sitecd = $(obj).attr("data-sitecd");
           var optionid = $(obj).attr("data-optionid");
-          location.href='/mypage/prodReview/reg?prodCd=' + prodCd + '&ordercd='+orderCd+'&sitecd='+sitecd + '&optionid='+optionid;
+          location.href='/mypage/prodReview/reg?prodCd=' + prodCd + '&ordercd=' + orderCd + '&sitecd=' + sitecd + '&optionid=' + optionid;
         }
 
+        /* postReturn 함수 Thymeleaf 스크립트로 변경 */
         function postReturn(data) {
           var vAddr = '';
           if (data.roadAddr == null) {
@@ -583,83 +484,87 @@
           openDiv();
         }
 
-
+        /* openPostSearchForm 함수 Thymeleaf 스크립트로 변경 */
         function openPostSearchForm(nowPageNo) {
           $("#postSearchForm input[name=nowPageNo]").val(nowPageNo);
           var param = $("#postSearchForm");
           $('#jusoDiv').load('/juso/getAddrApi', param.serialize());
         }
 
+        /* openDiv 함수 Thymeleaf 스크립트로 변경 */
         function openDiv(e) {
           $('.hideLayers').hide();
           $('#userDeliveryDiv').show();
         }
 
-        var purchaseConfirm = function (e) {
+        /* purchaseConfirm 함수 Thymeleaf 스크립트로 변경 */
+        var purchaseConfirm = function(e) {
           e.preventDefault();
 
-          var $this = $(this);
+          var $this = $(e.target);
           var vOrderProdid = $this.data("prodid");
           var vOrdercd = $this.data("ordercd");
 
           if (confirm("구매확정 하시겠습니까?")) {
             cmAjax({
-              url:"/mypage/orderlist/orderConfirm",
+              url: "/mypage/orderlist/orderConfirm",
               type: "post",
               data: {
                 "vOrderProdid": vOrderProdid,
                 "vOrdercd": vOrdercd
               },
-              success: function (res) {
+              success: function(res) {
                 if (res.status === "succ") {
                   location.reload();
                 }
               },
-              error: function (err) {
+              error: function(err) {
                 console.log(err);
               }
             });
           }
         }
 
+        /* openUserDeliveryListPop 함수 Thymeleaf 스크립트로 변경 */
         function openUserDeliveryListPop(e) {
-          vOrdercd = $(this).data("ordercd");
-          let nDayDlvCnt = $(this).data("daydlvcnt");
-          $('#modal-my-delivery').load("/order/order/userDeliveryList", function () {
+          var vOrdercd = $(e.target).data("ordercd");
+          var nDayDlvCnt = $(e.target).data("daydlvcnt");
+          $('#modal-my-delivery').load("/order/order/userDeliveryList", function() {
             $("#modal-my-delivery").data("ordercd", vOrdercd);
             $("#modal-my-delivery").data("daydlvcnt", nDayDlvCnt);
           });
           $("#modal-my-delivery").show();
         }
 
+        /* callbackSelectAddr 함수 Thymeleaf 스크립트로 변경 */
         function callbackSelectAddr(obj) {
           let daydlvcnt = $("#modal-my-delivery").data("daydlvcnt");
 
-          if (daydlvcnt > 0 && obj.vExpressYn == 'Y' && obj.vDawnDlvYn == 'Y' && obj.vTodayDlvYn == 'N'){
+          if (daydlvcnt > 0 && obj.vExpressYn === 'Y' && obj.vDawnDlvYn === 'Y' && obj.vTodayDlvYn === 'N'){
             alert("선택한 지역으로는 당일배송이 불가능합니다.");
-            return ;
+            return;
           }
 
           var data = {
-            "vOrderCd" : $("#modal-my-delivery").data("ordercd"),
-            "vAddr" : obj["vAddr"],
-            "vAddrDtl" : obj["vAddrDtl"],
-            "vDeliveryCell" : obj["vDeliveryCell"],
-            "vDeliveryCell1" : obj["vDeliveryCell1"],
-            "vDeliveryCell2" : obj["vDeliveryCell2"],
-            "vDeliveryNm" : obj["vDeliveryNm"],
-            "vPostcd" : obj["vPostcd"]
-          }
+            "vOrderCd": $("#modal-my-delivery").data("ordercd"),
+            "vAddr": obj["vAddr"],
+            "vAddrDtl": obj["vAddrDtl"],
+            "vDeliveryCell": obj["vDeliveryCell"],
+            "vDeliveryCell1": obj["vDeliveryCell1"],
+            "vDeliveryCell2": obj["vDeliveryCell2"],
+            "vDeliveryNm": obj["vDeliveryNm"],
+            "vPostcd": obj["vPostcd"]
+          };
 
           cmAjax({
             url: "/mypage/orderlist/shippingModifyPopSave",
             type: "POST",
             data: data,
             dataType: "json",
-            success: function (res) {
+            success: function(res) {
               if (res.status === "succ") {
                 alert("배송지 정보가 변경되었습니다.");
-                closePop()
+                closePop();
                 location.reload();
               } else {
                 alert(res.message);
@@ -668,17 +573,15 @@
           });
         }
 
+        /* closePop 함수 Thymeleaf 스크립트로 변경 */
         function closePop() {
-
-
           $('#modal-my-delivery').html('');
           $("#modal-my-delivery").hide();
           $('body').removeAttr('style');
-
         }
 
-
-        var saveShipping = function (e) {
+        /* saveShipping 함수 Thymeleaf 스크립트로 변경 */
+        var saveShipping = function(e) {
           e.preventDefault();
 
           var $form = $("form[id='userDeliveryForm']");
@@ -711,150 +614,68 @@
             type: "POST",
             data: data,
             dataType: "json",
-            success: function (res) {
+            success: function(res) {
               deliveryPopClose();
               location.reload();
             }
           });
         }
 
-        function putBack (e) {
-
+        /* putBack 함수 Thymeleaf 스크립트로 변경 */
+        function putBack(e) {
           e.preventDefault();
 
-          var $this = $(this);
+          var $this = $(e.target);
           var productCd = $this.data("prodid");
           var optionId = $this.data("optionid");
           var productNm = $this.data("prodnm");
           var imgUrl = $this.data("imageurl");
 
-          var orderArray = [],
-                  order = {
-                    "v_productcd" : productCd,
-                    "n_qty" : 1,
-                    "v_uproductcd" : productCd,
-                    "v_gproductcd" : productCd, // productcd
-                  }
+          var orderArray = [];
+          var order = {
+            "v_productcd": productCd,
+            "n_qty": 1,
+            "v_uproductcd": productCd,
+            "v_gproductcd": productCd
+          };
 
           if (checkNullOrEmptyValue(optionId)) {
-            order['v_optionid'] = optionId
+            order['v_optionid'] = optionId;
           }
 
           orderArray.push(order);
 
-          fnCartInsert("01", orderArray, function(status, cartType){
-
-            if(status == 'succ'){
-
+          fnCartInsert("01", orderArray, function(status, cartType) {
+            if (status === 'succ') {
               if (confirm("장바구니에 추가하였습니다.\n장바구니로 이동하시겠습니까?")) {
                 location.href = "/order/cart";
               }
-            }else{
+            } else {
               alert("장바구니 등록 실패");
             }
           }, '');
-
         }
 
-        var checkNullOrEmptyValue = function (parameter) {
-          if (parameter === null || parameter === '' || parameter === undefined || parameter === 'null') return false;
+        /* checkNullOrEmptyValue 함수 Thymeleaf 스크립트로 변경 */
+        var checkNullOrEmptyValue = function(parameter) {
+          if (parameter === null || parameter === '' || parameter === undefined || parameter === 'null') {
+            return false;
+          }
           return true;
         };
 
-        function closeCartPop () {
-          $('.toast-box-wrap').fadeOut();
-          setTimeout(function () {
-            $('.toast-box-wrap').remove();
-          },1000)
-        }
+        /* 도큐먼트 로드 시 실행되는 스크립트 */
+        document.addEventListener("DOMContentLoaded", function() {
+          $(document)
+                  .on("click", ".shipping-modify-btn", openUserDeliveryListPop)
+                  .on("click", ".btn-confirmed", purchaseConfirm)
+                  // .on("click", ".btn-put-back", putBack)
+                  .on("click", ".btn-cancel-request", cancelRequest)
+                  .on("click", ".ui-close-pop", closePop)
+                  .on("click", ".btn-delivery-confirmed", deliveryConfirmed);
 
-        var cancelRequest = function (e) {
-          e.preventDefault();
-          var target = e.currentTarget;
-          var dataset = target.dataset;
-          var ordercd = dataset.ordercd;
-          if (ordercd) {
-            if (confirm("상품 포장이 시작된 [상품 준비중] 이후 단계에서는 취소가 제한될 수 있습니다.\n"+
-                    "주문 내역에서 취소 완료 여부를 꼭 확인 부탁드립니다.\n"+
-                    "취소 완료 확인 후 재구매를 부탁드립니다.\n"+
-                    "취소 접수를 진행 하시겠습니까?")) {
-              // location.href = "/mypage/ordercancel?ordercd=" + ordercd;
-
-              cmAjax({
-                url: "/mypage/orderCancelAjax",
-                type: "post",
-                data: {"vOrdercd": ordercd},
-                dataType: "json",
-                success: function(res) {
-                  if (res.status === "succ") {
-
-                    if (res.message === "true") {
-                      location.href = "/mypage/orderdetail?orderCd=" + ordercd;
-                    } else {
-                      location.href = "/mypage/cancellist"
-                    }
-                  } else {
-                    alert("주문 취소 신청 중 문제가 발생했습니다.");
-                  }
-                },
-                error: function(err) {
-                  console.log(err);
-                }
-              });
-            }
-          }
-        }
-
-        var deliveryConfirmed = function (e) {
-          e.preventDefault();
-
-          var $this = $(this);
-          var vOrderProdid = $this.data("prodid");
-          var vOrdercd = $this.data("ordercd");
-
-          if (confirm("수취확인 처리 하시겠습니까?")) {
-            cmAjax({
-              url:"/mypage/orderlist/deliveryConfirm",
-              type: "post",
-              data: {"vOrderProdid": vOrderProdid,
-                "vOrdercd" : vOrdercd},
-              success: function (res) {
-                if (res.status === "succ") {
-                  location.reload();
-                }
-              },
-              error: function (err) {
-                console.log(err);
-              }
-            });
-          }
-        }
-
-
-        $(document).ready(function() {
-        })
-                .on("click", ".shipping-modify-btn", openUserDeliveryListPop)
-                .on("click", ".btn-confirmed", purchaseConfirm)
-                // .on("click", ".btn-put-back", putBack)
-                .on("click", ".btn-cancel-request", cancelRequest)
-                .on("click", ".ui-close-pop", closePop)
-                .on("click", ".btn-delivery-confirmed", deliveryConfirmed)
-        ;
-
-        function fnDlvPop(ordercd, orderProdid,dawnDlvYn,dayDlvYn){
-          event.preventDefault();
-          if(dayDlvYn =='Y'){
-            alert("당일배송 상품은 배송 조회하실 수 없습니다.");
-            return false;
-          }
-          window.open("/mypage/orderdlvpop?vOrdercd="+ordercd+"&vOrderProdid="+orderProdid + "&vDawnDlvYn="+dawnDlvYn + "&vDayDlvYn=" + dayDlvYn, "popUpWin", "width=480px, height=832px, status=yes, scrollbars=no,resizable=yes, menubar=no");
-        }
-
-        function routineCancelReq(dlvReqno){
-          if(confirm("정기배송은 정기배송관리 화면에서 관리할 수 있습니다. 이동 하시겠습니까?")){
-            location.href = "/mypage/routineDelivery/detail?vDlvReqno="+dlvReqno;
-          }
-        }
+          /* 추가 스크립트가 있다면 여기에 작성 */
+        });
       </script>
       <script th:src="@{/js/myPage/cart.js}"></script>
       <script th:src="@{/js/myPage/restore_cart.js}"></script>

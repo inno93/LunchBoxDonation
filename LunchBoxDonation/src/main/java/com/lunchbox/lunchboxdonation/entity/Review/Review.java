@@ -1,6 +1,7 @@
 package com.lunchbox.lunchboxdonation.entity.Review;
 
 import com.lunchbox.lunchboxdonation.entity.Lunchbox.LunchBox;
+import com.lunchbox.lunchboxdonation.entity.Timestamp;
 import com.lunchbox.lunchboxdonation.entity.member.Member;
 import lombok.*;
 
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @Getter @Setter @ToString
 @NoArgsConstructor
 @Table(name = "TBL_REVIEW")
-public class Review {
+public class Review extends Timestamp {
     @Id
     @GeneratedValue
     private Long id;

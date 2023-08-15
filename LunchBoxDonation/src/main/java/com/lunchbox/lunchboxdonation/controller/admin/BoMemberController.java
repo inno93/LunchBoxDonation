@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @Slf4j
-@RequestMapping("admin/member")
+@RequestMapping("admin")
 public class BoMemberController {
 
     //    회원 목록
-    @GetMapping("memberList")
-    public void memberList(){
+    @GetMapping("userList")
+    public void user(){
 
     }
 

@@ -14,9 +14,10 @@ import java.util.Date;
 @AllArgsConstructor
 
 public class Member {
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // notNull 이랑 nullable 차이점 ? 여쭈어보기
     @Column(nullable = false, unique = true)
     private String memberId;
     private String memberPw;

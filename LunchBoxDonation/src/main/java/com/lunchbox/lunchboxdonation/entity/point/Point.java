@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @Table(name="TBL_POINT")
 public class Point {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)

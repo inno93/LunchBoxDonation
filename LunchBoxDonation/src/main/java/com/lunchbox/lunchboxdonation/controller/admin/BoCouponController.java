@@ -7,30 +7,22 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @Slf4j
-@RequestMapping("admin/coupon")
+@RequestMapping("coupon")
 public class BoCouponController {
 
     // 쿠폰
 
     // 쿠폰 리스트
-    @RequestMapping("couponList")
-    public ModelAndView couponList() {
+    @RequestMapping("list")
+    public ModelAndView list() {
         ModelAndView mv = new ModelAndView();
 
         return mv;
     }
-    // 쿠폰 상세보기
-    @RequestMapping("couponDetail")
-    public ModelAndView couponDetail() {
-        ModelAndView mv = new ModelAndView();
-
-        return mv;
-    }
-
 
     // 쿠폰 추가
-    @RequestMapping("couponWrite")
-    public ModelAndView couponWrite() {
+    @RequestMapping("addCoupon")
+    public ModelAndView addCoupon() {
         ModelAndView mv = new ModelAndView();
 
         return mv;
@@ -43,9 +35,9 @@ public class BoCouponController {
 
         return mv;
     }
-//    쿠폰 수정
-    @RequestMapping("couponModify")
-    public ModelAndView couponModify() {
+
+    @RequestMapping("modify")
+    public ModelAndView modifyCoupon() {
         ModelAndView mv = new ModelAndView();
 
         return mv;
