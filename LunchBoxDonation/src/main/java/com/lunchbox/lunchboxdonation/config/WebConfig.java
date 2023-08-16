@@ -1,20 +1,25 @@
-//package com.lunchbox.lunchboxdonation.config;
-//
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.web.servlet.ViewResolver;
-//import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-//import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-//import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-//import org.thymeleaf.spring5.SpringTemplateEngine;
-//import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
-//import org.thymeleaf.spring5.view.ThymeleafViewResolver;
-//import org.thymeleaf.templatemode.TemplateMode;
-//
-//@Configuration
+package com.lunchbox.lunchboxdonation.config;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.thymeleaf.spring5.SpringTemplateEngine;
+import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
+import org.thymeleaf.spring5.view.ThymeleafViewResolver;
+import org.thymeleaf.templatemode.TemplateMode;
+
+@Configuration
 //@EnableWebMvc
-//public class WebConfig implements WebMvcConfigurer {
-//
+public class WebConfig implements WebMvcConfigurer {
+
+    private final String upload = "/upload/**";
+
+    private final String commonPath = "file:///C:/LunchboxDonation/";
+
 //    @Bean
 //    public SpringResourceTemplateResolver templateResolver() {
 //        SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
@@ -39,10 +44,12 @@
 //        viewResolver.setCharacterEncoding("UTF-8");
 //        return viewResolver;
 //    }
-//
-//    @Override
-//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
 //        registry.addResourceHandler("/css/**", "/js/**", "/img/**")
 //                .addResourceLocations("classpath:/static/css/", "classpath:/static/js/", "classpath:/static/img/");
-//    }
-//}
+        registry.addResourceHandler(upload)
+                .addResourceLocations(commonPath);
+    }
+}

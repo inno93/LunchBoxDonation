@@ -44,7 +44,7 @@ public class BoLunchBoxController {
 //     도시락
 //    목록
     @GetMapping("lunchboxList")
-    public ModelAndView lunchBoxList(@PageableDefault(size = 10, page = 0) Pageable pageable, LunchBoxSearch lunchBoxSearch) {
+    public ModelAndView lunchBoxList(@PageableDefault(size = 1, page = 0) Pageable pageable, LunchBoxSearch lunchBoxSearch) {
         ModelAndView mv = new ModelAndView();
 
         Page<LunchBoxDTO> lunchBoxList = lunchBoxService.lunchBoxList(pageable, lunchBoxSearch);
@@ -88,16 +88,22 @@ public class BoLunchBoxController {
         LunchBox lunchBox = lunchBoxService.getLunchBoxWithOptionByLunchBoxId(id);
         mv.addObject("lunchBox",lunchBox);
 
-        mv.addObject("img", "C:/LunchBoxDonation/"+lunchBox.getLunchboxThumbNailingIMG());
-
-
         mv.setViewName("admin/lunchbox/lunchboxDetail");
         return mv;
     }
 
 //        삭제
     @GetMapping("lunchboxDelete/{id}")
-    public void lunchboxDelete(@PathVariable("id") Long id) {
+    public ModelAndView lunchboxDelete(@PathVariable("id") Long id) {
+        ModelAndView mv = new ModelAndView();
+        LunchBox lunchBox = lunchBoxService.getLunchBoxWithOptionByLunchBoxId(id);
+
+        lunchBoxService.deleteLunchBoxAndOptionsByLunchBoxId(id);
+
+        fileUtils.deleteFile(lunchBox.getLunchboxThumbNailingIMG());
+
+        mv.setViewName("redirect:/admin/lunchbox/lunchboxList");
+        return mv;
 
     }
 

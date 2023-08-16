@@ -19,6 +19,7 @@ public interface LunchBoxService {
 
 
     //삭제
+    public void deleteLunchBoxAndOptionsByLunchBoxId(Long id);
 
 
     public default LunchBox toEntity(LunchBoxDTO lunchBoxDTO){

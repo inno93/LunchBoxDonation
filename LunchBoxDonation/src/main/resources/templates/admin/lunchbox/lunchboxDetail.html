@@ -28,7 +28,7 @@
                             <tr>
                                 <th scope="row">도시락 이미지</th>
                                 <td colspan="3">
-                                    <img th:src="${img}" class="lunchboxDetail">
+                                    <img th:src="@{'/upload/' + ${lunchBox.lunchboxThumbNailingIMG}}" class="lunchboxDetail">
                                     <input type="file" name="lunchboxThumbNailingIMG">
                                 </td>
 

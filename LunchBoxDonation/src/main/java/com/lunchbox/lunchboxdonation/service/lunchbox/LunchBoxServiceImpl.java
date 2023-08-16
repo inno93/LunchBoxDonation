@@ -34,4 +34,9 @@ public class LunchBoxServiceImpl implements LunchBoxService {
 
         return lunchBoxRepository.findById(id).orElse(null);
     }
+
+    @Override
+    public void deleteLunchBoxAndOptionsByLunchBoxId(Long id) {
+        lunchBoxRepository.deleteById(id);
+    }
 }
