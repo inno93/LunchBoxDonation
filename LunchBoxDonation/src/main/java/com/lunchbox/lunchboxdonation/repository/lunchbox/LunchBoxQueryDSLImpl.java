@@ -1,8 +1,7 @@
 package com.lunchbox.lunchboxdonation.repository.lunchbox;
 
 import com.lunchbox.lunchboxdonation.domain.lunchbox.LunchBoxDTO;
-import com.lunchbox.lunchboxdonation.entity.Lunchbox.LunchBoxSearch;
-import com.lunchbox.lunchboxdonation.entity.Lunchbox.QLunchBox;
+import com.lunchbox.lunchboxdonation.entity.Lunchbox.*;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
@@ -17,6 +16,7 @@ import org.springframework.util.StringUtils;
 import java.util.List;
 
 import static com.lunchbox.lunchboxdonation.entity.Lunchbox.QLunchBox.lunchBox;
+import static com.lunchbox.lunchboxdonation.entity.Lunchbox.QLunchBoxOption.lunchBoxOption;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -54,5 +54,11 @@ public class LunchBoxQueryDSLImpl implements LunchBoxQueryDSL {
         return new PageImpl<>(lunchBoxs, pageable,count);
     }
 
-
+    @Override
+    public LunchBox lunchBoxDetail(Long id) {
+        return   query.selectFrom(lunchBox)
+                .leftJoin(lunchBox.lunchBoxOptions, lunchBoxOption).fetchJoin()
+                .where(lunchBox.id.eq(id))
+                .fetchOne();
+    }
 }

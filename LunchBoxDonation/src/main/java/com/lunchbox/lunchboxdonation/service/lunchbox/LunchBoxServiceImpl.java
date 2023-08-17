@@ -32,7 +32,7 @@ public class LunchBoxServiceImpl implements LunchBoxService {
     @Override
     public LunchBox getLunchBoxWithOptionByLunchBoxId(Long id) {
 
-        return lunchBoxRepository.findById(id).orElse(null);
+        return lunchBoxRepository.lunchBoxDetail(id);
     }
 
     @Override

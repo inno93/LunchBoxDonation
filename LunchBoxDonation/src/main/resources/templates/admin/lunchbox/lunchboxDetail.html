@@ -5,13 +5,14 @@
       layout:decorate="~{layout/adminDefaultLayout}">
 
 <section layout:fragment="adminContent">
+    <script th:src="@{/js/admin/lunchbox/detail.js}"></script>
     <div id="main_content">
         <div class="help_content_bx">
             <div class="content_bx_st">
                 <strong class="tit">도시락 상세보기</strong>
                 <div class="help_tbl_common help_tbl_style01 help_tbl_style03" id="styleclass">
                     <form method="post" id="updateForm" action="/admin/lunchbox/update" enctype="multipart/form-data">
-                        <input type="hidden" th:value="${lunchBox.id}"/>
+                        <input type="hidden" name="id" th:value="${lunchBox.id}"/>
                         <table>
                             <caption>도시락 상세 보기</caption>
                             <colgroup>
@@ -23,40 +24,58 @@
                             <tbody>
                             <tr>
                                 <th scope="row">도시락 명</th>
-                                <td colspan="3"><input type="text" th:value="${lunchBox.lunchboxTitle}"/></span></td>
+                                <td colspan="3"><input type="text" name="lunchboxTitle" th:value="${lunchBox.lunchboxTitle}"/></td>
                             </tr>
                             <tr>
                                 <th scope="row">도시락 이미지</th>
                                 <td colspan="3">
                                     <img th:src="@{'/upload/' + ${lunchBox.lunchboxThumbNailingIMG}}" class="lunchboxDetail">
-                                    <input type="file" name="lunchboxThumbNailingIMG">
+                                    <input type="file" name="thumbnail">
                                 </td>
-
                             </tr>
                             <tr>
                                 <th scope="row">가격</th>
                                 <td id="price" colspan="3">
-                                    <input type="text" th:value="${lunchBox.price}">
+                                    <input type="text" name="price" th:value="${lunchBox.price}">
                                 </td>
                             </tr>
                             </tbody>
                         </table>
-                    </form>
-                </div>
-                <div class="card main-margin">
-                    <div class="boardView">
-                        <div class="page" data-brl-use="PH">
-                            <div>
-                                <strong>이전글</strong>
-                                <a class="read">23/07/01 문의입니다</a>
-                            </div>
-                            <div>
-                                <strong class="next">다음글</strong>
-                                <a class="read">23/07/01 문의입니다</a>
-                            </div>
-                            -
+                        <table>
+                            <caption th:text="${lunchBox.lunchboxTitle + ' 옵션'}"></caption>
+                            <colgroup>
+                                <col style="width:20%">
+                                <col style="width:30%">
+                                <col style="width:20%">
+                            </colgroup>
+                            <thead>
+                                <th scope="row">옵션명</th>
+                                <th scope="row">가격</th>
+                                <th scope="row">비고</th>
+                                <th scope="row"><button id="addOption">옵션 추가 </button></th>
+                            </thead>
+                            <tbody id="options">
+                            <th:block th:if="${lunchBox.getLunchBoxOptions().size() > 0}">
+                                <tr th:each="option, index : ${lunchBox.getLunchBoxOptions()}">
+                                    <input type="hidden" name="lunchBoxOptions[__${#arrays.sequence(0, lunchBox.getLunchBoxOptions().size() - 1)}__].id" th:value="${option.id}">
+                                    <td><input type="text" name="lunchBoxOptions[__${#arrays.sequence(0, lunchBox.getLunchBoxOptions().size() - 1)}__].lunchOptionTitle" th:value="${option.lunchOptionTitle}" /></td>
+                                    <td><input type="text" name="lunchBoxOptions[__${#arrays.sequence(0, lunchBox.getLunchBoxOptions().size() - 1)}__].lunchOptionPrice" th:value="${option.lunchOptionPrice}" /></td>
+                                    <td colspan="2">
+                                        <a th:href="@{/admin/lunchbox/lunchboxOptionDelete/{lunchboxId}(lunchboxId=${lunchBox.id})/{optionId}(optionId=${option.id})}"
+                                           onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a>
+                                    </td>
+                                </tr>
+                            </th:block>
+                            <tr th:unless="${lunchBox.getLunchBoxOptions().size() > 0}" id="noOption">
+                                <td colspan="4">등록된 옵션이 없습니다.</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="button-container">
+                            <button type="submit" class="register">수정</button>
+                            <button type="button" class="cancel" >목록</button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

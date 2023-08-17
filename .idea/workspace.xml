@@ -20,71 +20,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8800162a-b0cc-47d4-9bd2-31af1b648486" name="Default Changelist" comment="인텔리제이 테스트">
-      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/config/QueryDSLConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/review/ReviewController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/domain/lunchbox/LunchBoxDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Lunchbox/LunchBoxSearch.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/repository/lunchbox/LunchBoxRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/service/Review/ReviewService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/service/Review/ReviewServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/static/img/admin/lunchbox/07479c5f-d79b-42f9-a933-5b9bea1c59d4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/static/img/admin/lunchbox/0ece3bef-49b7-42e6-8cc4-6b6e2c8abaeb.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/static/img/admin/lunchbox/6565938e-b127-47af-8553-e08279fd3bbb.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/static/img/admin/lunchbox/test1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/static/img/admin/lunchbox/test2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/static/img/admin/lunchbox/test3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/static/img/admin/lunchbox/test4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/coupon/couponDetail.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/coupon/couponList.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/coupon/couponWrite.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/lunchbox/lunchboxWrite.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/notice/noticeDetail.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/notice/noticeList.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/order/orderList.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/service/lunchbox/LunchBoxOptionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/service/lunchbox/LunchBoxOptionServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/LunchBoxDonationApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/LunchBoxDonationApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/config/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/config/FileUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/config/WebConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/admin/BoCouponController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/admin/BoCouponController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/admin/BoInquiryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/admin/BoInquiryController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/admin/BoLunchBoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/admin/BoLunchBoxController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/admin/BoMemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/admin/BoMemberController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/admin/BoNoticeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/admin/BoNoticeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/admin/BoOrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/admin/BoOrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/lunchBox/LunchBoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/controller/lunchBox/LunchBoxController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Donation.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/special/Donation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Inquiry.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/special/Inquiry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Lunchbox/LunchBoxOption.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Lunchbox/LunchBoxOption.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Lunchbox/Lunchbox.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Lunchbox/LunchBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Order/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Order/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Order/OrderAddress.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Order/OrderAddress.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Review/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/Review/Review.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/member/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/member/Member.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/monthBargin/BarginFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/monthBargin/BarginFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/notice/Notice.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/notice/Notice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/notice/NoticeFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/notice/NoticeFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/point/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/point/Point.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/special/Likes.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/entity/special/Likes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/repository/likes/LikesRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/repository/likes/LikesRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/domain/lunchbox/LunchBoxDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/domain/lunchbox/LunchBoxDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/repository/lunchbox/LunchBoxQueryDSL.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/repository/lunchbox/LunchBoxQueryDSL.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/repository/lunchbox/LunchBoxQueryDSLImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/repository/lunchbox/LunchBoxQueryDSLImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/repository/review/ReviewRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/repository/review/ReviewRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/service/lunchbox/LunchBoxService.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/service/lunchbox/LunchBoxService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/service/lunchbox/LunchBoxServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/service/lunchbox/LunchBoxServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/service/mypage/MypageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/service/mypage/MypageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/static/css/admin/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/static/css/admin/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/donation.html" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/donation/donation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/inquiryDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/inquiry/inquiryDetail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/inquiryList.html" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/inquiry/inquiryList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/static/js/admin/lunchbox/file.js" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/static/js/admin/lunchbox/detail.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/lunchbox/lunchboxDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/lunchbox/lunchboxDetail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/lunchbox/lunchboxList.html" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/lunchbox/lunchboxList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/nociteWrite.html" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/notice/nociteWrite.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/sidrNav.html" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/sidrNav.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/userList.html" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/admin/member/memberList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/mainPage/read.html" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/mainPage/read.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/mypage/mypage.html" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/mypage/mypage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LunchBoxDonation/src/test/java/com/lunchbox/lunchboxdonation/lunchbox/LunchBoxTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/LunchBoxDonation/src/test/java/com/lunchbox/lunchboxdonation/lunchbox/LunchBoxTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,6 +60,12 @@
                 <item name="LunchBoxDonation" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
               </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="LunchBoxDonation" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
             </expand>
             <select />
           </tree_state>
@@ -126,6 +78,7 @@
       <list>
         <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -143,6 +96,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="ExpandSpringBootJavaOptionsPanel" value="true" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
@@ -161,7 +115,50 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
-  <component name="RunManager" selected="Spring Boot.LunchBoxDonationApplication (1)">
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.lunchbox.lunchboxdonation.service.lunchbox" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.LunchBoxDonationApplication">
+    <configuration name="LunchBoxDonation [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/LunchBoxDonation" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="LunchBoxDonation [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/LunchBoxDonation" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="LunchBoxDonationApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="com.luchbox.LunchBoxDonation.main" />
       <extension name="coverage">
@@ -176,14 +173,23 @@
       </method>
     </configuration>
     <configuration name="LunchBoxDonationApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="LunchBoxDonation.LunchBoxDonation.main" />
+      <module name="com.luchbox.LunchBoxDonation.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.lunchbox.lunchboxdonation.LunchBoxDonationApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" value="11" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Gradle.LunchBoxDonation [clean]" />
+      <item itemvalue="Gradle.LunchBoxDonation [build]" />
+      <item itemvalue="Spring Boot.LunchBoxDonationApplication" />
+      <item itemvalue="Spring Boot.LunchBoxDonationApplication (1)" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.LunchBoxDonation [build]" />
+        <item itemvalue="Gradle.LunchBoxDonation [clean]" />
         <item itemvalue="Spring Boot.LunchBoxDonationApplication (1)" />
       </list>
     </recent_temporary>
@@ -223,6 +229,8 @@
       <workItem from="1690686842419" duration="245000" />
       <workItem from="1691062890970" duration="261000" />
       <workItem from="1691063232473" duration="3021000" />
+      <workItem from="1692163658859" duration="11465000" />
+      <workItem from="1692251297105" duration="14776000" />
     </task>
     <task id="LOCAL-00001" summary="인텔리제이 테스트">
       <created>1687531010021</created>
@@ -258,63 +266,80 @@
       <screen x="0" y="0" width="1536" height="816" />
     </state>
     <state x="395" y="87" key="#Inspections/0.0.1536.816@0.0.1536.816" timestamp="1691063412291" />
-    <state x="415" y="2" key="#LunchBoxDonationApplication" timestamp="1691063775718">
-      <screen x="0" y="0" width="1536" height="816" />
-    </state>
-    <state x="415" y="2" key="#LunchBoxDonationApplication/0.0.1536.816@0.0.1536.816" timestamp="1691063775718" />
-    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1690357146968">
+    <state x="415" y="2" width="719" height="811" key="#LunchBoxDonationApplication" timestamp="1692164562007">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1690357146968" />
+    <state x="415" y="2" key="#LunchBoxDonationApplication/0.0.1536.816@0.0.1536.816" timestamp="1691063775718" />
+    <state x="415" y="2" width="719" height="811" key="#LunchBoxDonationApplication/0.0.1536.824@0.0.1536.824" timestamp="1692164562007" />
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1692164911060">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1692164911060" />
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1692095033103">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1692095033103" />
     <state x="592" y="216" key="FileChooserDialogImpl" timestamp="1691066587739">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
     <state x="592" y="216" key="FileChooserDialogImpl/0.0.1536.816@0.0.1536.816" timestamp="1691066587739" />
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.5.1920.1040@0.0.1920.1040" timestamp="1689691639644" />
-    <state width="1493" height="78" key="GridCell.Tab.0.bottom" timestamp="1691066587759">
-      <screen x="0" y="0" width="1536" height="816" />
-    </state>
-    <state width="1493" height="78" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1691066587759" />
-    <state width="1493" height="201" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1690450975557" />
-    <state width="1493" height="78" key="GridCell.Tab.0.center" timestamp="1691066587759">
-      <screen x="0" y="0" width="1536" height="816" />
-    </state>
-    <state width="1493" height="78" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1691066587759" />
-    <state width="1493" height="201" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1690450975557" />
-    <state width="1493" height="78" key="GridCell.Tab.0.left" timestamp="1691066587759">
-      <screen x="0" y="0" width="1536" height="816" />
-    </state>
-    <state width="1493" height="78" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1691066587759" />
-    <state width="1493" height="201" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1690450975557" />
-    <state width="1493" height="78" key="GridCell.Tab.0.right" timestamp="1691066587759">
-      <screen x="0" y="0" width="1536" height="816" />
-    </state>
-    <state width="1493" height="78" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1691066587759" />
-    <state width="1493" height="201" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1690450975557" />
-    <state width="1493" height="78" key="GridCell.Tab.1.bottom" timestamp="1691066587759">
-      <screen x="0" y="0" width="1536" height="816" />
-    </state>
-    <state width="1493" height="78" key="GridCell.Tab.1.bottom/0.0.1536.816@0.0.1536.816" timestamp="1691066587759" />
-    <state width="1493" height="201" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1690450975558" />
-    <state width="1493" height="78" key="GridCell.Tab.1.center" timestamp="1691066587759">
-      <screen x="0" y="0" width="1536" height="816" />
-    </state>
-    <state width="1493" height="78" key="GridCell.Tab.1.center/0.0.1536.816@0.0.1536.816" timestamp="1691066587759" />
-    <state width="1493" height="201" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1690450975557" />
-    <state width="1493" height="78" key="GridCell.Tab.1.left" timestamp="1691066587759">
-      <screen x="0" y="0" width="1536" height="816" />
-    </state>
-    <state width="1493" height="78" key="GridCell.Tab.1.left/0.0.1536.816@0.0.1536.816" timestamp="1691066587759" />
-    <state width="1493" height="201" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1690450975557" />
-    <state width="1493" height="78" key="GridCell.Tab.1.right" timestamp="1691066587759">
-      <screen x="0" y="0" width="1536" height="816" />
-    </state>
-    <state width="1493" height="78" key="GridCell.Tab.1.right/0.0.1536.816@0.0.1536.816" timestamp="1691066587759" />
-    <state width="1493" height="201" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1690450975558" />
-    <state x="277" y="57" key="SettingsEditor" timestamp="1690357813573">
+    <state width="1493" height="240" key="GridCell.Tab.0.bottom" timestamp="1692270944774">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1690357813573" />
+    <state width="1493" height="78" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1691066587759" />
+    <state width="1493" height="240" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1692270944774" />
+    <state width="1493" height="240" key="GridCell.Tab.0.center" timestamp="1692270944774">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="78" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1691066587759" />
+    <state width="1493" height="240" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1692270944774" />
+    <state width="1493" height="240" key="GridCell.Tab.0.left" timestamp="1692270944774">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="78" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1691066587759" />
+    <state width="1493" height="240" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1692270944774" />
+    <state width="1493" height="240" key="GridCell.Tab.0.right" timestamp="1692270944774">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="78" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1691066587759" />
+    <state width="1493" height="240" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1692270944774" />
+    <state width="1493" height="240" key="GridCell.Tab.1.bottom" timestamp="1692270944774">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="78" key="GridCell.Tab.1.bottom/0.0.1536.816@0.0.1536.816" timestamp="1691066587759" />
+    <state width="1493" height="240" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1692270944774" />
+    <state width="1493" height="240" key="GridCell.Tab.1.center" timestamp="1692270944774">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="78" key="GridCell.Tab.1.center/0.0.1536.816@0.0.1536.816" timestamp="1691066587759" />
+    <state width="1493" height="240" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1692270944774" />
+    <state width="1493" height="240" key="GridCell.Tab.1.left" timestamp="1692270944774">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="78" key="GridCell.Tab.1.left/0.0.1536.816@0.0.1536.816" timestamp="1691066587759" />
+    <state width="1493" height="240" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1692270944774" />
+    <state width="1493" height="240" key="GridCell.Tab.1.right" timestamp="1692270944774">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="78" key="GridCell.Tab.1.right/0.0.1536.816@0.0.1536.816" timestamp="1691066587759" />
+    <state width="1493" height="240" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1692270944774" />
+    <state x="57" y="32" width="1450" height="694" key="MergeDialog" timestamp="1692095010642">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="57" y="32" width="1450" height="694" key="MergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1692095010642" />
+    <state x="219" y="143" width="776" height="429" key="MultipleFileMergeDialog" timestamp="1692095011732">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="219" y="143" width="776" height="429" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1692095011732" />
+    <state x="277" y="57" key="SettingsEditor" timestamp="1692164822778">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1692164822778" />
+    <state x="439" y="116" key="VCS.ChangeListViewerDialog" timestamp="1692095012225">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="439" y="116" key="VCS.ChangeListViewerDialog/0.0.1536.824@0.0.1536.824" timestamp="1692095012225" />
     <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1687531703883">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -323,10 +348,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="571" y="325" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1690357149750" />
-    <state x="498" y="178" width="672" height="538" key="search.everywhere.popup" timestamp="1690362058848">
+    <state x="465" y="258" key="git4idea.ui.GitUnstashDialog" timestamp="1692095013245">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="498" y="178" width="672" height="538" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1690362058848" />
+    <state x="465" y="258" key="git4idea.ui.GitUnstashDialog/0.0.1536.824@0.0.1536.824" timestamp="1692095013245" />
+    <state x="498" y="178" width="672" height="538" key="search.everywhere.popup" timestamp="1692258390236">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="498" y="178" width="672" height="538" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1692258390236" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1920.5.1920.1040@0.0.1920.1040" timestamp="1689065072990" />
   </component>
   <component name="XDebuggerManager">
@@ -336,6 +365,14 @@
           <url>file://$PROJECT_DIR$/LunchBoxDonation/src/main/resources/templates/order/order.html</url>
           <line>444</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/LunchBoxDonation/src/main/java/com/lunchbox/lunchboxdonation/repository/lunchbox/LunchBoxQueryDSL.java</url>
+          <line>14</line>
+          <properties class="com.lunchbox.lunchboxdonation.repository.lunchbox.LunchBoxQueryDSL" method="lunchBoxList">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
