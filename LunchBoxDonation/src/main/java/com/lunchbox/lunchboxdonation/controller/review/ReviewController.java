@@ -23,26 +23,27 @@ public class ReviewController {
     private ReviewService reviewService;
 
 //    @GetMapping("read")
-//    public String read(@RequestParam Long lunchboxId, Model model){
-//        // 화면 이동 용
-//        if (lunchboxId == null) {
-//            // 더미 데이터를
-//            lunchboxId = 123L;
-//        }
+//    public void read(@RequestParam Long lunchboxId, Model model){
 //        List<Review> reviews = reviewService.findByLunchboxId(lunchboxId);
-//        System.out.println("도시락 번호 : " + lunchboxId);
 //        model.addAttribute("reviews", reviews);
-//        return "/mainPage/read";
 //    }
     @GetMapping("read")
-    public void read(){
-
+    public String read(@RequestParam Long lunchboxId, Model model) {
+        List<Review> reviews = reviewService.findByLunchboxId(lunchboxId);
+        model.addAttribute("reviews", reviews);
+        System.out.println("read Test");
+        return "mainPage/read";
     }
+//    @PostMapping("read")
+//    public RedirectView write(@RequestParam Long lunchboxId, @RequestParam String reviewContent) {
+//        reviewService.write(lunchboxId, reviewContent);
+//        return new RedirectView("/mainPage/read");
+//    }
 
     @PostMapping("read")
-    public RedirectView write(@RequestParam Long lunchboxId, @RequestParam String reviewContent) {
+    public RedirectView write(@RequestParam("lunchboxId") Long lunchboxId, @RequestParam String reviewContent) {
         reviewService.write(lunchboxId, reviewContent);
-        return new RedirectView("/mainPage/read");
+        System.out.println("read Test2");
+        return new RedirectView("/mainPage/read?lunchboxId=" + lunchboxId);
     }
-
 }
