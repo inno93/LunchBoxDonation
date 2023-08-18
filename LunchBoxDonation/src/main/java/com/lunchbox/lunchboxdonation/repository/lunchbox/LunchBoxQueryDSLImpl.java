@@ -61,4 +61,12 @@ public class LunchBoxQueryDSLImpl implements LunchBoxQueryDSL {
                 .where(lunchBox.id.eq(id))
                 .fetchOne();
     }
+
+    @Override
+    public String getImgName(Long id) {
+        return query.select(lunchBox.lunchboxThumbNailingIMG)
+                .from(lunchBox)
+                .where(lunchBox.id.eq(id))
+                .fetchOne();
+    }
 }

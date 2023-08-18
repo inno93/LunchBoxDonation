@@ -2,16 +2,13 @@ package com.lunchbox.lunchboxdonation.entity.Lunchbox;
 
 import com.lunchbox.lunchboxdonation.entity.Review.Review;
 import com.lunchbox.lunchboxdonation.entity.Timestamp;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Getter @Setter
+@Data
 @NoArgsConstructor
 @Table(name = "TBL_LUNCHBOX")
 public class LunchBox extends Timestamp {
@@ -30,9 +27,10 @@ public class LunchBox extends Timestamp {
     private List<LunchBoxOption> lunchBoxOptions;
 
     @Builder
-    public LunchBox(String lunchboxTitle, String lunchboxThumbNailingIMG, Integer price) {
+    public LunchBox(String lunchboxTitle, String lunchboxThumbNailingIMG, Integer price, List<LunchBoxOption> lunchBoxOptions) {
         this.lunchboxTitle = lunchboxTitle;
         this.lunchboxThumbNailingIMG = lunchboxThumbNailingIMG;
+        this.lunchBoxOptions = lunchBoxOptions;
         this.price = price;
     }
 }

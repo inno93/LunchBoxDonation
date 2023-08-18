@@ -16,4 +16,7 @@ public interface LunchBoxQueryDSL {
 
     //상세보기
     public LunchBox lunchBoxDetail(Long id);
+
+    //이미지 파일명 가져오기
+    public String getImgName(Long id);
 }

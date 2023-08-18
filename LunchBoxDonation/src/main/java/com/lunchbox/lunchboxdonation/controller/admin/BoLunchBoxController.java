@@ -3,6 +3,7 @@ package com.lunchbox.lunchboxdonation.controller.admin;
 import com.lunchbox.lunchboxdonation.config.FileUtils;
 import com.lunchbox.lunchboxdonation.domain.lunchbox.LunchBoxDTO;
 import com.lunchbox.lunchboxdonation.entity.Lunchbox.LunchBox;
+import com.lunchbox.lunchboxdonation.entity.Lunchbox.LunchBoxOption;
 import com.lunchbox.lunchboxdonation.entity.Lunchbox.LunchBoxSearch;
 import com.lunchbox.lunchboxdonation.service.lunchbox.LunchBoxOptionService;
 import com.lunchbox.lunchboxdonation.service.lunchbox.LunchBoxService;
@@ -112,7 +113,36 @@ public class BoLunchBoxController {
 
 //    도시락 수정
     @PostMapping("update")
-    public void update(@ModelAttribute LunchBoxDTO lunchBoxDTO, @RequestParam("thumbnail") MultipartFile file){
-        log.info("{}",lunchBoxDTO.toString());
+    public ModelAndView update(@ModelAttribute LunchBoxDTO lunchBoxDTO, @RequestParam("thumbnail") MultipartFile file){
+        ModelAndView mv = new ModelAndView();
+        //이미지 파일 등록 시
+        if (!file.isEmpty()) {
+            try {
+                String fileName = lunchBoxService.getImgName(lunchBoxDTO.getId());
+                //기존 파일 삭제
+                fileUtils.deleteFile(fileName);
+                //파일 처리
+                String filename = fileUtils.uploadFile(file);
+                lunchBoxDTO.setLunchboxThumbNailingIMG(filename);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if(lunchBoxDTO.getLunchBoxOptions() != null && lunchBoxDTO.getLunchBoxOptions().size() > 0) {
+            //null 체크
+            for (int i = 0; i < lunchBoxDTO.getLunchBoxOptions().size(); i++) {
+                lunchBoxDTO.getLunchBoxOptions().get(i).getLunchbox().setLunchboxTitle(lunchBoxDTO.getLunchboxTitle());
+                lunchBoxDTO.getLunchBoxOptions().get(i).getLunchbox().setLunchboxThumbNailingIMG(lunchBoxDTO.getLunchboxThumbNailingIMG());
+                lunchBoxDTO.getLunchBoxOptions().get(i).getLunchbox().setPrice(lunchBoxDTO.getPrice());
+                lunchBoxDTO.getLunchBoxOptions().get(i).getLunchbox().setId(lunchBoxDTO.getId());
+            }
+        }
+
+        log.info("lunchBoxDTO : {}", lunchBoxDTO.toString());
+        Long id = lunchBoxService.LunchBoxUpdate(lunchBoxDTO);
+
+
+        mv.setViewName("redirect:/admin/lunchbox/lunchboxDetail/" + id);
+        return mv;
     }
 }

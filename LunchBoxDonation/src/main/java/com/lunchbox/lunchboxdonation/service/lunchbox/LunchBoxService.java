@@ -15,7 +15,11 @@ public interface LunchBoxService {
     //상세보기
     public LunchBox getLunchBoxWithOptionByLunchBoxId(Long id);
 
+    //이미지 파일명 조회
+    public String getImgName(Long id);
+
     //수정
+    public Long LunchBoxUpdate(LunchBoxDTO lunchBoxDTO);
 
 
     //삭제
@@ -27,6 +31,7 @@ public interface LunchBoxService {
                 .lunchboxTitle(lunchBoxDTO.getLunchboxTitle())
                 .lunchboxThumbNailingIMG(lunchBoxDTO.getLunchboxThumbNailingIMG())
                 .price(lunchBoxDTO.getPrice())
+                .lunchBoxOptions(lunchBoxDTO.getLunchBoxOptions())
                 .build();
     }
 }

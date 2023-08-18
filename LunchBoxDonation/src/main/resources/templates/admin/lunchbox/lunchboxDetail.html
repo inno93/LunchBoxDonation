@@ -13,6 +13,7 @@
                 <div class="help_tbl_common help_tbl_style01 help_tbl_style03" id="styleclass">
                     <form method="post" id="updateForm" action="/admin/lunchbox/update" enctype="multipart/form-data">
                         <input type="hidden" name="id" th:value="${lunchBox.id}"/>
+                        <input type="hidden" name="lunchboxThumbNailingIMG" th:value="${lunchBox.lunchboxThumbNailingIMG}"/>
                         <table>
                             <caption>도시락 상세 보기</caption>
                             <colgroup>
@@ -55,8 +56,9 @@
                                 <th scope="row"><button id="addOption">옵션 추가 </button></th>
                             </thead>
                             <tbody id="options">
-                            <th:block th:if="${lunchBox.getLunchBoxOptions().size() > 0}">
-                                <tr th:each="option, index : ${lunchBox.getLunchBoxOptions()}">
+                            <th:block th:if="${lunchBox.lunchBoxOptions.size() > 0}">
+                                <tr th:each="option, index : ${lunchBox.lunchBoxOptions}">
+
                                     <input type="hidden" name="lunchBoxOptions[__${#arrays.sequence(0, lunchBox.getLunchBoxOptions().size() - 1)}__].id" th:value="${option.id}">
                                     <td><input type="text" name="lunchBoxOptions[__${#arrays.sequence(0, lunchBox.getLunchBoxOptions().size() - 1)}__].lunchOptionTitle" th:value="${option.lunchOptionTitle}" /></td>
                                     <td><input type="text" name="lunchBoxOptions[__${#arrays.sequence(0, lunchBox.getLunchBoxOptions().size() - 1)}__].lunchOptionPrice" th:value="${option.lunchOptionPrice}" /></td>

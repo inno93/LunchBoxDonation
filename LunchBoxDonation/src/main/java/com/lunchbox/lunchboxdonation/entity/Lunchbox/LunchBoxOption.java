@@ -1,9 +1,6 @@
 package com.lunchbox.lunchboxdonation.entity.Lunchbox;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -28,4 +25,13 @@ public class LunchBoxOption {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lunchBox_id", nullable = false)
     private LunchBox lunchbox;
+
+    @Builder
+    public LunchBoxOption(String lunchOptionTitle, Integer lunchOptionPrice, LocalDateTime regDate, LocalDateTime modDate, LunchBox lunchbox) {
+        this.lunchOptionTitle = lunchOptionTitle;
+        this.lunchOptionPrice = lunchOptionPrice;
+        this.regDate = regDate;
+        this.modDate = modDate;
+        this.lunchbox = lunchbox;
+    }
 }
