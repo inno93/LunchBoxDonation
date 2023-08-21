@@ -8,8 +8,7 @@
   <link rel="stylesheet" th:href="@{/css/myPage/css/content.css}">
   <link rel="stylesheet" th:href="@{/css/myPage/css/regular.css}">
 </th:block>
-
-<section layout:fragment="content">
+<section id="contents" class="container">
 
   <div class="content-wrap">
     <div class="frame-full head-mypage">
@@ -45,11 +44,11 @@
           </dl><!--// order -->
           <dl class="column coupon">
             <dt>쿠폰</dt>
-            <dd><a href="/benefit_coupon"><strong class="num" id="couponCountText">0</strong>개</a></dd>
+            <dd><a href="/mypage/myCoupon"><strong class="num" id="couponCountText">0</strong>개</a></dd>
           </dl><!--// coupon -->
           <dl class="column point">
             <dt>포인트</dt>
-            <dd class="text-primary"><a href="/benefit_point"><strong class="num" id="totalUnusedPointText">1,370</strong>P</a></dd>
+            <dd class="text-primary"><a href="/mypage/myPoint"><strong class="num" id="totalUnusedPointText">1,370</strong>P</a></dd>
           </dl><!--// point -->
         </div><!--// inner -->
       </div><!--// user-info-box -->
@@ -63,7 +62,7 @@
             <div class="layer-body">
               <div class="layer-usertag-inn">
                 <div class="layer-usertag-img">
-                  <img id="researchImg" th:src="@{/css/myPage/images/usertag-simpler.jpg}" alt="간편식 러버">
+                  <img id="researchImg" src="/resources/pc/images/img/usertag-simpler.jpg" alt="간편식 러버">
                 </div>
                 <div class="layer-usertag-desc-group">
                   <dl class="layer-usertag-defi">
@@ -100,7 +99,7 @@
           let tagResult = '';
           let resultObj = {
             '01':{
-              img:'/css/myPage/images/usertag-newbie.jpg',
+              img:'/resources/pc/images/img/usertag-newbie.jpg',
               text1:'"여기는 뭐가 맛있어?"',
               text2:'환영해요! 닭가슴살의 세계에 이제 막 입문했네요!',
               text3:'내 입맛에 딱 맞는 닭가슴살 찾고 있다면, 홈화면의 [1팩 담기]에서 여러 상품을 한 팩 씩 골라보세요! ',
@@ -108,7 +107,7 @@
               type: '01'
             },
             '02':{
-              img:'/css/myPage/images/usertag-smart.jpg',
+              img:'/resources/pc/images/img/usertag-smart.jpg',
               text1:'"어? 이거 맛있을까?"',
               text2:'이 구역의 맛잘알! 하지만 그냥 사진 않죠. 할인 혜택과 후기까지 꼼꼼히 살피고 신중하게 구매해요. ',
               text3:'홈화면에서 [이달의 특가]를 확인하세요! 매달 새로운 맛과 혜택으로 찾아갑니다!',
@@ -116,7 +115,7 @@
               type: '02'
             },
             '03':{
-              img:'/css/myPage/images/usertag-maint.jpg',
+              img:'/resources/pc/images/img/usertag-maint.jpg',
               text1:'"다이어트는 꾸준히 해야죠~"',
               text2:'타이트하기 보단 꾸준히 실천할 수 있는 식단을 선호해요. 맛있으면서도 단백질, 당류 등 성분은 꼭 체크하는 진짜 다이어터! ',
               text3:'맛도 성분도 한 번에 비교하려면 최근 본 상품에서 [비교담기] 서비스를 이용해보세요!',
@@ -124,7 +123,7 @@
               type: '03'
             },
             '04':{
-              img:'/css/myPage/images/usertag-mania.jpg',
+              img:'/resources/pc/images/img/usertag-mania.jpg',
               text1:'"먹다보면 다~ 맛있어"',
               text2:'다이어트에서 효율을 아주 중시해요. 때로 지겹더라도 끈기있는 실천이 다이어트의 지름길이라고 생각해요.',
               text3:'[오렌지멤버스]에 가입하고, 살 때마다 추가할인&적립 받아요!',
@@ -132,7 +131,7 @@
               type: '04'
             },
             '05':{
-              img:'/css/myPage/images/usertag-frenz.jpg',
+              img:'/resources/pc/images/img/usertag-frenz.jpg',
               text1:'"저는 그냥 랭닭에서 사요"',
               text2:'식단은 이미 일상이에요. 오랜 경험으로 믿고 먹는, 믿고 추천하는 제품들이 있어요.',
               text3:'꾸준히 먹는 제품은 [정기구매] 서비스를 통해서 추가할인 받아보세요!',
@@ -140,7 +139,7 @@
               type: '05'
             },
             '06':{
-              img:'/css/myPage/images/usertag-standard.jpg',
+              img:'/resources/pc/images/img/usertag-standard.jpg',
               text1:'"저는 그냥 정석대로 먹는 편?"',
               text2:'대회, 바디프로필 등 명확한 목표를 갖고 식단을 하고 있어요. 건강기능식품부터 다이어트 간식까지 다이어트 제품에 대해서는 빠삭해요!',
               text3:'식단은 하루라도 놓칠 수 없어! [특급배송]으로 빠르게 받아 완벽한 식단 텐션을 유지하세요!',
@@ -148,7 +147,7 @@
               type: '06'
             },
             '07':{
-              img:'/css/myPage/images/usertag-simpler.jpg',
+              img:'/resources/pc/images/img/usertag-simpler.jpg',
               text1:'"밥보다 시간!"',
               text2:'혹시 도시락 찾으러 오셨어요? 편하고 빠른 식사를 선호해요.',
               text3:'홈화면 [랭킹]메뉴의 [별별랭킹] 카테고리에서 상황에 맞는 다양한 꿀조합을 소개 받아요!',
@@ -197,7 +196,7 @@
             let userTagType = '';
             for (const key in resultObj) {
               if (key === userTagType) {
-                tagResult = resultObj[key]
+                tagResult = resultObj[key];
                 break;
               };
             };
@@ -407,239 +406,211 @@
         }
       </script>
       <div class="frame-right">
-        <div class="frame-cnt-inner">
-          <div class="list-title-area">
-            <h3 class="title-list">최근 주문내역</h3>
-          </div><!--// list-title-area -->
+        <div class="frame-cnt-inner order-detail-view">
+          <div class="menu-title-area">
+            <h3 class="title-menu">주문상세내역</h3>
+          </div><!--// menu-title-area -->
 
-          <!-- [Dev] 20220315 추가 : 오렌지멤버스 만료임박할때 노출 -->
-          <div class="order-list-slide">
-            <!-- [Dev] 20210909 추가 : 주문내역 없을 경우 -->
+          <div class="order-list-area order-list-slide">
+            <ul class="order-list-inner">
+              <!-- 날짜별 항목 list -->
+              <li>
+                <div class="order-list-head">
+                  <strong class="date">
+                    2023.04.05<a href="javascript:void(0);" class="order-num">RK2304050003541895</a>
+                  </strong>
+                </div><!--// list-head -->
+                <div class="order-content-box">
+                  <ul class="order-div-list">
+                    <!-- 상품별 list 1 -->
+                    <li class="order-div-item">
+                      <div class="prd-info-area">
+                        <div class="inner">
+                          <div class="column img">
+                            <a href="javascript:void(0);" th:onclick="|onClickMyPageOrderDetailProduct(this); return false;|"
+                               data-addprodyn="N" data-icepackyn="N" th:data-productcd="24535">
+                              <img th:src="@{/images/product-image.jpg}" alt="상품이미지">
+                            </a>
+                          </div>
+                          <div class="column tit">
+                            <div class="prd-state-row">
+                              <strong class="prd-state-head">
+                                구매확정</strong>
+                              <span class="prd-state-date">04월 12일 구매확정완료 </span>
+                            </div>
+                            <p class="tit">
+                              <a href="javascript:void(0);" th:onclick="|onClickMyPageOrderDetailProduct(this); return false;|"
+                                 data-addprodyn="N" data-icepackyn="N" th:data-productcd="24535">
+                                잇메이트 소고기볼 오리지널 100g</a>
+                            </p>
+                            <p class="desc">
+                              10팩</p>
+                          </div><!--// column  -->
 
-            <div class="no-data-type1" th:if="${recentOrderAddresses.isEmpty(recentOrderAddresses)}">
-              <p class="message">최근 3개월 내에 주문내역이 없습니다.  </p>
-            </div>
-            <th:block th:each="recentOrderAddresses : ${recentOrderAddresses}">
-            <div th:unless="${recentOrderAddresses.isEmpty()}" class = "order-data">
-              <ul>
-                <li th:each="orderAddress : ${recentOrderAddresses.content}">
-                  <p th:text="${orderAddress.orderName}"></p>
-                </li>
-              </ul>
-            </div>
-            <div th:if="${recentOrderAddresses.totalPages > 1}">
-              <div class="pagination">
-                <ul>
-                  <li th:each="page : ${#numbers.sequence(0, recentOrderAddresses.totalPages - 1)}">
-                    <a th:href="@{/?page=${page}}" th:classappend="${page == recentOrderAddresses.number ? 'active' : ''}"
-                       th:text="${page + 1}"></a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            </th:block>
-          </div>
-          <!--// order-list-area -->
+                          <div class="column col-btn-group">
+                            <div class="col-btn-group-inn">
+                              <a href="javascript:void(0);" th:onclick="|fnDlvPop('RK2304050003541895','RK230405000354189500','N','N');|"
+                                 class="prd-control-btn"><span>배송조회</span></a>
+                              <a href="#" class="prd-control-btn btn-restore-cart" th:data-prodid="24535" th:data-gprodid="24535"
+                                 th:data-optionid="20220424000000027819" th:data-onepackyn="N" th:data-qty="1" th:data-cartid="20230405000014431264"
+                                 th:data-textoption1="" th:data-textoption2="" th:data-textoption3="">
+                                <span>다시담기</span>
+                              </a>
+                              <a href="#" class="prd-control-btn" disabled=""><span>기간만료</span></a>
+                            </div>
+                          </div>
+                          <div class="price-item">
+                            <div class="dlv-nmr">
+                              <p class="dlv-nmr-price">
+                                <span class="num">27,000</span>원
+                              </p>
+                              <p class="dlv-nmr-cnt">
+                                <span class="num">1</span>개
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div><!--// prd-info-area -->
+                    </li><!--// order-div-item || 상품별 list 1 -->
+                  </ul><!--// order-div-list -->
 
-          <!-- 적립 가능 포인트 없을 경우 노출 -->
-          <div class="point-bnr-area">
-            <a href="https://www.rankingdak.com/landing/content?cont=orangeJoin">
-              <img src="https://file.rankingdak.com/image/RANK/BANNER/AR_IMG_1/20230308/IMG1678MEs239623124.jpg" alt="마이페이지 중앙 띠 배너">
-            </a>
-          </div>
-          <!--// 적립 가능 포인트 없을 경우 노출 -->
-          <div class="list-title-area">
-            <h3 class="title-list">최근 본 상품</h3>
-            <a href="/activity_recently" class="btn-link-txt2"><span>전체보기</span><i class="ico-arr-right"></i></a>
-          </div><!--// list-title-area -->
-
-          <div class="grid-list-wrap">
-            <div class="no-data-type2">
-              <p class="message">최근 본 상품이 없습니다. </p>
-            </div>
-          </div><!--// grid-list-wrap -->
-
-          <div class="grid-area-span2 gap50">
-            <div class="colum">
-              <div class="list-title-area">
-                <h3 class="title-list">찜한상품</h3>
-                <a href="/activity_likes" class="btn-link-txt2"><span>전체보기</span><i class="ico-arr-right"></i></a>
-              </div><!--// list-title-area -->
-              <div class="order-list-area">
-                <div th:if="${likesList.isEmpty()}" class="no-data-type3">
-                  <p class="message">찜한 상품이 없습니다. </p>
+                  <!-- 관리자 메모 -->
                 </div>
-                <div th:unless="${likesList.isEmpty()}">
-                  <ul>
-                    <li th:each="like : ${likesList}"></li>
-                  </ul>
-                </div>
-              </div><!--// order-list-area -->
-            </div><!--// colum -->
-            <div class="colum">
-              <!-- [Dev] 20210909 수정 : 포인트 > 상품후기 -->
-              <div class="list-title-area">
-                <h3 class="title-list">상품후기</h3>
-                <a href="/activity_review" class="btn-link-txt2"><span>전체보기</span><i class="ico-arr-right"></i></a>
-              </div><!--// list-title-area -->
-              <div class="order-list-area">
-                <!-- [Dev] 20210909 추가 : 상품후기 없을 경우 -->
-                <div th:if="${reviews.isEmpty()}" class="no-data-type4">
-                  <p class="message">작성 가능한 후기가 없습니다.</p>
-                </div>
-                <div th:unless="${reviews.isEmpty()}">
-                  <ul>
-                    <li th:each="review : ${reviews}">
-                      <p th:text="${review.reviewContent}"></p>
-                      <p>작성자 : <span th:text="${review.member.name}"></span></p>
-                      <p>상품명 : <span th:text="${review.lunchbox.name}"></span></p>
-                    </li>
-                  </ul>
-                </div>
-              </div><!--// order-list-area -->
-            </div><!--// colum -->
-          </div><!--// grid-area-span2 -->
+              </li>
+            </ul>
+          </div><!--// order-list-area -->
 
           <div class="list-title-area">
-            <h3 class="title-list">1:1문의</h3>
-            <a href="/activity_interview" class="btn-basic-sm2 btn-black"><span>1:1 문의하기</span></a>
+            <h3 class="title-list">배송지 정보</h3>
           </div><!--// list-title-area -->
+          <div class="board-form">
+            <table>
+              <caption>배송지 정보</caption>
+              <colgroup>
+                <col style="width:130px"><col style="width:auto">
+              </colgroup>
+              <tbody>
+              <!-- 배송지 정보 표시 부분 -->
+              </tbody>
+            </table>
+          </div><!--// board-form -->
 
-          <div class="board-list">
-            <!-- [Dev] 20210909 추가 : 문의하신 사항 없을 경우 -->
-            <div class="no-data-type5">
-              <p class="message">문의하신 사항이 없습니다.</p>
+          <!-- 다른 부분도 마찬가지로 수정하셔야 합니다. -->
+
+          <div class="btn-bottom-area">
+            <div class="left">
             </div>
-          </div><!--// board-list -->
-
-          <h4 class="blind">기타 상담 문의</h4>
-          <div class="grid-area-span2 gap20">
-            <div class="colum">
-              <div class="box-grey-type1">
-                <h5 class="tit-box"><i class="ico-bl-cs"></i><span>실시간 채팅 상담</span></h5>
-                <ul class="consulting-time">
-                  <li>평일<span class="time">09:00 ~ 21:00</span><div class="lunch">점심<span class="time">12:00 ~ 13:00</span></div></li>
-                  <li>토요일<span class="time">09:00 ~ 15:00</span></li>
-                  <li>일요일<span class="time">09:00 ~ 21:00</span></li>
-                </ul>
-              </div><!--// box-grey-type1 -->
-            </div><!--// colum -->
-            <div class="colum">
-              <div class="box-grey-type1">
-                <h5 class="tit-box">
-                  <i class="ico-bl-tel"></i><span>전화상담</span><i class="ico-arr-right"></i>
-                  <em class="tel">02-6405-8088</em>
-                </h5>
-                <ul class="consulting-time">
-                  <li>평일<span class="time">09:00 ~ 18:00</span><div class="lunch">점심<span class="time">12:00 ~ 13:00</span></div></li>
-                  <li class="bl-none">주말, 휴일에는 실시간<br>채팅 상담을 이용해주세요.</li>
-                </ul>
-              </div><!--// box-grey-type1 -->
-            </div><!--// colum -->
+            <div class="right">
+              <a href="/mypage/orderlist" class="btn-basic-md2 btn-black"><span>주문목록으로 돌아가기</span></a>
+            </div>
+          </div><!--// btn-bottom-area -->
+          <div id="admMemoAttachImagePreviewPopWrapper">
           </div>
         </div><!--// frame-cnt-inner -->
-      </div><!--// content-wrap -->
-      <form id="command" name="deliveryPop" action="/mypage/main" method="post"><input type="hidden" name="actionFlag" value="M">
+      </div><!--// frame-right -->
+
+      <form id="command" name="deliveryPop" action="/mypage/orderdetail?orderCd=RK2304050003541895" method="post"><input type="hidden" name="actionFlag" value="M">
         <input type="hidden" name="vDeliveryid">
         <input type="hidden" name="vOrderCd">
         <div>
-          <input type="hidden" name="_csrf" value="cbe10549-11c2-4091-994d-0c82c6378385">
-        </div></form><div class="layer-wrap" id="modal-my-delivery" style="display: none"></div>
-      <script type="text/javascript">
-        $('.member-ext').on('click',function(){
-          $('.member-ext').hide();
-        });
+          <input type="hidden" name="_csrf" value="23a086b0-7025-4388-b3b2-9c3d6f80dfbd">
+        </div></form><form id="cashReceiptPopFrm" name="cashReceiptPopFrm" action="/mypage/orderdetail?orderCd=RK2304050003541895" method="post" onsubmit="return false;"><div id="cashReceiptPop"></div>
+      <div>
+        <input type="hidden" name="_csrf" value="23a086b0-7025-4388-b3b2-9c3d6f80dfbd">
+      </div></form><div class="layer-wrap" id="modal-my-delivery" style="display: none"></div>
+
+      <script>
+
+        var vOrdercd;
+
+        let timer = null,
+                isEnableResend = false,
+                sec = 180;
+
+        var receipt = function (event) {
+
+          event.preventDefault();
+          var $this = $(this);
+
+          var href = $this.data("href");
+
+          if (href != '') {
+            window.open(href, "popUpWin", "width=500px, height=676px, status=yes, scrollbars=no,resizable=yes, menubar=no");
+          }
+        }
+
+        var orderConfirmation = function (e) {
+          e.preventDefault();
+
+          var $this = $(this);
+
+          var href = $this.data("href");
+
+          if (href != '') {
+            window.open(href, "popUpWin", "width=700px, height=500px, status=yes, scrollbars=no,resizable=yes, menubar=no");
+          }
+
+        }
+
+        var
+                rules = {
+                  vDeliveryNm     : {required: true, onlyChar: true, maxlength: 30},
+                  vPostcd         : {required: true, digits: true, maxlength: 10},
+                  vAddr           : {required: true, maxlength: 60},
+                  vAddrDtl        : {required: true, maxlength: 30},
+                  vDeliveryCell1  : {required: true},
+                  vDeliveryCell2  : {required: true, digits: true, maxlength: 8},
+                  vDeliveryTel    : {digits: true, maxlength: 11}
+                },
+                messages = {
+                  vDeliveryNm     : {required: '받는분은 필수 입력 항목입니다.'},
+                  vPostcd         : {required: '주소는 필수 입력 항목입니다.'},
+                  vAddr           : {required: '주소는 필수 입력 항목입니다.'},
+                  vAddrDtl        : {required: '주소는 필수 입력 항목입니다.'},
+                  vDeliveryCell1  : {required: '휴대폰은 필수 입력 항목입니다.'},
+                  vDeliveryCell2  : {required: '휴대폰은 필수 입력 항목입니다.'}
+                }
+        ;
 
         var shippingModifyPop = function (e) {
           e.preventDefault();
 
           var $this = $(this);
 
-          var vOrderCd = $this.parent().find("input[name='vOrderCd']").val();
+          var vOrderCd = $(".order-list-area").find("input[name='vOrderCd']").val();
 
           var $form = $("form[name='deliveryPop']");
           $form.find("input[name='vOrderCd']").val(vOrderCd);
 
           $("#modal-my-delivery").load("/mypage/orderlist/shippingModifyPop", $form.serialize(), function () {
+            $('#userDeliveryForm').validate({
+              ignoreTitle: true,
+              rules : rules,
+              messages : messages,
+              submitHandler: function (form) {
+                fnDeliveryData();
+              }
+            });
             $(this).show();
             selectBox();
           });
         }
 
-        function fnGoProdReviewDetail(obj){
-          var prodCd = $(obj).attr("data-prodCd");
-          var orderCd = $(obj).attr("data-orderCd");
-          var sitecd = $(obj).attr("data-sitecd");
-          var optionid = $(obj).attr("data-optionid");
-          location.href='/mypage/prodReview/reg?prodCd=' + prodCd + '&ordercd='+orderCd+'&sitecd='+sitecd + '&optionid='+optionid;
-        }
-
-        function postReturn(data) {
-          var vAddr = '';
-          if (data.roadAddr == null) {
-            vAddr = data.jibunAddr;
-          } else {
-            vAddr = data.roadAddr;
-          }
-
-          $('#userDeliveryForm input[name=vPostcd]').val(data.zipno);
-          $('#userDeliveryForm input[name=vAddr]').val(vAddr);
-          openDiv();
-        }
-
-
-        function openPostSearchForm(nowPageNo) {
-          $("#postSearchForm input[name=nowPageNo]").val(nowPageNo);
-          var param = $("#postSearchForm");
-          $('#jusoDiv').load('/juso/getAddrApi', param.serialize());
-        }
-
-        function openDiv(e) {
-          $('.hideLayers').hide();
-          $('#userDeliveryDiv').show();
-        }
-
-        var purchaseConfirm = function (e) {
-          e.preventDefault();
-
-          var $this = $(this);
-          var vOrderProdid = $this.data("prodid");
-          var vOrdercd = $this.data("ordercd");
-
-          if (confirm("구매확정 하시겠습니까?")) {
-            cmAjax({
-              url:"/mypage/orderlist/orderConfirm",
-              type: "post",
-              data: {
-                "vOrderProdid": vOrderProdid,
-                "vOrdercd": vOrdercd
-              },
-              success: function (res) {
-                if (res.status === "succ") {
-                  location.reload();
-                }
-              },
-              error: function (err) {
-                console.log(err);
-              }
-            });
-          }
-        }
-
         function openUserDeliveryListPop(e) {
           vOrdercd = $(this).data("ordercd");
-          let nDayDlvCnt = $(this).data("daydlvcnt");
+          let dayDlv = $(this).data("daydlv");
+
           $('#modal-my-delivery').load("/order/order/userDeliveryList", function () {
             $("#modal-my-delivery").data("ordercd", vOrdercd);
-            $("#modal-my-delivery").data("daydlvcnt", nDayDlvCnt);
+            $("#modal-my-delivery").data("daydlv", dayDlv);
           });
           $("#modal-my-delivery").show();
         }
 
         function callbackSelectAddr(obj) {
-          let daydlvcnt = $("#modal-my-delivery").data("daydlvcnt");
+          let daydlv = $("#modal-my-delivery").data("daydlv");
 
-          if (daydlvcnt > 0 && obj.vExpressYn == 'Y' && obj.vDawnDlvYn == 'Y' && obj.vTodayDlvYn == 'N'){
+          if (daydlv == 'Y' && obj.vExpressYn == 'Y' && obj.vDawnDlvYn == 'Y' && obj.vTodayDlvYn == 'N'){
             alert("선택한 지역으로는 당일배송이 불가능합니다.");
             return ;
           }
@@ -672,104 +643,53 @@
           });
         }
 
-        function closePop() {
-
-
+        function closePop(e) {
+          e.preventDefault();
           $('#modal-my-delivery').html('');
           $("#modal-my-delivery").hide();
-          $('body').removeAttr('style');
-
         }
 
-
-        var saveShipping = function (e) {
+        function closeCashPop(e) {
           e.preventDefault();
-
-          var $form = $("form[id='userDeliveryForm']");
-
-          var valueByName = getValueByName($form, "vDeliveryNm");
-          if (valueByName === "") {
-            alert("받는 분을 입력해주세요.");
-            return;
-          }
-
-          if (getValueByName($form, "vPostcd") === "") {
-            alert("우편번호를 입력해주세요.");
-            return;
-          }
-
-          if (getValueByName($form, "vAddrDtl") === "") {
-            alert("상세주소를 입력해주세요.");
-            return;
-          }
-
-          // getValueByName($form, "vDeliveryCell1") === "" ||
-          if (getValueByName($form, "vDeliveryCell2") === "") {
-            alert("휴대폰 번호를 입력해 주세요.");
-            return;
-          }
-
-          var data = $form.serialize();
-          cmAjax({
-            url: "/mypage/orderlist/shippingModifyPopSave",
-            type: "POST",
-            data: data,
-            dataType: "json",
-            success: function (res) {
-              deliveryPopClose();
-              location.reload();
-            }
-          });
+          $('#cashReceiptPop').html('');
         }
 
-        function putBack (e) {
-
-          e.preventDefault();
-
-          var $this = $(this);
-          var productCd = $this.data("prodid");
-          var optionId = $this.data("optionid");
-          var productNm = $this.data("prodnm");
-          var imgUrl = $this.data("imageurl");
-
-          var orderArray = [],
-                  order = {
-                    "v_productcd" : productCd,
-                    "n_qty" : 1,
-                    "v_uproductcd" : productCd,
-                    "v_gproductcd" : productCd, // productcd
-                  }
-
-          if (checkNullOrEmptyValue(optionId)) {
-            order['v_optionid'] = optionId
-          }
-
-          orderArray.push(order);
-
-          fnCartInsert("01", orderArray, function(status, cartType){
-
-            if(status == 'succ'){
-
-              if (confirm("장바구니에 추가하였습니다.\n장바구니로 이동하시겠습니까?")) {
-                location.href = "/order/cart";
-              }
-            }else{
-              alert("장바구니 등록 실패");
-            }
-          }, '');
-
+        var getValueByName = function(form, name) {
+          var val = form.find("input[name='" + name + "']").val();
+          return val;
         }
 
-        var checkNullOrEmptyValue = function (parameter) {
-          if (parameter === null || parameter === '' || parameter === undefined || parameter === 'null') return false;
-          return true;
-        };
 
-        function closeCartPop () {
-          $('.toast-box-wrap').fadeOut();
-          setTimeout(function () {
-            $('.toast-box-wrap').remove();
-          },1000)
+        function onClickMyPageOrderDetailProduct(obj) {
+          if (obj.dataset.addprodyn === "N" && obj.dataset.icepackyn === "N") {
+            document.location.href = '/product/view?productCd=' + $(obj).attr('productcd');
+          }
+        }
+
+        function onClickMyPageOrderDetailMemoAttachIcon(obj) {
+          var orderCd = $(obj).attr('ordercd');
+          var memoId = $(obj).attr('memoid');
+
+          /*
+          var paramMap = new Map([
+              ['vOrdercd', orderCd],
+              ['vMid', memoId],
+          ]);
+          */
+          var paramMap = {
+            'vOrdercd' : orderCd
+            , 'vMid' : memoId
+          };
+
+          var paramStr = 'vOrdercd=' + orderCd + '&vMid=' + memoId;
+
+          //const url = new URL('/mypage/admMemoAttachImagePreviewPop');
+          //url.search = new URLSearchParams(paramMap);
+
+          // var paramStr = [...paramMap.keys()].map(keyItem => (keyItem + '=' + paramMap.get(keyItem))).join('&');
+          var scrollValue = $('body').scrollTop();
+          $('body').css({'overflow':'hidden'}).scrollTop(scrollValue);
+          $('#admMemoAttachImagePreviewPopWrapper').load('/mypage/admMemoAttachImagePreviewPop', paramStr);
         }
 
         var cancelRequest = function (e) {
@@ -777,6 +697,12 @@
           var target = e.currentTarget;
           var dataset = target.dataset;
           var ordercd = dataset.ordercd;
+
+          const datas = {
+            "vOrdercd": ordercd,
+            "isMypageCancel" : "Y"
+          };
+
           if (ordercd) {
             if (confirm("상품 포장이 시작된 [상품 준비중] 이후 단계에서는 취소가 제한될 수 있습니다.\n"+
                     "주문 내역에서 취소 완료 여부를 꼭 확인 부탁드립니다.\n"+
@@ -787,11 +713,10 @@
               cmAjax({
                 url: "/mypage/orderCancelAjax",
                 type: "post",
-                data: {"vOrdercd": ordercd},
+                data: datas,
                 dataType: "json",
                 success: function(res) {
                   if (res.status === "succ") {
-
                     if (res.message === "true") {
                       location.href = "/mypage/orderdetail?orderCd=" + ordercd;
                     } else {
@@ -834,15 +759,238 @@
           }
         }
 
+        var purchaseConfirm = function (e) {
+          e.preventDefault();
 
-        $(document).ready(function() {
-        })
-                .on("click", ".shipping-modify-btn", openUserDeliveryListPop)
-                .on("click", ".btn-confirmed", purchaseConfirm)
-                // .on("click", ".btn-put-back", putBack)
+          var $this = $(this);
+          var vOrderProdid = $this.data("prodid");
+          var vOrdercd = $this.data("ordercd");
+
+          if (confirm("구매확정 하시겠습니까?")) {
+            cmAjax({
+              url:"/mypage/orderlist/orderConfirm",
+              type: "post",
+              data: {
+                "vOrderProdid": vOrderProdid,
+                "vOrdercd": vOrdercd
+              },
+              success: function (res) {
+                if (res.status === "succ") {
+                  location.reload();
+                }
+              },
+              error: function (err) {
+                console.log(err);
+              }
+            });
+          }
+        }
+
+        function putBack (e) {
+
+          e.preventDefault();
+
+          var $this = $(this);
+          var productCd = $this.data("prodid");
+          var optionId = $this.data("optionid");
+
+          var orderArray = [],
+                  order = {
+                    "v_productcd" : productCd,
+                    "n_qty" : 1,
+                    "v_uproductcd" : productCd,
+                    "v_gproductcd" : productCd, // productcd
+                  }
+
+          if (checkNullOrEmptyValue(optionId)) {
+            order['v_optionid'] = optionId
+          }
+
+          orderArray.push(order);
+
+          fnCartInsert("01", orderArray, function(status, cartType){
+
+            if(status == 'succ'){
+              if (confirm("장바구니에 추가하였습니다.\n장바구니로 이동하시겠습니까?")) {
+                location.href = "/order/cart";
+              }
+            }else{
+              alert("장바구니 등록 실패");
+            }
+          }, '');
+
+        }
+
+        var checkNullOrEmptyValue = function (parameter) {
+          if (parameter === null || parameter === '' || parameter === undefined || parameter === 'null') return false;
+          return true;
+        };
+
+        function closeCartPop () {
+          $('.toast-box-wrap').fadeOut();
+          setTimeout(function () {
+            $('.toast-box-wrap').remove();
+          },1000)
+        }
+
+
+        var togglePhone = function (e) {
+          var phoneTxt = $('.ui-text-value'),
+                  phoneInput = $('.ui-input-phone'),
+                  btnModify = $('.ui-btn-modify'),
+                  btnSend = $('.ui-btn-send'),
+                  btnDone = $('.ui-btn-done'),
+                  btnCancel = $(".ui-btn-cancel");
+
+          phoneInput.removeClass('hide');
+          btnSend.addClass('hide');
+          btnModify.addClass('hide');
+          btnDone.removeClass('hide');
+          btnCancel.removeClass('hide')
+        }
+
+        var closePhone = function (e) {
+          var phoneTxt = $('.ui-text-value'),
+                  phoneInput = $('.ui-input-phone'),
+                  btnModify = $('.ui-btn-modify'),
+                  btnSend = $('.ui-btn-send'),
+                  btnDone = $('.ui-btn-done'),
+                  btnCancel = $(".ui-btn-cancel");
+
+          phoneInput.addClass('hide');
+          btnSend.removeClass('hide');
+          btnModify.removeClass('hide');
+          btnDone.addClass('hide');
+          btnCancel.addClass('hide')
+        }
+
+        var phoneEdited = function (e) {
+          e.preventDefault();
+
+          var phoneTxt = $('.ui-text-value'),
+                  phoneInput = $('.ui-input-phone'),
+                  btnModify = $('.ui-btn-modify'),
+                  btnSend = $('.ui-btn-send'),
+                  btnDone = $('.ui-btn-done'),
+                  btnCancel = $(".ui-btn-cancel");
+
+          var $this = $(this);
+          var ordercd = $this.data("ordercd");
+          var phoneNo = $(".ui-input-phone").val();
+          var message = "변경하시겠습니까?";
+          if ($this.hasClass('ui-btn-send')) {
+            message = "재발송 하시겠습니까?";
+          }
+
+          if (confirm(message)) {
+            cmAjax({
+              url: "/mypage/orderdetail/changePhoneNumberAjax",
+              type: "post",
+              data: {
+                "vOrdercd": ordercd,
+                "phoneNo": phoneNo
+              },
+              success: function (res) {
+                console.log('changePhoneNumberAjax success----');
+                console.log(res);
+
+
+                if (res.status == 'succ') {
+                  if (!isEmpty(res.object.message)) {
+                    var msg = message.indexOf("재발송") > -1 ? "선물하기 메시지가 재발송 되었습니다." : res.object.message;
+                    alert(msg);
+                  }
+                  if (!phoneInput.val() == '') {
+                    phoneTxt.text(res.object.cellNo);
+                  }
+
+                  phoneInput.addClass('hide');
+                  btnSend.removeClass('hide');
+                  btnModify.removeClass('hide');
+                  btnDone.addClass('hide');
+                  btnCancel.addClass('hide');
+
+                } else if (res.status === "fail") {
+                  alert(res.message);
+                } else {
+                  phoneTxt.text('');
+                }
+              }
+            });
+          }
+
+        }
+
+        function requestCashReceiptPop (e) {
+          e.preventDefault();
+
+          let ordercd = e.currentTarget.dataset.ordercd;
+
+          $("#cashReceiptPop").load("/mypage/cashReceiptPop?ordercd=" + ordercd);
+        }
+
+        function requestCashReceipt(e) {
+          e.preventDefault();
+
+          let $cashFrm = $("#cashReceiptPopFrm");
+
+          if ($cashFrm.find("input[name=receiptTypeNo]").val() === "") {
+            alert("핸드폰 or 사업자번호를 입력해주세요.");
+            return;
+          }
+
+          if (!confirm("현금영수증 신청하시겠습니까?")) {
+            return;
+          }
+
+          let data = $cashFrm.serialize();
+          let failureMessage = "현금 영수증 신청 중 문제가 발생했습니다.";
+          cmAjax({
+            url: "/mypage/cashReceipt",
+            type: "post",
+            data: data,
+            success: function (res) {
+              if (res.status === "succ") {
+                alert("현금영수증 신청 완료되었습니다.");
+              } else {
+                alert(res.message ? failureMessage : res.message);
+              }
+              location.reload();
+            },
+            error: function (err) {
+              alert(failureMessage);
+              location.reload();
+            }
+          });
+        }
+
+        $(document).ready(function () {
+          $('.ui-click-more').on('click', function () {
+            $(this).siblings('.txt').removeClass('off');
+            $(this).hide()
+          });
+
+          $('.ui-toggle-btn').on('click', function () {
+            if ( $(this).hasClass('toggle-on') ) {
+              $(this).parent().siblings().find('.txt').addClass('off');
+              $('.ui-click-more').show();
+            }
+          });
+
+        }).on("click", ".shipping-modify-btn", openUserDeliveryListPop)
+                .on("click", ".btn-receipt", receipt)
+                .on("click", ".btn-order-confirmation", orderConfirmation)
                 .on("click", ".btn-cancel-request", cancelRequest)
+                .on("click", ".btn-confirmed", purchaseConfirm)
+                // .on("click", ".btn-put-back", restoreUserCart)
                 .on("click", ".ui-close-pop", closePop)
+                .on("click", "#cash-ui-close", closeCashPop)
                 .on("click", ".btn-delivery-confirmed", deliveryConfirmed)
+                .on("click", ".ui-btn-modify", togglePhone)
+                .on("click", ".ui-btn-done, .ui-btn-send", phoneEdited)
+                .on("click", ".ui-btn-cancel", closePhone)
+                .on("click", ".request-cash-receipt", requestCashReceiptPop)
+                .on("click", ".request-cash-receipt-btn", requestCashReceipt)
         ;
 
         function fnDlvPop(ordercd, orderProdid,dawnDlvYn,dayDlvYn){
@@ -859,9 +1007,10 @@
             location.href = "/mypage/routineDelivery/detail?vDlvReqno="+dlvReqno;
           }
         }
+
       </script>
-      <script th:src="@{/js/myPage/cart.js}"></script>
-      <script th:src="@{/js/myPage/restore_cart.js}"></script>
+      <script src="/resources/pc/js/order/cart.js"></script>
+      <script src="/resources/common/js/order/restore_cart.js"></script>
     </div><!--// frame-sm -->
   </div><!--// content-wrap -->
 

@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface OrderAddressRepository extends JpaRepository<OrderAddress, Long> {
@@ -17,5 +19,9 @@ public interface OrderAddressRepository extends JpaRepository<OrderAddress, Long
             "WHERE oa.modDate > :threeMonthsAgo")
     Page<OrderAddress> findByModDateAfter(LocalDateTime threeMonthsAgo, Pageable pageable);
 
-//    List<OrderAddress> findByRegDatesAfter(LocalDateTime threeMonthsAgo);
+    @Query("SELECT oa FROM OrderAddress oa")
+    List<OrderAddress> findAll();
+
+    @Query("select oa from OrderAddress oa where oa.order.member.id = :memberId")
+    Optional<OrderAddress> findByMemberId(Long memberId);
 }

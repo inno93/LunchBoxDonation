@@ -4,9 +4,9 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/default_layout}">
 <th:block layout:fragment="css">
-  <link rel="stylesheet" href="/css/myPage/css/common.css">
-  <link rel="stylesheet" href="/css/myPage/css/content.css">
-  <link rel="stylesheet" href="/css/myPage/css/regular.css">
+  <link rel="stylesheet" th:href="@{/css/myPage/css/common.css}">
+  <link rel="stylesheet" th:href="@{/css/myPage/css/content.css}">
+  <link rel="stylesheet" th:href="@{/css/myPage/css/regular.css}">
 </th:block>
 
 <section layout:fragment="content">
@@ -314,37 +314,37 @@
               <li>
                 <a href="/mypage/orderlist" class="menu">주문관리</a>
                 <ul class="depth2">
-                  <li><a href="/mypage/orderlist">주문내역</a></li>
-                  <li class=""><a href="/mypage/oldOrderlist">이전 주문내역<span class="sub">(22.04.24 이전)</span></a></li>
-                  <li><a href="/mypage/cancellist">취소/반품 내역</a></li>
-                  <li class=""><a href="/mypage/routineDelivery">정기배송 관리</a></li>
-                  <li class=""><a href="/mypage/restock/list">재입고 알림 상품</a></li>
+                  <li><a href="/order_details">주문내역</a></li>
+                  <li class=""><a href="/order_before">이전 주문내역<span class="sub">(22.04.24 이전)</span></a></li>
+                  <li><a href="/order_cancel">취소/반품 내역</a></li>
+                  <li class=""><a href="/order_regular_delivery">정기배송 관리</a></li>
+                  <li class=""><a href="/order_restocked">재입고 알림 상품</a></li>
                 </ul>
               </li>
               <li>
                 <a href="#" class="menu">혜택관리</a>
                 <ul class="depth2">
-                  <li class=""><a href="/mypage/myCoupon">쿠폰</a></li>
-                  <li class=""><a href="/mypage/myPoint">포인트</a></li>
-                  <li class=""><a href="/mypage/giftCard/list">랭킹닭컴 상품권 관리</a></li><!-- 활성화될 경우 li에 addClass current  -->
+                  <li class=""><a href="/benefit_coupon">쿠폰</a></li>
+                  <li class=""><a href="/benefit_point">포인트</a></li>
+                  <li class=""><a href="/benefit_voucher">랭킹닭컴 상품권 관리</a></li><!-- 활성화될 경우 li에 addClass current  -->
                 </ul>
               </li>
               <li>
                 <a href="#" class="menu">활동관리</a>
                 <ul class="depth2">
-                  <li class=""><a href="/mypage/recentProduct/list">최근 본 상품</a></li>
-                  <li class=""><a href="/mypage/wish/list">찜한상품</a></li>
-                  <li class=""><a href="/mypage/wishBrand/list">관심브랜드</a></li>
-                  <li><a href="/mypage/userCounsel/list">1:1문의</a></li><!-- 활성화될 경우 li에 addClass current  -->
-                  <li><a href="/mypage/prodReview/list">상품후기</a></li><!-- 활성화될 경우 li에 addClass current  -->
-                  <li><a href="/mypage/prodCounsel/list">상품문의내역</a></li><!-- 활성화될 경우 li에 addClass current  -->
+                  <li class=""><a href="/activity_recently">최근 본 상품</a></li>
+                  <li class=""><a href="/activity_likes">찜한상품</a></li>
+                  <li class=""><a href="/activity_brand">관심브랜드</a></li>
+                  <li><a href="/activity_interview">1:1문의</a></li><!-- 활성화될 경우 li에 addClass current  -->
+                  <li><a href="/activity_review">상품후기</a></li><!-- 활성화될 경우 li에 addClass current  -->
+                  <li><a href="/activity_inquiry_details">상품문의내역</a></li><!-- 활성화될 경우 li에 addClass current  -->
                 </ul>
               </li>
               <li>
                 <a href="#" class="menu">식단상담</a>
                 <ul class="depth2">
-                  <li><a href="/mypage/dietManage/list">식단상담 목록</a></li><!-- 활성화될 경우 li에 addClass current  -->
-                  <li><a href="/mypage/dietManage/app">식단상담 등록</a></li><!-- 활성화될 경우 li에 addClass current  -->
+                  <li><a href="/diet_list">식단상담 목록</a></li><!-- 활성화될 경우 li에 addClass current  -->
+                  <li><a href="/diet_registration">식단상담 등록</a></li><!-- 활성화될 경우 li에 addClass current  -->
                 </ul>
               </li>
               <li>
@@ -356,8 +356,8 @@
               <li>
                 <a href="/mypage/delivery" class="menu">회원정보관리</a>
                 <ul class="depth2">
-                  <li class=""><a href="/mypage/delivery">배송지 관리</a></li>
-                  <li class="current"><a href="/mypage/info/mypage">정보수정</a></li><!-- 활성화될 경우 li에 addClass current  -->
+                  <li class=""><a href="/information_shipping_address">배송지 관리</a></li>
+                  <li><a href="/information_crystal">정보수정</a></li><!-- 활성화될 경우 li에 addClass current  -->
                 </ul>
               </li>
             </ul>

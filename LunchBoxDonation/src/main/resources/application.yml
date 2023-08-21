@@ -21,7 +21,7 @@ spring:
 #    #jpa format
     properties:
       hibernate:
-        format_sql: true
+    format_sql: true
     show-sql: true
 
   devtools:

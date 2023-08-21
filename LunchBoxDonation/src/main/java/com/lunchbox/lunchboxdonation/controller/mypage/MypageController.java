@@ -23,7 +23,7 @@ public class MypageController {
 
     @GetMapping("/mypages")
     public String mypage(Model model){
-//        최근 주문내역 3페이지
+//        최근 주문내역
         Page<OrderAddress> recentOrderAddressesPage = mypageService.getRecentOrderAddressesWithinThreeMonthsPageable(0, 3);
         model.addAttribute("recentOrderAddresses",recentOrderAddressesPage);
 //        찜하기 내역
