@@ -9,10 +9,11 @@ import java.util.List;
 
 @Entity
 @Data
+@ToString(exclude = "LunchBoxOption")
 @NoArgsConstructor
 @Table(name = "TBL_LUNCHBOX")
 public class LunchBox extends Timestamp {
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String lunchboxTitle;
@@ -23,14 +24,14 @@ public class LunchBox extends Timestamp {
 //    @JoinColumn(name = "REVIEW_ID")
 //    private List<Review> review;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "lunchbox")
     private List<LunchBoxOption> lunchBoxOptions;
 
     @Builder
     public LunchBox(String lunchboxTitle, String lunchboxThumbNailingIMG, Integer price, List<LunchBoxOption> lunchBoxOptions) {
         this.lunchboxTitle = lunchboxTitle;
         this.lunchboxThumbNailingIMG = lunchboxThumbNailingIMG;
-        this.lunchBoxOptions = lunchBoxOptions;
         this.price = price;
+        this.lunchBoxOptions = lunchBoxOptions;
     }
 }

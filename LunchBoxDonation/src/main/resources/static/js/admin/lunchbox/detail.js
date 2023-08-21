@@ -26,9 +26,9 @@ $(document).ready(function() {
 
 
     //뒤로 가기
-    $(".cancel").on("click", function() {
+    $(".list").on("click", function() {
         // 페이지 뒤로 가기
-        history.back();
+       window.location.href="/admin/lunchbox/lunchboxList";
     });
 
 })

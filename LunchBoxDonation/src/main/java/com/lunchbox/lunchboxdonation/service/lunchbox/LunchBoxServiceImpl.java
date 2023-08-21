@@ -38,9 +38,7 @@ public class LunchBoxServiceImpl implements LunchBoxService {
 
     @Override
     public Long LunchBoxUpdate(LunchBoxDTO lunchBoxDTO) {
-        log.info("lunchboxDTO : {}", lunchBoxDTO.toString());
         Optional<LunchBox> lunchBoxData = lunchBoxRepository.findById(lunchBoxDTO.getId());
-//        log.info("lunchboxData : {}", lunchBoxData.toString());
         if(lunchBoxData.isPresent()){
             LunchBox lunchbox = lunchBoxData.get();
             lunchbox.setLunchboxTitle(lunchBoxDTO.getLunchboxTitle());
@@ -61,7 +59,6 @@ public class LunchBoxServiceImpl implements LunchBoxService {
                         option.setLunchOptionTitle(lunchBoxDTO.getLunchBoxOptions().get(i).getLunchOptionTitle());
                         option.setLunchOptionPrice(lunchBoxDTO.getLunchBoxOptions().get(i).getLunchOptionPrice());
                         option.setLunchbox(lunchbox);
-//                        log.info("{}", option.toString());
                         lunchBoxOptionRepository.save(option);
                     }
                     i++;

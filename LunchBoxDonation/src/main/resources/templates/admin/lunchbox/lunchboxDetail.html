@@ -59,11 +59,12 @@
                             <th:block th:if="${lunchBox.lunchBoxOptions.size() > 0}">
                                 <tr th:each="option, index : ${lunchBox.lunchBoxOptions}">
 
-                                    <input type="hidden" name="lunchBoxOptions[__${#arrays.sequence(0, lunchBox.getLunchBoxOptions().size() - 1)}__].id" th:value="${option.id}">
-                                    <td><input type="text" name="lunchBoxOptions[__${#arrays.sequence(0, lunchBox.getLunchBoxOptions().size() - 1)}__].lunchOptionTitle" th:value="${option.lunchOptionTitle}" /></td>
-                                    <td><input type="text" name="lunchBoxOptions[__${#arrays.sequence(0, lunchBox.getLunchBoxOptions().size() - 1)}__].lunchOptionPrice" th:value="${option.lunchOptionPrice}" /></td>
+                                    <input type="hidden" th:name="'lunchBoxOptions['+ ${index.index} +'].id'" th:value="${option.id}">
+                                    <td><input type="text" th:name="'lunchBoxOptions['+ ${index.index} +'].lunchOptionTitle'" th:value="${option.lunchOptionTitle}" /></td>
+                                    <td><input type="text" th:name="'lunchBoxOptions['+ ${index.index} + '].lunchOptionPrice'" th:value="${option.lunchOptionPrice}" /></td>
                                     <td colspan="2">
-                                        <a th:href="@{/admin/lunchbox/lunchboxOptionDelete/{lunchboxId}(lunchboxId=${lunchBox.id})/{optionId}(optionId=${option.id})}"
+<!--                                        <a th:href="@{/admin/lunchbox/lunchboxOptionDelete/${lunchBox.id}/${option.id}}"-->
+                                        <a th:href="@{/admin/lunchbox/lunchboxOptionDelete/{lunchBoxId}/{optionId}(lunchBoxId=${lunchBox.id}, optionId=${option.id})}"
                                            onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a>
                                     </td>
                                 </tr>
@@ -75,7 +76,7 @@
                         </table>
                         <div class="button-container">
                             <button type="submit" class="register">수정</button>
-                            <button type="button" class="cancel" >목록</button>
+                            <button type="button" class="list" >목록</button>
                         </div>
                     </form>
                 </div>

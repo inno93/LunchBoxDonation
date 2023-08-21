@@ -47,8 +47,6 @@ spring:
     multipart:
       max-file-size: 50MB
       max-request-size: 50MB
-#      location: C:/LunchBoxDonation/src/main/resources/static/img/
-
 
 file:
  uploadDir: C:/LunchBoxDonation/

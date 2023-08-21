@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
@@ -20,6 +21,7 @@ import static com.lunchbox.lunchboxdonation.entity.Lunchbox.QLunchBoxOption.lunc
 
 @RequiredArgsConstructor
 @Slf4j
+
 public class LunchBoxQueryDSLImpl implements LunchBoxQueryDSL {
     private final JPAQueryFactory query;
 
@@ -55,9 +57,10 @@ public class LunchBoxQueryDSLImpl implements LunchBoxQueryDSL {
     }
 
     @Override
+    @Transactional
     public LunchBox lunchBoxDetail(Long id) {
         return   query.selectFrom(lunchBox)
-                .leftJoin(lunchBox.lunchBoxOptions, lunchBoxOption).fetchJoin()
+                .leftJoin(lunchBoxOption).on(lunchBox.id.eq(lunchBoxOption.lunchbox.id)).fetchJoin()
                 .where(lunchBox.id.eq(id))
                 .fetchOne();
     }
