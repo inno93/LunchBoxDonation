@@ -163,19 +163,6 @@
             <div class="review-intro">베스트 구매후기<span style="font-size: 12px;"> (3,578)</span></div>
 
 
-            <form id="reply" action="/mainPage/read" method="post">
-                <input type="hidden" name="lunchboxId" th:value="${lunchbox != null ? lunchbox.id : 123}">
-<!--                <input type="hidden" name="lunchboxId" th:value="${lunchboxId}">-->
-                <div class="form-group">
-                    <input type="text" id="reviewContent" name="reviewContent" class="form-control" placeholder="댓글을 입력해주세요..">
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-primary" type="submit">등록</button>
-                </div>
-            </form>
-
-
-
             <div>
                 <button id="showHideButton" style="margin-left: 489px">전체후기 보기 ></button>
             </div>
@@ -216,6 +203,18 @@
             </th:block>
         </div>
     </div>
+
+    <form id="reply" action="/mainPage/read" method="post" style="margin-left: 440px">
+        <input type="hidden" name="lunchboxId" th:value="${lunchbox != null ? lunchbox.id : 123}">
+        <!--                <input type="hidden" name="lunchboxId" th:value="${lunchboxId}">-->
+        <div class="form-group">
+            <input type="text" id="reviewContent" name="reviewContent" class="form-control" placeholder="&nbsp&nbsp&nbsp댓글을 입력해주세요.."
+                   style="border-radius: 20px; width: 318px; height: 37px; position: relative">
+                <button class="btn btn-primary" type="submit" style="margin-left: -60px; position: absolute; margin-top: 10px; background-color: transparent; color: lightskyblue">등록</button>
+        </div>
+    </form>
+
+
 <div style="margin-top: 300px"></div>
     <script th:inline="javascript">
         document.getElementById("showHideButton").addEventListener("click", function() {
