@@ -56,10 +56,13 @@ public class LunchBoxServiceImpl implements LunchBoxService {
                         }
                     }else{
                         // ID가 null인 경우, 새로운 엔티티로 간주하여 저장
-                        option.setLunchOptionTitle(lunchBoxDTO.getLunchBoxOptions().get(i).getLunchOptionTitle());
-                        option.setLunchOptionPrice(lunchBoxDTO.getLunchBoxOptions().get(i).getLunchOptionPrice());
-                        option.setLunchbox(lunchbox);
-                        lunchBoxOptionRepository.save(option);
+                        LunchBoxOption lunchBoxOption = LunchBoxOption.builder()
+                                .lunchOptionTitle(lunchBoxDTO.getLunchBoxOptions().get(i).getLunchOptionTitle())
+                                .lunchOptionPrice(lunchBoxDTO.getLunchBoxOptions().get(i).getLunchOptionPrice())
+                                .lunchbox(lunchbox)
+                                .build();
+
+                        lunchBoxOptionRepository.save(lunchBoxOption);
                     }
                     i++;
                 }

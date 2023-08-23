@@ -34,8 +34,7 @@ public class BoLunchBoxController {
     private final LunchBoxOptionService lunchBoxOptionService;
     private final FileUtils fileUtils;
 
-//     도시락
-//    목록
+//     도시락 목록
     @GetMapping("lunchboxList")
     public ModelAndView lunchBoxList(@PageableDefault(size = 2, page = 0) Pageable pageable, LunchBoxSearch lunchBoxSearch) {
         ModelAndView mv = new ModelAndView();
@@ -84,7 +83,7 @@ public class BoLunchBoxController {
         LunchBox lunchBox = lunchBoxService.getLunchBoxWithOptionByLunchBoxId(id);
         mv.addObject("lunchBox",lunchBox);
 
-        mv.setViewName("admin/lunchbox/lunchboxDetail");
+        mv.setViewName("/admin/lunchbox/lunchboxDetail");
 
         return mv;
     }
@@ -131,6 +130,9 @@ public class BoLunchBoxController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+        for(int i = 0; i < lunchBoxDTO.getLunchBoxOptions().size(); i++){
+            lunchBoxDTO.getLunchBoxOptions().get(i).setLunchbox(lunchBoxService.toEntity(lunchBoxDTO));
         }
         log.info("lunchBoxDTO4 : {}", lunchBoxDTO.toString());
         Long id = lunchBoxService.LunchBoxUpdate(lunchBoxDTO);

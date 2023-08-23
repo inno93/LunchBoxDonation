@@ -28,6 +28,7 @@ public interface LunchBoxService {
 
     public default LunchBox toEntity(LunchBoxDTO lunchBoxDTO){
         return LunchBox.builder()
+                .id(lunchBoxDTO.getId())
                 .lunchboxTitle(lunchBoxDTO.getLunchboxTitle())
                 .lunchboxThumbNailingIMG(lunchBoxDTO.getLunchboxThumbNailingIMG())
                 .price(lunchBoxDTO.getPrice())

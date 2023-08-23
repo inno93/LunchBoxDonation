@@ -396,7 +396,7 @@ th {
     border-collapse: collapse;
   }
   
-  th, td {
+  th {
     border-bottom: 0.5px solid #444444;
     padding: 10px;
     text-align: center;
@@ -979,3 +979,14 @@ th {
 .none {
   display: none;
 }
+
+.pick{
+  width: 11%;
+  height: 100%;
+  border-color: #bdc1c6;
+  border: 0px;
+  font-size: 16px;
+  outline: none;
+
+}
+

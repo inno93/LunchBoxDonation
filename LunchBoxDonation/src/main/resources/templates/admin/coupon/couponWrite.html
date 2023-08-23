@@ -5,6 +5,7 @@
       layout:decorate="~{layout/adminDefaultLayout}">
 
 <section layout:fragment="adminContent">
+    <script th:src="@{/js/admin/coupon/write.js}"></script>
     <div id="main_content">
         <main>
             <div class="main_padding">
@@ -12,6 +13,8 @@
                     <h1 class="main-header">쿠폰 등록</h1>
                 </div>
                 <form method="post" id="writeForm" action="/admin/coupon/save">
+                    <input th:type="hidden" name="startTime" id="startTime">
+                    <input th:type="hidden" name="endTime" id="endTime">
                     <div class="card main-margin">
                         <table border="1" width="500">
                             <tr>
@@ -34,7 +37,7 @@
                             <tr>
                                 <th style="">유효 기간</th>
                                 <td colspan="5">
-                                    <input type="text" name="startTime"> ~  <input type="text" name="endTime">
+                                    <input type="text" id="sDate" class="pick"> ~  <input type="text" id="eDate" class="pick">
                                 </td>
                             </tr>
                             <tr>

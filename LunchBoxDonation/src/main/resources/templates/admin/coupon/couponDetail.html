@@ -5,49 +5,46 @@
       layout:decorate="~{layout/adminDefaultLayout}">
 
 <section layout:fragment="adminContent">
+    <script th:src="@{/js/admin/coupon/write.js}"></script>
     <div id="main_content">
         <main>
             <div class="main_padding">
                 <div class="header_container">
-                    <h1 class="main-header">쿠폰 등록</h1>
+                    <h1 class="main-header">쿠폰 상세보기</h1>
                 </div>
-                <form method="post" id="writeForm">
+                <form method="post" id="writeForm" action="/admin/coupon/update">
+                    <input th:type="hidden" name="id" th:value="${coupon.id}">
+                    <input th:type="hidden" name="startTime" id="startTime" th:value="${coupon.startTime}">
+                    <input th:type="hidden" name="endTime" id="endTime" th:value="${coupon.endTime}">
                     <div class="card main-margin">
                         <table border="1" width="500">
                             <tr>
                                 <th colspan="7">
-                                    쿠폰 등록
+                                    쿠폰 상세보기
                                 </th>
                             </tr>
                             <tr>
                                 <th style="width: 15%">쿠폰 명</th>
                                 <td colspan="7">
-                                    쿠폰명 테스트
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <th style="">쿠폰 이미지</th>
-                                <td colspan="5">
-                                    <img th:src="@{/img/admin/lunchbox/test1.jpg}">
+                                    <input type="text" placeholder="쿠폰명을 입력하세요." style="width: 100%" name="coupon" th:value="${coupon.coupon}">
                                 </td>
                             </tr>
                             <tr>
                                 <th style="">가격</th>
                                 <td colspan="5">
-                                    2,500원
+                                    <input type="text" name="price" th:value="${coupon.price}">
                                 </td>
                             </tr>
                             <tr>
                                 <th style="">유효 기간</th>
                                 <td colspan="5">
-                                   2023.08.01 ~ 2023.08.31
+                                    <input type="text" id="sDate" class="pick" th:value="${#temporals.format(coupon.startTime, 'yyyy-MM-dd')}"> ~  <input type="text" id="eDate" class="pick" th:value="${#temporals.format(coupon.endTime, 'yyyy-MM-dd')}">
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="7" class="button-container">
                                     <button type="submit" class="register">수정</button>
-                                    <button type="button" class="cancel">목록</button>
+                                    <button type="button" class="list">취소</button>
                                 </td>
                             </tr>
                         </table>
