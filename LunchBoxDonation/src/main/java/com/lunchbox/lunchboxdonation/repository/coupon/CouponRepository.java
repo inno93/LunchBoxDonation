@@ -6,8 +6,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CouponRepository extends JpaRepository<Coupon,Long> {
+public interface CouponRepository extends JpaRepository<Coupon,Long>, CouponQueryDSL {
 
     @Query("SELECT c FROM Coupon c WHERE c.endTime > CURRENT_TIMESTAMP AND c.price IS NOT NULL ORDER BY c.startTime ASC")
     Coupon findFirstAvailableCoupon();
+
+
+
 }

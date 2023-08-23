@@ -11,7 +11,7 @@
                 <div class="header_container">
                     <h1 class="main-header">쿠폰 등록</h1>
                 </div>
-                <form method="post" id="writeForm">
+                <form method="post" id="writeForm" action="/admin/coupon/save">
                     <div class="card main-margin">
                         <table border="1" width="500">
                             <tr>
@@ -22,26 +22,19 @@
                             <tr>
                                 <th style="width: 15%">쿠폰 명</th>
                                 <td colspan="7">
-                                    <input type="text" placeholder="쿠폰명을 입력하세요." style="width: 100%">
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <th style="">쿠폰 이미지</th>
-                                <td colspan="5">
-                                    <input type="file" style="width: 100%">
+                                    <input type="text" placeholder="쿠폰명을 입력하세요." style="width: 100%" name="coupon">
                                 </td>
                             </tr>
                             <tr>
                                 <th style="">가격</th>
                                 <td colspan="5">
-                                    <input type="text" >
+                                    <input type="text" name="price">
                                 </td>
                             </tr>
                             <tr>
                                 <th style="">유효 기간</th>
                                 <td colspan="5">
-                                    <input type="text" >
+                                    <input type="text" name="startTime"> ~  <input type="text" name="endTime">
                                 </td>
                             </tr>
                             <tr>

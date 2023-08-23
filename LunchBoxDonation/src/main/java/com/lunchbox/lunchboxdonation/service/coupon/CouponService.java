@@ -19,4 +19,9 @@ public class CouponService {
         Coupon coupon = Coupon.of(couponRequestDTO);
         return couponRepository.save(coupon);
     }
+
+    public Long insert(CouponRequestDTO couponRequestDTO){
+        Coupon coupon = Coupon.of(couponRequestDTO);
+        return couponRepository.save(coupon).getId();
+    }
 }

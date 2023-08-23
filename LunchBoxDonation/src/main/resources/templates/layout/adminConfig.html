@@ -7,12 +7,16 @@
 
         <!-- Content Page의 CSS fragment 삽입 -->
         <link rel="stylesheet" href="/css/admin/style.css">
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
         <!--  favicon  -->
         <link rel="icon" href="https://www.rankingdak.com/resources/pc/images/icon/favicon.ico">
         <th:block layout:fragment="css"></th:block>
 
         <!-- Content Page의 script fragment 삽입 -->
         <th:block layout:fragment="script">
+            <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+            <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
             <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
         </th:block>
 

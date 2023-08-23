@@ -3,8 +3,8 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/adminDefaultLayout}">
-
 <section layout:fragment="adminContent">
+    <script th:src="@{/js/admin/lunchbox/list.js}"></script>
     <div id="main_content">
         <main>
             <div class="main_padding">
@@ -12,16 +12,15 @@
                 <div class="card main-margin">
                     <div class="container">
                         <div class="move">
-                            <form method="post">
+                            <form method="get" action="/admin/lunchbox/lunchboxList" name="search">
                                 <select class="inner2" id="comCd" name="comCd">
                                     <option value="">도시락명</option>
-                                    <option value="">등록일</option>
                                 </select>
                                 <div class="inner">
-                                    <input type="search" id="test">
-                                    <img src="/img/admin/icon_search.svg">
+                                    <input type="search" id="test" name="lunchBoxTitle">
+                                    <img src="/img/admin/icon_search.svg" class="search">
                                     <div class="searching">
-                                        <i class="fas fa-search"></i>
+                                       <i class="fas fa-search"></i>
                                     </div>
                                 </div>
                                 <a href="/admin/lunchbox/lunchboxWrite" class="register">등록</a>
@@ -40,8 +39,8 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="lunchBox : ${lunchBoxList.content}">
-                                    <td class="no">1</td>
+                                <tr th:each="lunchBox, index : ${lunchBoxList.content}">
+                                    <td class="no" th:text="${startNum + index.index}"></td>
                                     <td><img th:src="@{'/upload/' + ${lunchBox.lunchboxThumbNailingIMG}}"
                                              class="lunchboxList"></td>
                                     <td><a th:href="@{/admin/lunchbox/lunchboxDetail/{id}(id=${lunchBox.Id})}"
