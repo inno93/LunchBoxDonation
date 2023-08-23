@@ -180,66 +180,60 @@
                 <button id="showHideButton" style="margin-left: 489px">전체후기 보기 ></button>
             </div>
 
-            <div class="review" style="display: flex;" th:if="${not #lists.isEmpty(reviews)}">
-                <th:block th:each="review : ${reviews}">
+            <div class="review" style="display: flex;">
+                <th:block th:each="review, iterStat : ${reviews}" th:if="${not #lists.isEmpty(reviews)} and ${iterStat.index} &lt; 4 or ${showAll}">
                     <div class="review-block">
                         <div class="review-star" style="width: 100px;"></div>
                         <div class="review-img" style="width: 65px; margin-left: 155px;"></div>
                         <div style="display: flex; margin-left: 20px; margin-top: -87px;">
                             <div class="review-name" style="font-size: 10px;">랭킹닭체고!</div>
-                            <div class="review-date" style="margin-left: -53px; margin-top: 17px;">2023.07.06</div>
+                            <div class="review-date" style="margin-left: -53px; margin-top: 17px;" th:text="${#dates.format(#dates.createNow(), 'yyyy.MM.dd')}"></div>
                             <div class="review-imotion" style="margin-left: -67px; margin-top: 95px;">BEST
                                 <span class="review-content" th:text="${review.reviewContent}"></span></div>
                         </div>
                     </div>
                 </th:block>
+                <th:block th:each="review : ${reviews}" th:if="${showAll}">
+                    <!-- 모든 댓글 표시 -->
+                </th:block>
             </div>
-
-
-<!--            <div class="review" style="display: flex;">-->
-
-<!--                <div class="review-block">-->
-<!--                    <div class="review-star" style="width: 100px;"></div>-->
-<!--                    <div class="review-img" style="width: 65px; margin-left: 155px;"></div>-->
-<!--                    <div style="display: flex; margin-left: 20px; margin-top: -87px;">-->
-<!--                        <div class="review-name" style="font-size: 10px;">랭킹닭체고!</div> &lt;!&ndash; 후기 닉네임 &ndash;&gt;-->
-<!--                        <div class="review-date" style="margin-left: -53px; margin-top: 17px;">2023.07.06</div> &lt;!&ndash; 후기 작성 날짜 &ndash;&gt;-->
-<!--                        <div class="review-imotion" style="margin-left: -67px; margin-top: 95px;">BEST <span class="review-content">sdad</span></div>  &lt;!&ndash; 후기 내용 &ndash;&gt;-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="review-block">-->
-<!--                    <div class="review-star" style="width: 100px;"></div>-->
-<!--                    <div class="review-img" style="width: 65px; margin-left: 155px;"></div>-->
-<!--                    <div style="display: flex; margin-left: 20px; margin-top: -87px;">-->
-<!--                        <div class="review-name" style="font-size: 10px;">랭킹닭체고!</div> &lt;!&ndash; 후기 닉네임 &ndash;&gt;-->
-<!--                        <div class="review-date" style="margin-left: -53px; margin-top: 17px;">2023.07.06</div> &lt;!&ndash; 후기 작성 날짜 &ndash;&gt;-->
-<!--                        <div class="review-imotion" style="margin-left: -67px; margin-top: 95px;">BEST <span class="review-content">sdad</span></div>  &lt;!&ndash; 후기 내용 &ndash;&gt;-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="review-block">-->
-<!--                    <div class="review-star" style="width: 100px;"></div>-->
-<!--                    <div class="review-img" style="width: 65px; margin-left: 155px;"></div>-->
-<!--                    <div style="display: flex; margin-left: 20px; margin-top: -87px;">-->
-<!--                        <div class="review-name" style="font-size: 10px;">랭킹닭체고!</div> &lt;!&ndash; 후기 닉네임 &ndash;&gt;-->
-<!--                        <div class="review-date" style="margin-left: -53px; margin-top: 17px;">2023.07.06</div> &lt;!&ndash; 후기 작성 날짜 &ndash;&gt;-->
-<!--                        <div class="review-imotion" style="margin-left: -67px; margin-top: 95px;">BEST <span class="review-content">sdad</span></div>  &lt;!&ndash; 후기 내용 &ndash;&gt;-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="review-block">-->
-<!--                    <div class="review-star" style="width: 100px;"></div>-->
-<!--                    <div class="review-img" style="width: 65px; margin-left: 155px;"></div>-->
-<!--                    <div style="display: flex; margin-left: 20px; margin-top: -87px;">-->
-<!--                        <div class="review-name" style="font-size: 10px;">랭킹닭체고!</div> &lt;!&ndash; 후기 닉네임 &ndash;&gt;-->
-<!--                        <div class="review-date" style="margin-left: -53px; margin-top: 17px;">2023.07.06</div> &lt;!&ndash; 후기 작성 날짜 &ndash;&gt;-->
-<!--                        <div class="review-imotion" style="margin-left: -67px; margin-top: 95px;">BEST <span class="review-content">sdad</span></div>  &lt;!&ndash; 후기 내용 &ndash;&gt;-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-                    <div id="testContainer"></div>
 
         </div>
     </div>
     </div>
+    <div style="margin-left: 462px">
+        <div class="review-block2" th:style="${showAll} ? 'display: block;' : 'display: none; background-color: #f8f8f8; width: 1150px'">
+            <th:block th:each="review : ${reviews}">
+                <div class="review-star" style="width: 100px; margin-left: 32px; margin-bottom: 30px"></div>
+                <div class="review-img" style="width: 65px; margin-left: 350px;"></div>
+                <div style="display: flex; margin-left: 102px; margin-top: -87px;">
+                    <div class="review-name" style="font-size: 10px;">랭킹닭체고!</div>
+                    <div class="review-date" style="margin-left: -53px; margin-top: 17px;"></div>
+                    <div class="review-imotion" style="margin-left: -67px; margin-top: 95px;">BEST
+                        <span class="review-content" th:text="${review.reviewContent}"></span>
+                    </div>
+                </div>
+            </th:block>
+        </div>
+    </div>
+<div style="margin-top: 300px"></div>
+    <script th:inline="javascript">
+        document.getElementById("showHideButton").addEventListener("click", function() {
+            var reviewBlocks = document.querySelectorAll(".review-block2");
+            var isShowAll = true;
+            if (reviewBlocks.length > 0) {
+                isShowAll = reviewBlocks[0].style.display === "none";
+            }
+
+            reviewBlocks.forEach(function(reviewBlock) {
+                reviewBlock.style.display = isShowAll ? "block" : "none";
+            });
+            var reviewContainer = document.querySelector(".review");
+            reviewContainer.style.display = isShowAll ? "none" : "flex";
+        });
+
+    </script>
+
     <script>
         const radioButtons = document.querySelectorAll('input[type="radio"]');
         radioButtons.forEach(button => {
@@ -259,26 +253,5 @@
                 behavior: 'smooth'
             });
         }
-
-        const showHideButton = document.getElementById("showHideButton");
-        const reviewContainer = document.querySelector(".review-container");
-        const testContainer = document.getElementById("testContainer");
-
-        showHideButton.addEventListener("click", () => {
-            const reviewDiv = document.querySelector('.review');
-            reviewDiv.style.display = "none";
-
-            // 새로운 후기 블록을 생성하고 추가합니다.
-            const newReviewBlock = document.createElement("div");
-            newReviewBlock.innerHTML = '      <div class="review-star" style="width: 100px;"></div>\n' +
-                '                    <div class="review-img" style="width: 65px; margin-left: 155px;"></div>\n' +
-                '                    <div style="display: flex; margin-left: 20px; margin-top: -87px;">\n' +
-                '                        <div class="review-name" style="font-size: 10px;">랭킹닭체고!</div> <!-- 후기 닉네임 -->\n' +
-                '                        <div class="review-date" style="margin-left: -53px; margin-top: 17px;">2023.07.06</div> <!-- 후기 작성 날짜 -->\n' +
-                '                        <div class="review-imotion" style="margin-left: -67px; margin-top: 95px;">BEST <span class="review-content">sdad</span></div>  <!-- 후기 내용 -->\n' +
-                '                    </div>';
-            testContainer.appendChild(newReviewBlock);
-        });
-
     </script>
 </section>
