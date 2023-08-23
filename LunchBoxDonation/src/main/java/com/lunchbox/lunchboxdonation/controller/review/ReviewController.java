@@ -46,4 +46,16 @@ public class ReviewController {
         System.out.println("read Test2");
         return new RedirectView("/mainPage/read?lunchboxId=" + lunchboxId);
     }
+
+//    @PostMapping("update")
+//    public RedirectView updateReview(@RequestParam Long lunchboxId, @RequestParam String newReviewContent) {
+//        reviewService.update(lunchboxId, newReviewContent);
+//        return new RedirectView("/mainPage/read?lunchboxId=" + lunchboxId);
+//    }
+
+    @PostMapping("delete")
+    public RedirectView deleteReview(@RequestParam Long Id, @RequestParam Long lunchboxId) {
+        reviewService.deleteReview(Id);
+        return new RedirectView("/mainPage/read?lunchboxId=" + lunchboxId);
+    }
 }

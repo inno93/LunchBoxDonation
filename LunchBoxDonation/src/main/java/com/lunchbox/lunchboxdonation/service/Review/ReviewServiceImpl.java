@@ -40,4 +40,19 @@ public class ReviewServiceImpl implements ReviewService{
         }
         return null;
     }
+
+    @Override
+    public Review update(Long lunchboxId, String reviewContent) {
+        Review review = reviewRepository.findById(lunchboxId).orElse(null);
+        if (review != null) {
+            review.setReviewContent(reviewContent);
+            return reviewRepository.save(review);
+        }
+        return null;
+    }
+
+    @Override
+    public void deleteReview(Long Id) {
+        reviewRepository.deleteById(Id);
+    }
 }
