@@ -72,4 +72,14 @@ public class LunchBoxQueryDSLImpl implements LunchBoxQueryDSL {
                 .where(lunchBox.id.eq(id))
                 .fetchOne();
     }
+
+    @Override
+    public List<LunchBox> getMainList(int limit, int offset) {
+        return query.selectFrom(lunchBox)
+                .orderBy(lunchBox.id.asc())
+                .offset(offset)
+                .limit(limit)
+                .fetch();
+    }
+
 }

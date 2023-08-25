@@ -6,6 +6,8 @@ import com.lunchbox.lunchboxdonation.entity.Lunchbox.LunchBoxSearch;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 public interface LunchBoxService {
 
     //추가
@@ -24,6 +26,12 @@ public interface LunchBoxService {
 
     //삭제
     public void deleteLunchBoxAndOptionsByLunchBoxId(Long id);
+
+    // main MD Pick 추천 상품 리스트
+    public List<LunchBox> getMainList(int limit, int offset);
+
+    //깜짝 타임 세일
+    public List<LunchBox> timeSaleList();
 
 
     public default LunchBox toEntity(LunchBoxDTO lunchBoxDTO){

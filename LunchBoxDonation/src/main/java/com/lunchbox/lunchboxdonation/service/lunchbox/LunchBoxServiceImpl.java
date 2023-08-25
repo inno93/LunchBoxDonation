@@ -14,8 +14,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.stream.IntStream;
 
 @Service
 @RequiredArgsConstructor
@@ -80,6 +80,16 @@ public class LunchBoxServiceImpl implements LunchBoxService {
     @Override
     public void deleteLunchBoxAndOptionsByLunchBoxId(Long id) {
         lunchBoxRepository.deleteById(id);
+    }
+
+    @Override
+    public List<LunchBox> getMainList(int limit, int offset) {
+        return lunchBoxRepository.getMainList(limit, offset);
+    }
+
+    @Override
+    public List<LunchBox> timeSaleList() {
+        return null;
     }
 
     @Override

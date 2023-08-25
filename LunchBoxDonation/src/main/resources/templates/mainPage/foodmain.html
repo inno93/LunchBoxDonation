@@ -9,6 +9,7 @@
         input:focus {
             outline: none; /* 클릭 시 테두리 제거 */
         }
+
         .my-container2 {
             display: flex;
             flex-wrap: wrap;
@@ -23,31 +24,37 @@
             height: 379px;
             background-color: white;
             margin: 15px;
-            overflow:hidden;
+            overflow: hidden;
             margin-bottom: 10px;
         }
-        .my-box > img{
+
+        .my-box > img {
             height: 250px;
         }
-        .fast-box{
+
+        .fast-box {
             background-image: url("https://www.rankingdak.com/resources/pc/images/txt/txt_badge_dlv.png");
             background-size: 90px;
         }
-        .fast-word{
+
+        .fast-word {
             word-spacing: 1px;
             font-size: 14px;
             font-weight: bolder;
             color: gray;
         }
-        .fast-price{
+
+        .fast-price {
             margin-top: 30px;
             font-weight: bolder;
             font-size: 20px;
         }
-        .fast-price2{
+
+        .fast-price2 {
             font-size: 12px;
         }
-        .fast-price3{
+
+        .fast-price3 {
             margin-top: 2px;
             font-size: 12px;
         }
@@ -101,9 +108,9 @@
         let count = 0;
 
         // 원하는 번호의 배너로 이동
-        btns.forEach(function(btn, i, ar){
+        btns.forEach(function (btn, i, ar) {
             // 각 버튼에 클릭이벤트 적용
-            ar[i].addEventListener("click", function(){
+            ar[i].addEventListener("click", function () {
                 // 해당 버튼 번호(i)로 count변경
                 count = i;
                 banner.style.transform = "translate(-" + count * 90 + "vw)";
@@ -112,16 +119,16 @@
 
         // 이전버튼, 다음버튼 기능 구현
         arrows.forEach(arrow => {
-            arrow.addEventListener("click", function(){
+            arrow.addEventListener("click", function () {
                 let arrowType = arrow.classList[1];
-                if(arrowType == 'prev'){
+                if (arrowType == 'prev') {
                     count--;
-                    if(count == -1) {
+                    if (count == -1) {
                         count = 5;
                     }
-                }else{
+                } else {
                     count++;
-                    if(count == 6) {
+                    if (count == 6) {
                         count = 0;
                     }
                 }
@@ -129,7 +136,7 @@
             });
         });
 
-        setInterval(function(){
+        setInterval(function () {
             count++;
             count = count == 6 ? 0 : count;
             banner.style.transform = "translate(-" + count * 90 + "vw)";
@@ -140,43 +147,43 @@
     <div id="jaeweon" style="margin-top: 500px">
         <div id="category-box-1">
             <i id="category-img-1"></i>
-            <span id="category-comment" style="margin-top: 26px;">신상품</span>
+            <span id="category-comment1" style="margin-top: 26px;">신상품</span>
         </div>
         <div id="category-box-2">
             <i id="category-img-2"></i>
-            <span id="category-comment">선물하기</span>
+            <span id="category-comment2">선물하기</span>
         </div>
         <div id="category-box-3">
             <i id="category-img-3"></i>
-            <span id="category-comment"  style="margin-top: 20px; margin-left: 4px;">도시락·볶음밥</span>
+            <span id="category-comment3" style="margin-top: 20px; margin-left: 4px;">도시락·볶음밥</span>
         </div>
         <div id="category-box-4">
             <i id="category-img-4"></i>
-            <span id="category-comment">닭가슴살</span>
+            <span id="category-comment4">닭가슴살</span>
         </div>
         <div id="category-box-5">
             <i id="category-img-5"></i>
-            <span id="category-comment" style="margin-left: 8px;">샐러드·과일</span>
+            <span id="category-comment5" style="margin-left: 8px;">샐러드·과일</span>
         </div>
         <div id="category-box-6">
             <i id="category-img-6"></i>
-            <span id="category-comment" style="margin-left: 4px;">베이커리·치즈</span>
+            <span id="category-comment6" style="margin-left: 4px;">베이커리·치즈</span>
         </div>
         <div id="category-box-7">
             <i id="category-img-7"></i>
-            <span id="category-comment" style="margin-left: 0px;">음료·차·프로틴</span>
+            <span id="category-comment7" style="margin-left: 0px;">음료·차·프로틴</span>
         </div>
         <div id="category-box-8">
             <i id="category-img-8"></i>
-            <span id="category-comment">비건식품</span>
+            <span id="category-comment8">비건식품</span>
         </div>
         <div id="category-box-9">
             <i id="category-img-9"></i>
-            <span id="category-comment"  style="margin-top: 28px;">수산·해산</span>
+            <span id="category-comment9" style="margin-top: 28px;">수산·해산</span>
         </div>
         <div id="category-box-10">
             <i id="category-img-10"></i>
-            <span id="category-comment">건강식품</span>
+            <span id="category-comment10">건강식품</span>
         </div>
     </div>
     <!-- category -->
@@ -191,41 +198,16 @@
         <button id="prevButton" class="navigation-button-prev">&lt;</button>
         <button id="nextButton" class="navigation-button-next">&gt;</button>
     </div>
-    <script>
+    <script th:inline="javascript">
         // 이미지 파일 목록
         const imageFiles = [
+            /*[# th:each="item : ${mdList}"]*/
             {
-                file : "/img/mainPage/mdpick1.jpg",
-                description : "저염+고단백 모두 완벽!"
+                url: '/mainPage/read?lunchboxId=' + /*[[${item.id}]]*/,
+                file: '/upload/' +/*[[${item.lunchboxThumbNailingIMG}]]*/,
+                description: /*[[${item.lunchboxTitle}]]*/
             },
-            {
-                file : "/img/mainPage/mdpick2.jpg",
-                description : "식단은 물론, GI지수에도 딱!"
-            },
-            {
-                file : "/img/mainPage/mdpick3.jpg",
-                description : "가방에 쏙! 1일 1샐의 시작"
-            },
-            {
-                file : "/img/mainPage/mdpick4.jpg",
-                description : "흰 쌀밥과 찰떡궁합💛"
-            },
-            {
-                file : "/img/mainPage/mdpick5.jpg",
-                description : "속까지 꽉 채워진 수분감💦"
-            },
-            {
-                file : "/img/mainPage/mdpick6.jpg",
-                description : "소스까지 다 먹어도 115kcal"
-            },
-            {
-                file : "/img/mainPage/mdpick7.jpg",
-                description : "식단 패키지로 몸짱 도전😎"
-            },
-            {
-                file : "/img/mainPage/mdpick8.jpg",
-                description : "10팩 사면 10팩 더!"
-            }
+            /*[/]*/
         ];
 
         let currentIndex = 0;
@@ -263,15 +245,19 @@
                 wrapperElement.className = "image-wrapper";
                 imageContainer.appendChild(wrapperElement);
 
+                const aElement = document.createElement("a");
+                aElement.href = image.url;
+                wrapperElement.appendChild(aElement);
+
                 const imageElement = document.createElement("img");
                 imageElement.className = "image";
                 imageElement.src = image.file;
-                wrapperElement.appendChild(imageElement);
+                aElement.appendChild(imageElement);
 
                 const descriptionElement = document.createElement("p");
                 descriptionElement.className = "description";
                 descriptionElement.textContent = image.description;
-                wrapperElement.appendChild(descriptionElement);
+                aElement.appendChild(descriptionElement);
             }
         }
 
@@ -295,29 +281,16 @@
         <button id="nextButton2" class="navigation-button-next2">&gt;</button>
     </div>
 
-    <script>
+    <script th:inline="javascript">
         // 이미지 파일 목록
         const imageFiles2 = [
+            /*[# th:each="item : ${timeSaleList}"]*/
             {
-                file : "/img/mainPage/timeSale1.jpg",
-                description : "☎TIME SALE☎ 맛있닭 닭가슴살 5+5"
+                url: '/mainPage/read?lunchboxId=' + /*[[${item.id}]]*/,
+                file: '/upload/' +/*[[${item.lunchboxThumbNailingIMG}]]*/,
+                description: /*[[${item.lunchboxTitle}]]*/
             },
-            {
-                file : "/img/mainPage/timeSale2.jpg",
-                description : "[유통기한임박특가] 네이처엠 웰바이츠 견과 1봉 420원 특가"
-            },
-            {
-                file : "/img/mainPage/timeSale3.jpg",
-                description : "☎TIME SALE☎ 맛있닭 씨푸드 다이어트 도시락 최대 48% 할인"
-            },
-            {
-                file : "/img/mainPage/timeSale4.jpg",
-                description : "☎TIME SALE☎ 맛있닭 씨푸드 다이어트 도시락 최대 48% 할인"
-            },
-            {
-                file : "/img/mainPage/timeSale5.jpg",
-                description : "☎TIME SALE☎ 맛있닭 통안심 탕수육 최대 51% 할인"
-            }
+            /*[/]*/
         ];
 
         let currentIndex2 = 0;
@@ -355,37 +328,41 @@
                 wrapperElement2.className = "image-wrapper2";
                 imageContainer2.appendChild(wrapperElement2);
 
+                const aElement2 = document.createElement("a");
+                aElement2.href = image2.url;
+                wrapperElement2.appendChild(aElement2);
+
+
                 const imageElement2 = document.createElement("img");
                 imageElement2.className = "image2";
                 imageElement2.src = image2.file;
-                wrapperElement2.appendChild(imageElement2);
+                aElement2.appendChild(imageElement2);
 
                 const descriptionElement2 = document.createElement("p");
                 descriptionElement2.className = "description2";
                 descriptionElement2.textContent = image2.description;
-                wrapperElement2.appendChild(descriptionElement2);
+                aElement2.appendChild(descriptionElement2);
                 // 추가한 <div> 요소 안에 내용 추가
                 const innerDivElement2 = document.createElement("div");
                 innerDivElement2.textContent = "42%"; // 원하는 내용으로 수정
                 innerDivElement2.style.color = "#ff8001"; // 빨간색으로 스타일 지정
                 innerDivElement2.style.textAlign = "left"; // 왼쪽 정렬 스타일 지정
-                innerDivElement2.style.marginLeft ="-5px";
+                innerDivElement2.style.marginLeft = "-5px";
                 innerDivElement2.style.fontSize = "22px";
                 //   innerDivElement2.style.float ="left";
                 descriptionElement2.appendChild(innerDivElement2);
                 // 추가한 <div> 요소 연결
                 const additionalDivElement = document.createElement("div");
                 additionalDivElement.textContent = "한 정 특 가!";  // 원하는 내용으로 수정
-                additionalDivElement.style.float ="right";
-                additionalDivElement.style.marginTop="-27px"
-                additionalDivElement.style.marginRight="210px"
+                additionalDivElement.style.float = "right";
+                additionalDivElement.style.marginTop = "-27px"
+                additionalDivElement.style.marginRight = "210px"
                 additionalDivElement.style.fontSize = "20px";
                 descriptionElement2.appendChild(additionalDivElement);
             }
         }
     </script>
     <!-- img x 2 category -->
-
 
 
     <div class="theme-recommend">테마별 추천 상품</div>
@@ -397,164 +374,93 @@
         <button id="button5" onclick="changeContainer('container5', 'button5')">쫄깃 탱탱 계란 단백질</button>
     </div>
 
+
     <div class="my-container" id="container1">
-        <div class="my-left-div">
-            <a href="/read.html">
-                <img src="/img/mainPage/big1.jpg">
-            </a>
+        <div class="my-left-div" th:each="item, index : ${theme1}" th:if="${index.index == 0}">
+            <img th:src="@{/upload/{filename}(filename=${item.lunchboxThumbNailingIMG})}"  th:onclick="'move(' +${item.id} + ')'"alt="이미지">
             <div class="context">
-                <em class="title">매일 다른 맛으로 실천하는 1일 1소스닭</em>
+                <em class="title" th:text="${item.lunchboxTitle}"></em>
                 <p class="text">특제소스 듬뿍 찍어 입속으로 DIVE🧡</p>
             </div>
         </div>
         <div class="my-right-divs">
-            <div class="my-right-div" id="my-right-div1">
-                <img src="/img/mainPage/big1-1.jpg" alt="이미지">
-                <span class="my-top-div">랭커 스팀 소스 닭가슴살 100g X 10팩</span>
-                <span class="my-bottom-div">17,900원</span>
-            </div>
-            <div class="my-right-div" id="my-right-div2">
-                <img src="/img/mainPage/big1-2.jpg" alt="이미지">
-                <span class="my-top-div">맛있닭 닭가슴살 오븐구이 혼합 150g X 12팩</span>
-                <span class="my-bottom-div">34,680원</span>
-            </div>
-            <div class="my-right-div" id="my-right-div3">
-                <img src="/img/mainPage/big1-3.jpg" alt="이미지">
-                <span class="my-top-div">맛있닭 한입 소스 닭가슴살 혼합 100g X 16팩</span>
-                <span class="my-bottom-div">38,240원</span>
-            </div>
-            <div class="my-right-div" id="my-right-div4">
-                <img src="/img/mainPage/big1-4.jpg" alt="이미지">
-                <span class="my-top-div">잇메이트 슬라이스 소스 닭가슴살 혼합 150g X 10팩</span>
-                <span class="my-bottom-div">25,900원</span>
+            <div class="my-right-div" th:each="item, index : ${theme1}" th:if="${index.index > 0}" style="margin-bottom: 47px;">
+                <img th:src="@{/upload/{filename}(filename=${item.lunchboxThumbNailingIMG})}" th:onclick="'move(' +${item.id} + ')'"  alt="이미지">
+                <span class="my-top-div" th:text="${item.lunchboxTitle}"></span>
+                <span class="my-bottom-div"
+                      th:text="${#numbers.formatInteger(item.price, 3, 'COMMA') + '원'}"></span>
             </div>
         </div>
     </div>
 
     <div class="my-container" id="container2" style="display: none;">
-        <div class="my-left-div">
-            <img src="/img/mainPage/big2.jpg">
+        <div class="my-left-div" th:each="item, index : ${theme2}" th:if="${index.index == 0}">
+            <img th:src="@{/upload/{filename}(filename=${item.lunchboxThumbNailingIMG})}" th:onclick="'move(' +${item.id} + ')'" alt="이미지">
             <div class="context">
-                <em class="title">톡터지는 육즙 & 단백질</em>
-                <p class="text">돈육 소시지처럼 부드럽고 육즙 가득해요💦</p>
+                <em class="title" th:text="${item.lunchboxTitle}"></em>
+                <p class="text">특제소스 듬뿍 찍어 입속으로 DIVE🧡</p>
             </div>
         </div>
         <div class="my-right-divs">
-            <div class="my-right-div" id="my-right-div5">
-                <img src="/img/mainPage/big2-1.jpg" alt="이미지">
-                <span class="my-top-div">잇메이트 닭가슴살 소시지 혼합 100g X 15팩</span>
-                <span class="my-bottom-div">24,000원</span>
-            </div>
-            <div class="my-right-div" id="my-right-div6">
-                <img src="/img/mainPage/big2-2.jpg" alt="이미지">
-                <span class="my-top-div">맛있닭 닭가슴살 소시지 훈제맛 100g X 10팩</span>
-                <span class="my-bottom-div">19,500원</span>
-            </div>
-            <div class="my-right-div" id="my-right-div7">
-                <img src="/img/mainPage/big2-3.jpg" alt="이미지">
-                <span class="my-top-div">잇메이트 닭가슴살 소시지 프로 훈제맛 120g X 15팩</span>
-                <span class="my-bottom-div">26,850원</span>
-            </div>
-            <div class="my-right-div" id="my-right-div8">
-                <img src="/img/mainPage/big2-4.jpg" alt="이미지">
-                <span class="my-top-div">랭커 닭가슴살 소시지 혼합 100g X 10팩</span>
-                <span class="my-bottom-div">12,800원</span>
+            <div class="my-right-div" th:each="item, index : ${theme2}" th:if="${index.index > 0}" style="margin-bottom: 47px;">
+                <img th:src="@{/upload/{filename}(filename=${item.lunchboxThumbNailingIMG})}" th:onclick="'move(' +${item.id} + ')'"  alt="이미지">
+                <span class="my-top-div" th:text="${item.lunchboxTitle}"></span>
+                <span class="my-bottom-div"
+                      th:text="${#numbers.formatInteger(item.price, 3, 'COMMA') + '원'}"></span>
             </div>
         </div>
     </div>
 
     <div class="my-container" id="container3" style="display: none;">
-        <div class="my-left-div">
-            <img src="/img/mainPage/big3.jpg">
+        <div class="my-left-div" th:each="item, index : ${theme3}" th:if="${index.index == 0}">
+            <img th:src="@{/upload/{filename}(filename=${item.lunchboxThumbNailingIMG})}"  th:onclick="'move(' +${item.id} + ')'" alt="이미지">
             <div class="context">
-                <em class="title">요즘 헬짱들의 장바구니 필수템🛒</em>
-                <p class="text">개별 급속 냉동으로 신선함은 물론 편리성까지!</p>
+                <em class="title" th:text="${item.lunchboxTitle}"></em>
+                <p class="text">특제소스 듬뿍 찍어 입속으로 DIVE🧡</p>
             </div>
         </div>
         <div class="my-right-divs">
-            <div class="my-right-div" id="my-right-div9">
-                <img src="/img/mainPage/big3-1.jpg" alt="이미지">
-                <span class="my-top-div">랭커 IQF 한입 닭가슴살 100g X 10팩</span>
-                <span class="my-bottom-div">9,500원</span>
-            </div>
-            <div class="my-right-div" id="my-right-div10">
-                <img src="/img/mainPage/big3-2.jpg" alt="이미지">
-                <span class="my-top-div">하림 동물복지 IFF 냉동 생 닭가슴살 800g X 1팩</span>
-                <span class="my-bottom-div">10,000원</span>
-            </div>
-            <div class="my-right-div" id="my-right-div11">
-                <img src="/img/mainPage/big3-3.jpg" alt="이미지">
-                <span class="my-top-div">다향 IGF 닭가슴살 1kg X 1팩</span>
-                <span class="my-bottom-div">8,400원</span>
-            </div>
-            <div class="my-right-div" id="my-right-div12">
-                <img src="/img/mainPage/big3-4.jpg" alt="이미지">
-                <span class="my-top-div">닭스몰 무항상제 1등듭 냉동 생 닭가슴살 400g X 5팩</span>
-                <span class="my-bottom-div">31,900원</span>
+            <div class="my-right-div" th:each="item, index : ${theme3}" th:if="${index.index > 0}" style="margin-bottom: 47px;">
+                <img th:src="@{/upload/{filename}(filename=${item.lunchboxThumbNailingIMG})}" th:onclick="'move(' +${item.id} + ')'"  alt="이미지">
+                <span class="my-top-div" th:text="${item.lunchboxTitle}"></span>
+                <span class="my-bottom-div"
+                      th:text="${#numbers.formatInteger(item.price, 3, 'COMMA') + '원'}"></span>
             </div>
         </div>
     </div>
 
     <div class="my-container" id="container4" style="display: none;">
-        <div class="my-left-div">
-            <img src="/img/mainPage/big4.jpg">
+        <div class="my-left-div" th:each="item, index : ${theme4}" th:if="${index.index == 0}">
+            <img th:src="@{/upload/{filename}(filename=${item.lunchboxThumbNailingIMG})}" th:onclick="'move(' +${item.id} + ')'" alt="이미지">
             <div class="context">
-                <em class="title">식단만 하면 배가 고파 왔다면...?</em>
-                <p class="text">더담은 시리즈로 용량은 물론 영양까지 넉넉하게!</p>
+                <em class="title" th:text="${item.lunchboxTitle}"></em>
+                <p class="text">특제소스 듬뿍 찍어 입속으로 DIVE🧡</p>
             </div>
         </div>
         <div class="my-right-divs">
-            <div class="my-right-div" id="my-right-div13">
-                <img src="/img/mainPage/big4-1.jpg" alt="이미지">
-                <span class="my-top-div">맛있닭 더담은 닭가슴살 귀리 볶음밥 프로 혼합 275g X 10팩</span>
-                <span class="my-bottom-div">38,900원</span>
-            </div>
-            <div class="my-right-div" id="my-right-div14">
-                <img src="/img/mainPage/big4-2.jpg" alt="이미지">
-                <span class="my-top-div">맛있닭 더담은 닭가슴살 도시락 시즌2 혼합 275g X 5팩</span>
-                <span class="my-bottom-div">26,900원</span>
-            </div>
-            <div class="my-right-div" id="my-right-div15">
-                <img src="/img/mainPage/big4-3.jpg" alt="이미지">
-                <span class="my-top-div">맛있닭 더담은 저염 도시락 혼합 270g X 5팩</span>
-                <span class="my-bottom-div">24,450원</span>
-            </div>
-            <div class="my-right-div" id="my-right-div16">
-                <img src="/img/mainPage/big4-4.jpg" alt="이미지">
-                <span class="my-top-div">맛있닭 더담은 닭가슴살 도시락 혼합 275g X 5팩</span>
-                <span class="my-bottom-div">26,450원</span>
+            <div class="my-right-div" th:each="item, index : ${theme4}" th:if="${index.index > 0}" style="margin-bottom: 47px;">
+                <img th:src="@{/upload/{filename}(filename=${item.lunchboxThumbNailingIMG})}" th:onclick="'move(' +${item.id} + ')'"  alt="이미지">
+                <span class="my-top-div" th:text="${item.lunchboxTitle}"></span>
+                <span class="my-bottom-div"
+                      th:text="${#numbers.formatInteger(item.price, 3, 'COMMA') + '원'}"></span>
             </div>
         </div>
     </div>
 
     <div class="my-container" id="container5" style="display: none;">
-        <div class="my-left-div">
-            <img src="/img/mainPage/big5.jpg">
+        <div class="my-left-div" th:each="item, index : ${theme5}" th:if="${index.index == 0}">
+            <img th:src="@{/upload/{filename}(filename=${item.lunchboxThumbNailingIMG})}" th:onclick="'move(' +${item.id} + ')'" alt="이미지">
             <div class="context">
-                <em class="title">저지방&고단백 계란으로 채우는 영양</em>
-                <p class="text">철저한 관리 중이라면 난백 섭취는 필수!</p>
+                <em class="title" th:text="${item.lunchboxTitle}"></em>
+                <p class="text">특제소스 듬뿍 찍어 입속으로 DIVE🧡</p>
             </div>
         </div>
         <div class="my-right-divs">
-            <div class="my-right-div" id="my-right-div13">
-                <img src="/img/mainPage/big5-1.jpg" alt="이미지">
-                <span class="my-top-div">알쉐프 냉장 살균난백 1kg X 1팩  </span>
-                <span class="my-bottom-div">10,600원</span>
-            </div>
-            <div class="my-right-div" id="my-right-div14">
-                <img src="/img/mainPage/big5-2.jpg" alt="이미지">
-                <span class="my-top-div">프레쉬홈 구운계란 800g X 1판</span>
-                <span class="my-bottom-div">10,000원</span>
-            </div>
-            <div class="my-right-div" id="my-right-div15">
-                <img src="/img/mainPage/big5-3.jpg" alt="이미지">
-                <span class="my-top-div">프래시라이브 살균난백 1kg X 2팩</span>
-                <span class="my-bottom-div">14,900원</span>
-            </div>
-            <div class="my-right-div" id="my-right-div16">
-                <img src="/img/mainPage/big5-4.jpg" alt="이미지">
-                <span class="my-top-div">닭대리 훈제계란 1.05kg X 1판</span>
-                <span class="my-bottom-div">12,400원</span>
+            <div class="my-right-div" th:each="item, index : ${theme5}" th:if="${index.index > 0}" style="margin-bottom: 47px;">
+                <img th:src="@{/upload/{filename}(filename=${item.lunchboxThumbNailingIMG})}" th:onclick="'move(' +${item.id} + ')'"  alt="이미지">
+                <span class="my-top-div" th:text="${item.lunchboxTitle}"></span>
+                <span class="my-bottom-div"
+                      th:text="${#numbers.formatInteger(item.price, 3, 'COMMA') + '원'}"></span>
             </div>
         </div>
     </div>
@@ -611,7 +517,7 @@
 
 
     <div class="orange-members">
-        <img src="https://file.rankingdak.com/image/RANK/BANNER/AR_IMG_1/20230306/IMG1678veR079873142.jpg">
+        <!--        <img src="https://file.rankingdak.com/image/RANK/BANNER/AR_IMG_1/20230306/IMG1678veR079873142.jpg">-->
     </div>
 
     <!-- slide test -->
@@ -629,38 +535,13 @@
     <script>
         // 이미지 파일 목록
         const imageFiles3 = [
+            /*[# th:each="item : ${bestList}"]*/
             {
-                file : "/img/mainPage/best1.jpg",
-                description : "랭커 훈제 닭가슴살 혼합 100g"
+                url: '/mainPage/read?lunchboxId=' + /*[[${item.id}]]*/,
+                file: '/upload/' +/*[[${item.lunchboxThumbNailingIMG}]]*/,
+                description: /*[[${item.lunchboxTitle}]]*/
             },
-            {
-                file : "/img/mainPage/best2.jpg",
-                description : "랭커 IQF 한입 닭가슴살 200g"
-            },
-            {
-                file : "/img/mainPage/best3.jpg",
-                description : "랭커 스팀 소스 닭가슴살 혼합 130g"
-            },
-            {
-                file : "/img/mainPage/best4.jpg",
-                description : "랭커 스팀 닭가슴살 혼합 100g"
-            },
-            {
-                file : "/img/mainPage/best5.jpg",
-                description : "한끼통살 슬라이스 닭가슴살 매콤닭갈비 100g"
-            },
-            {
-                file : "/img/mainPage/best6.jpg",
-                description : "한끼통살 스팀 & 훈제 통살 닭가슴살 오리지널 혼합 100g"
-            },
-            {
-                file : "/img/mainPage/best7.jpg",
-                description : "닥터유PRO 단백질 파우더 딸기 1kg"
-            },
-            {
-                file : "/img/mainPage/best8.jpg",
-                description : "랩노쉬 프로틴 드링크 혼합 350ml"
-            }
+            /*[/]*/
         ];
 
         let currentIndex3 = 0;
@@ -698,6 +579,9 @@
                 wrapperElement.className = "image-wrapper";
                 imageContainer3.appendChild(wrapperElement);
 
+                // const aElement = document.createElement("a");
+
+
                 const imageElement = document.createElement("img");
                 imageElement.className = "image";
                 imageElement.src = image.file;
@@ -709,13 +593,11 @@
                 wrapperElement.appendChild(descriptionElement3);
 
 
-
-
                 const innerDivElement3 = document.createElement("div");
                 innerDivElement3.textContent = "42%"; // 원하는 내용으로 수정
                 innerDivElement3.style.color = "#ff8001"; // 빨간색으로 스타일 지정
                 innerDivElement3.style.textAlign = "left"; // 왼쪽 정렬 스타일 지정
-                innerDivElement3.style.marginLeft ="-5px";
+                innerDivElement3.style.marginLeft = "-5px";
                 innerDivElement3.style.fontSize = "22px";
                 descriptionElement3.appendChild(innerDivElement3);
 
@@ -731,7 +613,6 @@
             }
         }
     </script>
-
 
 
     <!--<style>-->
@@ -791,7 +672,8 @@
     <div class="my-container2" id="container6">
         <div class="my-box">
             <a href="">
-                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20230626/IMG1687nwV770026184_330_330.jpg" alt="">
+                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20230626/IMG1687nwV770026184_330_330.jpg"
+                     alt="">
                 <em class="fast-box"></em>
                 <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
                 <div class="fast-word">랭커 스팀 닭가슴살 청양고추 100g</div>
@@ -801,7 +683,8 @@
         </div>
         <div class="my-box">
             <a href="">
-                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20230525/IMG1684omr996137810_330_330.jpg" alt="">
+                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20230525/IMG1684omr996137810_330_330.jpg"
+                     alt="">
                 <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
                 <div class="fast-word" style="margin-bottom: -20px;">[잇메이트] 중량 UP! 든든한 24g 고단백 프로 닭가슴살 소시지</div>
             </a>
@@ -810,7 +693,8 @@
         </div>
         <div class="my-box">
             <a href="">
-                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220325/78c93adea967cb1eda8f517144aed007_330_330.jpg" alt="">
+                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220325/78c93adea967cb1eda8f517144aed007_330_330.jpg"
+                     alt="">
                 <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
                 <div class="fast-word">치즈 품은 닭가슴살</div>
             </a>
@@ -819,7 +703,8 @@
         </div>
         <div class="my-box">
             <a href="">
-                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20230524/IMG1684yxt912086633_330_330.jpg" alt="">
+                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20230524/IMG1684yxt912086633_330_330.jpg"
+                     alt="">
                 <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
                 <div class="fast-word">잇메이트 슬라이스 소스 닭가슴살 혼합 150g</div>
             </a>
@@ -828,7 +713,8 @@
         </div>
         <div class="my-box">
             <a href="">
-                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20230106/IMG1672nhu966250394_330_330.jpg" alt="">
+                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20230106/IMG1672nhu966250394_330_330.jpg"
+                     alt="">
                 <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
                 <div class="fast-word">러브잇 슬라이스 닭가슴살 혼합 100g</div>
             </a>
@@ -837,7 +723,8 @@
         </div>
         <div class="my-box">
             <a href="">
-                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20230608/IMG1686EfG211786712_330_330.jpg" alt="">
+                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20230608/IMG1686EfG211786712_330_330.jpg"
+                     alt="">
                 <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
                 <div class="fast-word">러브잇 슬라이스 닭가슴살</div>
             </a>
@@ -846,7 +733,8 @@
         </div>
         <div class="my-box">
             <a href="">
-                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20230612/IMG1686HKp554930214_330_330.jpg" alt="">
+                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20230612/IMG1686HKp554930214_330_330.jpg"
+                     alt="">
                 <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
                 <div class="fast-word">소스 닭가슴살 스테이크</div>
             </a>
@@ -855,7 +743,8 @@
         </div>
         <div class="my-box">
             <a href="">
-                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220617/IMG1655GtE450105345_330_330.jpg" alt="">
+                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220617/IMG1655GtE450105345_330_330.jpg"
+                     alt="">
                 <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
                 <div class="fast-word">햇살닭 닭가슴살 소시지꼬치 혼합 70g</div>
             </a>
@@ -864,7 +753,8 @@
         </div>
         <div class="my-box">
             <a href="">
-                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220617/IMG1655GtE450105345_330_330.jpg" alt="">
+                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220617/IMG1655GtE450105345_330_330.jpg"
+                     alt="">
                 <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
                 <div class="fast-word">랭커 스팀 닭가슴살 처양고추 100g</div>
             </a>
@@ -873,7 +763,8 @@
         </div>
         <div class="my-box">
             <a href="">
-                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220818/IMG1660Ysw787453508_330_330.jpg" alt="">
+                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220818/IMG1660Ysw787453508_330_330.jpg"
+                     alt="">
                 <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
                 <div class="fast-word">러브잇 매운맛 닭가슴살</div>
             </a>
@@ -882,7 +773,8 @@
         </div>
         <div class="my-box">
             <a href="">
-                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220620/IMG1655kDt712238425_330_330.jpg" alt="">
+                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220620/IMG1655kDt712238425_330_330.jpg"
+                     alt="">
                 <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
                 <div class="fast-word">러브잇 닭가슴살 백숙</div>
             </a>
@@ -891,7 +783,8 @@
         </div>
         <div class="my-box">
             <a href="">
-                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220325/728ab6e6a98b80d360d1ee8b2fa6cae6_330_330.jpg" alt="">
+                <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220325/728ab6e6a98b80d360d1ee8b2fa6cae6_330_330.jpg"
+                     alt="">
                 <span class="fast-box">ㅤㅤㅤㅤㅤ</span>
                 <div class="fast-word">마늘 닭가슴살</div>
             </a>
@@ -1372,14 +1265,13 @@
     </script>
 
 
-
-
     <!-- footer -->
 
     <!-- 팝업창 -->
     <div id="divpop">
         <img src="https://file.rankingdak.com/image/RANK/BANNER/AR_OPEN/20230313/IMG1678UlB688986993.png" alt="">
-        <div id="divpop-close"><a href="javascript:closeWin();"><img  src="https://www.rankingdak.com/resources/pc/images/icon/btn_close.png" style="width: 40px;"></a></div>
+        <div id="divpop-close"><a href="javascript:closeWin();"><img
+                src="https://www.rankingdak.com/resources/pc/images/icon/btn_close.png" style="width: 40px;"></a></div>
     </div>
     <!-- 팝업 JS -->
     <script language="Javascript">
@@ -1387,6 +1279,7 @@
             var divpop = document.getElementById("divpop");
             divpop.style.display = "none";
         }
+
         // setTimeout(closeWin, 10000);
     </script>
     <!-- 팝업 JS -->
@@ -1400,5 +1293,12 @@
             });
         }
     </script>
+    <script th:inline="javascript">
+        function move(id){
+            window.location.href="/mainPage/read?lunchboxId="+id;
+        }
+
+    </script>
+
 </section>
 </html>

@@ -19,4 +19,8 @@ public interface LunchBoxQueryDSL {
 
     //이미지 파일명 가져오기
     public String getImgName(Long id);
+
+    //메인페이지  데이터 가져오기
+    public List<LunchBox> getMainList(int limit, int offset);
+
 }

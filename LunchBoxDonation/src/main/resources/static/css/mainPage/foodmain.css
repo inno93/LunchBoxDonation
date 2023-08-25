@@ -1256,8 +1256,9 @@ img {
     border-radius: 20px;
     max-width: none;
     height: 481px;
-    margin-left: -60px;
+    /*margin-left: -60px;*/
     margin-top: 7px;
+      width : 685px;
   }
   .selected-button {
     background-color: #333;
@@ -1298,6 +1299,7 @@ img {
     margin-top: 263px;
     margin-left: 15px;
     align-items: flex-start;
+    justify-content: center;
   }
 
   .my-right-div {
@@ -1306,7 +1308,7 @@ img {
     align-items: center;
     width: 100px;
     height: 76px;
-    margin-bottom: 47px;
+    /*margin-bottom: 47px;*/
   }
 
  .my-right-div > span{
@@ -1332,6 +1334,12 @@ img {
 /* video */
 
 .orange-members > img{
+    margin-left: 380px;
+    margin-top: 290px;
+    border-radius: 10px;
+}
+
+.orange-members{
     margin-left: 380px;
     margin-top: 290px;
     border-radius: 10px;

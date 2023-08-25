@@ -29,65 +29,68 @@
                             </form>
                         </div>
                         <div th:if="${!couponList.content.isEmpty()}">
-                        <table id=user_table class="type09">
-                            <thead>
-                            <tr>
-                                <th class="no">번호</th>
-                                <th>쿠폰 명</th>
-                                <th>가격</th>
-                                <th>유효기간</th>
-                                <th>등록일</th>
-                                <th>비고</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="coupon, index : ${couponList.content}">
-                                <td class="no" th:text="${startNum + index.index}"></td>
-                                <td><a th:href="@{/admin/coupon/couponDetail/{id}(id=${coupon.Id})}"
-                                       th:text="${coupon.coupon}" class="bold-text"></a></td>
-                                <td th:text="${#numbers.formatInteger(coupon.price, 3, 'COMMA') + '원'}"></td>
-                                <td th:text="${#temporals.format(coupon.startTime, 'yyyy-MM-dd')}+ '~' + ${#temporals.format(coupon.endTime, 'yyyy-MM-dd')}"></td>
-                                <td th:text="${coupon.createdAt}"></td>
-                                <td><a th:href="@{/admin/coupon/couponDetail/{id}(id=${coupon.Id})}">수정</a> |
-                                    <a th:href="@{/admin/coupon/couponDelete/{id}(id=${coupon.Id})}"
-                                       onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a></td>
-                            </tr>
+                            <table id=user_table class="type09">
+                                <thead>
+                                <tr>
+                                    <th class="no">번호</th>
+                                    <th>쿠폰 명</th>
+                                    <th>가격</th>
+                                    <th>유효기간</th>
+                                    <th>등록일</th>
+                                    <th>비고</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="coupon, index : ${couponList.content}">
+                                    <td class="no" th:text="${startNum + index.index}"></td>
+                                    <td><a th:href="@{/admin/coupon/couponDetail/{id}(id=${coupon.Id})}"
+                                           th:text="${coupon.coupon}" class="bold-text"></a></td>
+                                    <td th:text="${#numbers.formatInteger(coupon.price, 3, 'COMMA') + '원'}"></td>
+                                    <td th:text="${#temporals.format(coupon.startTime, 'yyyy-MM-dd')}+ '~' + ${#temporals.format(coupon.endTime, 'yyyy-MM-dd')}"></td>
+                                    <td th:text="${coupon.createdAt}"></td>
+                                    <td><a th:href="@{/admin/coupon/couponDetail/{id}(id=${coupon.Id})}">수정</a> |
+                                        <a th:href="@{/admin/coupon/couponDelete/{id}(id=${coupon.Id})}"
+                                           onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a></td>
+                                </tr>
 
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                            <div class="page_wrap">
+                                <ul class="page_nation"
+                                    th:with="
+                                    nowPage = ${couponList.number + 1},
+                                    pageSize = ${couponList.size},
+                                    totalPages = ${couponList.totalPages},
+                                    endPage = ${((nowPage - 1) / pageSize + 1) * pageSize},
+                                    startPage = ${endPage - pageSize + 1},
+                                    realEndPage = ${endPage < totalPages ? endPage : totalPages},
+                                    first = ${couponList.first}, last = ${couponList.last}
+                                ">
+                                    <li th:classappend="${startPage == 1} ? 'none'" class="prev">
+                                        <a th:href="@{/admin/coupon/couponList(page=${startPage - 2})}"><code>&lt;&lt;</code></a>
+                                    </li>
+                                    <li th:classappend="${first} ? 'none'" class="prev">
+                                        <a th:href="@{/admin/coupon/couponList(page=${nowPage - 2})}"><code>&lt;</code></a>
+                                    </li>
+                                    <li th:each="page : ${#numbers.sequence(startPage, realEndPage)}">
+                                        <a th:if="${nowPage != page}"
+                                           th:href="@{/admin/coupon/couponList(page=${page - 1})}"
+                                           th:text="${page}"></a>
+                                        <span th:unless="${nowPage != page}" th:text="${page}"></span>
+                                    </li>
+                                    <li th:classappend="${last} ? 'none'" class="next">
+                                        <a th:href="@{/admin/coupon/couponList(page=${nowPage})}"><code>&gt;</code></a>
+                                    </li>
+                                    <li th:classappend="${endPage >= totalPages} ? 'none'" class="prev">
+                                        <a th:href="@{/admin/coupon/couponList(page=${endPage})}"><code>&gt;&gt;</code></a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                         <div th:unless="${!couponList.content.isEmpty()}">
                             <h1>게시글이 없습니다.</h1>
                         </div>
-                        <div class="page_wrap">
-                            <ul class="page_nation"
-                                th:with="
-                        nowPage = ${couponList.number + 1},
-                        pageSize = ${couponList.size},
-                        totalPages = ${couponList.totalPages},
-                        endPage = ${((nowPage - 1) / pageSize + 1) * pageSize},
-                        startPage = ${endPage - pageSize + 1},
-                        realEndPage = ${endPage < totalPages ? endPage : totalPages},
-                        first = ${couponList.first}, last = ${couponList.last}
-                    ">
-                                <li th:classappend="${startPage == 1} ? 'none'" class="prev">
-                                    <a th:href="@{/admin/coupon/couponList(page=${startPage - 2})}"><code>&lt;&lt;</code></a>
-                                </li>
-                                <li th:classappend="${first} ? 'none'" class="prev">
-                                    <a th:href="@{/admin/coupon/couponList(page=${nowPage - 2})}"><code>&lt;</code></a>
-                                </li>
-                                <li th:each="page : ${#numbers.sequence(startPage, realEndPage)}">
-                                    <a th:if="${nowPage != page}" th:href="@{/admin/coupon/couponList(page=${page - 1})}" th:text="${page}"></a>
-                                    <span  th:unless="${nowPage != page}" th:text="${page}"></span>
-                                </li>
-                                <li th:classappend="${last} ? 'none'" class="next">
-                                    <a th:href="@{/admin/coupon/couponList(page=${nowPage})}"><code>&gt;</code></a>
-                                </li>
-                                <li th:classappend="${endPage >= totalPages} ? 'none'" class="prev">
-                                    <a th:href="@{/admin/coupon/couponList(page=${endPage})}"><code>&gt;&gt;</code></a>
-                                </li>
-                            </ul>
-                        </div>
+
                     </div>
                 </div>
 

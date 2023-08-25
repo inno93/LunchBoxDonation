@@ -71,7 +71,8 @@ public class BoLunchBoxController {
         //DB에 도시락 정보 등록
         Long id = lunchBoxService.lunchBoxInsert(lunchBoxDTO);
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("redirect:lunchboxDetail/"+id);
+//        mv.setViewName("redirect:lunchboxDetail/"+id);
+        mv.setViewName("redirect:lunchboxWrite");
         return mv;
     }
 

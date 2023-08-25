@@ -26,7 +26,7 @@ public class LunchBox extends Timestamp {
 //    @JoinColumn(name = "REVIEW_ID")
 //    private List<Review> review;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "lunchbox")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "lunchbox", cascade = CascadeType.REMOVE)
     private List<LunchBoxOption> lunchBoxOptions;
 
     @Builder
