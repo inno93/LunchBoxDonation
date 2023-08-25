@@ -11,4 +11,6 @@ public interface ReviewService {
     Review update(Long lunchboxId, String reviewContent);
 
     public void deleteReview(Long Id);
+
+    Long getReviewCountByLunchboxId(Long lunchboxId);
 }

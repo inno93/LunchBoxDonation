@@ -16,4 +16,7 @@ public interface ReviewRepository extends JpaRepository<Review,Long> {
 
     @Query("SELECT r FROM Review r WHERE r.lunchbox.id = :lunchboxId")
     List<Review> findByLunchboxId(Long lunchboxId);
+
+    @Query("SELECT COUNT(r) FROM Review r WHERE r.lunchbox.id = :lunchboxId")
+    Long getReviewCountByLunchboxId(Long lunchboxId);
 }

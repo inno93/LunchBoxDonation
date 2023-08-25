@@ -55,4 +55,9 @@ public class ReviewServiceImpl implements ReviewService{
     public void deleteReview(Long Id) {
         reviewRepository.deleteById(Id);
     }
+
+    @Override
+    public Long getReviewCountByLunchboxId(Long lunchboxId) {
+        return reviewRepository.getReviewCountByLunchboxId(lunchboxId);
+    }
 }
