@@ -869,29 +869,6 @@
           $('input[name=dEndDtm]').val(endYear + '-' + endMonth + '-' + endDay);
         }
 
-        function onSubmitMyPageOrderSearch() {
-
-          if (!validateMyPageOrderListSearchPeriod()) {
-            return false;
-          }
-
-          if ($('#dlvTypeAll').prop("checked")) {
-            $('#dlvTypeAll').val('Y');
-          }
-
-          if ($('#dlvNrm').prop("checked")) {
-            $('#dlvNrm').val('Y');
-          }
-
-          if ($('#dlvRtn').prop("checked")) {
-            $('#dlvRtn').val('Y');
-          }
-
-          var frm = $('#myPageOrderList');
-          frm.attr('action', '/mypage/orderlist');
-          frm.submit();
-          return true;
-        }
 
         var searchProductName = function (e) {
           e.preventDefault();
@@ -921,24 +898,6 @@
           }*/
 
           frm.submit();
-        }
-
-
-        var shippingModifyPop = function (e) {
-          e.preventDefault();
-
-          var $this = $(this);
-
-          var vOrderCd = $this.data("ordercd");
-
-          var $form = $("form[name='deliveryPop']");
-          $form.find("input[name='vOrderCd']").val(vOrderCd);
-
-          $("#modal-my-delivery").load("/mypage/orderlist/shippingModifyPop", $form.serialize(), function () {
-
-            $(this).show();
-            selectBox();
-          });
         }
         function closePop() {
           $('#modal-my-delivery').html('');

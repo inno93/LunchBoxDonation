@@ -177,11 +177,17 @@
 
             <div class="line2"></div>
 
-            <div style="display: flex;" class="big-price">
-                <div class="purchase-img"></div>
-                <div class="purchase1">장바구니</div>
-                <div class="purchase2" style="background-color: rgb(255, 123, 0);">바로구매</div>
+            <div class="purchase1">
+                <form action="/read/{lunchboxId}/likes" method="post">
+                    <input type="hidden" name="lunchboxId" value="123"> <!-- 실제 값 사용 -->
+                    <button type="submit">장바구니</button>
+                </form>
+                <form action="/likes/cancel" method="post">
+                    <input type="hidden" name="lunchboxId" value="123"> <!-- 실제 값 사용 -->
+                    <button type="submit">취소</button>
+                </form>
             </div>
+
 
             <div class="review-intro">베스트 구매후기<span style="font-size: 20px;" th:text="${'  '+reviewCount + ' 개'}"> </span></div>
 

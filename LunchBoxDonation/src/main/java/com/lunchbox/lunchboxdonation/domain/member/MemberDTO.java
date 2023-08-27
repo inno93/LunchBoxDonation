@@ -23,7 +23,7 @@ public class MemberDTO {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime regDate;
 
-    public static MemberDTO toMemberDTO(Member member){
+    public static MemberDTO toMemberDTO(Member member) {
         MemberDTO memberDTO = new MemberDTO();
         memberDTO.setId(member.getId());
         memberDTO.setMemberId(member.getMemberId());
@@ -33,5 +33,4 @@ public class MemberDTO {
         memberDTO.setMemberPhoneNumber(member.getMemberPhoneNumber());
         return memberDTO;
     }
-
 }

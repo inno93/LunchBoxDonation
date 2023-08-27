@@ -415,14 +415,14 @@
           <!-- [Dev] 20220315 추가 : 오렌지멤버스 만료임박할때 노출 -->
           <div class="order-list-slide">
             <!-- [Dev] 20210909 추가 : 주문내역 없을 경우 -->
-
-            <div class="no-data-type1" th:if="${recentOrderAddresses.isEmpty(recentOrderAddresses)}">
+            <th:block th:each="orderAddress : ${recentOrderAddresses}">
+            <div class="no-data-type1" th:if="${recentOrderAddresses.isEmpty()}">
               <p class="message">최근 3개월 내에 주문내역이 없습니다.  </p>
             </div>
-            <th:block th:each="recentOrderAddresses : ${recentOrderAddresses}">
+
             <div th:unless="${recentOrderAddresses.isEmpty()}" class = "order-data">
               <ul>
-                <li th:each="orderAddress : ${recentOrderAddresses.content}">
+                <li th:each="orderAddress : ${recentOrderAddresses}">
                   <p th:text="${orderAddress.orderName}"></p>
                 </li>
               </ul>
