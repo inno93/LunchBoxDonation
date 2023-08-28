@@ -19,6 +19,7 @@ public class MemberDTO {
     private String memberName;
     private String memberEmail;
     private String memberPhoneNumber;
+    private int memberPoint;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime regDate;
@@ -31,6 +32,7 @@ public class MemberDTO {
         memberDTO.setMemberName(member.getMemberName());
         memberDTO.setMemberEmail(member.getMemberEmail());
         memberDTO.setMemberPhoneNumber(member.getMemberPhoneNumber());
+        memberDTO.setMemberPoint(member.getMemberPoint());
         return memberDTO;
     }
 }

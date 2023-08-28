@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $('#sDate, #eDate').datepicker({
+    $('#startDt, #endDt').datepicker({
         dateFormat: 'yy-mm-dd' //달력 날짜 형태
         ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
         ,showMonthAfterYear:true // 월- 년 순서가아닌 년도 - 월 순서
@@ -16,16 +16,11 @@ $(document).ready(function(){
         ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 Tooltip
     });
 
-    $("#sDate").on("change",function(){
-        $("#startTime").val($("#sDate").val()+"T00:00:00")
-    })
-    $("#eDate").on("change",function(){
-        $("#endTime").val($("#eDate").val()+"T23:59:59")
-    })
+
     //뒤로 가기
     $(".list").on("click", function() {
         // 페이지 뒤로 가기
-        window.location.href="/admin/coupon/couponList";
+        window.location.href="/admin/bargain/bargainList";
     });
 
 

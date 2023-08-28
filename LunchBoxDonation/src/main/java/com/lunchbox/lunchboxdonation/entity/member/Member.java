@@ -28,6 +28,7 @@ public class Member extends Timestamp {
     @NonNull
     @Column
     private String memberName;
+    private int memberPoint;
     private String memberEmail;
     private String memberPhoneNumber;
 //    private LocalDateTime modDate;
@@ -39,6 +40,7 @@ public class Member extends Timestamp {
         member.setMemberName(memberDTO.getMemberName());
         member.setMemberEmail(memberDTO.getMemberEmail());
         member.setMemberPhoneNumber(memberDTO.getMemberPhoneNumber());
+        member.setMemberPoint(memberDTO.getMemberPoint());
 
         return member;
     }
@@ -51,6 +53,7 @@ public class Member extends Timestamp {
         member.setMemberName(memberDTO.getMemberName());
         member.setMemberEmail(memberDTO.getMemberEmail());
         member.setMemberPhoneNumber(memberDTO.getMemberPhoneNumber());
+        member.setMemberPoint(memberDTO.getMemberPoint());
 
         return member;
     }

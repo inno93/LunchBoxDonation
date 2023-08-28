@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/adminDefaultLayout}">
+
+<section layout:fragment="adminContent">
+    <div id="main_content">
+        <main>
+            <div class="main_padding">
+                <h1 class="main-header">이달의 특가 목록</h1>
+
+                <div class="card main-margin">
+                    <div class="container">
+                        <div class="move">
+                            <form method="get" action="admin/bargain/bargainList">
+                                <select class="inner2" id="comCd" name="comCd">
+                                    <option>제목</option>
+                                </select>
+                                <div class="inner">
+                                    <input type="search" id="test" name="title">
+                                    <img src="/img/admin/icon_search.svg">
+                                    <div class="searching">
+                                        <i class="fas fa-search"></i>
+                                    </div>
+                                </div>
+                                <a href="/admin/bargain/bargainWrite" class="register">등록</a>
+                            </form>
+                        </div>
+
+                        <div th:if="${!bargainList.content.isEmpty()}">
+                            <table id=user_table class="type09">
+                                <thead>
+                                <tr>
+                                    <th class="no">번호</th>
+                                    <th>특가 이미지</th>
+                                    <th>제목</th>
+                                    <th>특가 시작일</th>
+                                    <th>특가 마감일</th>
+                                    <th>비고</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="bargain, index : ${bargainList.content}">
+                                    <td class="no" th:text="${startNum + index.index}"></td>
+                                    <td><img th:src="@{'/upload/' + ${bargain.bargainFile.fileName}}"
+                                             class="lunchboxList"></td>
+                                    <td><a th:href="@{/admin/bargain/bargainDetail/{id}(id=${bargain.id})}"
+                                           th:text="${bargain.title}" class="bold-text"></a></td>
+                                    <td th:text="${bargain.startDt}"></td>
+                                    <td th:text="${bargain.endDt}"></td>
+                                    <td><a th:href="@{/admin/bargain/bargainDetail/{id}(id=${bargain.Id})}">수정</a> |
+                                        <a th:href="@{/admin/bargain/bargainDelete/{id}(id=${bargain.Id})}"
+                                           onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="page_wrap">
+                                <ul class="page_nation"
+                                    th:with="
+                                        nowPage = ${lunchBoxList.number + 1},
+                                        pageSize = ${lunchBoxList.size},
+                                        totalPages = ${lunchBoxList.totalPages},
+                                        endPage = ${((nowPage - 1) / pageSize + 1) * pageSize},
+                                        startPage = ${endPage - pageSize + 1},
+                                        realEndPage = ${endPage < totalPages ? endPage : totalPages},
+                                        first = ${lunchBoxList.first}, last = ${lunchBoxList.last}
+                                    ">
+                                    <li th:classappend="${startPage == 1} ? 'none'" class="prev">
+                                        <a th:href="@{/admin/lunchbox/lunchboxList(page=${startPage - 2})}"><code>&lt;&lt;</code></a>
+                                    </li>
+                                    <li th:classappend="${first} ? 'none'" class="prev">
+                                        <a th:href="@{/admin/lunchbox/lunchboxList(page=${nowPage - 2})}"><code>&lt;</code></a>
+                                    </li>
+                                    <li th:each="page : ${#numbers.sequence(startPage, realEndPage)}">
+                                        <a th:if="${nowPage != page}"
+                                           th:href="@{/admin/lunchbox/lunchboxList(page=${page - 1})}"
+                                           th:text="${page}"></a>
+                                        <span th:unless="${nowPage != page}" th:text="${page}"></span>
+                                    </li>
+                                    <li th:classappend="${last} ? 'none'" class="next">
+                                        <a th:href="@{/admin/lunchbox/lunchboxList(page=${nowPage})}"><code>&gt;</code></a>
+                                    </li>
+                                    <li th:classappend="${endPage >= totalPages} ? 'none'" class="prev">
+                                        <a th:href="@{/admin/lunchbox/lunchboxList(page=${endPage})}"><code>&gt;&gt;</code></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div th:unless="${!lunchBoxList.content.isEmpty()}">
+                            <h1>게시글이 없습니다.</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <br>
+    </div>
+</section>
+
+</html>

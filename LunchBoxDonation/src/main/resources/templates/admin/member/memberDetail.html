@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/adminDefaultLayout}">
+
+<section layout:fragment="adminContent">
+    <script th:src="@{/js/admin/member/write.js}"></script>
+    <div id="main_content">
+        <main>
+            <div class="main_padding">
+                <div class="header_container">
+                    <h1 class="main-header">회원 상세보기</h1>
+                </div>
+                    <div class="card main-margin">
+                        <table border="1" width="500">
+                            <tr>
+                                <th colspan="7">
+                                    회원 상세보기
+                                </th>
+                            </tr>
+                            <tr>
+                                <th style="width: 15%">이름</th>
+                                <td colspan="7" th:text="${member.memberName}"></td>
+                            </tr>
+                            <tr>
+                                <th style="">아이디</th>
+                                <td colspan="5" th:text="${member.memberId}"></td>
+                            </tr>
+                            <tr>
+                                <th style="">전화번호</th>
+                                <td colspan="5" th:text="${member.memberPhoneNumber}"></td>
+                            </tr>
+                            <tr>
+                                <th style="">이메일</th>
+                                <td colspan="5" th:text="${member.memberEmail}"></td>
+                            </tr>
+                            <tr>
+                                <th style="">포인트</th>
+                                <td colspan="5" th:text="${member.memberPoint}"></td>
+                            </tr>
+                            <tr>
+                                <th style="">가입일</th>
+                                <td colspan="5"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" class="button-container">
+                                    <button type="button" class="list">목록</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+            </div>
+        </main>
+    </div>
+</section>
+</html>

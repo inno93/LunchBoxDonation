@@ -12,9 +12,8 @@
                 <div class="card main-margin">
                     <div class="container">
                         <div class="move">
-                            <form method="post">
+                            <form method="get" action="/admin/member/memberList">
                                 <select class="inner2" id="comCd" name="comCd">
-                                    <option>번호</option>
                                     <option>이름</option>
                                     <option>아이디</option>
                                     <option>전화번호</option>
@@ -31,81 +30,78 @@
                             </form>
                         </div>
 
-                        <table id=user_table class="type09">
-                            <thead>
-                            <tr>
-                                <th class="no">번호</th>
-                                <th>이름</th>
-                                <th>아이디</th>
-                                <th>전화번호</th>
-                                <th>이메일</th>
-                                <th>가입일</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td class="no">1</td>
-                                <td>사용자1</td>
-                                <td>admin111</td>
-                                <td>010-1234-1234</td>
-                                <td>aaa@gmail.com</td>
-                                <td>2023-07-01</td>
-                            </tr>
-                            <tr>
-                                <td class="no">2</td>
-                                <td>사용자2</td>
-                                <td>admin222</td>
-                                <td>010-1234-1234</td>
-                                <td>bbb@naver.com</td>
-                                <td>2023-07-01</td>
-                            </tr>
-                            <tr>
-                                <td class="no">3</td>
-                                <td>사용자3</td>
-                                <td>admin333</td>
-                                <td>010-1234-1234</td>
-                                <td>ccc@gmail.com</td>
-                                <td>2023-07-01</td>
-                            </tr>
-                            <tr>
-                                <td class="no">4</td>
-                                <td>사용자4</td>
-                                <td>admin444</td>
-                                <td>010-1234-1234</td>
-                                <td>ddd@naver.com</td>
-                                <td>2023-07-01</td>
-                            </tr>
-                            <tr>
-                                <td class="no">5</td>
-                                <td>사용자5</td>
-                                <td>admin555</td>
-                                <td>010-1234-1234</td>
-                                <td>eee@naver.com</td>
-                                <td>2023-07-01</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        </table>
-                    </div>
-                </div>
-                <div class="page_wrap">
-                    <div class="page_nation" style="text-align: center">
-                        <a class="changePage">
-                            <code><</code>
-                        </a>
-                        <a class="changePage">1</a>
-                        <a class="changePage">2</a>
-                        <a class="changePage">3</a>
-                        <a class="changePage">
-                            <code>></code>
-                        </a>
+                        <div th:if="${!memberList.content.isEmpty()}">
+                            <table id=user_table class="type09">
+                                <thead>
+                                <tr>
+                                    <th class="no">번호</th>
+                                    <th>이름</th>
+                                    <th>아이디</th>
+                                    <th>전화번호</th>
+                                    <th>이메일</th>
+                                    <th>가입일</th>
+                                    <th>비고</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="member, index : ${memberList.content}">
+                                    <td class="no" th:text="${startNum + index.index}"></td>
+                                    <td><a th:href="@{/admin/member/memberDetail/{id}(id=${member.Id})}"
+                                           th:text="${member.memberName}" class="bold-text"></a></td>
+                                    <td><a th:href="@{/admin/member/memberDetail/{id}(id=${member.Id})}"
+                                           th:text="${member.memberId}" class="bold-text"></a></td>
+                                    <td th:text="${member.memberPhoneNumber}"></td>
+                                    <td th:text="${member.memberEmail}"></td>
+                                    <td th:text="${member.regDate}"></td>
+                                    <td><a th:href="@{/admin/member/memberDetail/{id}(id=${member.Id})}">수정</a> |
+                                        <a th:href="@{/admin/member/memberDelete/{id}(id=${member.Id})}"
+                                           onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a></td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                            <div class="page_wrap">
+                                <ul class="page_nation"
+                                    th:with="
+                                    nowPage = ${memberList.number + 1},
+                                    pageSize = ${memberList.size},
+                                    totalPages = ${memberList.totalPages},
+                                    endPage = ${((nowPage - 1) / pageSize + 1) * pageSize},
+                                    startPage = ${endPage - pageSize + 1},
+                                    realEndPage = ${endPage < totalPages ? endPage : totalPages},
+                                    first = ${memberList.first}, last = ${memberList.last}
+                                ">
+                                    <li th:classappend="${startPage == 1} ? 'none'" class="prev">
+                                        <a th:href="@{/admin/member/memberList(page=${startPage - 2})}"><code>&lt;&lt;</code></a>
+                                    </li>
+                                    <li th:classappend="${first} ? 'none'" class="prev">
+                                        <a th:href="@{/admin/member/memberList(page=${nowPage - 2})}"><code>&lt;</code></a>
+                                    </li>
+                                    <li th:each="page : ${#numbers.sequence(startPage, realEndPage)}">
+                                        <a th:if="${nowPage != page}"
+                                           th:href="@{/admin/member/memberList(page=${page - 1})}"
+                                           th:text="${page}"></a>
+                                        <span th:unless="${nowPage != page}" th:text="${page}"></span>
+                                    </li>
+                                    <li th:classappend="${last} ? 'none'" class="next">
+                                        <a th:href="@{/admin/member/memberList(page=${nowPage})}"><code>&gt;</code></a>
+                                    </li>
+                                    <li th:classappend="${endPage >= totalPages} ? 'none'" class="prev">
+                                        <a th:href="@{/admin/member/memberList(page=${endPage})}"><code>&gt;&gt;</code></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div th:unless="${!memberList.content.isEmpty()}">
+                            <h1>게시글이 없습니다.</h1>
+                        </div>
                     </div>
                 </div>
             </div>
         </main>
         <br>
     </div>
-<!--    </div>-->
+    <!--    </div>-->
 </section>
 
 

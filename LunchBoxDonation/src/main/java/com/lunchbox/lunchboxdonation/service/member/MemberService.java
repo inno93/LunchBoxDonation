@@ -2,8 +2,11 @@ package com.lunchbox.lunchboxdonation.service.member;
 
 import com.lunchbox.lunchboxdonation.domain.member.MemberDTO;
 import com.lunchbox.lunchboxdonation.entity.member.Member;
+import com.lunchbox.lunchboxdonation.entity.member.MemberSearch;
 import com.lunchbox.lunchboxdonation.repository.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -98,5 +101,9 @@ public class MemberService {
             System.out.println("service2");
             return "ok";
         }
+    }
+
+    public Page<MemberDTO> MemberList(Pageable pageable, MemberSearch memberSearch){
+        return memberRepository.memberList(pageable,memberSearch);
     }
 }

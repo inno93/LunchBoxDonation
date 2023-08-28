@@ -1,5 +1,6 @@
-package com.lunchbox.lunchboxdonation.entity.monthBargin;
+package com.lunchbox.lunchboxdonation.entity.bargain;
 
+import com.lunchbox.lunchboxdonation.entity.Timestamp;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -11,8 +12,8 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
-@Table(name="TBL_MONTH_BARGIN")
-public class MonthBargin {
+@Table(name="TBL_BARGAIN")
+public class Bargain extends Timestamp {
     @Id
     @GeneratedValue
     private Long id;
@@ -22,7 +23,9 @@ public class MonthBargin {
     private String content;
     private Date startDt;
     private Date endDt;
-    private Date regDate;
-    private Date modDate;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "BARGAIN_File_ID", nullable = false)
+    private BargainFile bargainFile;
 
 }
