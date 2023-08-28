@@ -74,7 +74,7 @@ label, select, input, textarea {
     width: 100%;
     z-index: 2;
 }
-    
+
 .input-text {
     height: 40px;
     padding: 5px 15px;
@@ -156,6 +156,7 @@ input[type="checkbox"], input[type="radio"] {
     background: #ff6001;
     color: #fff;
     border: 1px solid #ff6001;
+    border-radius: 6px;
 }
 .btn-basic-lg2 {
     min-width: 180px;
@@ -192,6 +193,7 @@ ol, ul {
 }
 .text-black2 {
     color: #333 !important;
+    font-size : 14px;
 }
 a {
     background: transparent;
@@ -246,6 +248,7 @@ button, input {
 }
 .login-area .btn-bottom-area {
     padding: 0;
+    border: 1px solid #ccc;
 }
 .btn-bottom-area {
     position: relative;
@@ -275,10 +278,15 @@ button, input {
 .login-area .page-guide-center ~ .log-benefit-bnr {
     margin-top: 45px;
 }
+.log-benefit-bnr{
+    margin-top: 45px;
+}
 img {
     max-width: 100%;
     vertical-align: top;
 }
+
+
 fieldset, img {
     border: 0;
 }
@@ -317,6 +325,8 @@ a:hover, a:active {
 }
 .login-greeting .message {
     line-height: 1.6;
+    margin-top: 8px;
+    margin-bottom: 0px;
 }
 .login-greeting .txt {
     font-weight: normal;

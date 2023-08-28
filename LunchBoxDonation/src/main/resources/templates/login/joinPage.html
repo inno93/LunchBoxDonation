@@ -9,10 +9,11 @@
 </th:block>
 <section id="contents" class="container" layout:fragment="content">
 
-    <form id="join-general-form" name="join-general-form" action="/member/join/actionJoinGeneral" method="post"
-        onsubmit="return onSubmitJoinGeneral();" accept-charset="UTF-8"><input type="hidden" name="_csrf"
-            value="7676714a-4121-49d5-acd7-7df84be4b402"><input type="hidden" id="member-join-general-email-domain-text"
-            name="member-join-general-email-domain-text" value="">
+    <form id="join-general-form" name="join-general-form" action="/member/join" method="post"
+          onsubmit="return onSubmitJoinGeneral();" accept-charset="UTF-8"><input type="hidden" name="_csrf"
+                                                                                 value="7676714a-4121-49d5-acd7-7df84be4b402"><input type="hidden" id="member-join-general-email-domain-text"
+                                                                                                                                     name="member-join-general-email-domain-text" value="">
+
         <input type="hidden" id="member-easy-join" name="member-easy-join" value="Y">
         <div class="frame-full terms-section" id="checkTags">
             <div class="frame-sm">
@@ -25,8 +26,8 @@
                         <div class="box-head">
                             <div class="custom-checkbox">
                                 <input type="checkbox" id="member-join-general-agree-all-check"
-                                    class="checkbox ui-check-all" name="member-join-general-agree-all-check"
-                                    onclick="onClickMemberJoinCheckAll();">
+                                       class="checkbox ui-check-all" name="member-join-general-agree-all-check"
+                                       onclick="onClickMemberJoinCheckAll();">
                                 <label for="member-join-general-agree-all-check" style="font-weight: bold;">약관
                                     전체동의</label>
                                 <p class="notice-text">선택 항목에 대한 동의를 거부하는 경우에도 서비스를 이용하실 수 있습니다.</p>
@@ -38,8 +39,8 @@
                                 <div class="inner-flex">
                                     <div class="custom-checkbox left-item1">
                                         <input type="checkbox" id="member-join-general-agree-terms-check"
-                                            class="checkbox" name="member-join-general-agree-terms-check"
-                                            onclick="onClickMemberJoinCheckItem();">
+                                               class="checkbox" name="member-join-general-agree-terms-check"
+                                               onclick="onClickMemberJoinCheckItem();">
                                         <label for="member-join-general-agree-terms-check"><span
                                                 class="text-guide-sm2">(필수)</span> 회원가입 약관동의</label>
                                     </div>
@@ -447,8 +448,8 @@
                                 <div class="inner-flex">
                                     <div class="custom-checkbox left-item1">
                                         <input type="checkbox" id="member-join-general-agree-user-info-check"
-                                            class="checkbox" name="member-join-general-agree-user-info-check"
-                                            onclick="onClickMemberJoinCheckItem();">
+                                               class="checkbox" name="member-join-general-agree-user-info-check"
+                                               onclick="onClickMemberJoinCheckItem();">
                                         <label for="member-join-general-agree-user-info-check"><span
                                                 class="text-guide-sm2">(필수)</span> 개인정보 수집 및 이용 동의</label>
                                     </div>
@@ -464,36 +465,36 @@
                                             <col>
                                         </colgroup>
                                         <tbody>
-                                            <tr>
-                                                <th>개인정보 수집 · 이용 목적</th>
-                                                <td class="tal">회원 가입 및 회원 관리</td>
-                                            </tr>
-                                            <tr>
-                                                <th>개인정보 수집 항목</th>
-                                                <td class="tal">아이디, 비밀번호, 본인확인정보(CI, DI, 생년월일, 성별, 내외국인구분), 휴대폰번호, 이메일
-                                                </td>
-                                            </tr>
-                                            <tr class="line_dotted">
-                                                <th>개인정보 보유 및 이용 기간</th>
-                                                <td>통신비밀보호법, 전자상거래 등에서의 소비자보호에 관한 법률 등 관계법령의 규정에 의하여 보존할 필요가 있는 경우 회사는
-                                                    관계법령에서 정한 일정한 기간 동안 회원정보 를 보관합니다. 이 경우 회사는 보관하는 정보를 그 보관의 목적으로만 이용하며
-                                                    보존기간은 아래와 같습니다.<br>
-                                                    - (전자상거래법) 표시·광고에 관한 기록 : 6개월<br>
-                                                    - (전자상거래법) 계약 또는 청약철회, 대금결제, 재화 등의 공급기록 : 5년<br>
-                                                    - (전자상거래법) 소비자의 불만 또는 분쟁처리에 관한 기록 : 3년<br>
-                                                    - (통신비밀보호법) 로그인 기록(로그기록, 접속지의 추적자료) : 3개월<br>
-                                                    <br>
-                                                    회원에서 탈퇴한 후 회원 재가입, 임의해지 등을 반복적으로 행하여 회사가 제공하는 할인쿠폰, 이벤트 혜택 등으로 경제상의
-                                                    이익을 취하거나 이 과정에서 명의를 무단으로 사용하는 편법과 불법행위를 하는 회원을 차단 하고자 회원 탈퇴 후 90일 동안
-                                                    보관합니다<br>
-                                                    - 부정이용기록에 대한 기록 : 1년
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th colspan="2" style="text-align:center">※ 이용자(정보주체자)는 개인정보 수집 및 이용 동의를
-                                                    거부할 권리가 있습니다.<br>
-                                                    단, 개인정보 수집 및 이용 동의 거부 시 서비스 이용에 제약이 있을 수 있습니다.</th>
-                                            </tr>
+                                        <tr>
+                                            <th>개인정보 수집 · 이용 목적</th>
+                                            <td class="tal">회원 가입 및 회원 관리</td>
+                                        </tr>
+                                        <tr>
+                                            <th>개인정보 수집 항목</th>
+                                            <td class="tal">아이디, 비밀번호, 본인확인정보(CI, DI, 생년월일, 성별, 내외국인구분), 휴대폰번호, 이메일
+                                            </td>
+                                        </tr>
+                                        <tr class="line_dotted">
+                                            <th>개인정보 보유 및 이용 기간</th>
+                                            <td>통신비밀보호법, 전자상거래 등에서의 소비자보호에 관한 법률 등 관계법령의 규정에 의하여 보존할 필요가 있는 경우 회사는
+                                                관계법령에서 정한 일정한 기간 동안 회원정보 를 보관합니다. 이 경우 회사는 보관하는 정보를 그 보관의 목적으로만 이용하며
+                                                보존기간은 아래와 같습니다.<br>
+                                                - (전자상거래법) 표시·광고에 관한 기록 : 6개월<br>
+                                                - (전자상거래법) 계약 또는 청약철회, 대금결제, 재화 등의 공급기록 : 5년<br>
+                                                - (전자상거래법) 소비자의 불만 또는 분쟁처리에 관한 기록 : 3년<br>
+                                                - (통신비밀보호법) 로그인 기록(로그기록, 접속지의 추적자료) : 3개월<br>
+                                                <br>
+                                                회원에서 탈퇴한 후 회원 재가입, 임의해지 등을 반복적으로 행하여 회사가 제공하는 할인쿠폰, 이벤트 혜택 등으로 경제상의
+                                                이익을 취하거나 이 과정에서 명의를 무단으로 사용하는 편법과 불법행위를 하는 회원을 차단 하고자 회원 탈퇴 후 90일 동안
+                                                보관합니다<br>
+                                                - 부정이용기록에 대한 기록 : 1년
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="2" style="text-align:center">※ 이용자(정보주체자)는 개인정보 수집 및 이용 동의를
+                                                거부할 권리가 있습니다.<br>
+                                                단, 개인정보 수집 및 이용 동의 거부 시 서비스 이용에 제약이 있을 수 있습니다.</th>
+                                        </tr>
                                         </tbody>
                                     </table>
                                     <!--// 내용 -->
@@ -505,8 +506,8 @@
                                 <div class="inner-flex">
                                     <div class="custom-checkbox left-item1">
                                         <input type="checkbox" id="member-join-general-agree2-user-info-check"
-                                            class="checkbox" name="member-join-general-agree2-user-info-check"
-                                            onclick="onClickMemberJoinCheckItem();">
+                                               class="checkbox" name="member-join-general-agree2-user-info-check"
+                                               onclick="onClickMemberJoinCheckItem();">
                                         <label for="member-join-general-agree2-user-info-check"><span
                                                 class="text-guide-sm2">(선택)</span> 개인정보 수집 및 이용 동의</label>
                                     </div>
@@ -522,35 +523,35 @@
                                             <col>
                                         </colgroup>
                                         <tbody>
-                                            <tr>
-                                                <th>개인정보 수집 · 이용 목적</th>
-                                                <td class="tal">회원 관리</td>
-                                            </tr>
-                                            <tr>
-                                                <th>개인정보 수집 항목</th>
-                                                <td class="tal">추천아이디</td>
-                                            </tr>
-                                            <tr class="line_dotted">
-                                                <th>개인정보 보유 및 이용 기간</th>
-                                                <td>통신비밀보호법, 전자상거래 등에서의 소비자보호에 관한 법률 등 관계법령의 규정에 의하여 보존할 필요가 있는 경우 회사는
-                                                    관계법령에서 정한 일정한 기간 동안 회원정보 를 보관합니다. 이 경우 회사는 보관하는 정보를 그 보관의 목적으로만 이용하며
-                                                    보존기간은 아래와 같습니다.<br>
-                                                    - (전자상거래법) 표시·광고에 관한 기록 : 6개월<br>
-                                                    - (전자상거래법) 계약 또는 청약철회, 대금결제, 재화 등의 공급기록 : 5년<br>
-                                                    - (전자상거래법) 소비자의 불만 또는 분쟁처리에 관한 기록 : 3년<br>
-                                                    - (통신비밀보호법) 로그인 기록(로그기록, 접속지의 추적자료) : 3개월<br>
-                                                    <br>
-                                                    회원에서 탈퇴한 후 회원 재가입, 임의해지 등을 반복적으로 행하여 회사가 제공하는 할인쿠폰, 이벤트 혜택 등으로 경제상의
-                                                    이익을 취하거나 이 과정에서 명의를 무단으로 사용하는 편법과 불법행위를 하는 회원을 차단 하고자 회원 탈퇴 후 90일 동안
-                                                    보관합니다<br>
-                                                    - 부정이용기록에 대한 기록 : 1년
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th colspan="2" style="text-align:center">※ 이용자(정보주체자)는 개인정보 수집 및 이용 동의를
-                                                    거부할 권리가 있습니다.<br>
-                                                    단, 개인정보 수집 및 이용 동의 거부 시 서비스 이용에 제약이 있을 수 있습니다.</th>
-                                            </tr>
+                                        <tr>
+                                            <th>개인정보 수집 · 이용 목적</th>
+                                            <td class="tal">회원 관리</td>
+                                        </tr>
+                                        <tr>
+                                            <th>개인정보 수집 항목</th>
+                                            <td class="tal">추천아이디</td>
+                                        </tr>
+                                        <tr class="line_dotted">
+                                            <th>개인정보 보유 및 이용 기간</th>
+                                            <td>통신비밀보호법, 전자상거래 등에서의 소비자보호에 관한 법률 등 관계법령의 규정에 의하여 보존할 필요가 있는 경우 회사는
+                                                관계법령에서 정한 일정한 기간 동안 회원정보 를 보관합니다. 이 경우 회사는 보관하는 정보를 그 보관의 목적으로만 이용하며
+                                                보존기간은 아래와 같습니다.<br>
+                                                - (전자상거래법) 표시·광고에 관한 기록 : 6개월<br>
+                                                - (전자상거래법) 계약 또는 청약철회, 대금결제, 재화 등의 공급기록 : 5년<br>
+                                                - (전자상거래법) 소비자의 불만 또는 분쟁처리에 관한 기록 : 3년<br>
+                                                - (통신비밀보호법) 로그인 기록(로그기록, 접속지의 추적자료) : 3개월<br>
+                                                <br>
+                                                회원에서 탈퇴한 후 회원 재가입, 임의해지 등을 반복적으로 행하여 회사가 제공하는 할인쿠폰, 이벤트 혜택 등으로 경제상의
+                                                이익을 취하거나 이 과정에서 명의를 무단으로 사용하는 편법과 불법행위를 하는 회원을 차단 하고자 회원 탈퇴 후 90일 동안
+                                                보관합니다<br>
+                                                - 부정이용기록에 대한 기록 : 1년
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="2" style="text-align:center">※ 이용자(정보주체자)는 개인정보 수집 및 이용 동의를
+                                                거부할 권리가 있습니다.<br>
+                                                단, 개인정보 수집 및 이용 동의 거부 시 서비스 이용에 제약이 있을 수 있습니다.</th>
+                                        </tr>
                                         </tbody>
                                     </table>
                                     <!--// 내용 -->
@@ -562,8 +563,8 @@
                                 <div class="inner-flex">
                                     <div class="custom-checkbox left-item1">
                                         <input type="checkbox" id="member-join-general-agree-email-check"
-                                            class="checkbox" name="member-join-general-agree-email-check"
-                                            onclick="onClickMemberJoinCheckItem();">
+                                               class="checkbox" name="member-join-general-agree-email-check"
+                                               onclick="onClickMemberJoinCheckItem();">
                                         <label for="member-join-general-agree-email-check"><span
                                                 class="text-guide-sm2">(선택)</span> 이메일수신동의 <span
                                                 class="add-service-text">(상품 및 서비스 안내, 이벤트 정보 및 혜택제공)</span></label>
@@ -574,8 +575,8 @@
                                 <div class="inner-flex">
                                     <div class="custom-checkbox left-item1">
                                         <input type="checkbox" id="member-join-general-agree-sms-check" class="checkbox"
-                                            name="member-join-general-agree-sms-check"
-                                            onclick="onClickMemberJoinCheckItem();">
+                                               name="member-join-general-agree-sms-check"
+                                               onclick="onClickMemberJoinCheckItem();">
                                         <label for="member-join-general-agree-sms-check"><span
                                                 class="text-guide-sm2">(선택)</span> SMS(문자,카카오톡) 수신동의 <span
                                                 class="add-service-text">(상품 및 서비스 안내, 이벤트 정보 및 혜택제공)</span></label>
@@ -604,18 +605,16 @@
                 <h2 class="join-title">회원가입</h2>
                 <fieldset class="form-group-area">
                     <legend>회원가입 항목 작성</legend>
+
                     <div class="form-group">
                         <div class="form-head">
-                            <label for="member-join-general-id-text" class="form-label">아이디<i class="es2"></i></label>
+                            <label for="memberId" class="form-label">아이디<i class="es2"></i></label>
                         </div><!--// form-head -->
                         <div class="input-group type-lg w-full">
-                            <input type="text" id="member-join-general-id-text" name="member-join-general-id-text"
-                                class="input-text w571" placeholder="4~16자 이상 영문 또는 숫자만 사용 가능" value="">
-                            <span class="input-group-btn"><button type="button" id="btn-id-check"
-                                    class="btn-form btn-default-ex"
-                                    onclick="onClickMemberJoinVerifyLoginIdBtn();"><span>중복확인</span></button></span>
+                            <input type="text" id="memberId" name="memberId"
+                                   class="input-text w571" placeholder="4~16자 이상 영문 또는 숫자만 사용 가능" onblur="idCheck()">
                         </div>
-                        <div id="member-join-general-id-text-error"></div>
+                        <p id="check-result" style="margin-top:10px;"></p>
                     </div><!--// form-group -->
 
                     <div class="form-group">
@@ -624,15 +623,15 @@
                         </div><!--// form-head -->
                         <div class="input-group type-lg w-full">
                             <label for="member-join-general-pw-text" class="blind">비밀번호 입력</label>
-                            <input type="password" id="member-join-general-pw-text" name="member-join-general-pw-text"
-                                class="input-text w571" placeholder="6 ~ 16자 영문, 숫자, 특수문자 1개 이상씩 혼용 필수"
-                                onblur="onEventMemberJoinPasswords();" onkeyup="onEventMemberJoinPasswords();">
+                            <input type="password" id="member-join-general-pw-text" name="memberPw"
+                                   class="input-text w571" placeholder="6 ~ 16자 영문, 숫자, 특수문자 1개 이상씩 혼용 필수"
+                                   onblur="onEventMemberJoinPasswords();" onkeyup="onEventMemberJoinPasswords();">
                         </div>
                         <div class="input-group type-lg w-full">
                             <label for="member-join-general-pw-confirm-text" class="blind">비밀번호 확인</label>
                             <input type="password" id="member-join-general-pw-confirm-text"
-                                name="member-join-general-pw-confirm-text" class="input-text w571" placeholder="비밀번호 확인"
-                                onblur="onEventMemberJoinPasswords();" onkeyup="onEventMemberJoinPasswords();">
+                                   name="memberPw" class="input-text w571" placeholder="비밀번호 확인"
+                                   onblur="onEventMemberJoinPasswords();" onkeyup="onEventMemberJoinPasswords();">
                         </div>
                         <p class="text-guide-sm2" id="pw-guide-text1" style="display: none;">※ 6 ~ 16자 영문, 숫자, 특수문자 1개
                             이상씩 혼용 필수.</p>
@@ -643,66 +642,36 @@
 
                     <div class="form-group">
                         <div class="form-head">
-                            <label for="member-join-general-email-text" class="form-label">이메일<i
+                            <label for="memberName" class="form-label">이름<i class="es2"></i></label>
+                        </div><!--// form-head -->
+                        <div class="input-group type-lg w-full">
+                            <input type="text" id="memberName" name="memberName"
+                                   class="input-text w571" placeholder="" value="">
+                        </div>
+                    </div><!--// form-group -->
+
+
+                    <div class="form-group">
+                        <div class="form-head">
+                            <label for="memberPhoneNumber" class="form-label">전화번호<i class="es2"></i></label>
+                        </div><!--// form-head -->
+                        <div class="input-group type-lg w-full">
+                            <input type="text" id="memberPhoneNumber" name="memberPhoneNumber"
+                                   class="input-text w571" placeholder="- 제외" value="">
+                        </div>
+                    </div><!--// form-group -->
+
+                    <div class="form-group">
+                        <div class="form-head">
+                            <label for="memberEmail" class="form-label">이메일<i
                                     class="es2"></i></label>
                         </div><!--// form-head -->
                         <div class="input-group type-lg w-full">
-                            <input type="text" id="member-join-general-email-text" name="member-join-general-email-text"
-                                class="input-text w571" placeholder="이메일 주소" value=""
-                                onblur="onFocusOutMemberJoinEmailText();">
-                            <div class="input-group-form">
-                                <div class="ui-select select-box w135" id="member-join-general-email-domain"
-                                    name="member-join-general-email-domain" data-value="">
-                                    <a href="#none" title="선택" class="select-value"><span>직접입력</span></a>
-                                    <div class="select-list">
-                                        <ul>
-                                            <li data-name=""><a href="#none"><span>직접입력</span></a></li>
-                                            <li data-name="naver.com"><a href="#none"><span>naver.com</span></a></li>
-                                            <li data-name="daum.net"><a href="#none"><span>daum.net</span></a></li>
-                                            <li data-name="hanmail.net"><a href="#none"><span>hanmail.net</span></a>
-                                            </li>
-                                            <li data-name="gmail.com"><a href="#none"><span>gmail.com</span></a></li>
-                                            <li data-name="hotmail.com"><a href="#none"><span>hotmail.com</span></a>
-                                            </li>
-                                            <li data-name="yahoo.co.kr"><a href="#none"><span>yahoo.co.kr</span></a>
-                                            </li>
-                                            <li data-name="chollian.net"><a href="#none"><span>chollian.net</span></a>
-                                            </li>
-                                            <li data-name="empal.com"><a href="#none"><span>empal.com</span></a></li>
-                                            <li data-name="freechal.com"><a href="#none"><span>freechal.com</span></a>
-                                            </li>
-                                            <li data-name="hitel.net"><a href="#none"><span>hitel.net</span></a></li>
-                                            <li data-name="hanmir.com"><a href="#none"><span>hanmir.com</span></a></li>
-                                            <li data-name="hanafos.com"><a href="#none"><span>hanafos.com</span></a>
-                                            </li>
-                                            <li data-name="korea.com"><a href="#none"><span>korea.com</span></a></li>
-                                            <li data-name="lycos.co.kr"><a href="#none"><span>lycos.co.kr</span></a>
-                                            </li>
-                                            <li data-name="nate.com"><a href="#none"><span>nate.com</span></a></li>
-                                            <li data-name="netian.com"><a href="#none"><span>netian.com</span></a></li>
-                                            <li data-name="paran.com"><a href="#none"><span>paran.com</span></a></li>
-                                            <li data-name="unitel.co.kr"><a href="#none"><span>unitel.co.kr</span></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                            <input type="text" id="memberEmail" name="memberEmail"
+                                   class="input-text w571" placeholder="이메일 주소" value=""
+                                   onblur="">
                         </div>
                         <div id="member-join-general-email-text-error"></div>
-                    </div><!--// form-group -->
-
-                    <div class="form-group reco-check">
-                        <div class="form-head">
-                            <label for="member-join-general-recomender-text" class="form-label">추천 아이디</label>
-                        </div><!--// form-head -->
-                        <div class="input-group type-lg w-full">
-
-                            <input type="text" id="member-join-general-recomender-text"
-                                name="member-join-general-recomender-text" class="input-text" value=""
-                                placeholder="추천아이디 입력">
-                            <span class="input-group-btn"><button type="button" class="btn-form btn-default-ex"
-                                    onclick="fncRecomConf();"><span>확인하기</span></button></span>
-                        </div>
                     </div><!--// form-group -->
 
                     <div class="form-group">
@@ -714,17 +683,17 @@
                             <li>
                                 <div class="custom-radio">
                                     <input type="radio" id="member-join-general-forever-Y" class="radio"
-                                        name="member-join-general-forever" value="Y"
-                                        onclick="checkSubmitBtnState();"><label for="member-join-general-forever-Y"
-                                        onclick="checkSubmitBtnState();">동의</label>
+                                           name="member-join-general-forever" value="Y"
+                                           onclick="checkSubmitBtnState();"><label for="member-join-general-forever-Y"
+                                                                                   onclick="checkSubmitBtnState();">동의</label>
                                 </div>
                             </li>
                             <li>
                                 <div class="custom-radio">
                                     <input type="radio" id="member-join-general-forever-N" class="radio"
-                                        name="member-join-general-forever" value="N"
-                                        onclick="checkSubmitBtnState();"><label for="member-join-general-forever-N"
-                                        onclick="checkSubmitBtnState();">동의안함</label>
+                                           name="member-join-general-forever" value="N"
+                                           onclick="checkSubmitBtnState();"><label for="member-join-general-forever-N"
+                                                                                   onclick="checkSubmitBtnState();">동의안함</label>
                                 </div>
                             </li>
                         </ul>
@@ -739,7 +708,7 @@
 
                 <div class="btn-bottom-area">
                     <button type="submit" id="member-join-general-submit-btn"
-                        class="btn-basic-lg2 btn-dim"><span>회원가입</span></button><!-- 활성화시 removeClass btn-dim -->
+                            class="btn-basic-lg2 btn-dim"><span>회원가입</span></button><!-- 활성화시 removeClass btn-dim -->
                 </div><!--// btn-bottom-area -->
             </div><!--// join-area -->
             <div id="member-join-general-popup-content">
@@ -749,8 +718,41 @@
             <input type="hidden" name="_csrf" value="7676714a-4121-49d5-acd7-7df84be4b402">
         </div>
     </form>
+
+    <script th:inline="javascript">
+        const idCheck = () => {
+            const id = document.getElementById("memberId").value;
+            const checkResult = document.getElementById("check-result");
+            console.log("입력값: ", id);
+            $.ajax({
+                // 요청방식: post, url: "id-check", 데이터: 아이디
+                type: "post",
+                url: "/member/id-check",
+                data: {
+                    "memberId": id
+                },
+                success: function(res) {
+                    console.log("요청성공", res);
+                    if (res == "ok") {
+                        console.log("사용가능한 아이디");
+                        checkResult.style.color = "green";
+                        checkResult.innerHTML = "사용가능한 아이디 입니다.";
+                    } else {
+                        console.log("이미 사용중인 아이디");
+                        checkResult.style.color = "red";
+                        checkResult.innerHTML = "이미 사용중인 아이디 입니다.";
+                    }
+                },
+                error: function(err) {
+                    console.log("에러발생", err);
+                }
+            });
+        }
+    </script>
+
+
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script type="text/javascript">
+    <script th:inline="javascript">
 
         $(document).ready(function () {
 
@@ -760,10 +762,10 @@
                 } else {
                     $('#member-join-general-email-domain').addClass('on');
                 }
-                
+
             });
 
-            
+
         });
 
     function onClickMemberJoinCheckAll() {
@@ -802,7 +804,7 @@
     function buttonDisabled() {
         var check = $('#member-join-general-agree-terms-check').is(':checked');
         var userCheck = $('#member-join-general-agree-user-info-check').is(':checked');
-        
+
         if(check && userCheck) {
             $('.btn-primary').attr('disabled', false);
             console.log()
@@ -832,19 +834,9 @@
             $('#checkTags').css('display', 'none');
             $('#loginTags').css('display', 'block');
         }
-        
+
     }
 
-    function onEventMemberJoinPasswords() {
-        var pw = $('#member-join-general-pw-text').val();
-        var pw2 = $('#member-join-general-pw-confirm-text').val();
-
-        // 회원가입시 비밀번호 동일 여부(return true);
-        if(pw === pw2){
-            return true;
-        }
-    }
-    
     function buttonAtive(el) {
         if($(el).hasClass('toggle-on')){
             $(el).removeClass('toggle-on');
@@ -855,7 +847,7 @@
             $(el).closest('li').addClass('active');
             $(el).closest('li').find('.ui-slide-content').slideDown(500);
         }
-        
+
     }
 
     </script>

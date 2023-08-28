@@ -240,7 +240,8 @@
     </div>
 
     <form id="reply" action="/mainPage/read" method="post" style="margin-left: 440px">
-        <input type="hidden" name="lunchboxId" th:value="${lunchbox != null ? lunchbox.id : 123}">
+        <input type="hidden"name="lunchboxId" th:value="${lunchboxId}">
+<!--        <input type="hidden" name="lunchboxId" th:value="${lunchbox != null ? lunchbox.id : 123}">-->
         <!--                <input type="hidden" name="lunchboxId" th:value="${lunchboxId}">-->
         <div class="form-group">
             <input type="text" id="reviewContent" name="reviewContent" class="form-control" placeholder="&nbsp&nbsp&nbsp댓글을 입력해주세요.."

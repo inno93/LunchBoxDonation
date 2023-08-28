@@ -18,12 +18,12 @@ public class MemberController {
     private final MemberService memberService;
 
     // 회원가입 페이지 출력 요청
-    @GetMapping("/member/save")
+    @GetMapping("/member/join")
     public String saveForm(){
-        return "save";
+        return "login/joinPage";
     }
 
-    @PostMapping("/member/save")
+    @PostMapping("/member/join")
     public String save(@ModelAttribute MemberDTO memberDTO) {
         System.out.println("MemberController.save");
         System.out.println("memberDTO = " + memberDTO);
@@ -31,9 +31,10 @@ public class MemberController {
         return "login/login";
     }
 
+    //로그인 페이지 출력 요청
     @GetMapping("/member/login")
     public String loginForm() {
-        return "login";
+        return "login/login";
     }
 
     @PostMapping("/member/login")
@@ -43,12 +44,12 @@ public class MemberController {
             // login 성공
             session.setAttribute("loginId", loginResult.getMemberId());
             System.out.println("로그인 성공");
-            return "save";
+            return "mainPage/foodmain";
 
         } else {
             // login 실패
             System.out.println("로그인 실패");
-            return "login";
+            return "login/login";
         }
     }
 
@@ -87,12 +88,14 @@ public class MemberController {
         return "redirect:/member/";
     }
 
+    //로그아웃
     @GetMapping("/member/logout")
     public String logout(HttpSession session) {
         session.invalidate();
         return "index";
     }
 
+    //아이디 중복 검사
     @PostMapping("/member/id-check")
     public @ResponseBody
     String idCheck(@RequestParam(value = "memberId",required=false) String memberId) {

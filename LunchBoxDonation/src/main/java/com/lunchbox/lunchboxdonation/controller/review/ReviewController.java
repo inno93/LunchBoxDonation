@@ -30,6 +30,8 @@ public class ReviewController {
 
         // 댓글 수를 모델에 추가하여 뷰에서 사용
         model.addAttribute("reviewCount", reviewCount);
+
+        model.addAttribute("lunchboxId", lunchboxId);
         return "mainPage/read";
     }
 

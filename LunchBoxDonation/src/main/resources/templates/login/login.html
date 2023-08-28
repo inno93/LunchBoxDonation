@@ -16,19 +16,20 @@
                 <p class="message"><i class="ico-logo-login"></i><span class="blind">랭킹닭컴</span>입니다.</p>
             </div><!--// login-greeting -->
 
-            <form id="login_form" name="login_form" action="/login/login" method="post" onsubmit="return onSubmitLogin();"><input type="hidden" name="encId" value="">
+            <form id="login_form" name="login_form" action="/member/login" method="post" onsubmit="return onSubmitLogin();"><input type="hidden" name="encId" value="">
                 <input type="hidden" name="endPw" value="">
                 <input type="hidden" name="captcha" value="N">
+
 
                 <fieldset>
                     <legend>아이디/비밀번호 입력</legend>
                     <div class="input-group w-full">
                         <label for="id" class="blind">아이디</label>
-                        <input type="text" id="id" name="id" class="input-text type-lg" placeholder="아이디" maxlength="100">
+                        <input type="text" id="id" name="memberId" class="input-text type-lg" placeholder="아이디" maxlength="100">
                     </div>
                     <div class="input-group w-full">
                         <label for="pw" class="blind">비밀번호</label>
-                        <input type="password" id="pw" class="input-text type-lg" placeholder="비밀번호" maxlength="100">
+                        <input type="password" id="pw" name="memberPw" class="input-text type-lg" placeholder="비밀번호" maxlength="100">
                     </div>
 
 
@@ -44,11 +45,11 @@
                 </fieldset>
 
                 <div class="page-guide-center find-con">
-                    <ul class="txt-link-list">
+                    <div class="txt-link-list">
                         <li><a href="/login/foundId" class="text-black2">아이디 찾기</a></li>
                         &nbsp;|&nbsp;
                         <li><a href="/login/foundPw" class="text-black2">비밀번호 찾기</a></li>
-                    </ul>
+                    </div>
                 </div>
 
                 <div id="member-login-error-text" style="display:none;">
@@ -60,13 +61,15 @@
                 <div>
                     <input type="hidden" name="_csrf" value="de17576f-9ad6-4db3-b7ff-aa2ab1558df4">
                 </div></form><div class="sns-login">
-            <ul class="sns-login-list">
+            <div class="sns-login-list">
                 <li>
                     <a href="javascript:loginWithNaver()"><i class="ico-sns-loin naver"></i><span class="blind">네이버 로그인</span></a>
                 </li>
+
                 <li>
                     <a href="javascript:loginWithApple()"><i class="ico-sns-loin apple"></i><span class="blind">애플 로그인</span></a>
                 </li>
+
                 <li>
                     <a href="javascript:loginWithKakao();"><i class="ico-sns-loin kakao"></i><span class="blind">카카오 로그인</span></a>
                 </li>
@@ -75,24 +78,24 @@
                 <li><a href="/oauth2/authorization/facebook"><i class="ico-sns-loin facebook"></i><span class="blind">페이스북 로그인</span></a></li>
                 -->
                 <!-- // [Dev] 20220304 카카오 페이스북 로그인 추가 -->
-            </ul>
+            </div>
         </div><!--// sns-login -->
 
-            <div class="btn-bottom-area">
+            <div class="btn-bottom-area" style="border: 1px solid #ccc; border-radius: 6px;">
                 <a href="/login/join" class="btn-basic-lg2 btn-default w-full"><span>간편회원가입</span></a>
             </div>
 
-            <div class="page-guide-center">
-                <!-- [Dev] 20211007 수정 -->
-                <ul class="txt-link-list">
-                    <li><a href="/auth/nonmemberOrderSearch"><span class="text-grey">비회원주문조회</span></a></li>
-                </ul>
-                <!--// [Dev] 20211007 수정 -->
+            <!--            <div class="page-guide-center">-->
+            <!--                &lt;!&ndash; [Dev] 20211007 수정 &ndash;&gt;-->
+            <!--                <ul class="txt-link-list">-->
+            <!--                    <li><a href="/auth/nonmemberOrderSearch"><span class="text-grey">비회원주문조회</span></a></li>-->
+            <!--                </ul>-->
+            <!--                &lt;!&ndash;// [Dev] 20211007 수정 &ndash;&gt;-->
 
-                <!-- [Dev] 20211007 기존 삭제 :
-                    <a href="#" class="btn-link-txt6 text-grey3"><u>비회원주문조회</u></a>
-                -->
-            </div>
+            <!--                &lt;!&ndash; [Dev] 20211007 기존 삭제 :-->
+            <!--                    <a href="#" class="btn-link-txt6 text-grey3"><u>비회원주문조회</u></a>-->
+            <!--                &ndash;&gt;-->
+            <!--            </div>-->
 
             <div class="log-benefit-bnr">
                 <a href="javascript:void(0)"><img src="https://file.rankingdak.com/image/RANK/BANNER/AR_IMG_1/20220803/IMG1659ZBD516953587.png" alt="로그인배너"></a>
@@ -108,8 +111,6 @@
     <input type="hidden" id="RSAExponent" value="10001">
 
     <script type="text/javascript">
-
-
 
         var isLoginProcessing = false;
         $(document).ready(function () {
