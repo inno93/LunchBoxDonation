@@ -38,6 +38,8 @@ public class OrderAddress extends Timestamp {
     @Column(nullable = false, updatable = false)
     private LocalDateTime regDates;
 
+
+
     @Builder
     private OrderAddress(OrderAddressDTO orderAddressDTO){
         this.orderName = orderName;

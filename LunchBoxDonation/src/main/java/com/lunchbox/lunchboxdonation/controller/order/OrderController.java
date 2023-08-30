@@ -1,14 +1,25 @@
 package com.lunchbox.lunchboxdonation.controller.order;
 
+import com.lunchbox.lunchboxdonation.entity.Order.OrderAddress;
+import com.lunchbox.lunchboxdonation.service.order.OrderAddressService;
+import com.lunchbox.lunchboxdonation.service.test.TestService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 @RequestMapping("order")
 @Slf4j
 public class OrderController {
+        @Autowired
+        private OrderAddressService orderAddressService;
+
+        @Autowired
+        private TestService testService;
 
     @RequestMapping("kit")
     public ModelAndView kit(){
@@ -19,13 +30,14 @@ public class OrderController {
         return mv;
     }
 
-    @RequestMapping("order")
-    public ModelAndView order(){
-        ModelAndView mv = new ModelAndView();
+    @GetMapping("test")
+    public void order(){
 
-        mv.setViewName("order/order"); // html 파일 경로
-
-        return mv;
     }
 
+    @PostMapping("test")
+    public RedirectView write(String testContent){
+        testService.write(testContent);
+       return new RedirectView("order/pwSearch");
+    }
 }

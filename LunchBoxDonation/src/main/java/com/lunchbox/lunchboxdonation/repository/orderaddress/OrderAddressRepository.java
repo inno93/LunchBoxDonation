@@ -24,4 +24,9 @@ public interface OrderAddressRepository extends JpaRepository<OrderAddress, Long
 
     @Query("select oa from OrderAddress oa where oa.order.member.id = :memberId")
     Optional<OrderAddress> findByMemberId(Long memberId);
+
+
+
+
+
 }

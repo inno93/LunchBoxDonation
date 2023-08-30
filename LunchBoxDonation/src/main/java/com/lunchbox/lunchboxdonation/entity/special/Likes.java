@@ -13,6 +13,7 @@ import javax.persistence.*;
 @Getter
 @Entity
 @NoArgsConstructor
+@Table(name = "TBL_LIKES")
 public class Likes extends Timestamp {
     @Id @GeneratedValue
     @EqualsAndHashCode.Include
@@ -27,7 +28,8 @@ public class Likes extends Timestamp {
     private Order order;
 
     @Builder
-    public Likes(Member member, Order order){
+    public Likes(Long id,Member member, Order order){
+        this.id = id;
         this.member = member;
         this.order = order;
     }

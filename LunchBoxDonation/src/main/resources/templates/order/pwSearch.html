@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name='Viewport'    content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0'>
+        <title>고구마 똥방구</title>
+
+        <!-- 파비콘 -->	
+        <link rel='shortcut icon' href='../img'>
+        <link rel='apple-touch-icon' href='../img'>
+        
+        <!-- 스타일 -->
+        <link rel='stylesheet' href='/css/order/reset.css' type='text/css'>
+        <link rel='stylesheet' href='/css/order/fonts.css' type='text/css'>
+        <link rel='stylesheet' href='/css/order/response.css' type='text/css'>
+        <link rel="stylesheet" href="/css/order/style.css" type="text/css">
+        <!-- js라이브러리 -->
+        <script src='../js/lib/jquery-1.12.4.min.js'></script>
+        <script src='../js/lib/jquery.easing.1.3.js'></script>
+        <script src='../js/lib/jquery.touchSwipe.js'></script>
+        
+    
+        <!-- 각 브라우저 CSS호환 -->
+        <script src='../js/lib/prefixfree.min.js'></script>
+
+        <!-- jQuery -->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+        <!-- iamport.payment.js -->
+        <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+
+    </head>
+<body>
+<div id="wrap">
+
+    <header id="header">
+        
+    </header>
+
+    <main id="main">
+
+        <section id="section">
+            <div class="wrap">
+                <div class="gap">
+                    <div class="container">
+
+                        <div class="title_wrap">
+                            <h2>주문하기</h2>
+                        </div>
+
+                        <div class="content_wrap clearfix">
+                                <div>
+                                    <div class="info_wrap orderInfo_wrap">
+                                        <h3>주문자 정보</h3>
+                                        <span><li>조은솔</li> / <li>010-9172-1803</li> / <li>choeunsol0607@naver.com</li></span>
+                                        <a href="#">주문자 정보변경 ></a>
+                                    </div>
+                                    <div class="info_wrap addressInfo_wrap">
+                                        <h3>배송지 정보</h3>
+                                        <div class="address_checkbox">
+                                            <input type="checkbox" class="checkbox" name="" id="sameorder">
+                                            <label for="sameorder"><span>주문자 정보와 동일</span></label>
+                                        </div>
+                                    </div>
+                                    <div class="address_list">
+                                        <label class="labalL">받는분</label>
+                                        <input type="text" class="nameR">
+                                    </div>
+                                    <div class="address_list">
+                                        <label class="labalL">주소</label>
+                                        <div class="add">
+                                            <input type="text" class="addL" id="postcode" placeholder="우편번호" readonly> <!--우편번호-->
+                                            <input type="text" class="addR" id="address" placeholder="기본주소" readonly> <!--기본주소-->
+                                            <button class="addbtn" onclick="execDaumPostcode()">검색</button>
+                                        </div>
+                                    </div>
+                                    <div class="address_list">
+                                        <label class="labalL">&nbsp;</label>
+                                        <input type="text" class="dadd" id="detailAddress" placeholder="상세주소">
+                                    </div>
+
+
+                                    <div class="address_list">
+                                        <label class="labalL">휴대전화</label>
+                                        <div class="pnumber">
+                                            <select name="col" class="numberL">
+                                                <option value="" disabled selected>&nbsp;&nbsp;&nbsp;&nbsp;선택</option>
+                                                <option value="">&nbsp;&nbsp;&nbsp;&nbsp;010</option>
+                                                <option value="">&nbsp;&nbsp;&nbsp;&nbsp;011</option>
+                                                <option value="">&nbsp;&nbsp;&nbsp;&nbsp;016</option>
+                                                <option value="">&nbsp;&nbsp;&nbsp;&nbsp;017</option>
+                                                <option value="">&nbsp;&nbsp;&nbsp;&nbsp;018</option>
+                                                <option value="">&nbsp;&nbsp;&nbsp;&nbsp;019</option>
+                                            </select>
+                                            <input type="text" class="numberR">
+                                        </div>
+
+                                    </div>
+
+<!--                                    <form action="/order/pwSearch" method="post">-->
+                                        <div>
+                                            <div class="address_list">
+                                                <label class="labalL">전화번호</label>
+                                                <input type="text" name="testContent" class="nameR">
+                                            </div>
+                                        </div>
+                                        <button type="submit">save</button>
+<!--                                    </form>-->
+
+                                    <div class="useroderbox">
+                                        <div class="userOrderList">
+                                            <div class="useroder_header">
+                                                <h4 class="tit"> 주문상품</h4>
+                                                <div class="right-info">
+                                                    <!-- <i class="icon"></i> -->
+                                                    <p class="txt">
+                                                        <span class="dlvPrice">3,000원</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="dlvPrice_type2">
+                                                <div class="type2_inner">
+                                                    <div class="R2">배송비 3,000원</div>
+                                                    <div class="L2">1,500원 더 구매시 무료배송</div>
+                                                </div>
+                                                <div class="cart_list">
+                                                    <div class="list1">
+                                                        <a href="#">맛있는닭 닭가슴살 스테이크 갈릭맛 100g</a>
+                                                    </div>
+                                                    <div class="list2">
+                                                        10팩
+                                                    </div>
+                                                    <div class="money">
+                                                        18,000원
+                                                    </div>
+                                                    <div class="quantity">
+                                                        1개
+                                                    </div>
+                                                    <div class="tmoney">
+                                                        18,000원
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="type3_inner">
+                                                <div class="type3_tit">
+                                                    <h4>배송 요청사항</h4>
+                                                </div>
+                                                <div class="type3_select">
+                                                    <select name="select_box" class="select_box">
+                                                        <option value="" disabled selected>&nbsp;&nbsp;&nbsp;&nbsp;메시지를 선택해 주세요</option>
+                                                        <option value="">&nbsp;&nbsp;&nbsp;&nbsp;직접입력</option>
+                                                        <option value="">&nbsp;&nbsp;&nbsp;&nbsp;배송전, 연락 부탁드립니다.</option>
+                                                        <option value="">&nbsp;&nbsp;&nbsp;&nbsp;부재시, 전화 또는 문자 주세요.</option>
+                                                        <option value="">&nbsp;&nbsp;&nbsp;&nbsp;부재시, 경비(관리)실에 맡겨주세요</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="type4_inner">
+                                                <div class="type4_tit">
+                                                    <h4>요청사항</h4>
+                                                </div>
+                                                <div class="type4_tit_inner">
+                                                    <h4>주말/공휴일 택배수령</h4>
+                                                </div>
+                                                <div class="type4_radio">
+
+                                                    <input class="radio" type="radio" id="radioY" name="radio">
+                                                    <label for="radioY" class="radioY">
+                                                        가능해YO
+                                                    </label>
+                                                    <input class="radio" type="radio" id="radioN" name="radio">
+                                                    <label for="radioN">
+                                                        불가능해YO
+                                                    </label>
+
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                    </div>
+
+                                    <div class="coupon">
+                                        <div class="coupon_tit">
+                                            <h3>쿠폰 사용</h3>
+                                        </div>
+                                        <div class="coupon_list">
+                                            <label class="coupon_labal">쿠폰 선택</label>
+                                            <div class="coupon_all">
+                                                <input type="text" class="couponselect" placeholder="쿠폰 선택" readonly>
+                                                <button class="couponbtn" onclick="">선택</button>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                        </div>
+                        <div class="contentL">
+                            <div class="contentR">
+                                <div>
+                                    <div class="paymentInfo_wrap">
+                                        <div>
+                                            <div class="title">
+                                                <h3>주문결제 금액</h3>
+                                            </div>
+                                            <ul>
+                                                <li class="clearfix">
+                                                    <span>상품금액</span>
+                                                    <span>18,500<i>원</i></span>
+                                                </li>
+                                                <li class="clearfix">
+                                                    <span>할인금액</span>
+                                                    <span>0<i>원</i></span>
+                                                </li>
+                                                <li class="clearfix">
+                                                    <span>쿠폰</span>
+                                                    <span>0<i>원</i></span>
+                                                </li>
+                                                <li class="clearfix">
+                                                    <span>배송비</span>
+                                                    <span>3,000<i>원</i></span>
+                                                </li>
+                                                <li class="clearfix">
+                                                    <span>최종 결제금액</span>
+                                                    <span>21,500<i>원</i></span>
+                                                </li>
+                                                <li class="clearfix">
+                                                    <button class="payment_btn" onclick="requestPay()" type="submit">
+                                                        결제하기
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="footer">
+        
+    </footer>
+
+</div>
+
+<!-- 카카오 주소찾기 API -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+        function execDaumPostcode() {
+            new daum.Postcode({
+                oncomplete: function(data) {
+
+                    var addr = ''; // 주소 변수
+                    var extraAddr = ''; // 참고항목 변수
+
+                    //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                    if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                        addr = data.roadAddress;
+                    } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                        addr = data.jibunAddress;
+                    }
+
+                    // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                    if(data.userSelectedType === 'R'){
+                        // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                        // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                        if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                            extraAddr += data.bname;
+                        }
+                        // 건물명이 있고, 공동주택일 경우 추가한다.
+                        if(data.buildingName !== '' && data.apartment === 'Y'){
+                            extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                        }
+                    
+                    } else {
+                        document.getElementById("extraAddress").value = '';
+                    }
+
+                    // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                    document.getElementById('postcode').value = data.zonecode;
+                    document.getElementById("address").value = addr;
+                    // 커서를 상세주소 필드로 이동한다.
+                    document.getElementById("detailAddress").focus();
+                }
+            }).open();
+        }
+    </script>
+
+<!-- import API -->
+    <script>
+        var IMP = window.IMP; 
+        IMP.init("imp70845604"); 
+      
+        var today = new Date();   
+        var hours = today.getHours(); // 시
+        var minutes = today.getMinutes();  // 분
+        var seconds = today.getSeconds();  // 초
+        var milliseconds = today.getMilliseconds();
+        var makeMerchantUid = hours +  minutes + seconds + milliseconds;
+        
+        function requestPay() {
+            IMP.request_pay({
+                pg : 'A52CY',
+                pay_method : 'card',
+                merchant_uid: "IMP"+makeMerchantUid, 
+                name : '당근 10kg',
+                amount : 1004,
+                buyer_email : '',
+                buyer_name : '',
+                buyer_tel : '',
+                buyer_addr : '',
+                buyer_postcode : ''
+            }, function (rsp) { // callback
+                if (rsp.success) {
+                    console.log(rsp);
+                } else {
+                    console.log(rsp);
+                }
+            });
+        }
+    </script>
+
+</body>
+
+
+</html>

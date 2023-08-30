@@ -16,13 +16,13 @@ spring:
     open-in-view: false
     #  jpa
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
 #
 #    #jpa format
     properties:
       hibernate:
-    format_sql: true
-    show-sql: true
+        format_sql: true
+        show-sql: true
 
   devtools:
     livereload:
@@ -42,11 +42,15 @@ spring:
   output:
     ansi:
       enabled: always
-      
+
   servlet:
     multipart:
       max-file-size: 50MB
       max-request-size: 50MB
+
+  #Redis
+  session:
+    store-type: redis
 
 file:
  uploadDir: C:/LunchBoxDonation/
