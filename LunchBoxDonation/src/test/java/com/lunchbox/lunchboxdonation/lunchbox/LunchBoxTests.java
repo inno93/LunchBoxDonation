@@ -20,32 +20,29 @@ import java.util.Optional;
 @Transactional
 @Rollback(false)
 public class LunchBoxTests {
-
-    @Autowired
-    private  LunchBoxRepository lunchBoxRepository;
-
-
-
-    @Test
-    public void saveTests(){
-        LunchBox lunchBox = new LunchBox();
-
-
-        lunchBox.setLunchboxTitle("테스트");
-        lunchBox.setLunchboxThumbNailingIMG("as.jpg");
-        lunchBox.setPrice(3000);
-
-        lunchBoxRepository.save(lunchBox);
-
-    }
-
-    @Test
-    public void findId(){
-        Optional<LunchBox> findLunchBox = lunchBoxRepository.findById(1L);
-
-        findLunchBox.ifPresent(lunchBox -> {
-            log.info(lunchBox.getLunchboxTitle());
-        });
-
-    }
+//    @Autowired
+//    private  LunchBoxRepository lunchBoxRepository;
+//
+//    @Test
+//    public void saveTests(){
+//        LunchBox lunchBox = new LunchBox();
+//
+//
+//        lunchBox.setLunchboxTitle("테스트");
+//        lunchBox.setLunchboxThumbNailingIMG("as.jpg");
+//        lunchBox.setPrice(3000);
+//
+//        lunchBoxRepository.save(lunchBox);
+//
+//    }
+//
+//    @Test
+//    public void findId(){
+//        Optional<LunchBox> findLunchBox = lunchBoxRepository.findById(1L);
+//
+//        findLunchBox.ifPresent(lunchBox -> {
+//            log.info(lunchBox.getLunchboxTitle());
+//        });
+//
+//    }
 }

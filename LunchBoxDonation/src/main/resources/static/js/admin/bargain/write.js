@@ -16,6 +16,13 @@ $(document).ready(function(){
         ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 Tooltip
     });
 
+    $("#startDt").on("change",function(){
+        $("[name='startDt']").val($("#startDt").val()+"T00:00:00")
+    })
+    $("#endDt").on("change",function(){
+        $("[name='endDt']").val($("#endDt").val()+"T23:59:59")
+    })
+
 
     //뒤로 가기
     $(".list").on("click", function() {

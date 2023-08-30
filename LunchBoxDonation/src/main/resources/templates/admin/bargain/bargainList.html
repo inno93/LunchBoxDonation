@@ -58,37 +58,37 @@
                             <div class="page_wrap">
                                 <ul class="page_nation"
                                     th:with="
-                                        nowPage = ${lunchBoxList.number + 1},
-                                        pageSize = ${lunchBoxList.size},
-                                        totalPages = ${lunchBoxList.totalPages},
+                                        nowPage = ${bargainList.number + 1},
+                                        pageSize = ${bargainList.size},
+                                        totalPages = ${bargainList.totalPages},
                                         endPage = ${((nowPage - 1) / pageSize + 1) * pageSize},
                                         startPage = ${endPage - pageSize + 1},
                                         realEndPage = ${endPage < totalPages ? endPage : totalPages},
                                         first = ${lunchBoxList.first}, last = ${lunchBoxList.last}
                                     ">
                                     <li th:classappend="${startPage == 1} ? 'none'" class="prev">
-                                        <a th:href="@{/admin/lunchbox/lunchboxList(page=${startPage - 2})}"><code>&lt;&lt;</code></a>
+                                        <a th:href="@{/admin/bargain/bargainList(page=${startPage - 2})}"><code>&lt;&lt;</code></a>
                                     </li>
                                     <li th:classappend="${first} ? 'none'" class="prev">
-                                        <a th:href="@{/admin/lunchbox/lunchboxList(page=${nowPage - 2})}"><code>&lt;</code></a>
+                                        <a th:href="@{/admin/bargain/bargainList(page=${nowPage - 2})}"><code>&lt;</code></a>
                                     </li>
                                     <li th:each="page : ${#numbers.sequence(startPage, realEndPage)}">
                                         <a th:if="${nowPage != page}"
-                                           th:href="@{/admin/lunchbox/lunchboxList(page=${page - 1})}"
+                                           th:href="@{/admin/bargain/bargainList(page=${page - 1})}"
                                            th:text="${page}"></a>
                                         <span th:unless="${nowPage != page}" th:text="${page}"></span>
                                     </li>
                                     <li th:classappend="${last} ? 'none'" class="next">
-                                        <a th:href="@{/admin/lunchbox/lunchboxList(page=${nowPage})}"><code>&gt;</code></a>
+                                        <a th:href="@{/admin/bargain/bargainList(page=${nowPage})}"><code>&gt;</code></a>
                                     </li>
                                     <li th:classappend="${endPage >= totalPages} ? 'none'" class="prev">
-                                        <a th:href="@{/admin/lunchbox/lunchboxList(page=${endPage})}"><code>&gt;&gt;</code></a>
+                                        <a th:href="@{/admin/bargain/bargainList(page=${endPage})}"><code>&gt;&gt;</code></a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
 
-                        <div th:unless="${!lunchBoxList.content.isEmpty()}">
+                        <div th:unless="${!bargainList.content.isEmpty()}">
                             <h1>게시글이 없습니다.</h1>
                         </div>
                     </div>

@@ -13,6 +13,8 @@
                     <h1 class="main-header">이달의 특가 등록</h1>
                 </div>
                 <form method="post" id="writeForm" action="/admin/bargain/save" enctype="multipart/form-data">
+                    <input type="hidden" name="startDt">
+                    <input type="hidden" name="endDt">
                     <div class="card main-margin">
                         <table border="1" width="500">
                             <tr>
@@ -26,6 +28,12 @@
                                     <input type="text" name="title" placeholder="제목을 입력하세요." style="width: 100%">
                                 </td>
                             </tr>
+                            <tr>
+                                <th style="width: 15%">내용</th>
+                                <td colspan="7">
+                                    <input type="text" name="content" placeholder="내용을 입력하세요." style="width: 100%">
+                                </td>
+                            </tr>
 
                             <tr>
                                 <th style="">이미지</th>
@@ -36,7 +44,7 @@
                             <tr>
                                 <th style="">유효 기간</th>
                                 <td colspan="5">
-                                    <input type="text" name="startDt" id="startDt" class="pick"> ~ <input type="text" name="endDt" id="endDt" class="pick">
+                                    <input type="text"  id="startDt" class="pick"> ~ <input type="text"  id="endDt" class="pick">
                                 </td>
                             </tr>
                             <tr>

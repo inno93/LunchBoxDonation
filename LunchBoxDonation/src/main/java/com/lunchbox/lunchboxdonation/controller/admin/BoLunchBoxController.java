@@ -36,7 +36,7 @@ public class BoLunchBoxController {
 
 //     도시락 목록
     @GetMapping("lunchboxList")
-    public ModelAndView lunchBoxList(@PageableDefault(size = 2, page = 0) Pageable pageable, LunchBoxSearch lunchBoxSearch) {
+    public ModelAndView lunchBoxList(@PageableDefault(size = 10, page = 0) Pageable pageable, LunchBoxSearch lunchBoxSearch) {
         ModelAndView mv = new ModelAndView();
 
         Page<LunchBoxDTO> lunchBoxList = lunchBoxService.lunchBoxList(pageable, lunchBoxSearch);

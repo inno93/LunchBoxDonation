@@ -1,9 +1,7 @@
 package com.lunchbox.lunchboxdonation.entity.bargain;
 
 import com.lunchbox.lunchboxdonation.entity.Timestamp;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -12,6 +10,7 @@ import javax.persistence.*;
 @Setter
 @ToString
 @Table(name="TBL_BARGAIN_FILE")
+@NoArgsConstructor
 public class BargainFile extends Timestamp {
 
     @Id
@@ -24,6 +23,11 @@ public class BargainFile extends Timestamp {
     private String filePath;
     private String fileName;
 
-
-
+    @Builder
+    public BargainFile(Long id, String fileId, String filePath, String fileName) {
+        this.id = id;
+        this.fileId = fileId;
+        this.filePath = filePath;
+        this.fileName = fileName;
+    }
 }
