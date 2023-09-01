@@ -47,6 +47,7 @@ public class MainController {
 
 //        금주 BEST 신상품
         List<LunchBox> bestList = lunchBoxService.getMainList(8, 38);
+        log.info("{}", bestList.toString());
         mv.addObject("bestList",bestList);
 
 

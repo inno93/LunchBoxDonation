@@ -52,7 +52,7 @@ public class LunchBoxQueryDSLImpl implements LunchBoxQueryDSL {
                 .limit(pageable.getPageSize())
                 .fetch();
 
-        final long count = query.select(lunchBox.count()).from(lunchBox).fetchOne();
+        final long count = query.select(lunchBox.count()).from(lunchBox).where(builder).fetchOne();
         return new PageImpl<>(lunchBoxs, pageable,count);
     }
 

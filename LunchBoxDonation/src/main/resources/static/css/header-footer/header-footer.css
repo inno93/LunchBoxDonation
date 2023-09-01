@@ -426,8 +426,7 @@ html, body {
     left: 49px;
     width: 500px;
     height: 200px;
-    background: url("https://www.rankingdak.com/resources/pc/images/logo.png");
-    background-repeat: no-repeat;
+    background: url("../../img/logo.png") no-repeat;
     background-size: 110px;
 }
 

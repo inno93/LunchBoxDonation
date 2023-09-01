@@ -532,7 +532,7 @@
         <button id="nextButton3" class="navigation-button-next">&gt;</button>
     </div>
 
-    <script>
+    <script th:inline="javascript">
         // 이미지 파일 목록
         const imageFiles3 = [
             /*[# th:each="item : ${bestList}"]*/
@@ -579,18 +579,20 @@
                 wrapperElement.className = "image-wrapper";
                 imageContainer3.appendChild(wrapperElement);
 
-                // const aElement = document.createElement("a");
+                const aElement = document.createElement("a");
+                aElement.href = image.url;
+                wrapperElement.appendChild(aElement);
 
 
                 const imageElement = document.createElement("img");
                 imageElement.className = "image";
                 imageElement.src = image.file;
-                wrapperElement.appendChild(imageElement);
+                aElement.appendChild(imageElement);
 
                 const descriptionElement3 = document.createElement("p");
                 descriptionElement3.className = "description3";
                 descriptionElement3.textContent = image.description;
-                wrapperElement.appendChild(descriptionElement3);
+                aElement.appendChild(descriptionElement3);
 
 
                 const innerDivElement3 = document.createElement("div");
