@@ -1,4 +1,4 @@
-package com.lunchbox.lunchboxdonation.repository;
+package com.lunchbox.lunchboxdonation.repository.order;
 
 import com.lunchbox.lunchboxdonation.entity.Order.Order;
 import org.springframework.data.jpa.repository.JpaRepository;

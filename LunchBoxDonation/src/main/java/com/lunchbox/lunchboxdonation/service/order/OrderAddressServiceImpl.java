@@ -13,9 +13,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @RequiredArgsConstructor
 public class OrderAddressServiceImpl implements OrderAddressService{
-
-    @Autowired
-    private OrderAddressRepository orderAddressRepository;
+    private final OrderAddressRepository orderAddressRepository;
 
 
     @Override

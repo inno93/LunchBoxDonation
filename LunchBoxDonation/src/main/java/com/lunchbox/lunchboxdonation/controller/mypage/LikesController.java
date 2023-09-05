@@ -2,7 +2,7 @@ package com.lunchbox.lunchboxdonation.controller.mypage;
 
 import com.lunchbox.lunchboxdonation.entity.Order.Order;
 import com.lunchbox.lunchboxdonation.entity.member.Member;
-import com.lunchbox.lunchboxdonation.repository.OrderRepository;
+import com.lunchbox.lunchboxdonation.repository.order.OrderRepository;
 import com.lunchbox.lunchboxdonation.service.likes.LikesService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

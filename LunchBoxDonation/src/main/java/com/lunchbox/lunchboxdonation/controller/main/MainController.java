@@ -28,16 +28,16 @@ public class MainController {
         mv.addObject("mdList", mdList);
 
         // 깜짝 타임세일
-        List<LunchBox> timeSaleList = lunchBoxService.getMainList(6, 8);
+        List<LunchBox> timeSaleList = lunchBoxService.getMainList(6, 0);
         mv.addObject("timeSaleList", timeSaleList);
 
 
         //소스 매력에 퐁당
-        List<LunchBox> theme1 = lunchBoxService.getMainList(5, 13);
-        List<LunchBox> theme2 = lunchBoxService.getMainList(5, 18);
-        List<LunchBox> theme3 = lunchBoxService.getMainList(5, 23);
-        List<LunchBox> theme4 = lunchBoxService.getMainList(5, 28);
-        List<LunchBox> theme5 = lunchBoxService.getMainList(5, 33);
+        List<LunchBox> theme1 = lunchBoxService.getMainList(5, 3);
+        List<LunchBox> theme2 = lunchBoxService.getMainList(5, 3);
+        List<LunchBox> theme3 = lunchBoxService.getMainList(5, 3);
+        List<LunchBox> theme4 = lunchBoxService.getMainList(5, 3);
+        List<LunchBox> theme5 = lunchBoxService.getMainList(5, 3);
 
         mv.addObject("theme1", theme1);
         mv.addObject("theme2", theme2);
@@ -46,7 +46,7 @@ public class MainController {
         mv.addObject("theme5", theme5);
 
 //        금주 BEST 신상품
-        List<LunchBox> bestList = lunchBoxService.getMainList(8, 38);
+        List<LunchBox> bestList = lunchBoxService.getMainList(8, 0);
         log.info("{}", bestList.toString());
         mv.addObject("bestList",bestList);
 

@@ -41,7 +41,7 @@
 
     <div class="item-total">
         <div class="item-img">
-            <img class="item-big-img" src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_600_600.jpg"> <!-- 도시락 상세보기 사진 -->
+            <img class="item-big-img" src="/img/도시락2.jpg"> <!-- 도시락 상세보기 사진 -->
             <img class="item-big-banner" src="https://www.rankingdak.com/resources/pc/images/img/pc_delivery_banner2.jpg" alt="">
         </div>
 
@@ -229,7 +229,7 @@
                         <span class="review-content" th:text="${review.reviewContent}"></span>
                         <form method="post" action="/mainPage/delete">
                             <input type="hidden" name="Id" th:value="${review.id}"/>
-                            <input type="hidden" name="lunchboxId" th:value="${lunchbox != null ? lunchbox.id : 123}">
+                            <input type="hidden" name="lunchboxId" th:value="${lunchbox != null ? lunchbox.id : 24}">
                             <button type="submit" style="border-radius: 4px; cursor: pointer; margin-left: 286px">댓글 삭제하기</button>
                         </form>
                     </div>

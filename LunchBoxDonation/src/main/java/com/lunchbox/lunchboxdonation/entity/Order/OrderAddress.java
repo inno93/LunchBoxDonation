@@ -39,16 +39,13 @@ public class OrderAddress extends Timestamp {
     private LocalDateTime regDates;
 
 
-
     @Builder
     private OrderAddress(OrderAddressDTO orderAddressDTO){
-        this.orderName = orderName;
-        this.orderPhone = orderPhone;
-        this.addr = addr;
-        this.addrDtl = addrDtl;
-        this.postNum = postNum;
-        getCreatedAt();
-        getUpdateTime();
+        this.orderName = orderAddressDTO.getOrderName();
+        this.orderPhone = orderAddressDTO.getOrderPhone();
+        this.addr = orderAddressDTO.getAddr();
+        this.addrDtl = orderAddressDTO.getAddrDtl();
+        this.postNum = orderAddressDTO.getPostNum();
     }
 
     public static OrderAddress of(OrderAddressDTO orderAddressDTO){
@@ -56,11 +53,5 @@ public class OrderAddress extends Timestamp {
                 .orderAddressDTO(orderAddressDTO)
                 .build();
     }
-//
-//    public void setModDate(LocalDateTime modDate){this.modDate = modDate;}
-//
-//    public void setRegDate(LocalDateTime regDate){this.regDate = regDate;}
-
-
 
 }
