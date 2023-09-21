@@ -22,10 +22,6 @@ public class LunchBox extends Timestamp {
     private String lunchboxThumbNailingIMG;
     private Integer price;
 
-//    @OneToMany(fetch = FetchType.LAZY) 단 방향(review DTO에서 넣어 줌)
-//    @JoinColumn(name = "REVIEW_ID")
-//    private List<Review> review;
-
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "lunchbox", cascade = CascadeType.REMOVE)
     private List<LunchBoxOption> lunchBoxOptions;
 

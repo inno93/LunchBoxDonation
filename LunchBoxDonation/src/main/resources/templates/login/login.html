@@ -2,6 +2,7 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
       layout:decorate="~{layout/default_layout}">
 
 <th:block layout:fragment="css">
@@ -13,7 +14,7 @@
         <div class="login-area">
             <div class="login-greeting">
                 <strong class="txt">안녕하세요 :) </strong>
-                <p class="message"><i class="ico-logo-login"></i><span class="blind">랭킹닭컴</span>입니다.</p>
+                <p class="message"><span>도란도란</span>입니다.</p>
             </div><!--// login-greeting -->
 
             <form id="login_form" name="login_form" action="/member/login" method="post" onsubmit="return onSubmitLogin();"><input type="hidden" name="encId" value="">
@@ -63,15 +64,15 @@
                 </div></form><div class="sns-login">
             <div class="sns-login-list">
                 <li>
-                    <a href="javascript:loginWithNaver()"><i class="ico-sns-loin naver"></i><span class="blind">네이버 로그인</span></a>
+                    <a sec:authorize="isAnonymous()" href="/oauth2/authorization/naver"><i class="ico-sns-loin naver"></i><span class="blind">네이버 로그인</span></a>
                 </li>
 
                 <li>
-                    <a href="javascript:loginWithApple()"><i class="ico-sns-loin apple"></i><span class="blind">애플 로그인</span></a>
+                    <a sec:authorize="isAnonymous()" href="/oauth2/authorization/google"><i class="ico-sns-loin google"></i><span class="blind">구글 로그인</span></a>
                 </li>
 
                 <li>
-                    <a href="javascript:loginWithKakao();"><i class="ico-sns-loin kakao"></i><span class="blind">카카오 로그인</span></a>
+                    <a sec:authorize="isAnonymous()" href="/oauth2/authorization/kakao"><i class="ico-sns-loin kakao"></i><span class="blind">카카오 로그인</span></a>
                 </li>
                 <!-- [Dev] 20220304 카카오 페이스북 로그인 추가 -->
                 <!--

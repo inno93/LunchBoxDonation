@@ -1,7 +1,7 @@
 package com.lunchbox.lunchboxdonation.controller.member;
 
 import com.lunchbox.lunchboxdonation.domain.member.MemberDTO;
-import com.lunchbox.lunchboxdonation.service.member.MemberService;
+import com.lunchbox.lunchboxdonation.service.member.MemberServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +15,7 @@ import java.util.List;
 public class MemberController {
 
     //생성자 주입
-    private final MemberService memberService;
+    private final MemberServiceImpl memberServiceImpl;
 
     // 회원가입 페이지 출력 요청
     @GetMapping("/member/join")
@@ -27,7 +27,7 @@ public class MemberController {
     public String save(@ModelAttribute MemberDTO memberDTO) {
         System.out.println("MemberController.save");
         System.out.println("memberDTO = " + memberDTO);
-        memberService.save(memberDTO);
+        memberServiceImpl.save(memberDTO);
         return "login/login";
     }
 
@@ -39,7 +39,7 @@ public class MemberController {
 
     @PostMapping("/member/login")
     public String login(@ModelAttribute MemberDTO memberDTO, HttpSession session) {
-        MemberDTO loginResult = memberService.login(memberDTO);
+        MemberDTO loginResult = memberServiceImpl.login(memberDTO);
         if (loginResult != null) {
             // login 성공
             session.setAttribute("loginId", loginResult.getMemberId());
@@ -55,7 +55,7 @@ public class MemberController {
 
     @GetMapping("/member/")
     public String findAll(Model model) {
-        List<MemberDTO> memberDTOList = memberService.findAll();
+        List<MemberDTO> memberDTOList = memberServiceImpl.findAll();
         // 어떠한 html로 가져갈 데이터가 있다면 model사용
         model.addAttribute("memberList", memberDTOList);
         return "list";
@@ -63,7 +63,7 @@ public class MemberController {
 
     @GetMapping("/member/{id}")
     public String findById(@PathVariable Long id, Model model) {
-        MemberDTO memberDTO = memberService.findById(id);
+        MemberDTO memberDTO = memberServiceImpl.findById(id);
         model.addAttribute("member", memberDTO);
         return "detail";
     }
@@ -71,20 +71,20 @@ public class MemberController {
     @GetMapping("/member/update")
     public String updateForm(HttpSession session, Model model) {
         String myId = (String) session.getAttribute("loginId");
-        MemberDTO memberDTO = memberService.updateForm(myId);
+        MemberDTO memberDTO = memberServiceImpl.updateForm(myId);
         model.addAttribute("updateMember", memberDTO);
         return "update";
     }
 
     @PostMapping("/member/update")
     public String update(@ModelAttribute MemberDTO memberDTO) {
-        memberService.update(memberDTO);
+        memberServiceImpl.update(memberDTO);
         return "redirect:/member/" + memberDTO.getId();
     }
 
     @GetMapping("/member/delete/{id}")
     public String deleteById(@PathVariable Long id) {
-        memberService.deleteById(id);
+        memberServiceImpl.deleteById(id);
         return "redirect:/member/";
     }
 
@@ -100,7 +100,7 @@ public class MemberController {
     public @ResponseBody
     String idCheck(@RequestParam(value = "memberId",required=false) String memberId) {
         System.out.println("memberId = " + memberId);
-        String checkResult = memberService.idCheck(memberId);
+        String checkResult = memberServiceImpl.idCheck(memberId);
         return checkResult;
 
     }

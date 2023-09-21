@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,7 +36,7 @@ public class BoLunchBoxController {
     private final FileUtils fileUtils;
 
 //     도시락 목록
-    @GetMapping("lunchboxList")
+    @GetMapping("list")
     public ModelAndView lunchBoxList(@PageableDefault(size = 5, page = 0) Pageable pageable, LunchBoxSearch lunchBoxSearch) {
         ModelAndView mv = new ModelAndView();
 
@@ -48,11 +49,11 @@ public class BoLunchBoxController {
     }
 
 //       등록 페이지 이동
-    @GetMapping("lunchboxWrite")
+    @GetMapping("write")
     public ModelAndView lunchBoxWrite() {
         ModelAndView mv = new ModelAndView();
 
-        mv.setViewName("/admin/lunchbox/lunchboxWrite");
+        mv.setViewName("/admin/lunchbox/write");
         return mv;
     }
 
@@ -71,26 +72,25 @@ public class BoLunchBoxController {
         //DB에 도시락 정보 등록
         Long id = lunchBoxService.lunchBoxInsert(lunchBoxDTO);
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("redirect:lunchboxDetail/"+id);
-//        mv.setViewName("redirect:lunchboxWrite");
+        mv.setViewName("redirect:detail/"+id);
         return mv;
     }
 
 //        상세 보기
-    @GetMapping("lunchboxDetail/{id}")
+    @GetMapping("detail/{id}")
     public ModelAndView lunchBoxDetail(@PathVariable Long id)  {
         ModelAndView mv = new ModelAndView();
 
         LunchBox lunchBox = lunchBoxService.getLunchBoxWithOptionByLunchBoxId(id);
         mv.addObject("lunchBox",lunchBox);
 
-        mv.setViewName("/admin/lunchbox/lunchboxDetail");
+        mv.setViewName("/admin/lunchbox/detail");
 
         return mv;
     }
 
 //        삭제
-    @GetMapping("lunchboxDelete/{id}")
+    @GetMapping("delete/{id}")
     public ModelAndView lunchboxDelete(@PathVariable("id") Long id) {
         ModelAndView mv = new ModelAndView();
         LunchBox lunchBox = lunchBoxService.getLunchBoxWithOptionByLunchBoxId(id);
@@ -99,7 +99,7 @@ public class BoLunchBoxController {
 
         fileUtils.deleteFile(lunchBox.getLunchboxThumbNailingIMG());
 
-        mv.setViewName("redirect:/admin/lunchbox/lunchboxList");
+        mv.setViewName("redirect:/admin/lunchbox/list");
         return mv;
 
     }
@@ -110,7 +110,7 @@ public class BoLunchBoxController {
         ModelAndView mv = new ModelAndView();
         lunchBoxOptionService.deleteOptionsById(optionId);
 
-        mv.setViewName("redirect:/admin/lunchbox/lunchboxDetail/"+lunchboxId);
+        mv.setViewName("redirect:/admin/lunchbox/detail/"+lunchboxId);
         return mv;
 
     }
@@ -135,11 +135,10 @@ public class BoLunchBoxController {
         for(int i = 0; i < lunchBoxDTO.getLunchBoxOptions().size(); i++){
             lunchBoxDTO.getLunchBoxOptions().get(i).setLunchbox(lunchBoxService.toEntity(lunchBoxDTO));
         }
-        log.info("lunchBoxDTO4 : {}", lunchBoxDTO.toString());
         Long id = lunchBoxService.LunchBoxUpdate(lunchBoxDTO);
 
 
-        mv.setViewName("redirect:/admin/lunchbox/lunchboxDetail/" + id);
+        mv.setViewName("redirect:/admin/lunchbox/detail/" + id);
         return mv;
     }
 }

@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("admin/inquiry")
 public class BoInquiryController {
 
-    //    1:1문의 상세보기
-    @GetMapping("inquiryDetail")
+    //    1:1문의 상세 보기
+    @GetMapping("detail")
     public void inquiryDetail(){
 
     }
 
     //    1:1문의 목록
-    @GetMapping("inquiryList")
+    @GetMapping("list")
     public void inquiryList(){
 
     }

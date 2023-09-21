@@ -1,5 +1,6 @@
 package com.lunchbox.lunchboxdonation.entity.member;
 
+import com.lunchbox.lunchboxdonation.constant.Role;
 import com.lunchbox.lunchboxdonation.domain.member.MemberDTO;
 import com.lunchbox.lunchboxdonation.entity.Timestamp;
 import lombok.*;
@@ -11,6 +12,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 public class Member extends Timestamp {
 
     @Id
@@ -29,7 +31,8 @@ public class Member extends Timestamp {
     private String memberEmail;
     @Column(unique = true,nullable = false)
     private String memberPhoneNumber;
-//    private LocalDateTime modDate;
+    @Enumerated(EnumType.STRING)
+    private Role memberRole;
 
     public static Member toMember(MemberDTO memberDTO){
         Member member = new Member();
@@ -55,12 +58,22 @@ public class Member extends Timestamp {
 
         return member;
     }
+    @Builder
+    public Member(Long id, String memberId, String memberPw, String memberName, int memberPoint, String memberEmail, String memberPhoneNumber, Role memberRole) {
+        this.id = id;
+        this.memberId = memberId;
+        this.memberPw = memberPw;
+        this.memberName = memberName;
+        this.memberPoint = memberPoint;
+        this.memberEmail = memberEmail;
+        this.memberPhoneNumber = memberPhoneNumber;
+        this.memberRole = memberRole;
+    }
 
-//    @Enumerated(EnumType.STRING)
-//    private Role role; //권한
-//
-//    public enum Role {
-//        MEMBER, ADMIN
-//    }
-
+    public Member update(String memberName, String memberPhoneNumber, String memberEmail ){
+        this.setMemberName(memberName);
+        this.setMemberPhoneNumber(memberPhoneNumber);
+        this.setMemberEmail(memberEmail);
+        return this;
+    }
 }

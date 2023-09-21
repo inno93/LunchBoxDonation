@@ -55,7 +55,7 @@ public class BargainQueryDSLImpl implements BargainQueryDSL {
                 .limit(pageable.getPageSize())
                 .fetch();
 
-        final long count = query.select(bargain.count()).from(bargain).fetchOne();
+        final long count = query.select(bargain.count()).from(bargain).where(builder).fetchOne();
         return new PageImpl<>(bargainLists, pageable, count);
     }
 }

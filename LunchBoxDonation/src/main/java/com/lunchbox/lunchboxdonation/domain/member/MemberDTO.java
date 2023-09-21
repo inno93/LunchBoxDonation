@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
 public class MemberDTO {
 
@@ -34,5 +33,12 @@ public class MemberDTO {
         memberDTO.setMemberPhoneNumber(member.getMemberPhoneNumber());
         memberDTO.setMemberPoint(member.getMemberPoint());
         return memberDTO;
+    }
+
+    public MemberDTO(Member member) {
+        this.memberId = member.getMemberId();
+        this.memberName = member.getMemberName();
+        this.memberEmail = member.getMemberEmail();
+        this.memberPhoneNumber = member.getMemberPhoneNumber();
     }
 }

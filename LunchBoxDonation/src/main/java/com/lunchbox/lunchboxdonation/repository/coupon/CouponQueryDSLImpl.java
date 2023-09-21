@@ -54,7 +54,7 @@ public class CouponQueryDSLImpl implements CouponQueryDSL {
                 .fetch();
 
 
-        final Long count = query.select(coupon1.count()).from(coupon1).fetchOne();
+        final Long count = query.select(coupon1.count()).from(coupon1).where(builder).fetchOne();
 
 
         return new PageImpl<>(couponRequestDTOList, pageable, count);

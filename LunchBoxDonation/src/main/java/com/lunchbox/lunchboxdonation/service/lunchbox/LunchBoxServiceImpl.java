@@ -72,6 +72,7 @@ public class LunchBoxServiceImpl implements LunchBoxService {
     }
 
     @Override
+    @Transactional
     public LunchBox getLunchBoxWithOptionByLunchBoxId(Long id) {
 
         return lunchBoxRepository.lunchBoxDetail(id);

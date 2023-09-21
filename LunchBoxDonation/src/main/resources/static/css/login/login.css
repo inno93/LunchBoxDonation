@@ -224,7 +224,8 @@ button, input {
     background: url(/img/login/ico_sns_login_m.png) no-repeat;
     background-size: auto 46px;
 }
-.sns-login-list .ico-sns-loin.apple {
+.sns-login-list .ico-sns-loin.google {
+    background-image: url("/img/login/google.png");
     background-position: right top;
 }
 .sns-login-list .ico-sns-loin {
